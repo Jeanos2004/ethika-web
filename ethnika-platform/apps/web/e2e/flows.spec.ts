@@ -210,6 +210,6 @@ test.describe("Langues", () => {
 
   test("/fr/… redirige vers l'URL sans préfixe", async ({ page }) => {
     await page.goto("/fr/billetterie");
-    await expect(page).toHaveURL(/localhost:3000\/billetterie$/);
+    await expect(page).toHaveURL(/^https?:\/\/[^/]+\/billetterie$/);
   });
 });

@@ -8,6 +8,8 @@ async function blockingViolations(page: import("@playwright/test").Page) {
 }
 
 test.describe("Kit UI", () => {
+  // /kit n'existe qu'en développement (404 sur un build de production, cf. E2E_BASE_URL).
+  test.skip(!!process.env.E2E_BASE_URL, "kit absent en production");
   test("ne présente aucune violation axe sérieuse ou critique", async ({ page }) => {
     await page.goto("/kit");
     expect(await blockingViolations(page)).toEqual([]);

@@ -22,7 +22,7 @@ async function publicDataUrl(path: string, mime: string) {
 }
 
 /** Image OG générique : `kicker` en capitales mono dorées, `title` en grand, `caption` en pied. */
-export async function renderOg({ title, kicker, caption = "ethnikatour.com" }: { title: string; kicker?: string; caption?: string }) {
+export async function renderOg({ title, kicker, caption = new URL(site.url).host }: { title: string; kicker?: string; caption?: string }) {
   const [logo, symbol, mono] = await Promise.all([
     publicDataUrl("/brand/logo-horizontal-inverse.svg", "image/svg+xml"),
     publicDataUrl("/brand/symbole-or.svg", "image/svg+xml"),

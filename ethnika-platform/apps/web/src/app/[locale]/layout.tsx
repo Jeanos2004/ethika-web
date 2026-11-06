@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
@@ -42,6 +42,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/**
+ * Espaces de messages utilisés par des composants client. Les textes propres aux pages sont rendus côté serveur :
+ * inutile de les sérialiser dans chaque page (environ 100 Ko de moins par document).
+ * Ajouter ici tout nouvel espace lu par un composant client (sinon : erreur MISSING_MESSAGE au rendu client).
+ */
+const clientNamespaces = ["cards", "common", "cookies", "errors", "faq", "flight", "forms", "header", "mobileBar", "nav", "newsletter", "notFound", "pro", "quote", "search", "share", "site", "slider", "ui", "video"] as const;
+
+async function clientMessages() {
+  const all = await getMessages();
+  return Object.fromEntries(clientNamespaces.map((ns) => [ns, all[ns]]));
+}
+
 export const viewport: Viewport = {
   themeColor: "#16211C",
   width: "device-width",
@@ -71,7 +83,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" },
           }}
         />
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={await clientMessages()}>
           <SiteHeader />
           <main id="contenu">{children}</main>
           <SiteFooter />

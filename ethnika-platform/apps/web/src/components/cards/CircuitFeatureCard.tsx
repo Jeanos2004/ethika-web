@@ -22,6 +22,7 @@ export function CircuitFeatureCard({
   cta = "pill",
   imageHeight = "h-[270px]",
   sizes = "(min-width: 1100px) 33vw, (min-width: 640px) 50vw, 100vw",
+  headingLevel = 3,
   className,
 }: {
   circuit: Circuit;
@@ -29,8 +30,11 @@ export function CircuitFeatureCard({
   cta?: "link" | "pill";
   imageHeight?: string;
   sizes?: string;
+  /** Niveau du titre selon la page : h2 dans la liste des circuits (directement sous le h1), h3 sous une section. */
+  headingLevel?: 2 | 3;
   className?: string;
 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const t = useTranslations("cards");
   const tc = useTranslations("common");
   return (
@@ -45,11 +49,11 @@ export function CircuitFeatureCard({
           <Icon name="pin" size={14} strokeWidth={2.2} className="text-brand-red" />
           {circuit.place}
         </span>
-        <h3 className="text-[21px] leading-tight font-bold tracking-tight text-night sm:text-[23px]">
+        <Heading className="text-[21px] leading-tight font-bold tracking-tight text-night sm:text-[23px]">
           <Link href={`/circuits/${circuit.slug}`} className={stretchedLink}>
             {circuit.title}
           </Link>
-        </h3>
+        </Heading>
         <p className="text-[15px] leading-relaxed text-muted">{circuit.summary}</p>
         <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
           <span className="text-[13px] text-subtle">

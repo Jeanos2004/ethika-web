@@ -10,6 +10,9 @@ export const routing = defineRouting({
   defaultLocale: "fr",
   localePrefix: "as-needed",
   localeDetection: false,
+  // hreflang émis par les métadonnées (src/content/pages.ts) à partir de site.url ; l'en-tête Link de next-intl
+  // utiliserait l'hôte de la requête (adresse interne derrière un reverse proxy).
+  alternateLinks: false,
 });
 
 export type Locale = (typeof routing.locales)[number];

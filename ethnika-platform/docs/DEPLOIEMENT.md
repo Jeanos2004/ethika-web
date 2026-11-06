@@ -55,3 +55,20 @@ docker run -d --name ethnika-web --restart unless-stopped \
 - **Images OG** : générées au build pour chaque page et chaque langue (`opengraph-image.tsx`, `src/lib/og.tsx`), environ 60 Ko chacune, donc compatibles avec les aperçus WhatsApp.
 - **Avant la mise en ligne** : remplacer les placeholders `[…]` (téléphone, WhatsApp, adresse, horaires, licence, RCCM, prix), faire valider les textes légaux par un juriste, renseigner `NEXT_PUBLIC_SITE_URL`, vérifier `robots.txt` et `sitemap.xml`, et déclarer le site dans Google Search Console.
 - **CI** : `.github/workflows/ci.yml` (à la racine du dépôt) lance lint, typecheck, tests unitaires, build et audit. Les tests navigateur se lancent en local (`pnpm test:e2e`, ou `E2E_BASE_URL=… pnpm test:e2e` contre un build).
+
+## API (`apps/api`) sur VPS
+
+Le site reste sur Vercel ; l'API et sa base tournent sur le VPS (Docker), derrière un reverse proxy TLS.
+
+```bash
+# Depuis la racine du projet
+docker build -f apps/api/Dockerfile -t ethnika-api .
+docker run -d --name ethnika-api --restart unless-stopped \
+  -p 127.0.0.1:4000:4000 --env-file /etc/ethnika/api.env ethnika-api
+```
+
+- `/etc/ethnika/api.env` : `DATABASE_URL`, `INTERNAL_API_KEY` (32+ caractères), `CORS_ORIGINS`, `SITE_URL`. Les migrations Prisma sont appliquées au démarrage (`prisma migrate deploy`).
+- PostgreSQL : service managé ou conteneur sur le même réseau Docker, **jamais exposé publiquement**, sauvegardes chiffrées et testées.
+- Reverse proxy (Caddy ou Nginx) : `api.ethnikatour.com` → `127.0.0.1:4000`, TLS, en-têtes `X-Forwarded-*` écrasés.
+- Brancher le site : sur Vercel, `API_BASE_URL=https://api.ethnikatour.com` et `API_INTERNAL_KEY=<même clé>`, puis **retirer** `NEXT_PUBLIC_DEMO_MODE` (les demandes partent alors en base).
+- PDF : Chromium est inclus dans l'image (`CHROME_PATH=/usr/bin/chromium-browser`).

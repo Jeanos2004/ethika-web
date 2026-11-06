@@ -142,7 +142,7 @@ export default async function CircuitsPage({ params, searchParams }: Props) {
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(360px,100%),1fr))] gap-[26px]">
             {shown.map((c) => (
               <li key={c.slug}>
-                <CircuitFeatureCard circuit={c} className="h-full" />
+                <CircuitFeatureCard circuit={c} headingLevel={2} className="h-full" />
               </li>
             ))}
           </ul>

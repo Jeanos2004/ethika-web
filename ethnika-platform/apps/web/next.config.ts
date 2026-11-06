@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 import createNextIntlPlugin from "next-intl/plugin";
@@ -37,9 +38,23 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
 ];
 
+/** Sortie autonome pour l'image Docker (NEXT_OUTPUT=standalone, voir docs/DEPLOIEMENT.md). Vercel n'en a pas besoin. */
+const standalone = process.env.NEXT_OUTPUT === "standalone";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  ...(standalone && {
+    output: "standalone" as const,
+    // Monorepo pnpm : tracer les dépendances depuis la racine du dépôt.
+    outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
+    // Fichiers lus à l'exécution par les images OG (src/lib/og.tsx).
+    outputFileTracingIncludes: { "/**/opengraph-image": ["./public/brand/**", "./node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff"] },
+  }),
   poweredByHeader: false,
+  experimental: {
+    // CSS (≈ 16 Ko) intégré au HTML : une requête bloquante de moins, précieux avec la latence Conakry ↔ Europe.
+    inlineCss: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Ajouter ici les domaines distants (CMS, CDN) au cas par cas — jamais de joker.

@@ -56,7 +56,7 @@ test.describe("liste des circuits", () => {
     await page.goto("/circuits");
     await page.getByRole("navigation", { name: "Filtrer par thème" }).getByRole("link", { name: "Culture" }).click();
     await expect(page).toHaveURL(/theme=culture/);
-    await expect(page.getByRole("heading", { level: 3 })).toHaveText(["Boffa, mémoire de la côte"]);
+    await expect(page.getByRole("main").getByRole("article").getByRole("heading", { level: 2 })).toHaveText(["Boffa, mémoire de la côte"]);
   });
 
   test("un paramètre invalide est ignoré", async ({ page }) => {

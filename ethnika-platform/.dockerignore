@@ -1,0 +1,13 @@
+# Contexte Docker = racine du dépôt (apps/web/Dockerfile).
+**/node_modules
+**/.next
+**/.env*
+!**/.env.example
+**/test-results
+**/playwright-report
+**/captures
+.git
+.github
+design
+docs
+*.md

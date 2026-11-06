@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Kit de composants — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFBF5}
+</style>
+</helmet>
+<div style="width: 1440px; min-height: 6200px; background: #FFFBF5; color: #121815; font-family: 'Bricolage Grotesque', sans-serif; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; gap: 72px">
+
+<!-- TITLE -->
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; border-bottom: 2px solid #16211C; padding-bottom: 28px">
+  <div style="display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: #B0121B">DESIGN SYSTEM · V1.0 · POUR LE DÉVELOPPEMENT NEXT.JS</span><h1 style="margin: 0; font-size: 84px; line-height: 0.95; letter-spacing: -0.045em; color: #16211C">Kit de composants & tokens</h1></div>
+  <img src="/brand/logo-horizontal-signature-couleur.svg" alt="ETHNIKA" style="height: 90px">
+</div>
+
+<!-- TOKENS COULEURS -->
+<section style="display: flex; flex-direction: column; gap: 22px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">01</span>Couleurs</h2>
+  <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px">
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #B0121B"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>brand.red</strong><br><span style="font-family: 'DM Mono', monospace">#B0121B</span><br><span style="color: #6B6259">CTA, accents</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #E3A935"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>brand.gold</strong><br><span style="font-family: 'DM Mono', monospace">#E3A935</span><br><span style="color: #6B6259">Accent sur sombre</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #0E5232"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>brand.green</strong><br><span style="font-family: 'DM Mono', monospace">#0E5232</span><br><span style="color: #6B6259">Succès, WhatsApp</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #16211C"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>night</strong><br><span style="font-family: 'DM Mono', monospace">#16211C</span><br><span style="color: #6B6259">Titres, surfaces</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #121815"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>ink</strong><br><span style="font-family: 'DM Mono', monospace">#121815</span><br><span style="color: #6B6259">Texte, footer</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 110px; background: #4E463F"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>text.muted</strong><br><span style="font-family: 'DM Mono', monospace">#4E463F</span><br><span style="color: #6B6259">Paragraphes</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #FFFBF5"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>cream</strong> <span style="font-family: 'DM Mono', monospace">#FFFBF5</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #F5EEE3"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>sand</strong> <span style="font-family: 'DM Mono', monospace">#F5EEE3</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #EFE6D2"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>line</strong> <span style="font-family: 'DM Mono', monospace">#EFE6D2</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #F8DADB"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>red.50</strong> <span style="font-family: 'DM Mono', monospace">#F8DADB / #8C0E16</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #F8E6C4"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>gold.50</strong> <span style="font-family: 'DM Mono', monospace">#F8E6C4 / #6E4710</span></div></div>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 80px; background: #D3E7DA"></div><div style="padding: 12px 14px; font-size: 13px; line-height: 1.5; background: #FFFFFF"><strong>green.50</strong> <span style="font-family: 'DM Mono', monospace">#D3E7DA / #0E4A2D</span></div></div>
+  </div>
+</section>
+
+<!-- TYPO + RAYONS -->
+<section style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px">
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">02</span>Typographie</h2>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 1px solid #EFE6D2; padding-bottom: 14px"><span style="font-size: 72px; font-weight: 700; letter-spacing: -0.045em; line-height: 1">Display</span><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">h1 · clamp(46px, 6vw, 88px) · 700 · -0.045em</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 1px solid #EFE6D2; padding-bottom: 14px"><span style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; line-height: 1">Titre H2</span><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">clamp(36px, 4.2vw, 56px) · -0.035em</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 1px solid #EFE6D2; padding-bottom: 14px"><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 34px; color: #B0121B">Accroche italique</span><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">Instrument Serif italic · 28–32px</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 1px solid #EFE6D2; padding-bottom: 14px"><span style="font-size: 17px; line-height: 1.7; color: #4E463F">Texte courant pour les paragraphes et descriptions.</span><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">Bricolage 16–18px · 1.65</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px"><span style="font-family: 'DM Mono', monospace; font-size: 22px">CKY → CDG · ETH-0421</span><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">DM Mono · codes, références, prix</span></div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">03</span>Rayons, ombres, espacements</h2>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; gap: 14px; align-items: flex-end">
+        <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 11px"><div style="width: 64px; height: 64px; background: #EFE6D2; border-radius: 14px; margin-bottom: 6px"></div>sm 14</div>
+        <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 11px"><div style="width: 64px; height: 64px; background: #EFE6D2; border-radius: 22px; margin-bottom: 6px"></div>md 22</div>
+        <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 11px"><div style="width: 64px; height: 64px; background: #EFE6D2; border-radius: 28px; margin-bottom: 6px"></div>lg 28</div>
+        <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 11px"><div style="width: 64px; height: 64px; background: #EFE6D2; border-radius: 999px; margin-bottom: 6px"></div>pill</div>
+        <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 11px"><div style="width: 64px; height: 64px; background: #16211C; border-radius: 32px 32px 12px 12px; margin-bottom: 6px"></div>arche</div>
+      </div>
+      <div style="display: flex; gap: 14px">
+        <div style="flex: 1; height: 70px; border-radius: 18px; background: #FFFBF5; box-shadow: 0 10px 30px rgba(22,33,28,0.06); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 11px">shadow.sm</div>
+        <div style="flex: 1; height: 70px; border-radius: 18px; background: #FFFBF5; box-shadow: 0 14px 40px rgba(22,33,28,0.08); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 11px">shadow.md</div>
+        <div style="flex: 1; height: 70px; border-radius: 18px; background: #FFFBF5; box-shadow: 0 24px 60px rgba(22,33,28,0.14); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 11px">shadow.lg</div>
+      </div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; color: #4E463F">Espacement : 4 · 8 · 12 · 16 · 24 · 32 · 48 · 72 · 110<br>Conteneur : max 1320px · gouttière 24px (16px mobile)<br>Grilles : repeat(auto-fit, minmax(min(Npx,100%),1fr))</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTONS -->
+<section style="display: flex; flex-direction: column; gap: 18px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">04</span>Boutons</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: grid; grid-template-columns: 120px repeat(4, 1fr); gap: 14px; align-items: center; font-size: 12px; font-family: 'DM Mono', monospace; color: #6B6259">
+      <span></span><span>Défaut</span><span>Survol</span><span>Focus</span><span>Désactivé</span>
+      <span>Primaire</span>
+      <span style="height: 48px; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Réserver</span>
+      <span style="height: 48px; border-radius: 999px; background: #8C0E16; color: #FFFFFF; font: 700 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Réserver</span>
+      <span style="height: 48px; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #FFFBF5, 0 0 0 6px #E3A935">Réserver</span>
+      <span style="height: 48px; border-radius: 999px; background: #EFE6D2; color: #A2AAA4; font: 700 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Réserver</span>
+      <span>Secondaire</span>
+      <span style="height: 48px; border-radius: 999px; background: #16211C; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Détails</span>
+      <span style="height: 48px; border-radius: 999px; background: #2A352F; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Détails</span>
+      <span style="height: 48px; border-radius: 999px; background: #16211C; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #FFFBF5, 0 0 0 6px #E3A935">Détails</span>
+      <span style="height: 48px; border-radius: 999px; background: #EFE6D2; color: #A2AAA4; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Détails</span>
+      <span>Contour</span>
+      <span style="height: 48px; border-radius: 999px; border: 1.5px solid #16211C; color: #16211C; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Sur mesure</span>
+      <span style="height: 48px; border-radius: 999px; border: 1.5px solid #16211C; background: #16211C; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Sur mesure</span>
+      <span style="height: 48px; border-radius: 999px; border: 1.5px solid #16211C; color: #16211C; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #FFFBF5, 0 0 0 6px #E3A935">Sur mesure</span>
+      <span style="height: 48px; border-radius: 999px; border: 1.5px solid #E3D8C8; color: #A2AAA4; font: 600 14px 'Bricolage Grotesque'; display: flex; align-items: center; justify-content: center">Sur mesure</span>
+    </div>
+    <div style="background: #16211C; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 18px; color: #FFFFFF">
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #A2AAA4">SUR FOND SOMBRE / PHOTO</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px"><span style="height: 52px; padding: 0 24px; border-radius: 999px; background: #E3A935; color: #121815; font-weight: 700; display: inline-flex; align-items: center">Voir les circuits</span><span style="height: 52px; padding: 0 24px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.7); font-weight: 600; display: inline-flex; align-items: center">Voyage sur mesure</span><span style="height: 52px; padding: 0 22px; border-radius: 999px; background: #0E5232; font-weight: 700; display: inline-flex; align-items: center">WhatsApp</span></div>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #A2AAA4">TAILLES · ICÔNE</span>
+      <div style="display: flex; gap: 12px; align-items: center"><span style="height: 40px; padding: 0 16px; border-radius: 999px; background: #B0121B; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center">S · 40</span><span style="height: 48px; padding: 0 22px; border-radius: 999px; background: #B0121B; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center">M · 48</span><span style="height: 56px; padding: 0 28px; border-radius: 999px; background: #B0121B; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center">L · 56</span><span style="width: 48px; height: 48px; border-radius: 999px; background: #25302A; display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRES -->
+<section style="display: flex; flex-direction: column; gap: 18px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">05</span>Champs de formulaire</h2>
+  <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px">
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Défaut<span style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; padding: 0 14px; display: flex; align-items: center; font-weight: 400; color: #8E9690">Votre nom</span><span style="font-size: 12px; font-weight: 400; color: #6B6259">Texte d'aide</span></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Focus<span style="height: 52px; border-radius: 14px; border: 1.5px solid #16211C; box-shadow: 0 0 0 4px rgba(227,169,53,0.35); padding: 0 14px; display: flex; align-items: center; font-weight: 500">Aminata D|</span><span style="font-size: 12px; font-weight: 400; color: #6B6259">Anneau or 4px</span></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #8C0E16">Erreur<span style="height: 52px; border-radius: 14px; border: 1.5px solid #B0121B; background: #FCE6E6; padding: 0 14px; display: flex; align-items: center; font-weight: 500; color: #121815">aminata@</span><span style="font-size: 12px; font-weight: 600">Adresse e-mail incomplète</span></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #0E4A2D">Valide<span style="height: 52px; border-radius: 14px; border: 1.5px solid #0E5232; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; font-weight: 500; color: #121815">+224 6XX XX XX XX<span style="color: #0E5232">✓</span></span><span style="font-size: 12px; font-weight: 400">Format accepté</span></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Liste<span style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; font-weight: 500">Économique<span>▾</span></span></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Compteur<span style="height: 52px; display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; border: 1.5px solid #E3D8C8; display: flex; align-items: center; justify-content: center">−</span><span style="font-family: 'DM Mono', monospace; font-size: 18px">2</span><span style="width: 44px; height: 44px; border-radius: 999px; background: #16211C; color: #FFFFFF; display: flex; align-items: center; justify-content: center">+</span></span></label>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px; font-weight: 600">Cases & radios<span style="display: flex; gap: 10px; align-items: center; font-weight: 400"><span style="width: 20px; height: 20px; border-radius: 6px; background: #B0121B; color: #FFFFFF; font-size: 13px; display: flex; align-items: center; justify-content: center">✓</span>J'accepte</span><span style="display: flex; gap: 10px; align-items: center; font-weight: 400"><span style="width: 20px; height: 20px; border-radius: 999px; border: 6px solid #B0121B; box-sizing: border-box"></span>Aller-retour</span></div>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #A2AAA4">Désactivé<span style="height: 52px; border-radius: 14px; border: 1.5px solid #EFE6D2; background: #F5EEE3; padding: 0 14px; display: flex; align-items: center; font-weight: 400">Conakry (CKY)</span></label>
+  </div>
+</section>
+
+<!-- CHIPS / BADGES / TABS / PAGINATION -->
+<section style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">06</span>Chips, badges, statuts</h2>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="height: 44px; padding: 0 18px; border-radius: 999px; background: #16211C; color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center">Actif</span><span style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #E3D8C8; font-weight: 600; display: inline-flex; align-items: center">Inactif</span><span style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #E3D8C8; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">Filtre <span style="font-family: 'DM Mono', monospace; color: #8E9690">12</span></span></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="padding: 6px 12px; border-radius: 999px; background: #E3A935; color: #121815; font-size: 12px; font-weight: 700">Dernière minute</span><span style="padding: 6px 12px; border-radius: 999px; background: #0E5232; color: #FFFFFF; font-size: 12px; font-weight: 700">Nature</span><span style="padding: 6px 12px; border-radius: 999px; background: #B0121B; color: #FFFFFF; font-size: 12px; font-weight: 700">Promo</span><span style="padding: 6px 12px; border-radius: 999px; background: #16211C; color: #FFFFFF; font-size: 12px; font-weight: 700">Bientôt</span></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="padding: 6px 12px; border-radius: 999px; background: #EFE6D2; color: #4E463F; font-size: 12px; font-weight: 700">● Nouvelle</span><span style="padding: 6px 12px; border-radius: 999px; background: #F8E6C4; color: #6E4710; font-size: 12px; font-weight: 700">● En cours</span><span style="padding: 6px 12px; border-radius: 999px; background: #D3E7DA; color: #0E4A2D; font-size: 12px; font-weight: 700">● Confirmée</span><span style="padding: 6px 12px; border-radius: 999px; background: #F8DADB; color: #8C0E16; font-size: 12px; font-weight: 700">● Annulée</span></div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">07</span>Onglets & pagination</h2>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 28px; border: 1px solid #EFE6D2; display: flex; flex-direction: column; gap: 22px">
+      <div style="display: inline-flex; gap: 6px; padding: 6px; border-radius: 999px; background: #F5EEE3; align-self: flex-start"><span style="height: 42px; padding: 0 18px; border-radius: 999px; background: #16211C; color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center">Aller-retour</span><span style="height: 42px; padding: 0 18px; border-radius: 999px; font-weight: 600; display: inline-flex; align-items: center">Aller simple</span><span style="height: 42px; padding: 0 18px; border-radius: 999px; font-weight: 600; display: inline-flex; align-items: center">Multi</span></div>
+      <div style="display: flex; gap: 26px; border-bottom: 1px solid #EFE6D2; font-weight: 600"><span style="padding-bottom: 12px; border-bottom: 2px solid #B0121B; color: #B0121B">Programme</span><span style="padding-bottom: 12px; color: #4E463F">Inclus</span><span style="padding-bottom: 12px; color: #4E463F">Départs</span></div>
+      <div style="display: flex; gap: 8px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #16211C; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace">1</span><span style="width: 44px; height: 44px; border-radius: 999px; border: 1.5px solid #E3D8C8; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace">2</span><span style="width: 44px; height: 44px; border-radius: 999px; border: 1.5px solid #E3D8C8; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace">3</span><span style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #E3D8C8; display: flex; align-items: center; font-weight: 600">Suivant →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTES -->
+<section style="display: flex; flex-direction: column; gap: 18px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">08</span>Cartes</h2>
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: start">
+    <div style="background: #FFFFFF; border-radius: 26px; overflow: hidden; box-shadow: 0 14px 40px rgba(22,33,28,0.08)"><div style="height: 180px; position: relative"><img src="/images/fouta-sommets.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; top: 12px; left: 12px; padding: 6px 12px; border-radius: 999px; background: #0E5232; color: #FFFFFF; font-size: 12px; font-weight: 700">Nature</span></div><div style="padding: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #8E9690">4 JOURS · FOUTA</span><strong style="font-size: 18px">CircuitCard</strong><div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #E3D8C8; padding-top: 10px"><strong style="color: #B0121B">[PRIX] GNF</strong><span style="font-weight: 700; color: #B0121B">→</span></div></div></div>
+    <div style="position: relative; height: 330px; border-radius: 26px; overflow: hidden; color: #FFFFFF"><img src="/images/bel-air-cocotiers.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"><div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 40%, rgba(18,24,21,0.9) 100%)"></div><div style="position: absolute; left: 18px; bottom: 18px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #E3A935">BASSE GUINÉE</span><strong style="display: block; font-size: 22px">DestinationCard</strong></div></div>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 180px; border-radius: 22px; overflow: hidden"><img src="/images/chutes-nguilo.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #B0121B">DESTINATIONS · 5 MIN</span><strong style="font-size: 18px">PostCard (blog)</strong><span style="font-size: 13px; color: #4E463F">Extrait sur deux lignes maximum…</span></div>
+    <div style="background: #16211C; color: #FFFFFF; border-radius: 26px; padding: 22px; display: flex; flex-direction: column; gap: 14px"><div style="display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 11px; color: #A2AAA4"><span>BoardingPass</span><span>ALLER-RETOUR</span></div><div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'DM Mono', monospace; font-size: 36px">CKY</span><span style="color: #E3A935">✈</span><span style="font-family: 'DM Mono', monospace; font-size: 36px; color: #E3A935">CDG</span></div><div style="border-top: 1px dashed #34413A; padding-top: 12px; font-size: 13px; color: #D0D4CF">2 adultes · Économique</div></div>
+  </div>
+</section>
+
+<!-- HEADERS -->
+<section style="display: flex; flex-direction: column; gap: 18px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">09</span>En-têtes & menu mobile</h2>
+  <div style="position: relative; height: 150px; border-radius: 22px; overflow: hidden; color: #FFFFFF"><img src="/images/cote-verte-aerien.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"><div style="position: absolute; inset: 0; background: rgba(18,24,21,0.65)"></div><div style="position: relative; padding: 0 28px; height: 100%; display: flex; align-items: center; justify-content: space-between"><img src="/brand/logo-horizontal-inverse.svg" alt="" style="height: 56px"><div style="display: flex; gap: 24px; font-weight: 600; font-size: 15px"><span style="color: #E3A935; border-bottom: 2px solid #E3A935; padding-bottom: 4px">Découvrir la Guinée</span><span>Circuits</span><span>Billetterie</span><span>Services</span><span>Offres</span><span>Blog</span><span>Contact</span></div><span style="height: 46px; padding: 0 22px; border-radius: 999px; background: #B0121B; font-weight: 700; display: flex; align-items: center">Réserver</span></div><span style="position: absolute; top: 10px; right: 14px; font-family: 'DM Mono', monospace; font-size: 11px; color: #E3A935">HeaderTransparent (sur photo)</span></div>
+  <div style="position: relative; height: 100px; border-radius: 22px; background: #FFFBF5; border: 1px solid #EFE6D2; padding: 0 28px; display: flex; align-items: center; justify-content: space-between"><img src="/brand/logo-horizontal-couleur.svg" alt="" style="height: 56px"><div style="display: flex; gap: 24px; font-weight: 600; font-size: 15px"><span>Découvrir la Guinée</span><span>Circuits</span><span>Billetterie</span><span>Services</span><span>Offres</span><span style="color: #B0121B; border-bottom: 2px solid #B0121B; padding-bottom: 4px">Blog</span><span>Contact</span></div><span style="height: 46px; padding: 0 22px; border-radius: 999px; background: #B0121B; color: #FFFFFF; font-weight: 700; display: flex; align-items: center">Réserver</span><span style="position: absolute; top: 8px; right: 14px; font-family: 'DM Mono', monospace; font-size: 11px; color: #B0121B">HeaderSolid (pages de contenu + scroll)</span></div>
+  <div style="display: grid; grid-template-columns: 390px 390px 1fr; gap: 20px; align-items: start">
+    <div style="border-radius: 30px; overflow: hidden; border: 8px solid #16211C; height: 640px; background: #16211C; color: #FFFFFF; display: flex; flex-direction: column">
+      <div style="padding: 18px 20px; display: flex; justify-content: space-between; align-items: center"><img src="/brand/logo-horizontal-inverse.svg" alt="" style="height: 44px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #25302A; display: flex; align-items: center; justify-content: center; font-size: 22px">×</span></div>
+      <div style="padding: 10px 24px; display: flex; flex-direction: column; gap: 4px; font-size: 26px; font-weight: 700; letter-spacing: -0.02em"><span style="padding: 10px 0; border-bottom: 1px solid #2A352F; color: #E3A935">Découvrir la Guinée</span><span style="padding: 10px 0; border-bottom: 1px solid #2A352F">Circuits</span><span style="padding: 10px 0; border-bottom: 1px solid #2A352F">Billetterie</span><span style="padding: 10px 0; border-bottom: 1px solid #2A352F">Services</span><span style="padding: 10px 0; border-bottom: 1px solid #2A352F">Offres</span><span style="padding: 10px 0; border-bottom: 1px solid #2A352F">Blog</span><span style="padding: 10px 0">Contact</span></div>
+      <div style="margin-top: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px"><span style="height: 52px; border-radius: 999px; background: #B0121B; font-weight: 700; display: flex; align-items: center; justify-content: center">Réserver</span><div style="display: flex; justify-content: space-between; font-size: 13px; color: #A2AAA4"><span>À propos · FAQ</span><span style="font-family: 'DM Mono', monospace">FR / EN</span></div></div>
+    </div>
+    <div style="border-radius: 30px; overflow: hidden; border: 8px solid #16211C; height: 640px; background: #FFFBF5; display: flex; flex-direction: column; position: relative">
+      <div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #EFE6D2"><img src="/brand/logo-horizontal-couleur.svg" alt="" style="height: 40px"><span style="width: 44px; height: 44px; border-radius: 999px; background: #16211C; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px"><span style="width: 18px; height: 2px; background: #FFFFFF"></span><span style="width: 18px; height: 2px; background: #FFFFFF"></span><span style="width: 18px; height: 2px; background: #FFFFFF"></span></span></div>
+      <div style="padding: 20px; display: flex; flex-direction: column; gap: 12px"><div style="height: 18px; width: 60%; border-radius: 8px; background: #EFE6D2"></div><div style="height: 180px; border-radius: 20px; background: #EFE6D2"></div><div style="height: 14px; width: 80%; border-radius: 8px; background: #EFE6D2"></div><div style="height: 14px; width: 50%; border-radius: 8px; background: #EFE6D2"></div></div>
+      <div style="position: absolute; left: 12px; right: 12px; bottom: 12px; background: #16211C; color: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5"><strong style="font-size: 15px">Cookies</strong><span style="color: #D0D4CF">Nous utilisons des cookies pour mesurer l'audience. Vous pouvez accepter ou refuser.</span><div style="display: flex; gap: 8px"><span style="flex: 1; height: 42px; border-radius: 999px; background: #E3A935; color: #121815; font-weight: 700; display: flex; align-items: center; justify-content: center">Accepter</span><span style="flex: 1; height: 42px; border-radius: 999px; border: 1.5px solid #5A665F; font-weight: 600; display: flex; align-items: center; justify-content: center">Refuser</span></div></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #4E463F">
+      <strong style="font-size: 18px; color: #16211C">Comportement</strong>
+      <span>Desktop ≥ 1100px : nav complète. En dessous : burger + menu plein écran (fond nuit).</span>
+      <span>Au scroll &gt; 80px, HeaderTransparent devient HeaderSolid, collé en haut (sticky), avec ombre shadow.sm.</span>
+      <span>Bandeau cookies : affiché tant que le choix n'est pas fait, refus aussi simple que l'acceptation.</span>
+      <span>Bouton WhatsApp flottant : 64px, #0E5232, en bas à droite, au-dessus du bandeau cookies.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section style="display: flex; flex-direction: column; gap: 18px">
+  <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">10</span>Retours, chargement, états vides</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 18px; background: #16211C; color: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.2)"><span style="width: 28px; height: 28px; border-radius: 999px; background: #0E5232; display: flex; align-items: center; justify-content: center; flex-shrink: 0">✓</span><div><strong>Demande envoyée</strong><div style="font-size: 13px; color: #D0D4CF">Réf. ETH-0421</div></div></div>
+      <div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 18px; background: #F8DADB; color: #8C0E16"><span style="width: 28px; height: 28px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0">!</span><div><strong>Envoi impossible</strong><div style="font-size: 13px">Vérifiez votre connexion et réessayez.</div></div></div>
+      <div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 18px; background: #F8E6C4; color: #6E4710"><span style="width: 28px; height: 28px; border-radius: 999px; background: #E3A935; color: #121815; display: flex; align-items: center; justify-content: center; flex-shrink: 0">i</span><div><strong>Information</strong><div style="font-size: 13px">Prix indicatifs, sous réserve.</div></div></div>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 26px; overflow: hidden; border: 1px solid #EFE6D2"><div style="height: 170px; background: linear-gradient(90deg, #EFE6D2 0%, #F5EEE3 50%, #EFE6D2 100%)"></div><div style="padding: 18px; display: flex; flex-direction: column; gap: 10px"><div style="height: 12px; width: 40%; border-radius: 6px; background: #EFE6D2"></div><div style="height: 18px; width: 85%; border-radius: 6px; background: #EFE6D2"></div><div style="height: 12px; width: 70%; border-radius: 6px; background: #EFE6D2"></div><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #8E9690">Skeleton (chargement)</span></div></div>
+    <div style="padding: 32px 22px; border-radius: 26px; border: 1.5px dashed #E3D8C8; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px"><img src="/brand/symbole-aplat.svg" alt="" style="width: 70px; opacity: 0.5"><strong style="font-size: 18px">Aucun résultat</strong><span style="font-size: 14px; color: #4E463F">Essayez un autre filtre ou contactez-nous.</span><span style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #16211C; font-weight: 600; display: inline-flex; align-items: center">Réinitialiser</span></div>
+  </div>
+</section>
+
+<!-- ACCORDÉON + NOMMAGE -->
+<section style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">11</span>Accordéon</h2>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 10px 30px rgba(22,33,28,0.06)"><div style="padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 17px">Question ouverte<span style="width: 34px; height: 34px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center">−</span></div><div style="padding: 0 22px 20px; font-size: 15px; line-height: 1.6; color: #4E463F">Réponse affichée. aria-expanded="true" sur le bouton.</div></div>
+      <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 10px 30px rgba(22,33,28,0.06); padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 17px">Question fermée<span style="width: 34px; height: 34px; border-radius: 999px; background: #F5EEE3; display: flex; align-items: center; justify-content: center">+</span></div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <h2 style="margin: 0; font-size: 36px; letter-spacing: -0.03em"><span style="font-family: 'DM Mono', monospace; color: #B0121B; margin-right: 12px">12</span>Correspondance code</h2>
+    <div style="background: #16211C; color: #E2E5E0; border-radius: 22px; padding: 24px; font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.9">
+      <span style="color: #8E9690">// tailwind.config.ts → theme.extend.colors</span><br>
+      brand: { red: '#B0121B', gold: '#E3A935', green: '#0E5232' },<br>
+      night: '#16211C', ink: '#121815',<br>
+      cream: '#FFFBF5', sand: '#F5EEE3', line: '#EFE6D2',<br>
+      <span style="color: #8E9690">// fonts → next/font/google</span><br>
+      Bricolage_Grotesque · Instrument_Serif · DM_Mono<br>
+      <span style="color: #8E9690">// composants → /components/ui</span><br>
+      Button · Input · Chip · Badge · Tabs · Accordion<br>
+      CircuitCard · DestinationCard · PostCard · BoardingPass<br>
+      HeaderTransparent · HeaderSolid · MobileMenu · Footer<br>
+      CookieBanner · Toast · Skeleton · EmptyState · Modal
+    </div>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Accueil mobile — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#16211C;text-decoration:none}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 4700px; background: #FFFBF5; color: #121815; font-family: 'Bricolage Grotesque', sans-serif; position: relative; overflow: hidden">
+
+<!-- hero -->
+<section style="position: relative; height: 720px; color: #FFFFFF; display: flex; flex-direction: column">
+  <img src="/images/cocotiers-couchant.jpg" alt="Cocotiers au coucher du soleil" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0.75) 0%, rgba(18,24,21,0.2) 35%, rgba(18,24,21,0.9) 100%)"></div>
+  <header style="position: relative; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between">
+    <a href="Home2.dc.html" aria-label="ETHNIKA, accueil" style="display: flex; align-items: center; gap: 8px; color: #FFFFFF">
+      <img src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" style="height: 50px; width: auto; display: block; margin-left: -8px">
+    </a>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; padding: 7px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.5)">FR</span>
+      <button type="button" aria-label="Ouvrir le menu" style="width: 44px; height: 44px; border: 0; border-radius: 999px; background: #FFFFFF; color: #16211C; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h10"></path></svg></button>
+    </div>
+  </header>
+  <div style="position: relative; margin-top: auto; padding: 0 16px 120px; display: flex; flex-direction: column; gap: 14px">
+    <span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.3); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em">BASSE CÔTE · PLAGES & ÎLES</span>
+    <h1 style="margin: 0; font-size: 48px; line-height: 0.96; letter-spacing: -0.045em">La Guinée au cœur, <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #E3A935">le monde en vue.</span></h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #EEF0EC">Billets d'avion vers toutes les destinations et circuits en Guinée.</p>
+    <div style="display: flex; gap: 6px; margin-top: 4px"><span style="width: 28px; height: 5px; border-radius: 3px; background: #E3A935"></span><span style="width: 12px; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.5)"></span><span style="width: 12px; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.5)"></span></div>
+  </div>
+</section>
+
+<!-- search -->
+<section style="position: relative; z-index: 2; margin: -92px 12px 0; background: #FFFFFF; border-radius: 22px; box-shadow: 0 24px 50px rgba(18,24,21,0.22); padding: 10px; display: flex; flex-direction: column; gap: 8px">
+  <div role="tablist" aria-label="Type de demande" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #F5EEE3; border-radius: 14px; padding: 4px">
+    <button type="button" role="tab" aria-selected="true" style="height: 44px; border: 0; border-radius: 11px; background: #16211C; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque', sans-serif">Billet d'avion</button>
+    <button type="button" role="tab" aria-selected="false" style="height: 44px; border: 0; border-radius: 11px; background: transparent; color: #16211C; font: 600 14px 'Bricolage Grotesque', sans-serif">Circuit</button>
+  </div>
+  <label style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-bottom: 1px solid #EFE6D8; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #6B6259">DE<input type="text" value="Conakry (CKY)" style="border: 0; padding: 2px 0; font: 700 17px 'Bricolage Grotesque', sans-serif; color: #121815; background: transparent"></label>
+  <label style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-bottom: 1px solid #EFE6D8; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #6B6259">VERS<input type="text" placeholder="Ville ou aéroport" style="border: 0; padding: 2px 0; font: 700 17px 'Bricolage Grotesque', sans-serif; color: #121815; background: transparent"></label>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr))">
+    <label style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-right: 1px solid #EFE6D8; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #6B6259">DATES<input type="text" placeholder="Aller · Retour" style="border: 0; padding: 2px 0; font: 700 15px 'Bricolage Grotesque', sans-serif; color: #121815; background: transparent; min-width: 0"></label>
+    <label style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #6B6259">VOYAGEURS<input type="text" value="1 · Éco" style="border: 0; padding: 2px 0; font: 700 15px 'Bricolage Grotesque', sans-serif; color: #121815; background: transparent; min-width: 0"></label>
+  </div>
+  <a href="Billetterie.dc.html" style="height: 54px; border-radius: 14px; background: #B0121B; color: #FFFFFF; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Obtenir mon devis</a>
+</section>
+
+<!-- trust chips -->
+<section style="padding: 22px 0 0; display: flex; gap: 8px; overflow-x: auto; padding-left: 16px; padding-right: 16px">
+  <span style="flex-shrink: 0; padding: 10px 14px; border-radius: 999px; background: #F8DADB; color: #8C0E16; font-size: 13px; font-weight: 600">Équipe à Conakry</span>
+  <span style="flex-shrink: 0; padding: 10px 14px; border-radius: 999px; background: #D3E7DA; color: #0E4A2D; font-size: 13px; font-weight: 600">Réponse WhatsApp</span>
+  <span style="flex-shrink: 0; padding: 10px 14px; border-radius: 999px; background: #EFE6D2; color: #16211C; font-size: 13px; font-weight: 600">Toutes destinations</span>
+</section>
+
+<!-- mosaic -->
+<section style="padding: 48px 16px 0; display: flex; flex-direction: column; gap: 16px">
+  <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 24px; color: #B0121B">Explorez</span><h2 style="margin: 0; font-size: 32px; line-height: 1; letter-spacing: -0.035em; color: #16211C">Destinations phares</h2></div>
+  <a href="Destination.dc.html" style="position: relative; height: 380px; border-radius: 24px; overflow: hidden; color: #FFFFFF"><img src="/images/collines-brume.jpg" alt="Collines dans la brume" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 45%, rgba(18,24,21,0.88) 100%)"></div><span style="position: absolute; top: 14px; left: 14px; padding: 6px 12px; border-radius: 999px; background: #E3A935; color: #121815; font-size: 12px; font-weight: 700">Coup de cœur</span><div style="position: absolute; left: 18px; bottom: 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 19px; color: #E3A935">Le toit de la Guinée</span><strong style="font-size: 28px; letter-spacing: -0.02em">Mali & Fouta Djallon</strong></div></a>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+    <a href="#" style="position: relative; height: 200px; border-radius: 20px; overflow: hidden; color: #FFFFFF"><img src="/images/barque-calme.jpg" alt="Barque sur la mer" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 40%, rgba(18,24,21,0.85) 100%)"></div><strong style="position: absolute; left: 14px; bottom: 12px; font-size: 18px">Îles de Loos</strong></a>
+    <a href="#" style="position: relative; height: 200px; border-radius: 20px; overflow: hidden; color: #FFFFFF"><img src="/images/plage-turquoise.jpg" alt="Plage turquoise" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 40%, rgba(18,24,21,0.85) 100%)"></div><strong style="position: absolute; left: 14px; bottom: 12px; font-size: 18px">Bel-Air</strong></a>
+    <a href="#" style="position: relative; height: 200px; border-radius: 20px; overflow: hidden; color: #FFFFFF"><img src="/images/chutes-nguilo.jpg" alt="Cascade" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 40%, rgba(18,24,21,0.85) 100%)"></div><strong style="position: absolute; left: 14px; bottom: 12px; font-size: 18px">Chutes de Nguilo</strong></a>
+    <a href="#" style="position: relative; height: 200px; border-radius: 20px; overflow: hidden; color: #FFFFFF"><img src="/images/ville-bord-de-mer.jpg" alt="Ville en bord de mer" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0) 40%, rgba(18,24,21,0.85) 100%)"></div><strong style="position: absolute; left: 14px; bottom: 12px; font-size: 18px">Conakry</strong></a>
+  </div>
+</section>
+
+<!-- types -->
+<section style="padding: 48px 0 0; display: flex; flex-direction: column; gap: 14px">
+  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 24px; color: #B0121B">Par envie</span><h2 style="margin: 0; font-size: 30px; line-height: 1; letter-spacing: -0.035em; color: #16211C">Type de voyage</h2></div>
+  <div style="display: flex; gap: 10px; overflow-x: auto; padding: 4px 16px 10px">
+    <a href="Circuits.dc.html" style="flex: 0 0 120px; background: #FFFFFF; border-radius: 20px; padding: 18px 12px; box-shadow: 0 8px 22px rgba(22,33,28,0.08); display: flex; flex-direction: column; align-items: center; gap: 10px"><span style="width: 52px; height: 52px; border-radius: 999px; border: 1.5px dashed #B0121B; color: #B0121B; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 20 6-11 4 6 3-4 5 9z"></path></svg></span><strong style="font-size: 14px">Nature</strong></a>
+    <a href="Circuits.dc.html" style="flex: 0 0 120px; background: #FFFFFF; border-radius: 20px; padding: 18px 12px; box-shadow: 0 8px 22px rgba(22,33,28,0.08); display: flex; flex-direction: column; align-items: center; gap: 10px"><span style="width: 52px; height: 52px; border-radius: 999px; border: 1.5px dashed #B0121B; color: #B0121B; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"></path><path d="M2 20c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"></path></svg></span><strong style="font-size: 14px">Balnéaire</strong></a>
+    <a href="Circuits.dc.html" style="flex: 0 0 120px; background: #FFFFFF; border-radius: 20px; padding: 18px 12px; box-shadow: 0 8px 22px rgba(22,33,28,0.08); display: flex; flex-direction: column; align-items: center; gap: 10px"><span style="width: 52px; height: 52px; border-radius: 999px; border: 1.5px dashed #B0121B; color: #B0121B; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"></path></svg></span><strong style="font-size: 14px">Culture</strong></a>
+    <a href="Circuits.dc.html" style="flex: 0 0 120px; background: #FFFFFF; border-radius: 20px; padding: 18px 12px; box-shadow: 0 8px 22px rgba(22,33,28,0.08); display: flex; flex-direction: column; align-items: center; gap: 10px"><span style="width: 52px; height: 52px; border-radius: 999px; border: 1.5px dashed #B0121B; color: #B0121B; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10"></path></svg></span><strong style="font-size: 14px">Diaspora</strong></a>
+  </div>
+</section>
+
+<!-- circuits -->
+<section style="padding: 40px 0 0; display: flex; flex-direction: column; gap: 14px">
+  <div style="padding: 0 16px; display: flex; justify-content: space-between; align-items: flex-end"><h2 style="margin: 0; font-size: 30px; line-height: 1; letter-spacing: -0.035em; color: #16211C">Nos escapades</h2><a href="Circuits.dc.html" style="font-weight: 700; font-size: 14px; color: #B0121B">Tout voir</a></div>
+  <div style="display: flex; gap: 14px; overflow-x: auto; padding: 4px 16px 16px">
+    <article style="flex: 0 0 290px; background: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 30px rgba(22,33,28,0.1)"><div style="position: relative; height: 190px"><img src="/images/fouta-sommets.jpg" alt="Sommets rocheux" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; top: 12px; left: 12px; padding: 6px 10px; border-radius: 999px; background: #FFFFFF; font-size: 11px; font-weight: 700">[X] jours</span></div><div style="padding: 16px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12px; color: #6B6259">Mali, Moyenne Guinée</span><strong style="font-size: 19px; color: #16211C">Le toit du Fouta Djallon</strong><div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #EFE6D8"><span style="font-size: 12px; color: #6B6259">dès <strong style="font-size: 16px; color: #B0121B">[PRIX] GNF</strong></span><a href="Destination.dc.html" style="height: 40px; padding: 0 14px; border-radius: 999px; background: #16211C; color: #FFFFFF; font-weight: 700; font-size: 13px; display: flex; align-items: center">Voir</a></div></div></article>
+    <article style="flex: 0 0 290px; background: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 30px rgba(22,33,28,0.1)"><div style="position: relative; height: 190px"><img src="/images/port-barques.jpg" alt="Barques dans un port" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; top: 12px; left: 12px; padding: 6px 10px; border-radius: 999px; background: #FFFFFF; font-size: 11px; font-weight: 700">[X] jours</span></div><div style="padding: 16px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12px; color: #6B6259">Port de Boulbinet</span><strong style="font-size: 19px; color: #16211C">Escapade aux îles de Loos</strong><div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #EFE6D8"><span style="font-size: 12px; color: #6B6259">dès <strong style="font-size: 16px; color: #B0121B">[PRIX] GNF</strong></span><a href="Circuits.dc.html" style="height: 40px; padding: 0 14px; border-radius: 999px; background: #16211C; color: #FFFFFF; font-weight: 700; font-size: 13px; display: flex; align-items: center">Voir</a></div></div></article>
+  </div>
+</section>
+
+<!-- billetterie band -->
+<section style="margin-top: 36px; position: relative; background: #B0121B; color: #FFFFFF; overflow: hidden">
+  <div style="height: 200px; position: relative"><img src="/images/avion-ciel.jpg" alt="Avion dans le ciel" style="width: 100%; height: 100%; object-fit: cover; display: block"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(176,18,27,0) 40%, #B0121B 100%)"></div></div>
+  <div style="padding: 0 16px 32px; display: flex; flex-direction: column; gap: 14px; margin-top: -40px; position: relative">
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 92px; line-height: 0.85; letter-spacing: -0.03em">Partout</span>
+    <strong style="font-size: 22px; line-height: 1.15">Billets d'avion de Conakry vers toutes les destinations du monde.</strong>
+    <div style="display: flex; border-radius: 16px; overflow: hidden; background: #16211C"><div style="flex: 1; padding: 14px; display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'DM Mono', monospace; font-size: 22px">CKY</span><svg width="50" height="16" viewBox="0 0 50 16" aria-hidden="true"><path d="M2 13 Q25 -3 48 13" fill="none" stroke="#E3A935" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><span style="font-family: 'DM Mono', monospace; font-size: 22px">CDG</span></div><div style="width: 90px; background: #E3A935; color: #121815; border-left: 2px dashed #16211C; padding: 10px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px">dès</span><strong style="font-size: 12px">[PRIX]</strong></div></div>
+    <a href="Billetterie.dc.html" style="height: 54px; border-radius: 999px; background: #FFFFFF; color: #B0121B; font-weight: 700; display: flex; align-items: center; justify-content: center">Demander mon billet</a>
+  </div>
+</section>
+
+<!-- facts -->
+<section style="padding: 40px 16px 0">
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="background: #FFFFFF; border-radius: 18px; padding: 16px; box-shadow: 0 8px 22px rgba(22,33,28,0.07)"><strong style="font-family: 'DM Mono', monospace; font-weight: 500; font-size: 22px; color: #16211C">1 515 m</strong><div style="font-size: 12px; color: #6B6259">Mont Loura</div></div>
+    <div style="background: #FFFFFF; border-radius: 18px; padding: 16px; box-shadow: 0 8px 22px rgba(22,33,28,0.07)"><strong style="font-family: 'DM Mono', monospace; font-weight: 500; font-size: 22px; color: #16211C">7 km</strong><div style="font-size: 12px; color: #6B6259">Plage de Bel-Air</div></div>
+    <div style="background: #FFFFFF; border-radius: 18px; padding: 16px; box-shadow: 0 8px 22px rgba(22,33,28,0.07)"><strong style="font-family: 'DM Mono', monospace; font-weight: 500; font-size: 22px; color: #16211C">47</strong><div style="font-size: 12px; color: #6B6259">Sites à Mali</div></div>
+    <div style="background: #FFFFFF; border-radius: 18px; padding: 16px; box-shadow: 0 8px 22px rgba(22,33,28,0.07)"><strong style="font-family: 'DM Mono', monospace; font-weight: 500; font-size: 22px; color: #16211C">Nov → Avr</strong><div style="font-size: 12px; color: #6B6259">Saison sèche</div></div>
+  </div>
+</section>
+
+<!-- testimonial -->
+<section style="margin-top: 40px; position: relative; background: #16211C; color: #FFFFFF; overflow: hidden">
+  <img src="/images/promeneurs-reflet.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.18; display: block">
+  <div style="position: relative; padding: 44px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 24px; color: #E3A935">Ils nous font confiance</span>
+    <span style="font-family: 'Instrument Serif', serif; font-size: 70px; line-height: 0.4; color: #E3A935" aria-hidden="true">“</span>
+    <blockquote style="margin: 0; font-size: 18px; line-height: 1.5">[Témoignage client à publier avec son accord écrit.]</blockquote>
+    <span style="width: 52px; height: 52px; border-radius: 999px; border: 3px solid #E3A935; background: #34413A"></span>
+    <strong style="font-size: 15px">[Nom du client]</strong>
+  </div>
+</section>
+
+<!-- blog -->
+<section style="padding: 40px 16px 0; display: flex; flex-direction: column; gap: 14px">
+  <h2 style="margin: 0; font-size: 30px; line-height: 1; letter-spacing: -0.035em; color: #16211C">Guides & conseils</h2>
+  <a href="#" style="display: flex; gap: 12px; align-items: center"><div style="width: 110px; height: 90px; border-radius: 16px; overflow: hidden; flex-shrink: 0"><img src="/images/loos-horizon.jpg" alt="Horizon marin" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #B0121B">ÎLES · GUIDE</span><strong style="font-size: 16px; line-height: 1.25; color: #16211C">Quelle île de Loos choisir ?</strong></div></a>
+  <a href="#" style="display: flex; gap: 12px; align-items: center"><div style="width: 110px; height: 90px; border-radius: 16px; overflow: hidden; flex-shrink: 0"><img src="/images/vallee-route.jpg" alt="Vallée verte" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #B0121B">CONSEILS · SAISONS</span><strong style="font-size: 16px; line-height: 1.25; color: #16211C">Quand partir en Guinée ?</strong></div></a>
+</section>
+
+<footer style="margin-top: 40px; background: #121815; color: #D0D4CF; padding: 32px 16px 120px; display: flex; flex-direction: column; gap: 18px">
+  <img src="/brand/logo-horizontal-signature-inverse.svg" alt="ETHNIKA — Tourisme &amp; Voyages" style="height: 72px; width: auto; display: block; align-self: flex-start; margin-left: -10px">
+  <nav aria-label="Pied de page" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 14px"><a href="Destination.dc.html" style="color: #D0D4CF">Découvrir la Guinée</a><a href="Circuits.dc.html" style="color: #D0D4CF">Circuits</a><a href="Billetterie.dc.html" style="color: #D0D4CF">Billetterie</a><a href="APropos.dc.html" style="color: #D0D4CF">À propos</a><a href="Contact.dc.html" style="color: #D0D4CF">Contact</a><a href="#" style="color: #D0D4CF">Mentions légales</a></nav>
+  <span style="font-size: 14px; line-height: 1.7">+224 [NUMÉRO]<br>contact@ethnikatour.com</span>
+  <span style="font-size: 12px; color: #8E9690">© 2026 ETHNIKA · Photos d'illustration : Pixabay</span>
+</footer>
+
+<div style="position: absolute; left: 12px; right: 12px; bottom: 16px; z-index: 6; background: #FFFFFF; border-radius: 22px; box-shadow: 0 14px 34px rgba(18,24,21,0.25); padding: 8px; display: flex; gap: 8px">
+  <a href="#" aria-label="Écrire sur WhatsApp" style="width: 54px; height: 54px; border-radius: 16px; background: #0E5232; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"></path></svg></a>
+  <a href="Contact.dc.html" aria-label="Appeler l'agence" style="width: 54px; height: 54px; border-radius: 16px; border: 1.5px solid #E3D8C8; color: #16211C; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></a>
+  <a href="Billetterie.dc.html" style="flex: 1; height: 54px; border-radius: 16px; background: #B0121B; color: #FFFFFF; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center">Demander un billet</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":4700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

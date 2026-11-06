@@ -1,0 +1,1507 @@
+{
+  "meta": {
+    "home": {
+      "title": "Travel & Tours in Guinea",
+      "description": "Travel agency in Conakry: flight tickets, tours and stays in Guinea, groups, pilgrimages and business travel.",
+      "kicker": "Welcome to Guinea",
+      "heading": "Discover Guinea differently",
+      "imageAlt": "Rocky peaks of the Fouta Djallon"
+    },
+    "guinee": {
+      "title": "Discover Guinea",
+      "description": "Beaches, islands, highlands and living culture: the regions and destinations of Guinea.",
+      "kicker": "Discover Guinea",
+      "heading": "One country, a thousand horizons",
+      "imageAlt": "Aerial view of a green coastline"
+    },
+    "fouta": {
+      "title": "Mali & the Fouta Djallon",
+      "description": "Mount Loura, Nguilo Falls, Koumba rocks: the highlands of Middle Guinea.",
+      "kicker": "Middle Guinea",
+      "heading": "Mali, the roof of the Fouta Djallon",
+      "imageAlt": "Green hills in the mist"
+    },
+    "loos": {
+      "title": "Loos Islands",
+      "description": "Kassa, Tamara and Roume: the archipelago 30 minutes from Conakry.",
+      "kicker": "30 minutes from Conakry",
+      "heading": "Loos Islands",
+      "imageAlt": "Dugout canoe at sunset"
+    },
+    "basseCote": {
+      "title": "Lower Coast",
+      "description": "Boffa, Bel-Air, Sobane, Kitikata, Koba, Dubréka and the beaches of Conakry.",
+      "kicker": "Maritime Guinea",
+      "heading": "The Lower Coast, from Boffa to Dubréka",
+      "imageAlt": "Beach lined with coconut palms"
+    },
+    "infos": {
+      "title": "Practical info & health",
+      "description": "Seasons, entry requirements, vaccines, malaria and tips for travelling in Guinea.",
+      "kicker": "Prepare your trip well",
+      "heading": "Practical info & health",
+      "imageAlt": "Traveller facing a panorama"
+    },
+    "circuits": {
+      "title": "Tours & stays",
+      "description": "Guided tours and tailor-made stays in Guinea.",
+      "kicker": "Travel with a guide",
+      "heading": "Tours & stays in Guinea",
+      "imageAlt": "Road through a valley"
+    },
+    "billetterie": {
+      "title": "Flight tickets",
+      "description": "Request your plane ticket from Conakry: our advisers find the best options.",
+      "kicker": "Flight tickets",
+      "heading": "Tell us where, we'll handle the rest.",
+      "imageAlt": "Plane in the sky"
+    },
+    "services": {
+      "title": "Services",
+      "description": "Groups, pilgrimages, companies, institutions and NGOs.",
+      "kicker": "For every kind of traveller",
+      "heading": "Groups, pilgrimages & business travel",
+      "imageAlt": "Plane in the sky"
+    },
+    "offres": {
+      "title": "Deals & offers",
+      "description": "Flights, packages and last-minute offers.",
+      "kicker": "Current deals",
+      "heading": "Deals & offers",
+      "imageAlt": "Beach with turquoise water"
+    },
+    "blog": {
+      "title": "Blog & news",
+      "description": "Travel journal, tips and agency news.",
+      "kicker": "Travel journal",
+      "heading": "Blog & news"
+    },
+    "galerie": {
+      "title": "Gallery",
+      "description": "Guinea in pictures.",
+      "kicker": "In pictures",
+      "heading": "Gallery"
+    },
+    "apropos": {
+      "title": "About us",
+      "description": "The ETHNIKA agency, its team and its commitments.",
+      "kicker": "Who we are",
+      "heading": "A Guinean agency connected to the world",
+      "imageAlt": "Traveller facing a panorama"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact the ETHNIKA agency in Conakry.",
+      "kicker": "Let's talk about your trip",
+      "heading": "Contact us",
+      "imageAlt": "Fishing boats in a harbour"
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Frequently asked questions: flights, tours, payment, health and visas.",
+      "kicker": "Frequently asked questions",
+      "heading": "How can we help you?"
+    },
+    "mentions": {
+      "title": "Legal notice",
+      "description": "Legal notice of ethnikatour.com.",
+      "kicker": "Transparency",
+      "heading": "Legal notice"
+    },
+    "cgv": {
+      "title": "Terms and conditions of sale",
+      "description": "ETHNIKA terms and conditions of sale.",
+      "kicker": "Transparency",
+      "heading": "Terms and conditions of sale"
+    },
+    "confidentialite": {
+      "title": "Privacy policy",
+      "description": "Protection of your personal data.",
+      "kicker": "Transparency",
+      "heading": "Privacy policy"
+    },
+    "cookies": {
+      "title": "Cookie policy",
+      "description": "Use of cookies on ethnikatour.com.",
+      "kicker": "Transparency",
+      "heading": "Cookie policy"
+    },
+    "merci": {
+      "title": "Request received",
+      "description": "Your request has been received.",
+      "kicker": "Thank you!",
+      "heading": "Your request has been received"
+    }
+  },
+  "site": {
+    "tagline": "Travel & Tours",
+    "description": "Travel agency in Conakry: flight tickets, tours and stays in Guinea, groups, pilgrimages and business travel.",
+    "footerAbout": "Travel agency in Conakry. Flight tickets and tours in Guinea.",
+    "licence": "Licence no. {licence} · RCCM {rccm}",
+    "copyright": "© {year} {name} · Illustration photos: Pixabay",
+    "hours": "Mon – Sat · [OPENING HOURS]",
+    "address": "[District], Conakry"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "breadcrumb": "Breadcrumb",
+    "close": "Close",
+    "requestQuote": "Request a quote",
+    "whatsapp": "WhatsApp",
+    "writeWhatsapp": "Message us on WhatsApp",
+    "from": "from",
+    "startingFrom": "from",
+    "perPerson": "per person",
+    "price": "[PRICE] GNF",
+    "priceShort": "[PRICE]",
+    "date": "[DATE]",
+    "discover": "Discover →",
+    "readArticle": "Read the article",
+    "seeCircuits": "See the tours",
+    "seeCircuit": "See the tour",
+    "tailorMade": "Tailor-made trip",
+    "onRequest": "On request",
+    "loading": "Loading…",
+    "noPayment": "No payment at this stage.",
+    "whatsappHello": "Hello ETHNIKA, I would like some information.",
+    "frenchOnly": "This content is available in French."
+  },
+  "nav": {
+    "main": "Main navigation",
+    "mobile": "Mobile navigation",
+    "guinee": "Discover Guinea",
+    "circuits": "Tours",
+    "billetterie": "Flights",
+    "services": "Services",
+    "offres": "Deals",
+    "blog": "Blog",
+    "contact": "Contact",
+    "apropos": "About us",
+    "faq": "FAQ",
+    "fouta": "Mali & Fouta Djallon",
+    "loos": "Loos Islands",
+    "basseCote": "Lower Coast",
+    "infos": "Practical info & health",
+    "galerie": "Gallery",
+    "flights": "Flight tickets",
+    "tours": "Tours & stays",
+    "groups": "Groups & pilgrimages",
+    "companies": "Companies & NGOs",
+    "deals": "Deals & offers",
+    "blogNews": "Blog & news",
+    "mentions": "Legal notice",
+    "cgv": "Terms of sale",
+    "confidentialite": "Privacy",
+    "cookies": "Cookies",
+    "legalNav": "Legal information",
+    "colDiscover": "Discover",
+    "colServices": "Services",
+    "colAgency": "Agency",
+    "colContact": "Stay in touch",
+    "language": "Language",
+    "switchTo": "{code} · {lang} version",
+    "fr": "Français",
+    "en": "English"
+  },
+  "header": {
+    "homeLabel": "{name}, home",
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu",
+    "menu": "Menu"
+  },
+  "mobileBar": {
+    "label": "Quick actions",
+    "call": "Call the agency",
+    "contact": "Contact the agency",
+    "ticket": "Request a ticket"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "text": "We use cookies to measure our audience. You can accept or refuse them.",
+    "more": "Learn more",
+    "accept": "Accept",
+    "refuse": "Refuse",
+    "manageTitle": "Change your cookie preferences",
+    "manage": "Manage cookies",
+    "stateAccepted": "You have accepted audience measurement cookies.",
+    "stateRefused": "You have refused audience measurement cookies.",
+    "stateNone": "No choice recorded yet."
+  },
+  "ui": {
+    "pagination": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "decrease": "Decrease: {label}",
+    "increase": "Increase: {label}",
+    "emptyTitle": "No results",
+    "emptyText": "Try another filter or contact us.",
+    "viewer": "Photo viewer",
+    "viewerPosition": "{current} of {total}",
+    "closeViewer": "Close the viewer",
+    "previousPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "enlarge": "Enlarge: {alt}",
+    "seeAllPhotos": "See all {count} photos",
+    "morePhotos": "+ {count} photos",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "day": "DAY",
+    "dayN": "DAY {n}",
+    "previousItems": "Previous {label}",
+    "nextItems": "Next {label}",
+    "sections": "Page sections",
+    "onThisPage": "On this page",
+    "toc": "CONTENTS"
+  },
+  "cards": {
+    "book": "Book",
+    "seeTour": "See the tour",
+    "enjoy": "Get the deal",
+    "validUntil": "Valid until {date}",
+    "routeLabel": "Request a ticket {from} – {to}, from {price}",
+    "summary": "Summary of your request",
+    "summaryTitle": "SUMMARY",
+    "passengers": "PASSENGERS",
+    "cabin": "CLASS",
+    "fare": "FARE",
+    "fareOnQuote": "Personalised quote",
+    "yourDestination": "Your destination",
+    "departureCity": "Departure city",
+    "offerTypes": {
+      "vol": "Flight",
+      "pack": "Package",
+      "last": "Last minute"
+    }
+  },
+  "share": {
+    "title": "SHARE",
+    "whatsapp": "Share on WhatsApp",
+    "facebook": "Share on Facebook",
+    "linkedin": "Share on LinkedIn",
+    "copy": "Copy the link",
+    "copied": "Link copied"
+  },
+  "notFound": {
+    "kicker": "Off the beaten track…",
+    "title": "This page has set sail",
+    "text": "The link may be outdated or mistyped. Get back on track from one of these pages:",
+    "home": "Back to home"
+  },
+  "errors": {
+    "rateLimited": "Too many requests. Please try again in a few minutes or message us on WhatsApp.",
+    "fixFields": "Please correct the highlighted fields.",
+    "sendFailed": "We could not send your request right now. Please try again or contact us on WhatsApp.",
+    "subscribeFailed": "Subscription is not possible right now. Please try again later.",
+    "invalid": "Invalid value",
+    "tooLong": "Text too long",
+    "phoneShort": "Number too short",
+    "phoneLong": "Number too long",
+    "phoneFormat": "Invalid phone format",
+    "emailInvalid": "Invalid email address",
+    "nameRequired": "Please enter your name",
+    "consentRequired": "We need your consent to process the request",
+    "messageTooShort": "Message too short",
+    "messageTooLong": "Message too long (3,000 characters max.)",
+    "dateInvalid": "Invalid date",
+    "datePast": "This date is in the past",
+    "airportInvalid": "Choose an airport (3-letter code)",
+    "travellersRange": "Invalid number of travellers",
+    "adultsRange": "From 1 to 9 adults",
+    "childrenRange": "From 0 to 8 children",
+    "infantsRange": "From 0 to 8 infants",
+    "circuitUnknown": "Unknown tour",
+    "choiceInvalid": "Invalid choice",
+    "sameAirport": "The destination must differ from the departure",
+    "returnRequired": "Please enter the return date",
+    "returnBeforeDepart": "The return must be after the departure",
+    "infantsMax": "One infant per adult at most",
+    "legsRequired": "Add at least a second flight",
+    "legsOrder": "Flights must follow each other in time",
+    "legsMax": "4 additional flights at most"
+  },
+  "forms": {
+    "fullName": "Full name",
+    "phone": "Phone / WhatsApp",
+    "email": "Email",
+    "emailOptional": "Email (optional)",
+    "honeypot": "Website",
+    "subject": "Subject",
+    "subjects": {
+      "flight": "Plane ticket",
+      "circuit": "Tour in Guinea",
+      "group": "Group or company",
+      "other": "Other request"
+    },
+    "message": "Your message",
+    "messagePlaceholder": "Destination, dates, number of travellers…",
+    "consent": "I agree that my data may be used to process my request (",
+    "consentLink": "privacy",
+    "consentEnd": ").",
+    "send": "Send my request",
+    "sendMessage": "Send the message",
+    "sending": "Sending…",
+    "successTitle": "Request sent",
+    "successText": "An adviser will get back to you within 24 working hours.",
+    "reference": "Ref. {ref}",
+    "newRequest": "New request"
+  },
+  "quote": {
+    "eyebrow": "QUOTE REQUEST",
+    "travelDate": "Preferred date",
+    "travellers": "Travellers",
+    "messageOptional": "Message (optional)",
+    "messagePlaceholder": "Preferred accommodation, diet, special needs…",
+    "successText": "An adviser will get back to you within 24 working hours with a detailed quote.",
+    "travellersCount": "{count, plural, one {# traveller} other {# travellers}}",
+    "choices": {
+      "1": "1 adult",
+      "2": "2 adults",
+      "4": "Family",
+      "10": "Group (10+)"
+    },
+    "phone": "Phone / WhatsApp",
+    "whatsappMessage": "Hello ETHNIKA, I would like a quote for “{title}”.",
+    "whatsappMessageCount": "Hello ETHNIKA, I would like a quote for “{title}” ({count}).",
+    "circuitLabel": "Tour · {duration}",
+    "reply24h": "Reply within 24 working hours. No online payment: an adviser confirms availability and price.",
+    "addTraveller": "Add a traveller",
+    "removeTraveller": "Remove a traveller",
+    "bookThis": "Book this tour",
+    "requestQuote": "Request a quote"
+  },
+  "flight": {
+    "tripLegend": "Trip type",
+    "trips": {
+      "rt": "Round trip",
+      "ow": "One way",
+      "multi": "Multi-city"
+    },
+    "cabinLegend": "Class",
+    "cabins": {
+      "eco": "Economy",
+      "business": "Business",
+      "first": "First"
+    },
+    "from": "From",
+    "to": "Destination",
+    "toPlaceholder": "E.g. Paris, Dakar, Istanbul…",
+    "depart": "Departure date",
+    "return": "Return date",
+    "nextFlights": "Next flights",
+    "legFrom": "Flight {n} · from",
+    "legTo": "Flight {n} · to",
+    "legDate": "Flight {n} · date",
+    "city": "City",
+    "removeLeg": "Remove flight {n}",
+    "addLeg": "+ Add a flight",
+    "adults": "Adults",
+    "adultsSub": "12 years and over",
+    "children": "Children",
+    "childrenSub": "2 to 11 years",
+    "infants": "Infants",
+    "infantsSub": "under 2 years",
+    "paxAdults": "{count, plural, one {# adult} other {# adults}}",
+    "paxChildren": "{count, plural, one {# child} other {# children}}",
+    "paxInfants": "{count, plural, one {# infant} other {# infants}}",
+    "note": "No payment at this stage: you first receive a quote.",
+    "successTitle": "Request received",
+    "successText": "An adviser will come back to you with the best options.",
+    "whatsappTitle": "Faster on WhatsApp",
+    "whatsappText": "Send your itinerary in one message",
+    "whatsappMessage": "Hello ETHNIKA, I would like a plane ticket.",
+    "summary": "Summary"
+  },
+  "pro": {
+    "requestType": "Request type",
+    "types": {
+      "groupe": "Group",
+      "pelerinage": "Pilgrimage",
+      "entreprise": "Company / Institution",
+      "ong": "NGO"
+    },
+    "organisation": "Organisation",
+    "contactName": "Contact name",
+    "phone": "Phone",
+    "travellers": "Number of travellers",
+    "period": "Period",
+    "periodPlaceholder": "E.g. March 2027",
+    "project": "Your project",
+    "projectPrefill": "Destination: {destination}",
+    "toConfirm": "[to be specified]",
+    "send": "Send the request",
+    "successText": "An adviser will get back to you within 48 working hours with a proposal."
+  },
+  "newsletter": {
+    "email": "Email",
+    "placeholder": "Your email",
+    "subscribe": "Subscribe",
+    "sending": "Sending…",
+    "success": "Subscription saved. You can unsubscribe at any time.",
+    "note": "One email alert when new deals are published. Unsubscribe at any time (",
+    "privacy": "privacy",
+    "noteEnd": ")."
+  },
+  "search": {
+    "label": "Quick request",
+    "tabs": "Request type",
+    "tabFlight": "Plane ticket",
+    "tabFlightShort": "Flight",
+    "tabCircuit": "Tour in Guinea",
+    "tabCircuitShort": "Tour",
+    "tabGroup": "Group & company",
+    "tabGroupShort": "Group",
+    "from": "From",
+    "fromPlaceholder": "Departure city",
+    "to": "Destination",
+    "toPlaceholder": "City or airport",
+    "depart": "Departure date",
+    "travellers": "Travellers",
+    "travellerOption": "{count, plural, one {# adult} other {# adults}} · Economy",
+    "region": "Region",
+    "allRegions": "All regions",
+    "theme": "Theme",
+    "themePlaceholder": "Nature, beach, culture…",
+    "groupDestination": "Destination",
+    "groupDestinationPlaceholder": "City, country or tour",
+    "period": "Period",
+    "periodPlaceholder": "E.g. March 2027",
+    "groupSize": "{count}+ people",
+    "getQuote": "Get my quote",
+    "seeCircuits": "See the tours"
+  },
+  "home": {
+    "trustLabel": "Our commitments",
+    "explore": "Explore",
+    "destinationsTitle": "Top destinations in Guinea",
+    "destinationsIntro": "From the cool highlands of the Fouta Djallon to the beaches and islands of the Lower Coast.",
+    "wayKicker": "Our way of travelling",
+    "wayTitle": "Trips that feel like Guinea",
+    "wayText": "The sites are still largely undeveloped, which is what gives them their character. We arrange transport, guides and accommodation so you can enjoy what matters.",
+    "badge4x4Line1": "Vehicle & local",
+    "badge4x4Line2": "guide included",
+    "watchVideo": "Watch the video",
+    "typesKicker": "By mood",
+    "typesTitle": "Choose your type of trip",
+    "see": "See",
+    "circuitsKicker": "Tours & stays",
+    "circuitsTitle": "Our best getaways",
+    "circuitsTitleShort": "Our getaways",
+    "seeAll": "See all",
+    "circuitsLabel": "Tours",
+    "flightsEyebrow": "FLIGHT TICKETS",
+    "everywhere": "Everywhere",
+    "flightsTitle": "Plane tickets from Conakry to every destination in the world.",
+    "flightsText": "One way, round trip, multi-city. Economy, business or first. Changes, baggage, visas and insurance.",
+    "requestTicket": "Request my ticket",
+    "byWhatsapp": "On WhatsApp",
+    "whatsappFlight": "Hello ETHNIKA, I would like a plane ticket.",
+    "routesLabel": "Sample routes",
+    "adventureKicker": "Ready for adventure?",
+    "adventureTitle": "Experience Guinea differently, with those who know it",
+    "playVideo": "Play the presentation video",
+    "videoPlaceholder": "[Presentation video to be produced]",
+    "factsLabel": "Guinea in figures",
+    "whyKicker": "Why choose us",
+    "whyTitle": "A Guinean agency connected to the world",
+    "whyText": "We know the departures from Conakry, the connections used by the diaspora and the formalities specific to our country.",
+    "learnMore": "Learn more",
+    "whyImageAlt": "Traveller walking under a bright sky",
+    "trustKicker": "They trust us",
+    "testimonialsTitle": "What our travellers say",
+    "blogKicker": "Guides & tips",
+    "blogTitle": "Prepare your trip",
+    "instagram": "Instagram",
+    "panoramaAlt": "Traveller looking at a panorama of hills",
+    "fourByFourAlt": "4x4 vehicle on a rocky coast",
+    "planeAlt": "Airliner in a cloudy sky",
+    "coastAlt": "Aerial view of a green coastline and a winding road"
+  },
+  "slider": {
+    "carousel": "carousel",
+    "label": "Featured",
+    "slide": "slide",
+    "position": "{current} of {total}",
+    "ctaTicket": "Request a ticket",
+    "ctaCircuits": "Explore the tours",
+    "play": "Start the slideshow",
+    "pause": "Pause the slideshow",
+    "previous": "Previous slide",
+    "next": "Next slide",
+    "goTo": "Go to slide {n}"
+  },
+  "video": {
+    "title": "Experience Guinea differently",
+    "iframeTitle": "ETHNIKA presentation video",
+    "placeholder": "[Presentation video to be produced]"
+  },
+  "guinee": {
+    "intro": "Beaches and islands on the Atlantic, cool highlands in the Fouta Djallon, waterfalls, forests and a living culture: Guinea brings all of this together in one country.",
+    "whyKicker": "Why Guinea",
+    "whyTitle": "A destination that is still authentic, a few hours away by plane",
+    "reasons": [
+      {
+        "title": "Beaches & islands",
+        "text": "Bel-Air and its 7 km of coconut palms, the Loos Islands off Conakry, the mangroves of the Lower Coast."
+      },
+      {
+        "title": "Cool highlands",
+        "text": "The Fouta Djallon and Mount Loura (1,515 m), for hiking and panoramic views."
+      },
+      {
+        "title": "Waterfalls & nature",
+        "text": "The Nguilo Falls, the Mount Dixinn falls, the natural pools of Dubréka."
+      },
+      {
+        "title": "Culture & memory",
+        "text": "The Fula heritage of the Fouta, the Susu culture of the coast, the memorial sites of Boffa and Fotoba."
+      }
+    ],
+    "regionsKicker": "The regions",
+    "regionsTitle": "Four natural regions",
+    "regionsText": "We are starting with Lower Guinea and Middle Guinea. Upper Guinea and Forest Guinea will follow at a later stage.",
+    "regions": [
+      {
+        "alt": "Turquoise beach",
+        "eyebrow": "Maritime Guinea",
+        "title": "Lower Guinea",
+        "text": "Beaches, islands, mangroves. Susu people, Susu language."
+      },
+      {
+        "alt": "Hills in the mist",
+        "eyebrow": "Fouta Djallon",
+        "title": "Middle Guinea",
+        "text": "Highlands, waterfalls. Fula people, Pular language."
+      }
+    ],
+    "upcoming": [
+      {
+        "eyebrow": "Savannahs",
+        "title": "Upper Guinea"
+      },
+      {
+        "eyebrow": "Forests",
+        "title": "Forest Guinea"
+      }
+    ],
+    "soon": "Coming soon",
+    "inPreparation": "Destination in preparation.",
+    "destinationsKicker": "Our destinations",
+    "destinationsTitle": "Where to go in Guinea?",
+    "destinations": [
+      {
+        "alt": "Rocky peaks",
+        "eyebrow": "Middle Guinea",
+        "title": "Mali & the Fouta Djallon",
+        "text": "Mount Loura, Nguilo Falls, Koumba rocks."
+      },
+      {
+        "alt": "Boat on the sea at sunset",
+        "eyebrow": "Off Conakry",
+        "title": "Loos Islands",
+        "text": "Lively Kassa, wild Tamara, peaceful Roume."
+      },
+      {
+        "alt": "Beach with coconut palms",
+        "eyebrow": "Boffa · Lower Coast",
+        "title": "Bel-Air, Sobane & Kitikata",
+        "text": "7 km of fine sand, nights under the stars, drumming."
+      },
+      {
+        "alt": "River and canoe",
+        "eyebrow": "North of Conakry",
+        "title": "Dubréka",
+        "text": "Canoes, natural pools, Mount Dixinn falls."
+      }
+    ],
+    "cultureKicker": "Living culture",
+    "cultureTitle": "Peoples, languages and hospitality",
+    "cultures": [
+      {
+        "title": "The Fula Fouta Djallon",
+        "text": "Heart of the Fouta Djallon imamate in the 18th century: Islam, herding and hospitality remain essential there. Pular is spoken."
+      },
+      {
+        "title": "The Susu coast",
+        "text": "Lower Guinea is largely populated by the Susu. Fishing, farming and life to the rhythm of the tides."
+      },
+      {
+        "title": "Places of memory",
+        "text": "Boffa, Dubréka and Fotoba preserve remains of the slave trade and the colonial period."
+      }
+    ],
+    "cultureImageMain": "Fishing boats at sunset",
+    "cultureImageSecondary": "People walking at sunset",
+    "essentialsKicker": "Before you go",
+    "essentialsTitle": "The essentials",
+    "allPracticalInfo": "All practical information",
+    "essentials": [
+      {
+        "value": "Nov → Apr",
+        "title": "When to go",
+        "text": "The dry season is the best time for swimming, boat crossings and hiking."
+      },
+      {
+        "value": "Yellow fever",
+        "title": "Health",
+        "text": "Certificate required on entry for travellers from at-risk countries, recommended for everyone. See a doctor 4 to 6 weeks before."
+      },
+      {
+        "value": "CKY",
+        "title": "Gateway: Conakry",
+        "text": "The capital (3,407,327 inhabitants, preliminary 2025 census) is the starting point for the whole coast."
+      }
+    ],
+    "ctaKicker": "Ready to go?",
+    "ctaTitle": "Plan your trip to Guinea with our local guides",
+    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+  },
+  "fouta": {
+    "chips": [
+      "1,515 m · Mount Loura",
+      "47 listed sites",
+      "Fula people · Pular language"
+    ],
+    "idealSeason": "Best in the dry season",
+    "sections": {
+      "apercu": "Overview",
+      "sites": "Sites to visit",
+      "itineraire": "Itinerary",
+      "inclus": "Included",
+      "pratique": "Practical info"
+    },
+    "gallery": [
+      "Rocky peaks in the mist",
+      "Waterfall",
+      "Road through a green valley",
+      "Rocky relief at sunset",
+      "Hills at sunset",
+      "Green hills in the mist",
+      "Traveller facing the panorama of the highlands"
+    ],
+    "historyKicker": "Historical overview",
+    "historyTitle": "A highland steeped in history",
+    "historyP1": "In the 18th century, the Fouta Djallon was the heart of a Fula theocratic state, the Imamate of Fouta Djallon. This heritage explains the importance of Islam, herding and hospitality in the region.",
+    "historyP2": "Mali once enjoyed a period of popularity with visitors, with leisure spots and a hotel named after Mount Loura. Today the sites remain largely undeveloped, which is what makes them authentic.",
+    "figures": [
+      {
+        "label": "Population",
+        "value": "313,119",
+        "note": "prefecture, 2025 (prelim.)"
+      },
+      {
+        "label": "Max. altitude",
+        "value": "1,515 m",
+        "note": "Mount Loura"
+      },
+      {
+        "label": "Tourist sites",
+        "value": "47",
+        "note": "including 7 in town"
+      },
+      {
+        "label": "Climate",
+        "value": "Cool, high altitude",
+        "note": "hiking in the dry season"
+      }
+    ],
+    "sitesKicker": "Not to be missed",
+    "sitesTitle": "Sites to visit",
+    "sites": [
+      {
+        "alt": "Rocky peaks",
+        "badge": "1,515 m",
+        "title": "Mount Loura, the “Lady of Mali”",
+        "text": "Highest point of the Fouta. Hiking, photography and village encounters."
+      },
+      {
+        "alt": "Waterfall",
+        "badge": "~5 km",
+        "title": "Nguilo Falls",
+        "text": "Steep trail, a half-day with a local guide."
+      },
+      {
+        "alt": "Rocky relief",
+        "badge": "Short hike",
+        "title": "Koumba rocks & Balaki hill",
+        "text": "Discover the rocky landscape of the urban commune."
+      }
+    ],
+    "itineraryKicker": "Day by day",
+    "itineraryTitle": "Tour itinerary",
+    "detailedProgram": "See the detailed programme →",
+    "days": [
+      "Drive Conakry → Mali by 4×4",
+      "Climb of Mount Loura",
+      "Nguilo Falls & Koumba rocks",
+      "[Following stages and return]"
+    ],
+    "dayPlaceholder": "[Details of the stage, stops and accommodation to be confirmed by the agency.]",
+    "includedTitle": "What is included",
+    "included": "Included",
+    "excluded": "Not included",
+    "includedItems": [
+      "4×4 vehicle with driver",
+      "Local guide",
+      "[Accommodation confirmed in advance]",
+      "[Meals]"
+    ],
+    "excludedItems": [
+      "International flights (on request)",
+      "Travel insurance",
+      "[Personal expenses]"
+    ],
+    "practicalKicker": "Before you go",
+    "practicalTitle": "Practical info",
+    "accessTitle": "Difficult access, limited infrastructure",
+    "accessText": "Plan for a 4×4, a local guide and confirmed accommodation. We organise everything for you.",
+    "healthTitle": "Health: meningitis & yellow fever",
+    "healthText": "Meningitis vaccine advised from November to June in the north and centre. Yellow fever required on entry. See a doctor 4 to 6 weeks before.",
+    "map": "[Interactive map: Conakry → Mali]",
+    "asideLabel": "Request a quote",
+    "whyBook": "Why book with us",
+    "whyItems": [
+      "Team based in Conakry",
+      "Experienced local guides",
+      "Follow-up until you are back"
+    ],
+    "relatedKicker": "Extend your trip",
+    "relatedTitle": "Destinations to combine",
+    "related": [
+      {
+        "alt": "Boat on a calm sea",
+        "eyebrow": "Off Conakry",
+        "title": "Loos Islands"
+      },
+      {
+        "alt": "Turquoise beach",
+        "eyebrow": "7 km of sand",
+        "title": "Bel-Air, Boffa"
+      },
+      {
+        "alt": "River and canoe",
+        "eyebrow": "Canoes & mangroves",
+        "title": "Dubréka"
+      }
+    ],
+    "durationLabel": "[X] days"
+  },
+  "loos": {
+    "intro": "An archipelago off the capital: red-sand beaches, coves, fishermen and history. The perfect weekend getaway.",
+    "chips": [
+      "Motorised canoe from Boulbinet",
+      "1 to 2 days",
+      "Best Nov → Apr"
+    ],
+    "historyKicker": "A bit of history",
+    "historyTitle": "The “Ilhas dos Ídolos” of the Portuguese navigators",
+    "historyP1": "The name Loos comes from the Portuguese Ilhas dos Ídolos, the “islands of idols”. Occupied by the British in the 19th century, they were ceded to France in 1904.",
+    "historyP2": "On Kassa island, the remains of the Fotoba penitentiary recall the colonial period. A guided visit helps understand this past before heading to the beaches.",
+    "milestones": [
+      {
+        "value": "19th c.",
+        "label": "British presence"
+      },
+      {
+        "value": "1904",
+        "label": "Ceded to France"
+      },
+      {
+        "value": "3",
+        "label": "Main islands"
+      }
+    ],
+    "historyImageAlt": "Sea horizon seen from an island",
+    "islandsKicker": "Choose your island",
+    "islandsTitle": "Three islands, three moods",
+    "islands": [
+      {
+        "badge": "The lively one",
+        "alt": "Busy beach with an islet",
+        "text": "The most visited island: beach restaurants, music at weekends and the historic site of Fotoba.",
+        "points": [
+          "Fotoba penitentiary",
+          "Grilled fish",
+          "Saturday atmosphere"
+        ]
+      },
+      {
+        "badge": "The wild one",
+        "alt": "Rocky beach at sunset",
+        "text": "The largest island, with its red-sand beaches and Alcatraz rock, a refuge for seabirds.",
+        "points": [
+          "Red sand",
+          "Alcatraz rock",
+          "Birdwatching"
+        ]
+      },
+      {
+        "badge": "The peaceful one",
+        "alt": "Boat on a calm sea",
+        "text": "A small, peaceful island, perfect for reading, swimming and enjoying the calm away from the city.",
+        "points": [
+          "Quiet coves",
+          "Swimming",
+          "Family relaxation"
+        ]
+      }
+    ],
+    "programKicker": "Sample programme",
+    "programTitle": "A weekend on the Loos Islands",
+    "program": [
+      {
+        "time": "D1 · 9am",
+        "title": "Canoe departure from Boulbinet",
+        "text": "Life jackets provided, about 30 minutes of crossing."
+      },
+      {
+        "time": "D1 · 11am",
+        "title": "Kassa and Fotoba",
+        "text": "Guided visit of the historic site, grilled fish lunch."
+      },
+      {
+        "time": "D1 · 4pm",
+        "title": "Beach and sunset",
+        "text": "Swimming, then dinner and a night in local accommodation."
+      },
+      {
+        "time": "D2 · 9am",
+        "title": "Tamara and Alcatraz rock",
+        "text": "Red sand and seabird watching."
+      },
+      {
+        "time": "D2 · 4pm",
+        "title": "Back to Conakry",
+        "text": "Arrival at Boulbinet in the late afternoon."
+      }
+    ],
+    "asideLabel": "2-day getaway",
+    "asideEyebrow": "2-DAY GETAWAY",
+    "priceBasis": "per person, based on 2 people",
+    "asideItems": [
+      "Return crossings",
+      "French-speaking local guide",
+      "1 night and meals",
+      "Life jackets"
+    ],
+    "quoteSummary": "2 days",
+    "whatsappMessage": "Hello ETHNIKA, I would like a quote for a Loos Islands getaway.",
+    "tips": [
+      {
+        "title": "When to go",
+        "text": "In the dry season (November to April): calmer sea and safer crossings."
+      },
+      {
+        "title": "What to bring",
+        "text": "Sunscreen, hat, bottled water, a waterproof bag for the crossing."
+      },
+      {
+        "title": "Safety",
+        "text": "Life jacket mandatory in the canoe. Swim carefully and ask about the currents."
+      }
+    ],
+    "othersTitle": "Other destinations",
+    "others": [
+      {
+        "alt": "Plateau at sunset",
+        "title": "Mali & Fouta Djallon"
+      },
+      {
+        "alt": "Beach with coconut palms",
+        "title": "Bel-Air & Lower Coast"
+      },
+      {
+        "alt": "River and canoe",
+        "title": "Dubréka"
+      }
+    ]
+  },
+  "basseCote": {
+    "intro": "Endless beaches, mangroves, canoe rides on rivers and places of memory. A coast largely inhabited by the Susu, a few hours from Conakry.",
+    "toc": {
+      "boffa": "Boffa",
+      "bel-air": "Bel-Air",
+      "sobane": "Sobane & Kitikata",
+      "koba": "Lake Koba",
+      "dubreka": "Dubréka",
+      "conakry": "Conakry beaches"
+    },
+    "boffaEyebrow": "01 · BOFFA PREFECTURE · 287,648 INHAB.",
+    "boffaTitle": "Boffa, memory of the coast",
+    "boffaText": "On the banks of the Fatala river, Boffa has kept its old port, one of the first churches in the country and sites linked to the slave trade. A powerful stop to understand the history of Guinea.",
+    "boffaChips": [
+      "Old Fatala port",
+      "Historic church",
+      "Place of memory"
+    ],
+    "boffaImageAlt": "Harbour with fishing boats",
+    "belAirEyebrow": "02 · BEL-AIR",
+    "belAirTitle": "7 km of fine sand and coconut palms",
+    "belAirText": "One of the most beautiful beaches in the country. Swimming, sunrise walks, grilled fish and nights to the sound of the waves.",
+    "belAirFacts": [
+      {
+        "value": "7 km",
+        "label": "of beach"
+      },
+      {
+        "value": "2–3 d",
+        "label": "recommended"
+      }
+    ],
+    "belAirImageAlt": "Coconut palms at sunset",
+    "villagesKicker": "Around Boffa",
+    "villagesTitle": "Villages and unspoilt nature",
+    "villages": [
+      {
+        "n": "03",
+        "title": "Sobane",
+        "alt": "Sandy beach at sunset",
+        "text": "A fishing village by the ocean. Calm, sunsets and a warm welcome."
+      },
+      {
+        "n": "04",
+        "title": "Kitikata",
+        "alt": "Fishermen at sunset",
+        "text": "Nights under the stars, drumming and village life to the rhythm of the tides."
+      },
+      {
+        "n": "05 · 1 H FROM BOFFA",
+        "title": "Lake Koba",
+        "alt": "Reflections on a body of water",
+        "text": "A lake surrounded by greenery, for a nature day, picnic and birdwatching."
+      }
+    ],
+    "dubrekaEyebrow": "06 · DUBRÉKA · 488,569 INHAB.",
+    "dubrekaTitle": "Dubréka, rivers and waterfalls",
+    "dubrekaText": "North of Conakry, some sites are reached by canoe. Natural pools, the Bondabon site and the Mount Dixinn falls for a refreshing day out.",
+    "dubrekaItems": [
+      "Access by canoe",
+      "Natural pools",
+      "Bondabon",
+      "Mount Dixinn falls"
+    ],
+    "dubrekaImageAlt": "River lined with vegetation and a canoe",
+    "conakryEyebrow": "07 · CONAKRY · 3,407,327 INHAB.",
+    "conakryTitle": "The capital's beaches",
+    "conakryText": "For an afternoon without leaving the city, before or after a flight.",
+    "ctaKicker": "Recommended tour",
+    "ctaTitle": "Boffa, Bel-Air & Kitikata in 3 days",
+    "ctaText": "Transport, accommodation, meals and local guide included. Departure from Conakry. Best season: November to April.",
+    "seeCircuit": "See the tour",
+    "tailorMade": "Tailor-made"
+  },
+  "infos": {
+    "toc": {
+      "saison": "When to go",
+      "formalites": "Entry requirements",
+      "vaccins": "Vaccines",
+      "paludisme": "Malaria",
+      "quotidien": "Day to day",
+      "argent": "Money & communication"
+    },
+    "tocLabel": "Contents",
+    "questionTitle": "Any questions?",
+    "questionText": "Our advisers will answer you before you leave.",
+    "whatsappMessage": "Hello ETHNIKA, I have a question before my trip.",
+    "disclaimer": "This information is provided for guidance only and does not replace medical advice. See a doctor or an international vaccination centre <b>4 to 6 weeks before departure</b>, and check entry requirements with the authorities. Last updated: [DATE].",
+    "seasons": [
+      {
+        "period": "Nov → Apr",
+        "title": "Dry season",
+        "text": "Best period: beaches, crossings to the islands, hiking in the Fouta."
+      },
+      {
+        "period": "May → Oct",
+        "title": "Rainy season",
+        "text": "Very green landscapes and abundant waterfalls, but tracks and sea are more difficult."
+      }
+    ],
+    "formalitiesText": "Passport valid for more than 6 months after your return, a visa depending on your nationality [TO BE CHECKED with the embassy or the official portal], and an international certificate of vaccination against yellow fever.",
+    "vaccinesCaption": "Recommended vaccines for Guinea",
+    "vaccinesRegion": "Vaccine table",
+    "colVaccine": "Vaccine",
+    "colStatus": "Status",
+    "colNote": "Good to know",
+    "vaccines": [
+      {
+        "name": "Yellow fever",
+        "status": "Required / recommended",
+        "note": "Required for travellers aged 9 months and over coming from an at-risk country, recommended for everyone. At least 10 days before departure, valid for life."
+      },
+      {
+        "name": "Hepatitis A and B",
+        "status": "Recommended",
+        "note": "Transmitted through water, food or blood."
+      },
+      {
+        "name": "Meningitis",
+        "status": "Recommended",
+        "note": "Especially from November to June, in the north and centre."
+      },
+      {
+        "name": "Typhoid, polio, boosters",
+        "status": "Recommended",
+        "note": "Update diphtheria, tetanus, whooping cough, measles."
+      },
+      {
+        "name": "Rabies, cholera",
+        "status": "Depending on profile",
+        "note": "Long stays, remote areas, contact with animals."
+      }
+    ],
+    "malariaText": "Present throughout the country, all year round. Preventive treatment is generally advised: ask your doctor.",
+    "malaria": [
+      "Repellent on the skin",
+      "Mosquito net at night",
+      "Long clothing in the evening",
+      "Fever: see a doctor quickly"
+    ],
+    "daily": [
+      {
+        "title": "Water",
+        "text": "Sealed bottled water, no ice of unknown origin."
+      },
+      {
+        "title": "Sun",
+        "text": "Sunscreen, hat, and stay well hydrated."
+      },
+      {
+        "title": "First aid & insurance",
+        "text": "First-aid kit and travel insurance with repatriation."
+      },
+      {
+        "title": "Swimming",
+        "text": "Watch out for currents; ask your guide for advice."
+      }
+    ],
+    "money": [
+      {
+        "code": "GNF",
+        "text": "Guinean franc; bring cash outside Conakry."
+      },
+      {
+        "code": "+224",
+        "text": "A local SIM card is easy to get with a passport."
+      },
+      {
+        "code": "FR",
+        "text": "French is the official language; Susu, Pular and Malinké are widely spoken."
+      }
+    ],
+    "sources": "Sources: health recommendations for travellers (Institut Pasteur, WHO, foreign affairs ministries). Exact links [TO BE COMPLETED]."
+  },
+  "circuits": {
+    "searchLabel": "Search for a tour",
+    "region": "Region",
+    "allRegions": "All regions",
+    "duration": "Duration",
+    "allDurations": "Any duration",
+    "budget": "Budget",
+    "allBudgets": "Any budget",
+    "budgetNote": "[Price ranges to be defined]",
+    "search": "Search",
+    "themeFilter": "Filter by theme",
+    "all": "All",
+    "count": "{count, plural, one {# tour} other {# tours}}",
+    "sort": "Sort",
+    "sorts": {
+      "populaires": "Popular",
+      "duree": "Duration"
+    },
+    "apply": "Apply",
+    "emptyTitle": "No tour matches",
+    "emptyText": "Try another filter, or ask us for a tailor-made trip.",
+    "reset": "Reset the filters",
+    "ctaKicker": "Tailor-made trip",
+    "ctaTitle": "Can't find your tour? We'll create it for you.",
+    "ctaText": "Family, diaspora, group or mission: tell us your wishes, your dates and your budget.",
+    "ctaButton": "Plan my trip",
+    "ctaWhatsapp": "Hello ETHNIKA, I would like a tailor-made trip.",
+    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+  },
+  "circuit": {
+    "duration": "Duration",
+    "departure": "Departure",
+    "level": "Level",
+    "group": "Group",
+    "place": "Location",
+    "theTrip": "The trip",
+    "program": "Day-by-day programme",
+    "programPending": "[Detailed programme to be confirmed by the agency.] Request a quote: an adviser will send you the day-by-day itinerary.",
+    "night": "Night: {value}",
+    "meals": "Meals: {value}",
+    "includedLabel": "What is included",
+    "included": "Included",
+    "excluded": "Not included",
+    "departures": "Upcoming departures",
+    "status": {
+      "available": "Seats available",
+      "last": "Last seats",
+      "request": "On request (private)"
+    },
+    "bookLabel": "Book this tour",
+    "similar": "You may also like"
+  },
+  "billetterie": {
+    "intro": "Tickets to every destination in the world. An adviser compares fares and itineraries, then comes back to you with the best options.",
+    "requestLabel": "Ticket request",
+    "servicesKicker": "Our services",
+    "servicesTitle": "Much more than a ticket",
+    "services": [
+      {
+        "title": "Ticketing",
+        "text": "One way, round trip, multi-city; economy, business or first."
+      },
+      {
+        "title": "Best fare",
+        "text": "Direct flights or with stopovers: the best balance between price, duration and comfort."
+      },
+      {
+        "title": "After-sales",
+        "text": "Date changes, reissues, cancellations and refunds according to fare conditions."
+      },
+      {
+        "title": "On-board options",
+        "text": "Baggage, seats, special meals, reduced-mobility assistance, unaccompanied minors."
+      },
+      {
+        "title": "Groups & business",
+        "text": "Missions, seminars, official delegations and pilgrimages: dedicated quotes."
+      },
+      {
+        "title": "Visas, insurance, hotels",
+        "text": "Advice on entry requirements, travel insurance, hotels and airport transfers."
+      }
+    ],
+    "stepsKicker": "Quick and easy",
+    "stepsTitle": "Your ticket in 4 steps",
+    "steps": [
+      {
+        "title": "Request",
+        "text": "Departure, destination, dates and passengers, via WhatsApp, phone, email or the form."
+      },
+      {
+        "title": "Quote",
+        "text": "We propose the best flight and fare options."
+      },
+      {
+        "title": "Confirmation & payment",
+        "text": "You choose, confirm and pay according to the agreed terms."
+      },
+      {
+        "title": "Ticketing",
+        "text": "Your e-ticket, with our practical travel tips."
+      }
+    ],
+    "routesKicker": "From Conakry",
+    "routesTitle": "Some destinations",
+    "routesNote": "Indicative fares: [to be entered by the agency]",
+    "faqKicker": "Frequently asked questions",
+    "faqTitle": "Everything you need to know before booking",
+    "faqImageAlt": "Traveller walking under a bright sky",
+    "ctaKicker": "Any questions?",
+    "ctaTitle": "Send your itinerary on WhatsApp and we'll get back to you.",
+    "ctaWhatsapp": "Hello ETHNIKA, here is my itinerary: "
+  },
+  "services": {
+    "segmentsLabel": "Our services",
+    "segments": [
+      {
+        "n": "01 · GROUPS",
+        "title": "Group travel",
+        "text": "Families, associations, schools, diaspora: one programme, a negotiated fare, a dedicated contact person.",
+        "points": [
+          "Seat blocks on flights",
+          "Transport and accommodation",
+          "On-site tour leader"
+        ],
+        "alt": "Traveller with a backpack"
+      },
+      {
+        "n": "02 · PILGRIMAGES",
+        "title": "Hajj & Umrah",
+        "text": "Support for pilgrims from preparation to return: formalities, flights, accommodation, supervision.",
+        "points": [
+          "Files and visas",
+          "Flights and transfers",
+          "Group supervision"
+        ],
+        "note": "Subject to current approvals and quotas [TO BE CONFIRMED]."
+      },
+      {
+        "n": "03 · PROFESSIONALS",
+        "title": "Companies, institutions & NGOs",
+        "text": "Missions, seminars, official delegations: management of your travel with suitable invoicing.",
+        "points": [
+          "Corporate account",
+          "Monthly invoicing",
+          "Assistance if anything goes wrong"
+        ],
+        "alt": "Seaside city"
+      }
+    ],
+    "howKicker": "How it works",
+    "howTitle": "One contact person, from quote to return",
+    "steps": [
+      {
+        "title": "Your needs",
+        "text": "Form, call or WhatsApp: dates, group size, budget."
+      },
+      {
+        "title": "Proposal",
+        "text": "Detailed quote within 48 hours, with options."
+      },
+      {
+        "title": "Booking",
+        "text": "Approval, deposit, issuing of tickets and vouchers."
+      },
+      {
+        "title": "Follow-up",
+        "text": "Assistance before, during and after the trip."
+      }
+    ],
+    "extrasTitle": "Additional services",
+    "extras": [
+      "Travel insurance",
+      "Hotel booking",
+      "Airport transfers",
+      "Visa advice",
+      "Vehicle rental",
+      "Event planning"
+    ],
+    "proKicker": "Professional request",
+    "proTitle": "Quote for a group, company or pilgrimage",
+    "proText": "Describe your project and we will come back to you within 48 working hours with a proposal.",
+    "groupsEmail": "groupes@ethnikatour.com [TO BE CONFIRMED]"
+  },
+  "offres": {
+    "filterLabel": "Offer type",
+    "filters": {
+      "all": "All",
+      "vol": "Flights",
+      "pack": "Packages",
+      "last": "Last minute"
+    },
+    "disclaimer": "Indicative prices, subject to availability.",
+    "alertsKicker": "Deal alerts",
+    "alertsTitle": "Get the deals before anyone else"
+  },
+  "blog": {
+    "searchLabel": "Search for an article",
+    "searchPlaceholder": "Search for an article…",
+    "searchButton": "Search",
+    "featuredLabel": "Featured",
+    "featured": "Featured",
+    "minutes": "{n} min",
+    "byTeam": "{date} · {name} team",
+    "categoriesLabel": "Categories",
+    "all": "All",
+    "categories": {
+      "Destinations": "Destinations",
+      "Conseils": "Tips",
+      "Culture": "Culture",
+      "Billetterie": "Flights",
+      "Actualités": "News"
+    },
+    "count": "{count, plural, one {# article} other {# articles}}",
+    "countFor": "{count, plural, one {# article} other {# articles}} for “{q}”",
+    "emptyTitle": "No article found",
+    "emptyText": "Try another keyword or category.",
+    "seeAll": "See all articles"
+  },
+  "article": {
+    "readingTime": "{category} · {n} min read",
+    "team": "{name} team",
+    "dates": "Published on {published} · Updated on {updated}",
+    "tocLabel": "Article contents",
+    "toc": "CONTENTS",
+    "keywords": "Keywords",
+    "related": "Read also",
+    "frenchOnly": "This article is currently available in French only."
+  },
+  "galerie": {
+    "filterLabel": "Filter the gallery",
+    "all": "All",
+    "credits": "Illustration photos (Pixabay), to be replaced by the agency's own photos. Travelled with us? Share your photos with #ETHNIKA.",
+    "ctaTitle": "These landscapes are waiting for you",
+    "ctaText": "Choose a tour or design your own tailor-made trip."
+  },
+  "apropos": {
+    "img1Alt": "Aerial view of a green coastline",
+    "img2Alt": "Fishing boats at sunset",
+    "since": "From Conakry",
+    "yearPending": "[Year founded to be completed]",
+    "storyKicker": "Our story",
+    "storyTitle": "Two trades, one promise",
+    "storyText": "ETHNIKA introduces Guinea to those who arrive and opens the world to those who leave. We know the departures from Conakry, the diaspora's connections and the procedures specific to our country.",
+    "trades": [
+      {
+        "title": "Air ticketing",
+        "text": "All destinations, for individuals and companies."
+      },
+      {
+        "title": "Destination Guinea",
+        "text": "Tours and stays with local guides."
+      }
+    ],
+    "motto": "Guinea at heart, <em>the world in sight.</em>",
+    "promises": [
+      {
+        "title": "Proximity",
+        "text": "A local contact person, reachable by phone, WhatsApp, email or at the agency."
+      },
+      {
+        "title": "Speed",
+        "text": "Real-time booking and ticketing."
+      },
+      {
+        "title": "Tailor-made",
+        "text": "Advice suited to your budget, your schedule and your constraints."
+      },
+      {
+        "title": "Support",
+        "text": "Follow-up of your file until you return, with assistance if anything goes wrong."
+      }
+    ],
+    "clientsKicker": "They travel with us",
+    "clientsTitle": "A diverse clientele",
+    "clientTypes": [
+      "Individuals & families",
+      "Diaspora",
+      "Companies",
+      "Institutions",
+      "NGOs",
+      "International organisations",
+      "Groups & delegations"
+    ],
+    "logosLabel": "Client logos (coming soon)",
+    "logoPlaceholder": "[CLIENT LOGO]",
+    "logosNote": "Logos are published only with the clients' written consent.",
+    "teamKicker": "The team",
+    "teamTitle": "Your advisers in Conakry",
+    "photo": "[PHOTO]",
+    "name": "[First name Last name]",
+    "team": [
+      "Management",
+      "Ticketing",
+      "Tours & bookings",
+      "Customer relations"
+    ],
+    "trustKicker": "Trust",
+    "trustTitle": "Licences & legal information",
+    "trustNote": "IATA and Amadeus mentions are only displayed once the accreditation and contracts have actually been obtained.",
+    "credLicence": "Ministry of Tourism · licence obtained",
+    "credLicenceValue": "Licence no. {value}",
+    "credRccm": "Trade register",
+    "credIata": "IATA",
+    "credIataValue": "[If obtained: accreditation no.]",
+    "credAmadeus": "Amadeus network",
+    "credAmadeusValue": "[If contract in force]",
+    "ctaImageAlt": "Coconut palms at sunset",
+    "ctaTitle": "Your next trip starts <em>here</em>.",
+    "ctaTicket": "Request a ticket"
+  },
+  "contact": {
+    "reachLabel": "Get in touch",
+    "phone": "Phone",
+    "whatsappText": "The fastest way to get a quote",
+    "whatsappMessage": "Hello ETHNIKA, I would like a quote.",
+    "email": "Email",
+    "agency": "Agency",
+    "country": "Conakry, Republic of Guinea",
+    "writeKicker": "Write to us",
+    "writeTitle": "A quick answer from an adviser",
+    "map": "[Google Maps of the agency]",
+    "hoursTitle": "Opening hours",
+    "hours": [
+      {
+        "days": "Monday – Friday",
+        "hours": "[HH:MM – HH:MM]"
+      },
+      {
+        "days": "Saturday",
+        "hours": "[HH:MM – HH:MM]"
+      },
+      {
+        "days": "Sunday",
+        "hours": "Closed · WhatsApp"
+      }
+    ],
+    "followKicker": "Follow us",
+    "followTitle": "Deals, departures and photos of Guinea"
+  },
+  "faq": {
+    "kicker": "Frequently asked questions",
+    "title": "How can we help you?",
+    "searchLabel": "Search the FAQ",
+    "placeholder": "E.g. baggage, vaccine, payment…",
+    "categories": "Categories",
+    "all": "All",
+    "count": "{count, plural, one {# question} other {# questions}}",
+    "emptyTitle": "No answer found",
+    "emptyText": "Try another keyword or ask us your question directly.",
+    "clear": "Clear the search",
+    "notFoundTitle": "Didn't find it?",
+    "notFoundText": "An adviser will answer you quickly.",
+    "whatsappMessage": "Hello ETHNIKA, I have a question.",
+    "contactForm": "Contact form"
+  },
+  "merci": {
+    "kicker": "Thank you!",
+    "title": "Your request has been received",
+    "text": "An adviser will get back to you within 24 working hours, by phone, WhatsApp or email.",
+    "backHome": "Back to home",
+    "discover": "Discover Guinea",
+    "summary": "SUMMARY",
+    "processing": "Being processed",
+    "reference": "REFERENCE",
+    "type": "TYPE",
+    "date": "DATE",
+    "request": "Request",
+    "types": {
+      "contact": "Contact",
+      "billet": "Plane ticket",
+      "circuit": "Tour",
+      "groupe": "Group",
+      "pelerinage": "Pilgrimage",
+      "pro": "Company / institution"
+    },
+    "nextTitle": "What happens next?",
+    "steps": [
+      {
+        "tag": "01 · DONE",
+        "title": "Request registered",
+        "text": "Your request is registered under the reference above."
+      },
+      {
+        "tag": "02 · WITHIN 24 H",
+        "title": "Personalised proposal",
+        "text": "An adviser sends you the options and prices."
+      },
+      {
+        "tag": "03 · THEN",
+        "title": "Confirmation",
+        "text": "You approve, pay the deposit and receive your documents."
+      }
+    ],
+    "fasterTitle": "Need a faster answer?",
+    "fasterText": "Message us on WhatsApp with your reference.",
+    "whatsappRef": "Hello ETHNIKA, my reference is {ref}.",
+    "whatsappHello": "Hello ETHNIKA."
+  },
+  "legal": {
+    "kicker": "Transparency",
+    "title": "Legal information",
+    "note": "Mock-up structure. The final texts must be drafted and validated by a lawyer, in accordance with applicable Guinean law (travel agencies, data protection). [TO BE VALIDATED BY A LAWYER]",
+    "docsLabel": "Legal documents",
+    "updated": "LAST UPDATED: [DATE]",
+    "frenchOnly": "The legal documents are written in French, which is the authoritative version.",
+    "tabs": {
+      "mentions": "Legal notice",
+      "cgv": "Terms of sale",
+      "confidentialite": "Privacy",
+      "cookies": "Cookies"
+    }
+  }
+}

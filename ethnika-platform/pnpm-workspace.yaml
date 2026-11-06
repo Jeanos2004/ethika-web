@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Sécurité supply-chain : ne pas exécuter les scripts postinstall des dépendances
+# sauf celles listées explicitement.
+onlyBuiltDependencies:
+  - sharp
+  - "@tailwindcss/oxide"
+  - unrs-resolver

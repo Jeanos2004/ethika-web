@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Billetterie aérienne — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFBF5}
+a{color:#16211C;text-decoration:none}a:hover{color:#B0121B}
+button{cursor:pointer}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #E3A935;outline-offset:2px}
+</style>
+</helmet>
+<div style="background: #FFFBF5; color: #121815; font-family: 'Bricolage Grotesque', sans-serif; overflow-x: hidden">
+
+<!-- ================= BANNER ================= -->
+<section style="position: relative; min-height: 600px; display: flex; flex-direction: column; color: #FFFFFF; overflow: hidden">
+  <img src="/images/avion-ciel.jpg" alt="Avion de ligne dans un ciel nuageux" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0.85) 0%, rgba(22,33,28,0.55) 45%, rgba(18,24,21,0.88) 100%)"></div>
+  <div style="position: relative; border-bottom: 1px solid rgba(255,255,255,0.14); font-size: 13px; color: #E2E5E0">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 22px"><span>+224 [NUMÉRO]</span><span>billetterie@ethnikatour.com</span><span>Lun – Sam · [HORAIRES]</span></div>
+      <div style="display: flex; gap: 16px; align-items: center"><a href="APropos.dc.html" style="color: #E2E5E0">À propos</a><a href="FAQ.dc.html" style="color: #E2E5E0">FAQ</a><span style="width: 1px; height: 14px; background: rgba(255,255,255,0.3)"></span><a href="#" style="color: #FFFFFF; font-family: 'DM Mono', monospace">FR</a><a href="#" style="color: #A2AAA4; font-family: 'DM Mono', monospace">EN</a></div>
+    </div>
+  </div>
+  <header style="position: relative">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Home2.dc.html" aria-label="ETHNIKA, accueil" style="display: flex; align-items: center; gap: 10px; color: #FFFFFF">
+        <img src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" style="height: 62px; width: auto; display: block; margin-left: -10px">
+      </a>
+      <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 15px; font-weight: 600">
+        <a href="Guinee.dc.html" style="color: #FFFFFF">Découvrir la Guinée</a>
+        <a href="Circuits.dc.html" style="color: #FFFFFF">Circuits</a>
+        <a href="Billetterie.dc.html" aria-current="page" style="color: #E3A935; border-bottom: 2px solid #E3A935; padding-bottom: 4px">Billetterie</a>
+        <a href="Services.dc.html" style="color: #FFFFFF">Services</a>
+        <a href="Offres.dc.html" style="color: #FFFFFF">Offres</a>
+        <a href="Blog.dc.html" style="color: #FFFFFF">Blog</a>
+        <a href="Contact.dc.html" style="color: #FFFFFF">Contact</a>
+      </nav>
+      <a href="#" style="height: 48px; padding: 0 22px; border-radius: 999px; background: #0E5232; color: #FFFFFF; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"></path></svg>WhatsApp</a>
+    </div>
+  </header>
+  <div style="position: relative; flex: 1; max-width: 1320px; width: 100%; margin: 0 auto; padding: 40px 24px 170px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px">
+    <nav aria-label="Fil d'Ariane" style="display: flex; gap: 8px; font-size: 14px; color: #E2E5E0"><a href="Home2.dc.html" style="color: #E2E5E0">Accueil</a><span>/</span><span style="color: #E3A935">Billetterie</span></nav>
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #E3A935">Billetterie aérienne</span>
+    <h1 style="margin: 0; max-width: 880px; font-size: clamp(44px, 5.8vw, 84px); line-height: 0.96; letter-spacing: -0.045em">Dites-nous où, on s'occupe du reste.</h1>
+    <p style="margin: 0; max-width: 600px; font-size: 18px; line-height: 1.6; color: #EEF0EC">Billets vers toutes les destinations du monde. Un conseiller compare les tarifs et les itinéraires, puis revient vers vous avec les meilleures options.</p>
+  </div>
+</section>
+
+<!-- ================= FORM + SUMMARY ================= -->
+<div style="position: relative; z-index: 3; max-width: 1320px; margin: -150px auto 0; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+  <form style="flex: 999 1 600px; min-width: 0; background: #FFFFFF; border-radius: 30px; box-shadow: 0 30px 70px rgba(18,24,21,0.18); padding: clamp(20px, 3vw, 36px); display: flex; flex-direction: column; gap: 26px">
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; background: #F5EEE3; border-radius: 18px; width: fit-content; max-width: 100%">
+      <sc-for list="{{trips}}" as="t" hint-placeholder-count="3">
+        <sc-if value="{{t.active}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="true" onClick="{{t.pick}}" style="height: 46px; padding: 0 20px; border: 0; border-radius: 14px; background: #16211C; color: #FFFFFF; font: 600 15px 'Bricolage Grotesque', sans-serif">{{t.label}}</button></sc-if>
+        <sc-if value="{{t.inactive}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="false" onClick="{{t.pick}}" style="height: 46px; padding: 0 20px; border: 0; border-radius: 14px; background: transparent; color: #16211C; font: 600 15px 'Bricolage Grotesque', sans-serif">{{t.label}}</button></sc-if>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px">
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Départ<input type="text" value="{{from}}" onChange="{{onFrom}}" style="height: 56px; border-radius: 16px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 16px; font: 600 16px 'Bricolage Grotesque', sans-serif; color: #121815"></label>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Destination<input type="text" value="{{to}}" onChange="{{onTo}}" placeholder="Ex. : Paris, Dakar, Istanbul…" style="height: 56px; border-radius: 16px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 16px; font: 600 16px 'Bricolage Grotesque', sans-serif; color: #121815"></label>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Date de départ<input type="date" style="height: 56px; border-radius: 16px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 16px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+      <sc-if value="{{showReturn}}" hint-placeholder-val="{{true}}"><label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Date de retour<input type="date" style="height: 56px; border-radius: 16px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 16px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label></sc-if>
+    </div>
+    <sc-if value="{{showMulti}}" hint-placeholder-val="{{false}}">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px; padding: 16px; border-radius: 18px; border: 1.5px dashed #D6CABA">
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Vol 2 · départ<input type="text" placeholder="Ville" style="height: 50px; border-radius: 14px; border: 1.5px solid #E3D8C8; padding: 0 14px; font: 500 15px 'Bricolage Grotesque', sans-serif"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Vol 2 · destination<input type="text" placeholder="Ville" style="height: 50px; border-radius: 14px; border: 1.5px solid #E3D8C8; padding: 0 14px; font: 500 15px 'Bricolage Grotesque', sans-serif"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Vol 2 · date<input type="date" style="height: 50px; border-radius: 14px; border: 1.5px solid #E3D8C8; padding: 0 14px; font: 500 15px 'Bricolage Grotesque', sans-serif"></label>
+        <button type="button" style="align-self: end; height: 50px; border-radius: 14px; border: 1.5px solid #16211C; background: transparent; color: #16211C; font: 600 15px 'Bricolage Grotesque', sans-serif">+ Ajouter un vol</button>
+      </div>
+    </sc-if>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+      <sc-for list="{{pax}}" as="p" hint-placeholder-count="3">
+        <div style="border: 1.5px solid #E3D8C8; border-radius: 18px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+          <div style="display: flex; flex-direction: column"><strong style="font-size: 15px; color: #16211C">{{p.label}}</strong><span style="font-size: 12px; color: #6B6259">{{p.sub}}</span></div>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <button type="button" aria-label="{{p.decLabel}}" onClick="{{p.dec}}" style="width: 44px; height: 44px; border-radius: 999px; border: 1.5px solid #E3D8C8; background: #FFFFFF; color: #16211C; font: 600 20px 'Bricolage Grotesque', sans-serif">−</button>
+            <span style="font-family: 'DM Mono', monospace; font-size: 19px; min-width: 18px; text-align: center">{{p.count}}</span>
+            <button type="button" aria-label="{{p.incLabel}}" onClick="{{p.inc}}" style="width: 44px; height: 44px; border-radius: 999px; border: 0; background: #16211C; color: #FFFFFF; font: 600 20px 'Bricolage Grotesque', sans-serif">+</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+      <span style="font-size: 14px; font-weight: 600; color: #16211C; margin-right: 6px">Classe</span>
+      <sc-for list="{{cabins}}" as="c" hint-placeholder-count="3">
+        <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="true" onClick="{{c.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #B0121B; background: #B0121B; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+        <sc-if value="{{c.inactive}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="false" onClick="{{c.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #E3D8C8; background: #FFFFFF; color: #16211C; font: 600 14px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px; padding-top: 22px; border-top: 1px dashed #E3D8C8">
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Nom complet<input type="text" autocomplete="name" style="height: 54px; border-radius: 16px; border: 1.5px solid #E3D8C8; padding: 0 16px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">Téléphone / WhatsApp<input type="tel" autocomplete="tel" placeholder="+224" style="height: 54px; border-radius: 16px; border: 1.5px solid #E3D8C8; padding: 0 16px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #16211C">E-mail<input type="email" autocomplete="email" style="height: 54px; border-radius: 16px; border: 1.5px solid #E3D8C8; padding: 0 16px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+    </div>
+    <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; color: #6B6259"><input type="checkbox" style="accent-color: #B0121B; width: 18px; height: 18px; margin-top: 1px">J'accepte que ETHNIKA utilise ces informations pour traiter ma demande, conformément à la politique de confidentialité.</label>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <span style="font-size: 14px; color: #6B6259">Aucun paiement à cette étape : vous recevez d'abord un devis.</span>
+      <button type="button" onClick="{{submit}}" style="height: 60px; padding: 0 34px; border: 0; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 17px 'Bricolage Grotesque', sans-serif; display: inline-flex; align-items: center; gap: 10px">Envoyer ma demande <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+  </form>
+
+  <aside style="flex: 1 1 340px; min-width: 0; max-width: 430px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px">
+    <sc-if value="{{submitted}}" hint-placeholder-val="{{false}}">
+      <div role="status" style="background: #D3E7DA; border-radius: 24px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 20px 40px rgba(18,24,21,0.12)">
+        <span style="width: 36px; height: 36px; border-radius: 999px; background: #0E5232; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 17px; color: #0B3A23">Demande bien reçue</strong><span style="font-size: 14px; line-height: 1.5; color: #0E4A2D">Un accusé de réception vous a été envoyé. Un conseiller revient vers vous avec les meilleures options.</span><button type="button" onClick="{{reset}}" style="align-self: flex-start; margin-top: 4px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #0E5232; background: transparent; color: #0E4A2D; font: 600 14px 'Bricolage Grotesque', sans-serif">Nouvelle demande</button></div>
+      </div>
+    </sc-if>
+    <div style="border-radius: 28px; overflow: hidden; background: #16211C; color: #FFFFFF; box-shadow: 0 30px 70px rgba(18,24,21,0.25)">
+      <div style="padding: 26px; display: flex; flex-direction: column; gap: 22px">
+        <div style="display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 12px; color: #D0D4CF"><span>RÉCAPITULATIF</span><span>{{tripLabel}}</span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+          <div style="display: flex; flex-direction: column; min-width: 0"><span style="font-family: 'DM Mono', monospace; font-size: 46px; line-height: 1">{{fromCode}}</span><span style="font-size: 13px; color: #D0D4CF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{fromCity}}</span></div>
+          <svg width="96" height="30" viewBox="0 0 96 30" aria-hidden="true" style="flex-shrink: 0"><path d="M4 24 Q48 -6 92 24" fill="none" stroke="#E3A935" stroke-width="2" stroke-dasharray="2 5" stroke-linecap="round"></path></svg>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; min-width: 0"><span style="font-family: 'DM Mono', monospace; font-size: 46px; line-height: 1; color: #E3A935">{{toCode}}</span><span style="font-size: 13px; color: #D0D4CF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{toCity}}</span></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; font-size: 14px">
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A2AAA4">PASSAGERS</span><strong>{{paxSummary}}</strong></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A2AAA4">CLASSE</span><strong>{{cabinLabel}}</strong></div>
+        </div>
+      </div>
+      <div style="border-top: 2px dashed #34413A"></div>
+      <div style="padding: 20px 26px; background: #0F1713; display: flex; justify-content: space-between; align-items: center; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #A2AAA4">TARIF</span><strong style="font-size: 16px">Sur devis personnalisé</strong></div>
+        <svg width="88" height="36" viewBox="0 0 88 36" aria-hidden="true"><g fill="#F5EEE3"><rect x="0" width="3" height="36"></rect><rect x="6" width="1.5" height="36"></rect><rect x="10" width="4" height="36"></rect><rect x="17" width="1.5" height="36"></rect><rect x="21" width="3" height="36"></rect><rect x="28" width="1.5" height="36"></rect><rect x="32" width="5" height="36"></rect><rect x="40" width="1.5" height="36"></rect><rect x="44" width="3" height="36"></rect><rect x="50" width="1.5" height="36"></rect><rect x="54" width="4" height="36"></rect><rect x="61" width="1.5" height="36"></rect><rect x="65" width="3" height="36"></rect><rect x="72" width="1.5" height="36"></rect><rect x="76" width="5" height="36"></rect><rect x="84" width="2" height="36"></rect></g></svg>
+      </div>
+    </div>
+    <a href="#" style="background: #FFFFFF; border-radius: 22px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><span style="width: 50px; height: 50px; border-radius: 999px; background: #0E5232; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"></path></svg></span><span style="display: flex; flex-direction: column"><strong style="font-size: 16px; color: #16211C">Plus rapide par WhatsApp</strong><span style="font-size: 14px; color: #4E463F">Envoyez votre itinéraire en un message</span></span></a>
+  </aside>
+</div>
+
+<!-- ================= PRESTATIONS ================= -->
+<section style="max-width: 1320px; margin: 0 auto; padding: 110px 24px 0; display: flex; flex-direction: column; gap: 44px">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px">
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #B0121B">Nos prestations</span>
+    <h2 style="margin: 0; font-size: clamp(36px, 4.2vw, 56px); line-height: 1; letter-spacing: -0.035em; color: #16211C">Bien plus qu'un billet</h2>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9a2 2 0 0 0 0 4v4h18v-4a2 2 0 0 0 0-4V5H3z"></path><path d="M13 5v2M13 11v2M13 17v0"></path></svg></span><strong style="font-size: 20px; color: #16211C">Émission de billets</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Aller simple, aller-retour, multi-destinations ; économique, affaires ou première.</span></div>
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #16211C; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4M8 11h6M11 8v6"></path></svg></span><strong style="font-size: 20px; color: #16211C">Meilleur tarif</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Vols directs ou avec escales : le meilleur équilibre entre prix, durée et confort.</span></div>
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #0E5232; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"></path></svg></span><strong style="font-size: 20px; color: #16211C">Après-vente</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Modification de date, ré-émission, annulation et remboursement selon les conditions tarifaires.</span></div>
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #E3A935; color: #121815; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="7" width="12" height="14" rx="2"></rect><path d="M9 7V4h6v3M10 11v6M14 11v6"></path></svg></span><strong style="font-size: 20px; color: #16211C">Options à bord</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Bagages, siège, repas spéciaux, assistance mobilité réduite, mineurs non accompagnés.</span></div>
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.5 4-4.5s3 1.5 3 4.5"></path></svg></span><strong style="font-size: 20px; color: #16211C">Groupes & affaires</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Missions, séminaires, délégations officielles et pèlerinages : devis dédiés.</span></div>
+    <div style="background: #FFFFFF; border-radius: 26px; padding: 30px; box-shadow: 0 14px 40px rgba(22,33,28,0.07); display: flex; flex-direction: column; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: #16211C; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><circle cx="12" cy="10" r="3"></circle><path d="M8 17h8"></path></svg></span><strong style="font-size: 20px; color: #16211C">Visas, assurance, hôtels</strong><span style="font-size: 15px; line-height: 1.6; color: #4E463F">Conseils sur les formalités d'entrée, assurance voyage, hôtels et transferts aéroport.</span></div>
+  </div>
+</section>
+
+<!-- ================= PROCESS BAND ================= -->
+<section style="margin-top: 110px; position: relative; color: #FFFFFF; overflow: hidden">
+  <img src="/images/ville-bord-de-mer.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(18,24,21,0.78)"></div>
+  <div style="position: relative; max-width: 1320px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px">
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #E3A935">Simple et rapide</span>
+      <h2 style="margin: 0; font-size: clamp(36px, 4.2vw, 56px); line-height: 1; letter-spacing: -0.035em">Votre billet en 4 étapes</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px">
+      <div style="border: 1px solid rgba(255,255,255,0.22); border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.06)"><span style="font-family: 'DM Mono', monospace; font-size: 54px; color: #E3A935; line-height: 1">01</span><strong style="font-size: 21px">Demande</strong><span style="font-size: 15px; line-height: 1.6; color: #E2E5E0">Départ, destination, dates et passagers, par WhatsApp, téléphone, e-mail ou formulaire.</span></div>
+      <div style="border: 1px solid rgba(255,255,255,0.22); border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.06)"><span style="font-family: 'DM Mono', monospace; font-size: 54px; color: #E3A935; line-height: 1">02</span><strong style="font-size: 21px">Devis</strong><span style="font-size: 15px; line-height: 1.6; color: #E2E5E0">Nous vous proposons les meilleures options de vols et de tarifs.</span></div>
+      <div style="border: 1px solid rgba(255,255,255,0.22); border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.06)"><span style="font-family: 'DM Mono', monospace; font-size: 54px; color: #E3A935; line-height: 1">03</span><strong style="font-size: 21px">Confirmation & paiement</strong><span style="font-size: 15px; line-height: 1.6; color: #E2E5E0">Vous choisissez, confirmez et réglez selon les modalités convenues.</span></div>
+      <div style="border: 1px solid rgba(255,255,255,0.22); border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px; background: #B0121B"><span style="font-family: 'DM Mono', monospace; font-size: 54px; color: #FFFFFF; line-height: 1">04</span><strong style="font-size: 21px">Émission</strong><span style="font-size: 15px; line-height: 1.6; color: #FCE6E6">Votre billet électronique, avec nos conseils pratiques pour le voyage.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROUTES ================= -->
+<section style="max-width: 1320px; margin: 0 auto; padding: 110px 24px 0; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #B0121B">Au départ de Conakry</span>
+      <h2 style="margin: 0; font-size: clamp(36px, 4.2vw, 56px); line-height: 1; letter-spacing: -0.035em; color: #16211C">Quelques destinations</h2>
+    </div>
+    <span style="font-size: 14px; color: #6B6259">Tarifs indicatifs saisis par l'agence depuis l'administration</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 16px">
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CDG</span><span style="font-size: 12px; color: #6B6259">Paris</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">DSS</span><span style="font-size: 12px; color: #6B6259">Dakar</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">IST</span><span style="font-size: 12px; color: #6B6259">Istanbul</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">JED</span><span style="font-size: 12px; color: #6B6259">Djeddah</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">ABJ</span><span style="font-size: 12px; color: #6B6259">Abidjan</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+    <a href="#" style="display: flex; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 40px rgba(22,33,28,0.09)"><div style="flex: 1; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CKY</span><span style="font-size: 12px; color: #6B6259">Conakry</span></div><svg width="56" height="20" viewBox="0 0 56 20" aria-hidden="true"><path d="M2 16 Q28 -4 54 16" fill="none" stroke="#B0121B" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"></path></svg><div style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-family: 'DM Mono', monospace; font-size: 26px; color: #16211C">CMN</span><span style="font-size: 12px; color: #6B6259">Casablanca</span></div></div><div style="width: 96px; background: #16211C; color: #FFFFFF; border-left: 2px dashed #FFFBF5; padding: 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 10px; color: #D0D4CF">dès</span><strong style="font-size: 13px; color: #E3A935">[PRIX]</strong></div></a>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="max-width: 1320px; margin: 0 auto; padding: 110px 24px 0; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+  <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #B0121B">Questions fréquentes</span>
+    <h2 style="margin: 0; font-size: clamp(34px, 4vw, 52px); line-height: 1.02; letter-spacing: -0.035em; color: #16211C">Tout savoir avant de réserver</h2>
+    <div style="height: 300px; border-radius: 999px 999px 28px 28px; overflow: hidden; margin-top: 10px"><img src="/images/voyageuse.jpg" alt="Voyageuse marchant sous un ciel lumineux" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+  </div>
+  <div style="flex: 1.4 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+    <sc-for list="{{faq}}" as="q" hint-placeholder-count="5">
+      <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 10px 30px rgba(22,33,28,0.07); overflow: hidden">
+        <button type="button" aria-expanded="{{q.expanded}}" onClick="{{q.toggle}}" style="width: 100%; border: 0; background: transparent; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; font: 600 18px 'Bricolage Grotesque', sans-serif; color: #16211C"><span style="flex: 1">{{q.q}}</span><sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span></sc-if><sc-if value="{{q.closed}}" hint-placeholder-val="{{true}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #F5EEE3; color: #16211C; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></sc-if></button>
+        <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 24px 22px; font-size: 15px; line-height: 1.65; color: #4E463F">{{q.a}}</div></sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section style="max-width: 1320px; margin: 0 auto; padding: 110px 24px">
+  <div style="background: #B0121B; color: #FFFFFF; border-radius: 36px; padding: clamp(32px, 5vw, 60px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px; position: relative; overflow: hidden">
+    <svg aria-hidden="true" style="position: absolute; right: -20px; top: -10px; opacity: 0.5" width="420" height="220" viewBox="0 0 420 220"><path d="M10 200 Q200 -30 410 60" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"></path><circle cx="410" cy="60" r="10" fill="#E3A935"></circle></svg>
+    <div style="position: relative; display: flex; flex-direction: column; gap: 10px; max-width: 640px"><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; color: #FFDCDD">Une question ?</span><h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em">Envoyez votre itinéraire sur WhatsApp, on vous répond.</h2></div>
+    <div style="position: relative; display: flex; flex-wrap: wrap; gap: 12px"><a href="#" style="height: 58px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #B0121B; font-weight: 700; display: inline-flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z"></path></svg>WhatsApp</a><a href="Contact.dc.html" style="height: 58px; padding: 0 26px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.7); color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center">+224 [NUMÉRO]</a></div>
+  </div>
+</section>
+
+<footer style="background: #121815; color: #D0D4CF">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 64px 24px 28px; display: flex; flex-direction: column; gap: 40px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 36px">
+      <div style="display: flex; flex-direction: column; gap: 14px"><img src="/brand/logo-horizontal-signature-inverse.svg" alt="ETHNIKA — Tourisme &amp; Voyages" style="height: 80px; width: auto; display: block; align-self: flex-start; margin-left: -12px"><span style="font-size: 15px; line-height: 1.6">Agence de tourisme et de voyage à Conakry.</span></div>
+      <nav aria-label="Destinations" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Destinations</strong><a href="Destination.dc.html" style="color: #D0D4CF">Mali & Fouta Djallon</a><a href="Loos.dc.html" style="color: #D0D4CF">Îles de Loos</a><a href="BasseCote.dc.html" style="color: #D0D4CF">Basse Côte</a></nav>
+      <nav aria-label="Services" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Services</strong><a href="Billetterie.dc.html" style="color: #D0D4CF">Billetterie aérienne</a><a href="Circuits.dc.html" style="color: #D0D4CF">Circuits & séjours</a><a href="Contact.dc.html" style="color: #D0D4CF">Contact</a></nav>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Contact</strong><span>+224 [NUMÉRO]</span><span>billetterie@ethnikatour.com</span><span>[Adresse], Conakry</span></div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8E9690; border-top: 1px solid #2A352F; padding-top: 22px"><span>© 2026 ETHNIKA · Photos d'illustration : Pixabay</span><span>Agrément IATA n° [À COMPLÉTER, uniquement une fois obtenu]</span></div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { trip: 'rt', from: 'Conakry (CKY)', to: '', adults: 1, children: 0, infants: 0, cabin: 'eco', submitted: false, faqOpen: 0 };
+  }
+  code(text, fallback) {
+    var t = (text || '').trim();
+    if (!t) return fallback;
+    var m = t.match(/\(([A-Za-z]{3})\)/);
+    if (m) return m[1].toUpperCase();
+    return t.replace(/[^A-Za-zÀ-ÿ]/g, '').slice(0, 3).toUpperCase() || fallback;
+  }
+  city(text, fallback) {
+    var t = (text || '').trim();
+    if (!t) return fallback;
+    return t.replace(/\s*\([^)]*\)\s*/g, '');
+  }
+  renderVals() {
+    var s = this.state;
+    var self = this;
+    var trips = [['rt', 'Aller-retour'], ['ow', 'Aller simple'], ['multi', 'Multi-destinations']].map(function (d) {
+      return { label: d[1], active: s.trip === d[0], inactive: s.trip !== d[0], pick: function () { self.setState({ trip: d[0] }); } };
+    });
+    var cabins = [['eco', 'Économique'], ['biz', 'Affaires'], ['first', 'Première']].map(function (d) {
+      return { label: d[1], active: s.cabin === d[0], inactive: s.cabin !== d[0], pick: function () { self.setState({ cabin: d[0] }); } };
+    });
+    var pax = [['adults', 'Adultes', '12 ans et plus', 1], ['children', 'Enfants', '2 à 11 ans', 0], ['infants', 'Bébés', 'moins de 2 ans', 0]].map(function (d) {
+      var key = d[0];
+      return {
+        label: d[1], sub: d[2], count: s[key], incLabel: 'Ajouter : ' + d[1], decLabel: 'Retirer : ' + d[1],
+        inc: function () { var o = {}; o[key] = Math.min(9, s[key] + 1); self.setState(o); },
+        dec: function () { var o = {}; o[key] = Math.max(d[3], s[key] - 1); self.setState(o); }
+      };
+    });
+    var parts = [s.adults + (s.adults > 1 ? ' adultes' : ' adulte')];
+    if (s.children) parts.push(s.children + (s.children > 1 ? ' enfants' : ' enfant'));
+    if (s.infants) parts.push(s.infants + (s.infants > 1 ? ' bébés' : ' bébé'));
+    var faqData = [
+      ['Puis-je modifier ou annuler mon billet ?', 'Oui. Nous gérons les modifications de date, les ré-émissions, les annulations et les remboursements, dans le respect des conditions tarifaires de chaque compagnie.'],
+      ['Comment se passe le paiement ?', 'Après votre choix parmi les options proposées, vous confirmez et réglez selon les modalités convenues avec l’agence. [Moyens de paiement à préciser]'],
+      ['Organisez-vous des voyages de groupe ?', 'Oui : groupes, missions, séminaires, délégations officielles et pèlerinages, avec un devis dédié.'],
+      ['Pouvez-vous m’aider pour le visa ?', 'Nous vous conseillons sur les visas et les formalités d’entrée, et pouvons ajouter assurance voyage, hôtel et transferts aéroport.'],
+      ['Quels documents de santé pour entrer en Guinée ?', 'Un certificat de vaccination contre la fièvre jaune est exigé à l’entrée pour les voyageurs venant d’un pays à risque, et recommandé pour tous. Consultez un médecin 4 à 6 semaines avant le départ.']
+    ];
+    var faq = faqData.map(function (f, i) {
+      var open = s.faqOpen === i;
+      return { q: f[0], a: f[1], open: open, closed: !open, expanded: open ? 'true' : 'false', toggle: function () { self.setState({ faqOpen: open ? -1 : i }); } };
+    });
+    return {
+      trips: trips, cabins: cabins, pax: pax, faq: faq,
+      from: s.from, to: s.to,
+      onFrom: function (e) { self.setState({ from: e.target.value }); },
+      onTo: function (e) { self.setState({ to: e.target.value }); },
+      showReturn: s.trip === 'rt', showMulti: s.trip === 'multi',
+      fromCode: this.code(s.from, '???'), toCode: this.code(s.to, '???'),
+      fromCity: this.city(s.from, 'Ville de départ'), toCity: this.city(s.to, 'Votre destination'),
+      paxSummary: parts.join(' · '),
+      tripLabel: { rt: 'ALLER-RETOUR', ow: 'ALLER SIMPLE', multi: 'MULTI-DESTINATIONS' }[s.trip],
+      cabinLabel: { eco: 'Économique', biz: 'Affaires', first: 'Première' }[s.cabin],
+      submitted: s.submitted,
+      submit: function () { self.setState({ submitted: true }); },
+      reset: function () { self.setState({ submitted: false, to: '', adults: 1, children: 0, infants: 0 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

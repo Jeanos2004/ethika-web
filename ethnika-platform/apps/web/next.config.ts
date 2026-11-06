@@ -1,0 +1,59 @@
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const isDev = process.env.NODE_ENV !== "production";
+
+/**
+ * Content-Security-Policy.
+ * - Polices auto-hébergées (@fontsource) : aucun appel à Google Fonts.
+ * - Cloudflare Turnstile autorisé (anti-spam des formulaires).
+ * - 'unsafe-inline' sur script-src est requis par Next sans nonce. Passage à une CSP
+ *   à nonce via src/proxy.ts documenté dans docs/SECURITY.md (§ CSP stricte).
+ */
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://challenges.cloudflare.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self'",
+  `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws:" : ""}`,
+  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  ...(isDev ? [] : ["upgrade-insecure-requests"]),
+].join("; ");
+
+const securityHeaders = [
+  { key: "Content-Security-Policy", value: csp },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  { key: "X-DNS-Prefetch-Control", value: "on" },
+];
+
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  poweredByHeader: false,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    // Ajouter ici les domaines distants (CMS, CDN) au cas par cas — jamais de joker.
+    remotePatterns: [],
+  },
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
+};
+
+/** Articles du blog en MDX local (src/content/blog), rendus par des composants contrôlés (src/mdx-components.tsx). */
+const withMDX = createMDX({});
+
+/** Traductions FR / EN (src/i18n/request.ts, messages/*.json). */
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+export default withNextIntl(withMDX(nextConfig));

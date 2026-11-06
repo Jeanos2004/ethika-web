@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Circuit Fouta Djallon — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFBF5}
+a{color:#16211C;text-decoration:none}a:hover{color:#B0121B}
+</style>
+</helmet>
+<div style="background: #FFFBF5; color: #121815; font-family: 'Bricolage Grotesque', sans-serif; overflow-x: hidden">
+
+<!-- BANNER -->
+<section style="position: relative; min-height: 640px; display: flex; flex-direction: column; color: #FFFFFF; overflow: hidden">
+  <img src="/images/fouta-sommets.jpg" alt="Sommets rocheux du Fouta Djallon" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,24,21,0.8) 0%, rgba(18,24,21,0.3) 40%, rgba(18,24,21,0.9) 100%)"></div>
+  <div style="position: relative; border-bottom: 1px solid rgba(255,255,255,0.14); font-size: 13px; color: #E2E5E0">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 22px"><span>+224 [NUMÉRO]</span><span>contact@ethnikatour.com</span><span>Lun – Sam · [HORAIRES]</span></div>
+      <div style="display: flex; gap: 16px; align-items: center"><a href="APropos.dc.html" style="color: #E2E5E0">À propos</a><a href="FAQ.dc.html" style="color: #E2E5E0">FAQ</a><span style="width: 1px; height: 14px; background: rgba(255,255,255,0.3)"></span><a href="#" style="color: #FFFFFF; font-family: 'DM Mono', monospace">FR</a><a href="#" style="color: #A2AAA4; font-family: 'DM Mono', monospace">EN</a></div>
+    </div>
+  </div>
+  <header style="position: relative">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Home2.dc.html" aria-label="ETHNIKA, accueil" style="display: flex"><img src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" style="height: 62px; width: auto; display: block; margin-left: -10px"></a>
+      <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; gap: 6px 26px; font-size: 15px; font-weight: 600">
+        <a href="Guinee.dc.html" style="color: #FFFFFF">Découvrir la Guinée</a>
+        <a href="Circuits.dc.html" style="color: #E3A935; border-bottom: 2px solid #E3A935; padding-bottom: 4px">Circuits</a>
+        <a href="Billetterie.dc.html" style="color: #FFFFFF">Billetterie</a>
+        <a href="Services.dc.html" style="color: #FFFFFF">Services</a>
+        <a href="Offres.dc.html" style="color: #FFFFFF">Offres</a>
+        <a href="Blog.dc.html" style="color: #FFFFFF">Blog</a>
+        <a href="Contact.dc.html" style="color: #FFFFFF">Contact</a>
+      </nav>
+      <button type="button" onClick="{{openModal}}" style="height: 48px; padding: 0 24px; border: 0; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 15px 'Bricolage Grotesque', sans-serif">Demander un devis</button>
+    </div>
+  </header>
+  <div style="position: relative; flex: 1; max-width: 1320px; width: 100%; margin: 0 auto; padding: 32px 24px 64px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px">
+    <nav aria-label="Fil d'Ariane" style="display: flex; gap: 8px; font-size: 14px; color: #E2E5E0"><a href="Home2.dc.html" style="color: #E2E5E0">Accueil</a><span>/</span><a href="Circuits.dc.html" style="color: #E2E5E0">Circuits</a><span>/</span><span style="color: #E3A935">Fouta Djallon</span></nav>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="padding: 7px 14px; border-radius: 999px; background: #0E5232; font-size: 13px; font-weight: 700">Nature & randonnée</span><span style="padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.16); font-size: 13px; font-weight: 600">Moyenne Guinée</span></div>
+    <h1 style="margin: 0; max-width: 920px; font-size: clamp(46px, 6.2vw, 92px); line-height: 0.95; letter-spacing: -0.045em">Fouta Djallon, cascades & sommets</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 8px; font-size: 15px; color: #E2E5E0">
+      <div><span style="display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A2AAA4">DURÉE</span><strong style="font-size: 20px; color: #FFFFFF">4 jours · 3 nuits</strong></div>
+      <div><span style="display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A2AAA4">DÉPART</span><strong style="font-size: 20px; color: #FFFFFF">Conakry</strong></div>
+      <div><span style="display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A2AAA4">NIVEAU</span><strong style="font-size: 20px; color: #FFFFFF">Modéré</strong></div>
+      <div><span style="display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A2AAA4">GROUPE</span><strong style="font-size: 20px; color: #FFFFFF">2 à 12 pers.</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px 0; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+  <div style="flex: 1 1 660px; min-width: 0; display: flex; flex-direction: column; gap: 64px">
+
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; color: #B0121B">Le voyage</span>
+      <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #16211C">Quatre jours sur les hauts plateaux, entre le Mont Loura et ses 1 515 m, les chutes de Nguilo à 5 km de Mali, les roches de Koumba et la culture peule. Un circuit accessible, encadré par un guide local, avec des nuits au calme et la fraîcheur des plateaux.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px; margin-top: 8px">
+        <div style="height: 180px; border-radius: 20px; overflow: hidden"><img src="/images/chutes-nguilo.jpg" alt="Cascade" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+        <div style="height: 180px; border-radius: 20px; overflow: hidden"><img src="/images/roches-koumba.jpg" alt="Formations rocheuses" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+        <div style="height: 180px; border-radius: 20px; overflow: hidden"><img src="/images/fouta-plateau-couchant.jpg" alt="Plateau au coucher du soleil" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+        <div style="height: 180px; border-radius: 20px; overflow: hidden"><img src="/images/vallee-route.jpg" alt="Route dans une vallée" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+        <h2 style="margin: 0; font-size: clamp(30px, 3.2vw, 44px); letter-spacing: -0.03em; color: #16211C">Programme jour par jour</h2>
+        <button type="button" onClick="{{toggleAll}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #16211C; background: transparent; font: 600 14px 'Bricolage Grotesque', sans-serif; color: #16211C">{{toggleAllLabel}}</button>
+      </div>
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+        <sc-for list="{{days}}" as="d" hint-placeholder-count="4">
+          <li style="background: #FFFFFF; border-radius: 22px; box-shadow: 0 10px 30px rgba(22,33,28,0.06); overflow: hidden">
+            <button type="button" aria-expanded="{{d.expanded}}" onClick="{{d.toggle}}" style="width: 100%; border: 0; background: transparent; padding: 20px 22px; display: flex; align-items: center; gap: 18px; text-align: left; font-family: 'Bricolage Grotesque', sans-serif">
+              <span style="width: 56px; height: 56px; border-radius: 28px 28px 12px 12px; background: #16211C; color: #E3A935; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'DM Mono', monospace"><span style="font-size: 10px; color: #A2AAA4">JOUR</span><span style="font-size: 20px">{{d.n}}</span></span>
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 19px; color: #16211C">{{d.title}}</strong><span style="font-size: 14px; color: #6B6259">{{d.meta}}</span></span>
+              <sc-if value="{{d.open}}" hint-placeholder-val="{{false}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span></sc-if>
+              <sc-if value="{{d.closed}}" hint-placeholder-val="{{true}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #F5EEE3; color: #16211C; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></sc-if>
+            </button>
+            <sc-if value="{{d.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 22px 22px 96px; display: flex; flex-direction: column; gap: 12px"><p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4E463F">{{d.text}}</p><div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px"><span style="padding: 6px 12px; border-radius: 999px; background: #D3E7DA; color: #0E4A2D; font-weight: 600">Nuit : {{d.night}}</span><span style="padding: 6px 12px; border-radius: 999px; background: #F8E6C4; color: #6E4710; font-weight: 600">Repas : {{d.meals}}</span></div></div></sc-if>
+          </li>
+        </sc-for>
+      </ol>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 18px">
+      <div style="background: #D3E7DA; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 22px; color: #0B3A23">Inclus</h3><ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.9; color: #0E4A2D"><li>Transport en 4x4 avec chauffeur</li><li>Guide local francophone</li><li>3 nuits en hébergement sélectionné</li><li>Pension complète</li><li>Entrées des sites et taxes locales</li></ul></div>
+      <div style="background: #F8DADB; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 22px; color: #8C0E16">Non inclus</h3><ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.9; color: #8C0E16"><li>Vols internationaux (voir Billetterie)</li><li>Assurance voyage</li><li>Boissons et dépenses personnelles</li><li>Pourboires</li></ul></div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: clamp(28px, 3vw, 38px); letter-spacing: -0.03em; color: #16211C">Prochains départs</h2>
+      <div style="border-radius: 22px; overflow: hidden; border: 1px solid #EFE6D2; background: #FFFFFF">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 0; padding: 16px 20px; align-items: center; border-bottom: 1px solid #EFE6D2"><span style="font-family: 'DM Mono', monospace">[DATE] → [DATE]</span><span style="color: #0E5232; font-weight: 700">Places disponibles</span><span style="font-weight: 700">[PRIX] GNF</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 0; padding: 16px 20px; align-items: center; border-bottom: 1px solid #EFE6D2"><span style="font-family: 'DM Mono', monospace">[DATE] → [DATE]</span><span style="color: #8F6514; font-weight: 700">Dernières places</span><span style="font-weight: 700">[PRIX] GNF</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 0; padding: 16px 20px; align-items: center"><span style="font-family: 'DM Mono', monospace">Date libre</span><span style="color: #4E463F; font-weight: 700">Sur demande (privatif)</span><span style="font-weight: 700">Sur devis</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- STICKY BOOKING -->
+  <aside style="flex: 1 1 340px; min-width: 0; position: sticky; top: 24px; background: #FFFFFF; border-radius: 28px; padding: 28px; box-shadow: 0 24px 60px rgba(22,33,28,0.12); display: flex; flex-direction: column; gap: 16px">
+    <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8E9690">CIRCUIT · 4 JOURS</span>
+    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap"><span style="font-size: 14px; color: #4E463F">à partir de</span><strong style="font-size: 36px; letter-spacing: -0.03em; color: #16211C">[PRIX] GNF</strong></div>
+    <span style="font-size: 14px; color: #4E463F">par personne, base 4 personnes</span>
+    <div style="height: 1px; background: #EFE6D2"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-weight: 600">Voyageurs</span><div style="display: flex; align-items: center; gap: 12px"><button type="button" aria-label="Retirer un voyageur" onClick="{{dec}}" style="width: 40px; height: 40px; border-radius: 999px; border: 1.5px solid #E3D8C8; background: #FFFFFF; font: 600 18px 'Bricolage Grotesque', sans-serif">−</button><span style="font-family: 'DM Mono', monospace; font-size: 18px; min-width: 20px; text-align: center">{{travellers}}</span><button type="button" aria-label="Ajouter un voyageur" onClick="{{inc}}" style="width: 40px; height: 40px; border-radius: 999px; border: 0; background: #16211C; color: #FFFFFF; font: 600 18px 'Bricolage Grotesque', sans-serif">+</button></div></div>
+    <button type="button" onClick="{{openModal}}" style="height: 56px; border: 0; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 16px 'Bricolage Grotesque', sans-serif">Demander un devis</button>
+    <a href="#" style="height: 54px; border-radius: 999px; border: 1.5px solid #0E5232; color: #0E5232; font-weight: 700; display: flex; align-items: center; justify-content: center">Écrire sur WhatsApp</a>
+    <span style="font-size: 13px; line-height: 1.5; color: #6B6259">Réponse sous 24 h ouvrées. Aucun paiement en ligne : un conseiller confirme disponibilité et prix.</span>
+  </aside>
+</div>
+
+<!-- SIMILAIRES -->
+<section style="max-width: 1320px; margin: 0 auto; padding: 100px 24px 110px; display: flex; flex-direction: column; gap: 28px">
+  <h2 style="margin: 0; font-size: clamp(30px, 3.2vw, 42px); letter-spacing: -0.03em; color: #16211C">Vous aimerez aussi</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
+    <a href="Loos.dc.html" style="background: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 14px 40px rgba(22,33,28,0.08)"><div style="height: 200px"><img src="/images/loos-pirogue-couchant.jpg" alt="Pirogue au couchant" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><div style="padding: 20px; display: flex; justify-content: space-between; gap: 12px"><strong style="font-size: 19px; color: #16211C">Îles de Loos</strong><span style="font-family: 'DM Mono', monospace; color: #B0121B">2 j</span></div></a>
+    <a href="BasseCote.dc.html" style="background: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 14px 40px rgba(22,33,28,0.08)"><div style="height: 200px"><img src="/images/bel-air-cocotiers.jpg" alt="Plage de cocotiers" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><div style="padding: 20px; display: flex; justify-content: space-between; gap: 12px"><strong style="font-size: 19px; color: #16211C">Bel-Air & Kitikata</strong><span style="font-family: 'DM Mono', monospace; color: #B0121B">3 j</span></div></a>
+    <a href="BasseCote.dc.html#dubreka" style="background: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 14px 40px rgba(22,33,28,0.08)"><div style="height: 200px"><img src="/images/dubreka-riviere-pirogue.jpg" alt="Rivière et pirogue" style="width: 100%; height: 100%; object-fit: cover; display: block"></div><div style="padding: 20px; display: flex; justify-content: space-between; gap: 12px"><strong style="font-size: 19px; color: #16211C">Dubréka, journée nature</strong><span style="font-family: 'DM Mono', monospace; color: #B0121B">1 j</span></div></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #16211C; color: #D0D4CF">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 72px 24px 28px; display: flex; flex-direction: column; gap: 44px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 36px">
+      <div style="display: flex; flex-direction: column; gap: 16px"><img src="/brand/logo-horizontal-signature-inverse.svg" alt="ETHNIKA — Tourisme &amp; Voyages" style="height: 80px; width: auto; display: block; align-self: flex-start; margin-left: -12px"><span style="font-size: 14px; line-height: 1.6">Agence de tourisme et de voyage à Conakry. Billetterie aérienne et circuits en Guinée.</span></div>
+      <nav aria-label="Découvrir" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Découvrir</strong><a href="Destination.dc.html" style="color: #D0D4CF">Mali & Fouta Djallon</a><a href="Loos.dc.html" style="color: #D0D4CF">Îles de Loos</a><a href="BasseCote.dc.html" style="color: #D0D4CF">Basse Côte</a><a href="InfosPratiques.dc.html" style="color: #D0D4CF">Infos pratiques & santé</a></nav>
+      <nav aria-label="Services" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Services</strong><a href="Billetterie.dc.html" style="color: #D0D4CF">Billetterie aérienne</a><a href="Circuits.dc.html" style="color: #D0D4CF">Circuits & séjours</a><a href="Services.dc.html" style="color: #D0D4CF">Groupes & entreprises</a><a href="Offres.dc.html" style="color: #D0D4CF">Offres</a></nav>
+      <nav aria-label="Agence" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px"><strong style="color: #FFFFFF; margin-bottom: 4px">Agence</strong><a href="APropos.dc.html" style="color: #D0D4CF">À propos</a><a href="Blog.dc.html" style="color: #D0D4CF">Blog</a><a href="FAQ.dc.html" style="color: #D0D4CF">FAQ</a><a href="Contact.dc.html" style="color: #D0D4CF">Contact</a></nav>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8E9690; border-top: 1px solid #2A352F; padding-top: 22px"><span>© 2026 ETHNIKA · Photos d'illustration : Pixabay</span><div style="display: flex; flex-wrap: wrap; gap: 20px"><a href="Legal.dc.html" style="color: #8E9690">Mentions légales</a><a href="Legal.dc.html" style="color: #8E9690">CGV</a><a href="Legal.dc.html" style="color: #8E9690">Confidentialité</a></div></div>
+  </div>
+</footer>
+
+<!-- MODAL DEVIS -->
+<sc-if value="{{modal}}" hint-placeholder-val="{{false}}">
+  <div style="position: fixed; inset: 0; z-index: 50; background: rgba(18,24,21,0.7); display: flex; align-items: center; justify-content: center; padding: 16px">
+    <div role="dialog" aria-modal="true" aria-labelledby="devis-title" style="width: 100%; max-width: 620px; max-height: 92vh; overflow: auto; background: #FFFBF5; border-radius: 28px; box-shadow: 0 30px 80px rgba(18,24,21,0.4)">
+      <div style="padding: 24px 28px; background: #16211C; color: #FFFFFF; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #E3A935">DEMANDE DE DEVIS</span><strong id="devis-title" style="font-size: 22px">Fouta Djallon, cascades & sommets</strong><span style="font-size: 14px; color: #D0D4CF">4 jours · {{travellersLabel}}</span></div>
+        <button type="button" aria-label="Fermer" onClick="{{closeModal}}" style="width: 40px; height: 40px; border-radius: 999px; border: 0; background: #25302A; color: #FFFFFF; font: 600 18px 'Bricolage Grotesque', sans-serif; flex-shrink: 0">×</button>
+      </div>
+      <sc-if value="{{formView}}" hint-placeholder-val="{{true}}">
+        <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Nom complet<input type="text" autocomplete="name" style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 14px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Téléphone / WhatsApp<input type="tel" autocomplete="tel" placeholder="+224" style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 14px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">E-mail<input type="email" autocomplete="email" style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 14px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Date souhaitée<input type="date" style="height: 52px; border-radius: 14px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 0 14px; font: 500 16px 'Bricolage Grotesque', sans-serif"></label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Message (facultatif)<textarea rows="3" placeholder="Hébergement souhaité, régime alimentaire, besoins particuliers…" style="border-radius: 14px; border: 1.5px solid #E3D8C8; background: #FFFFFF; padding: 12px 14px; font: 500 15px 'Bricolage Grotesque', sans-serif; resize: vertical"></textarea></label>
+          <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; color: #4E463F"><input type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #B0121B">J'accepte que mes données soient utilisées pour traiter ma demande (<a href="Legal.dc.html" style="color: #B0121B; text-decoration: underline">confidentialité</a>).</label>
+          <button type="button" onClick="{{send}}" style="height: 56px; border: 0; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 16px 'Bricolage Grotesque', sans-serif">Envoyer ma demande</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+        <div style="padding: 40px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+          <span style="width: 72px; height: 72px; border-radius: 999px; background: #D3E7DA; color: #0E5232; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
+          <strong style="font-size: 24px; color: #16211C">Demande envoyée</strong>
+          <span style="font-family: 'DM Mono', monospace; font-size: 15px; padding: 8px 14px; border-radius: 10px; background: #F5EEE3">Réf. ETH-[N°]</span>
+          <p style="margin: 0; max-width: 420px; font-size: 15px; line-height: 1.6; color: #4E463F">Un e-mail de confirmation vous a été envoyé. Un conseiller vous recontacte sous 24 h ouvrées avec un devis détaillé.</p>
+          <button type="button" onClick="{{closeModal}}" style="height: 50px; padding: 0 26px; border-radius: 999px; border: 1.5px solid #16211C; background: transparent; font: 600 15px 'Bricolage Grotesque', sans-serif; color: #16211C">Fermer</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: [true, false, false, false], travellers: 2, modal: false, sent: false };
+  }
+  renderVals() {
+    var s = this.state;
+    var self = this;
+    var data = [
+      ['Conakry → Mali', 'Route · environ [X] h', 'Départ matinal de Conakry, traversée de la Basse Guinée puis montée vers les hauts plateaux. Pauses panoramiques en chemin, installation à Mali en fin de journée.', 'Mali', 'Déjeuner, dîner'],
+      ['Mont Loura', 'Randonnée · 1 515 m', 'Ascension du Mont Loura, point culminant de la région, avec la célèbre falaise de la « Dame de Mali ». Panorama jusqu’aux frontières voisines par temps clair.', 'Mali', 'Pension complète'],
+      ['Chutes de Nguilo & Koumba', 'Nature · 5 km de Mali', 'Matinée aux chutes de Nguilo, baignade si le débit le permet. Après-midi aux roches de Koumba et rencontre avec un village peul.', 'Mali', 'Pension complète'],
+      ['Retour à Conakry', 'Route', 'Dernier lever de soleil sur le plateau, marché local puis retour vers Conakry. Arrivée en soirée.', '—', 'Petit-déjeuner, déjeuner']
+    ];
+    var days = data.map(function (d, i) {
+      var open = s.open[i];
+      return {
+        n: '0' + (i + 1), title: d[0], meta: d[1], text: d[2], night: d[3], meals: d[4],
+        open: open, closed: !open, expanded: open ? 'true' : 'false',
+        toggle: function () { var o = s.open.slice(); o[i] = !o[i]; self.setState({ open: o }); }
+      };
+    });
+    var allOpen = s.open.every(function (x) { return x; });
+    return {
+      days: days,
+      toggleAllLabel: allOpen ? 'Tout replier' : 'Tout déplier',
+      toggleAll: function () { self.setState({ open: [!allOpen, !allOpen, !allOpen, !allOpen] }); },
+      travellers: s.travellers,
+      travellersLabel: s.travellers + (s.travellers > 1 ? ' voyageurs' : ' voyageur'),
+      inc: function () { self.setState({ travellers: Math.min(12, s.travellers + 1) }); },
+      dec: function () { self.setState({ travellers: Math.max(1, s.travellers - 1) }); },
+      modal: s.modal, sent: s.sent, formView: !s.sent,
+      openModal: function () { self.setState({ modal: true, sent: false }); },
+      closeModal: function () { self.setState({ modal: false }); },
+      send: function () { self.setState({ sent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

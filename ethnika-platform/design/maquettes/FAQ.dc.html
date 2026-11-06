@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>FAQ — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFBF5}
+a{color:#16211C;text-decoration:none}a:hover{color:#B0121B}
+</style>
+</helmet>
+<div style="background: #FFFBF5; color: #121815; font-family: 'Bricolage Grotesque', sans-serif; overflow-x: hidden">
+
+<!-- HEADER CLAIR -->
+<div style="background: #16211C; font-size: 13px; color: #E2E5E0">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px 22px"><span>+224 [NUMÉRO]</span><span>contact@ethnikatour.com</span><span>Lun – Sam · [HORAIRES]</span></div>
+    <div style="display: flex; gap: 16px; align-items: center"><a href="APropos.dc.html" style="color: #E2E5E0">À propos</a><a href="FAQ.dc.html" aria-current="page" style="color: #E3A935">FAQ</a><span style="width: 1px; height: 14px; background: rgba(255,255,255,0.3)"></span><a href="#" style="color: #FFFFFF; font-family: 'DM Mono', monospace">FR</a><a href="#" style="color: #A2AAA4; font-family: 'DM Mono', monospace">EN</a></div>
+  </div>
+</div>
+<header style="background: #FFFBF5; border-bottom: 1px solid #EFE6D2">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+    <a href="Home2.dc.html" aria-label="ETHNIKA, accueil" style="display: flex"><img src="/brand/logo-horizontal-couleur.svg" alt="ETHNIKA" style="height: 62px; width: auto; display: block; margin-left: -10px"></a>
+    <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; gap: 6px 26px; font-size: 15px; font-weight: 600">
+      <a href="Guinee.dc.html">Découvrir la Guinée</a>
+      <a href="Circuits.dc.html">Circuits</a>
+      <a href="Billetterie.dc.html">Billetterie</a>
+      <a href="Services.dc.html">Services</a>
+      <a href="Offres.dc.html">Offres</a>
+      <a href="Blog.dc.html">Blog</a>
+      <a href="Contact.dc.html">Contact</a>
+    </nav>
+    <a href="Contact.dc.html" style="height: 48px; padding: 0 24px; border-radius: 999px; background: #B0121B; color: #FFFFFF; font-weight: 700; font-size: 15px; display: flex; align-items: center">Nous contacter</a>
+  </div>
+</header>
+
+<section style="background: #F5EEE3; padding: 72px 24px 64px">
+  <div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px">
+    <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #B0121B">Questions fréquentes</span>
+    <h1 style="margin: 0; font-size: clamp(44px, 5.6vw, 84px); line-height: 0.96; letter-spacing: -0.045em; color: #16211C">Comment pouvons-nous vous aider ?</h1>
+    <label style="position: relative; width: 100%; max-width: 620px; margin-top: 10px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Rechercher dans la FAQ</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8E9690" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 22px; top: 20px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" value="{{query}}" onChange="{{onQuery}}" placeholder="Ex. : bagages, vaccin, paiement…" style="width: 100%; box-sizing: border-box; height: 60px; border-radius: 999px; border: 0; background: #FFFFFF; padding: 0 22px 0 54px; font: 500 16px 'Bricolage Grotesque', sans-serif; box-shadow: 0 14px 40px rgba(22,33,28,0.1)"></label>
+  </div>
+</section>
+
+<section style="max-width: 980px; margin: 0 auto; padding: 56px 24px 0; display: flex; flex-direction: column; gap: 24px">
+  <div role="tablist" aria-label="Catégories" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center">
+    <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+      <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}"><button type="button" role="tab" aria-selected="true" onClick="{{c.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #16211C; background: #16211C; color: #FFFFFF; font: 600 15px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+      <sc-if value="{{c.inactive}}" hint-placeholder-val="{{true}}"><button type="button" role="tab" aria-selected="false" onClick="{{c.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #E3D8C8; background: #FFFFFF; color: #16211C; font: 600 15px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+    </sc-for>
+  </div>
+  <span style="font-size: 14px; color: #6B6259; text-align: center">{{resultLabel}}</span>
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <sc-for list="{{items}}" as="q" hint-placeholder-count="6">
+      <div style="background: #FFFFFF; border-radius: 22px; box-shadow: 0 10px 30px rgba(22,33,28,0.06); overflow: hidden">
+        <button type="button" aria-expanded="{{q.expanded}}" onClick="{{q.toggle}}" style="width: 100%; border: 0; background: transparent; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; font: 600 18px 'Bricolage Grotesque', sans-serif; color: #16211C"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #B0121B; min-width: 92px">{{q.cat}}</span><span style="flex: 1">{{q.q}}</span><sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #B0121B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span></sc-if><sc-if value="{{q.closed}}" hint-placeholder-val="{{true}}"><span style="width: 36px; height: 36px; border-radius: 999px; background: #F5EEE3; color: #16211C; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></sc-if></button>
+        <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 24px 22px 132px; font-size: 16px; line-height: 1.7; color: #4E463F">{{q.a}}</div></sc-if>
+      </div>
+    </sc-for>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="padding: 40px 24px; border-radius: 22px; border: 1.5px dashed #E3D8C8; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center"><strong style="font-size: 19px; color: #16211C">Aucune réponse trouvée</strong><span style="font-size: 15px; color: #4E463F">Essayez un autre mot-clé ou posez-nous directement la question.</span><button type="button" onClick="{{clear}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #16211C; background: transparent; font: 600 14px 'Bricolage Grotesque', sans-serif">Effacer la recherche</button></div>
+    </sc-if>
+  </div>
+</section>
+
+<section style="max-width: 980px; margin: 0 auto; padding: 72px 24px 110px">
+  <div style="background: #16211C; color: #FFFFFF; border-radius: 30px; padding: clamp(26px, 4vw, 44px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px">
+    <div style="display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 24px">Vous n'avez pas trouvé ?</strong><span style="font-size: 15px; color: #D0D4CF">Un conseiller vous répond rapidement.</span></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="#" style="height: 52px; padding: 0 22px; border-radius: 999px; background: #0E5232; color: #FFFFFF; font-weight: 700; display: inline-flex; align-items: center">WhatsApp</a><a href="Contact.dc.html" style="height: 52px; padding: 0 22px; border-radius: 999px; background: #E3A935; color: #121815; font-weight: 700; display: inline-flex; align-items: center">Formulaire de contact</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #121815; color: #D0D4CF">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 56px 24px 28px; display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px"><img src="/brand/logo-horizontal-signature-inverse.svg" alt="ETHNIKA — Tourisme &amp; Voyages" style="height: 80px; width: auto; display: block; margin-left: -12px"><nav aria-label="Pied de page" style="display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 15px"><a href="Guinee.dc.html" style="color: #D0D4CF">Découvrir la Guinée</a><a href="Circuits.dc.html" style="color: #D0D4CF">Circuits</a><a href="Billetterie.dc.html" style="color: #D0D4CF">Billetterie</a><a href="Services.dc.html" style="color: #D0D4CF">Services</a><a href="Blog.dc.html" style="color: #D0D4CF">Blog</a><a href="Contact.dc.html" style="color: #D0D4CF">Contact</a></nav></div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8E9690; border-top: 1px solid #2A352F; padding-top: 22px"><span>© 2026 ETHNIKA · Photos d'illustration : Pixabay</span><div style="display: flex; flex-wrap: wrap; gap: 20px"><a href="Legal.dc.html" style="color: #8E9690">Mentions légales</a><a href="Legal.dc.html" style="color: #8E9690">CGV</a><a href="Legal.dc.html" style="color: #8E9690">Confidentialité</a></div></div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cat: 'all', query: '', open: 0 };
+  }
+  renderVals() {
+    var s = this.state;
+    var self = this;
+    var data = [
+      ['billet', 'Comment demander un billet d’avion ?', 'Remplissez le formulaire de la page Billetterie (trajet, dates, passagers). Un conseiller vous envoie les meilleures options sous 24 h ouvrées, puis vous confirmez.'],
+      ['billet', 'Puis-je modifier ou annuler mon billet ?', 'Oui, selon les conditions tarifaires de la compagnie. Nous gérons les changements de date, ré-émissions, annulations et remboursements.'],
+      ['billet', 'Quelle franchise bagages ?', 'Elle dépend de la compagnie et du tarif. Elle est indiquée dans chaque proposition que nous vous envoyons.'],
+      ['circuit', 'Les circuits sont-ils adaptés aux enfants ?', 'La plupart oui. Le niveau de chaque circuit est indiqué sur sa fiche ; nous adaptons le programme aux familles.'],
+      ['circuit', 'Peut-on faire un circuit privatif ?', 'Oui, tous nos circuits peuvent être organisés en privé, aux dates de votre choix, sur devis.'],
+      ['paiement', 'Comment se passe le paiement ?', 'Après validation du devis, un acompte confirme la réservation, le solde est réglé avant le départ. [Moyens de paiement et pourcentages à préciser]'],
+      ['paiement', 'Le paiement en ligne est-il possible ?', 'Pas pour le moment : la réservation est confirmée par un conseiller. [Évolution prévue à préciser]'],
+      ['sante', 'Quels vaccins pour la Guinée ?', 'Fièvre jaune exigée à l’entrée pour les voyageurs venant d’un pays à risque, recommandée pour tous. Voir la page Infos pratiques et un médecin 4 à 6 semaines avant le départ.'],
+      ['sante', 'Faut-il un visa ?', 'Cela dépend de votre nationalité. Nous vous conseillons sur les formalités ; vérifiez auprès de l’ambassade ou du portail officiel.'],
+      ['agence', 'Où se trouve l’agence ?', 'À Conakry, [Quartier]. Horaires : [HORAIRES]. Vous pouvez aussi nous écrire sur WhatsApp.']
+    ];
+    var labels = { billet: 'BILLETTERIE', circuit: 'CIRCUITS', paiement: 'PAIEMENT', sante: 'SANTÉ & VISA', agence: 'AGENCE' };
+    var q = (s.query || '').trim().toLowerCase();
+    var filtered = data.filter(function (d) {
+      if (s.cat !== 'all' && d[0] !== s.cat) return false;
+      if (!q) return true;
+      return (d[1] + ' ' + d[2]).toLowerCase().indexOf(q) !== -1;
+    });
+    var items = filtered.map(function (d, i) {
+      var open = s.open === i;
+      return { cat: labels[d[0]], q: d[1], a: d[2], open: open, closed: !open, expanded: open ? 'true' : 'false', toggle: function () { self.setState({ open: open ? -1 : i }); } };
+    });
+    var defs = [['all', 'Toutes'], ['billet', 'Billetterie'], ['circuit', 'Circuits'], ['paiement', 'Paiement'], ['sante', 'Santé & visa'], ['agence', 'Agence']];
+    var cats = defs.map(function (d) {
+      return { label: d[1], active: s.cat === d[0], inactive: s.cat !== d[0], pick: function () { self.setState({ cat: d[0], open: 0 }); } };
+    });
+    return {
+      cats: cats, items: items, query: s.query, empty: items.length === 0,
+      resultLabel: items.length + (items.length > 1 ? ' questions' : ' question'),
+      onQuery: function (e) { self.setState({ query: e.target.value, open: 0 }); },
+      clear: function () { self.setState({ query: '', cat: 'all', open: 0 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

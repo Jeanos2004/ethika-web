@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Back-office — demandes — ETHNIKA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5EEE3}
+a{color:inherit;text-decoration:none}
+</style>
+</helmet>
+<div style="min-height: 1000px; display: flex; flex-wrap: wrap; background: #F5EEE3; color: #121815; font-family: 'Bricolage Grotesque', sans-serif">
+
+<!-- SIDEBAR -->
+<aside style="flex: 0 0 248px; background: #16211C; color: #D0D4CF; padding: 22px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+  <img src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" style="height: 48px; width: auto; align-self: flex-start">
+  <span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8E9690; padding: 0 10px">BACK-OFFICE</span>
+  <nav aria-label="Administration" style="display: flex; flex-direction: column; gap: 4px; font-size: 15px; font-weight: 600">
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Tableau de bord</a>
+    <a href="#" aria-current="page" style="padding: 12px 14px; border-radius: 12px; background: #25302A; color: #FFFFFF; display: flex; justify-content: space-between">Demandes <span style="padding: 2px 8px; border-radius: 999px; background: #B0121B; font-size: 12px">{{newCount}}</span></a>
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Circuits</a>
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Offres</a>
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Articles du blog</a>
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Galerie</a>
+    <a href="#" style="padding: 12px 14px; border-radius: 12px; color: #D0D4CF">Utilisateurs</a>
+  </nav>
+  <div style="margin-top: auto; padding: 14px; border-radius: 14px; background: #25302A; font-size: 13px; display: flex; flex-direction: column; gap: 2px"><strong style="color: #FFFFFF">[Nom du conseiller]</strong><span>Agent · Conakry</span></div>
+</aside>
+
+<!-- MAIN -->
+<main style="flex: 1 1 700px; min-width: 0; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px">
+    <div style="display: flex; flex-direction: column; gap: 2px"><h1 style="margin: 0; font-size: 34px; letter-spacing: -0.03em; color: #16211C">Demandes</h1><span style="font-size: 13px; color: #6B6259">Données fictives pour la maquette</span></div>
+    <div style="display: flex; gap: 10px"><button type="button" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid #16211C; background: transparent; font: 600 14px 'Bricolage Grotesque', sans-serif">Exporter CSV</button><button type="button" style="height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #B0121B; color: #FFFFFF; font: 700 14px 'Bricolage Grotesque', sans-serif">+ Nouvelle demande</button></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px">
+    <sc-for list="{{stats}}" as="k" hint-placeholder-count="4">
+      <div style="background: #FFFFFF; border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; border-left: 5px solid {{k.color}}"><span style="font-size: 13px; color: #6B6259">{{k.label}}</span><strong style="font-family: 'DM Mono', monospace; font-size: 28px; color: #16211C">{{k.value}}</strong></div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+    <div role="tablist" aria-label="Statut" style="display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: #FFFFFF">
+      <sc-for list="{{statusTabs}}" as="t" hint-placeholder-count="5">
+        <sc-if value="{{t.active}}" hint-placeholder-val="{{false}}"><button type="button" role="tab" aria-selected="true" onClick="{{t.pick}}" style="height: 38px; padding: 0 14px; border: 0; border-radius: 999px; background: #16211C; color: #FFFFFF; font: 600 13px 'Bricolage Grotesque', sans-serif">{{t.label}}</button></sc-if>
+        <sc-if value="{{t.inactive}}" hint-placeholder-val="{{true}}"><button type="button" role="tab" aria-selected="false" onClick="{{t.pick}}" style="height: 38px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: #16211C; font: 600 13px 'Bricolage Grotesque', sans-serif">{{t.label}}</button></sc-if>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px">
+      <sc-for list="{{typeChips}}" as="c" hint-placeholder-count="4">
+        <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="true" onClick="{{c.pick}}" style="height: 38px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #B0121B; background: #F8DADB; color: #8C0E16; font: 600 13px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+        <sc-if value="{{c.inactive}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="false" onClick="{{c.pick}}" style="height: 38px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #E3D8C8; background: #FFFFFF; color: #16211C; font: 600 13px 'Bricolage Grotesque', sans-serif">{{c.label}}</button></sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+    <div style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border-radius: 20px; overflow: auto">
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px">
+        <thead><tr style="text-align: left; color: #6B6259; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em"><th scope="col" style="padding: 14px 16px">RÉF.</th><th scope="col" style="padding: 14px 16px">CLIENT</th><th scope="col" style="padding: 14px 16px">TYPE</th><th scope="col" style="padding: 14px 16px">DÉTAIL</th><th scope="col" style="padding: 14px 16px">REÇUE</th><th scope="col" style="padding: 14px 16px">STATUT</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+            <tr onClick="{{r.select}}" style="border-top: 1px solid #EFE6D2; cursor: pointer; background: {{r.bg}}">
+              <td style="padding: 14px 16px; font-family: 'DM Mono', monospace; font-weight: 500">{{r.ref}}</td>
+              <td style="padding: 14px 16px"><strong style="display: block">{{r.name}}</strong><span style="font-size: 12px; color: #6B6259">{{r.phone}}</span></td>
+              <td style="padding: 14px 16px">{{r.typeLabel}}</td>
+              <td style="padding: 14px 16px; color: #4E463F">{{r.summary}}</td>
+              <td style="padding: 14px 16px; font-family: 'DM Mono', monospace; font-size: 12px; color: #6B6259">{{r.date}}</td>
+              <td style="padding: 14px 16px"><span style="padding: 5px 10px; border-radius: 999px; background: {{r.sBg}}; color: {{r.sFg}}; font-size: 12px; font-weight: 700; white-space: nowrap">{{r.statusLabel}}</span></td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <sc-if value="{{noRows}}" hint-placeholder-val="{{false}}"><div style="padding: 40px; text-align: center; color: #6B6259">Aucune demande pour ces filtres.</div></sc-if>
+    </div>
+
+    <aside style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'DM Mono', monospace; font-size: 20px; color: #16211C">{{sel.ref}}</span><span style="padding: 5px 10px; border-radius: 999px; background: {{sel.sBg}}; color: {{sel.sFg}}; font-size: 12px; font-weight: 700">{{sel.statusLabel}}</span></div>
+      <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 20px">{{sel.name}}</strong><span style="font-size: 14px; color: #4E463F">{{sel.phone}} · {{sel.email}}</span></div>
+      <div style="padding: 14px; border-radius: 14px; background: #F5EEE3; display: flex; flex-direction: column; gap: 6px; font-size: 14px"><span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #6B6259">{{sel.typeLabel}}</span><strong>{{sel.summary}}</strong><span style="color: #4E463F">{{sel.note}}</span></div>
+      <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Changer le statut
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <sc-for list="{{statusActions}}" as="a" hint-placeholder-count="4"><button type="button" onClick="{{a.pick}}" style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1.5px solid {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; font: 600 12px 'Bricolage Grotesque', sans-serif">{{a.label}}</button></sc-for>
+        </div>
+      </label>
+      <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; font-weight: 600">Historique</span><div style="font-size: 13px; line-height: 1.7; color: #4E463F; border-left: 2px solid #EFE6D2; padding-left: 12px">{{sel.date}} · Demande reçue (site)<br>{{sel.date}} · Accusé de réception envoyé</div></div>
+      <div style="display: flex; gap: 8px; margin-top: 4px"><a href="#" style="flex: 1; height: 44px; border-radius: 999px; background: #0E5232; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center">WhatsApp</a><a href="#" style="flex: 1; height: 44px; border-radius: 999px; border: 1.5px solid #16211C; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center">Répondre par e-mail</a></div>
+    </aside>
+  </div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: 'all', type: 'all', selected: 'ETH-0421',
+      data: [
+        { ref: 'ETH-0421', name: 'Aminata D.', phone: '+224 6XX XX XX 01', email: 'client1@exemple.com', type: 'billet', summary: 'CKY → CDG · A/R · 2 adultes', note: 'Souhaite bagage 2 × 23 kg.', date: '05/11 09:14', status: 'new' },
+        { ref: 'ETH-0420', name: 'Ibrahima S.', phone: '+224 6XX XX XX 02', email: 'client2@exemple.com', type: 'circuit', summary: 'Fouta Djallon · 4 j · 4 pers.', note: 'Dates flexibles en décembre.', date: '05/11 08:02', status: 'new' },
+        { ref: 'ETH-0419', name: 'ONG [Nom]', phone: '+224 6XX XX XX 03', email: 'client3@exemple.com', type: 'pro', summary: 'Mission · 12 pers. · Dakar', note: 'Facturation sur bon de commande.', date: '04/11 17:40', status: 'progress' },
+        { ref: 'ETH-0418', name: 'Mariama B.', phone: '+224 6XX XX XX 04', email: 'client4@exemple.com', type: 'circuit', summary: 'Îles de Loos · 2 j · 2 pers.', note: 'Week-end du [DATE].', date: '04/11 11:05', status: 'confirmed' },
+        { ref: 'ETH-0417', name: 'Association [Nom]', phone: '+224 6XX XX XX 05', email: 'client5@exemple.com', type: 'groupe', summary: 'Oumra · 25 pers.', note: 'Demande de devis complet.', date: '03/11 15:22', status: 'progress' },
+        { ref: 'ETH-0416', name: 'Ousmane K.', phone: '+224 6XX XX XX 06', email: 'client6@exemple.com', type: 'billet', summary: 'CKY → IST · aller simple', note: 'Client a trouvé ailleurs.', date: '02/11 10:48', status: 'cancelled' },
+        { ref: 'ETH-0415', name: 'Fatoumata C.', phone: '+224 6XX XX XX 07', email: 'client7@exemple.com', type: 'billet', summary: 'CKY → ABJ · A/R · 1 adulte', note: 'Billet émis.', date: '01/11 09:30', status: 'confirmed' }
+      ]
+    };
+  }
+  renderVals() {
+    var s = this.state;
+    var self = this;
+    var ST = { new: ['Nouvelle', '#EFE6D2', '#4E463F', '#8E9690'], progress: ['En cours', '#F8E6C4', '#6E4710', '#E3A935'], confirmed: ['Confirmée', '#D3E7DA', '#0E4A2D', '#0E5232'], cancelled: ['Annulée', '#F8DADB', '#8C0E16', '#B0121B'] };
+    var TY = { billet: 'Billetterie', circuit: 'Circuit', groupe: 'Groupe / pèlerinage', pro: 'Entreprise / ONG' };
+    function deco(r) { var st = ST[r.status]; return Object.assign({}, r, { statusLabel: st[0], sBg: st[1], sFg: st[2], typeLabel: TY[r.type] }); }
+    var filtered = s.data.filter(function (r) { return (s.status === 'all' || r.status === s.status) && (s.type === 'all' || r.type === s.type); });
+    var rows = filtered.map(function (r) {
+      var d = deco(r);
+      d.bg = r.ref === s.selected ? '#FFFBF5' : '#FFFFFF';
+      d.select = function () { self.setState({ selected: r.ref }); };
+      return d;
+    });
+    var selRaw = s.data.filter(function (r) { return r.ref === s.selected; })[0] || s.data[0];
+    var sel = deco(selRaw);
+    var count = function (k) { return s.data.filter(function (r) { return r.status === k; }).length; };
+    var stats = [['Nouvelles', count('new'), '#8E9690'], ['En cours', count('progress'), '#E3A935'], ['Confirmées', count('confirmed'), '#0E5232'], ['Annulées', count('cancelled'), '#B0121B']].map(function (x) { return { label: x[0], value: x[1], color: x[2] }; });
+    var statusTabs = [['all', 'Toutes'], ['new', 'Nouvelles'], ['progress', 'En cours'], ['confirmed', 'Confirmées'], ['cancelled', 'Annulées']].map(function (d) {
+      return { label: d[1], active: s.status === d[0], inactive: s.status !== d[0], pick: function () { self.setState({ status: d[0] }); } };
+    });
+    var typeChips = [['all', 'Tous types'], ['billet', 'Billetterie'], ['circuit', 'Circuits'], ['groupe', 'Groupes'], ['pro', 'Pro / ONG']].map(function (d) {
+      return { label: d[1], active: s.type === d[0], inactive: s.type !== d[0], pick: function () { self.setState({ type: d[0] }); } };
+    });
+    var statusActions = ['new', 'progress', 'confirmed', 'cancelled'].map(function (k) {
+      var on = selRaw.status === k;
+      return {
+        label: ST[k][0], bg: on ? ST[k][1] : '#FFFFFF', fg: on ? ST[k][2] : '#16211C', border: on ? ST[k][3] : '#E3D8C8',
+        pick: function () { self.setState({ data: s.data.map(function (r) { return r.ref === selRaw.ref ? Object.assign({}, r, { status: k }) : r; }) }); }
+      };
+    });
+    return { rows: rows, noRows: rows.length === 0, sel: sel, stats: stats, statusTabs: statusTabs, typeChips: typeChips, statusActions: statusActions, newCount: count('new') };
+  }
+}
+</script>
+</body>
+</html>

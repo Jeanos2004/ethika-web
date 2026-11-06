@@ -89,8 +89,11 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         {isDemo && <DemoBanner />}
         <NextIntlClientProvider messages={await clientMessages()}>
-          <SiteHeader />
-          <main id="contenu">{children}</main>
+          {/* Repère de l'en-tête transparent (absolute top-0) : il commence sous le bandeau démo éventuel. */}
+          <div className="relative">
+            <SiteHeader />
+            <main id="contenu">{children}</main>
+          </div>
           <SiteFooter />
           <WhatsAppFab />
           <MobileActionBar />

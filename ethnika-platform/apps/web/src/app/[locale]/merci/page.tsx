@@ -6,6 +6,8 @@ import { leadTypes, type LeadType } from "@/lib/schemas/lead";
 import { whatsappLink } from "@/lib/site";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { DemoThanks } from "@/components/sections/DemoThanks";
+import { isDemo } from "@/lib/demo/mode";
 
 export const generateMetadata = metadataFor("merci");
 
@@ -60,6 +62,7 @@ export default async function MerciPage({ params, searchParams }: Props) {
               {t("discover")}
             </ButtonLink>
           </div>
+          {isDemo && <DemoThanks reference={reference} />}
         </div>
         <div className="min-w-0 flex-[1_1_380px] overflow-hidden rounded-[var(--radius-lg)] bg-night text-white shadow-[0_24px_60px_rgb(22_33_28/0.18)]">
           <div className="flex items-center justify-between gap-3 border-b border-dashed border-night-muted px-[26px] py-[22px]">

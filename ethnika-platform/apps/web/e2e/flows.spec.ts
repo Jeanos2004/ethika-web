@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 /**
  * Parcours critiques (docs/PROMPT_CLAUDE_CODE.md, lot 10) : devis circuit, demande de billet, contact,
  * filtres de la liste des circuits, navigation mobile.
- * Le serveur tourne sans API_BASE_URL : la demande est validée puis journalisée, et une référence ETH-DEV-… est renvoyée.
+ * Le serveur tourne sans API_BASE_URL : la demande est validée puis journalisée, et une référence provisoire ETH-XXXXXX est renvoyée.
  * Chaque test envoie au plus une demande (limite de débit : 5 demandes / 10 min / IP) et se présente avec
  * sa propre adresse (plage de documentation TEST-NET-2), pour que les exécutions successives ne s'additionnent pas.
  */

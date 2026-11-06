@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { localePrefix, routing, type Locale } from "@/i18n/routing";
 import { site } from "@/lib/site";
+import { isDemo } from "@/lib/demo/mode";
 
 /**
  * Registre des pages : route publique ↔ maquette de référence ↔ structure.
@@ -84,7 +85,7 @@ export async function pageMetadata(key: PageKey, locale: Locale): Promise<Metada
       description: p.description,
       url,
     }, // image : fichier opengraph-image.tsx de la route (src/lib/og.tsx)
-    robots: key === "merci" ? { index: false, follow: false } : undefined,
+    robots: isDemo || key === "merci" ? { index: false, follow: false } : undefined,
   };
 }
 

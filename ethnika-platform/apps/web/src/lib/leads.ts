@@ -11,8 +11,11 @@ import type { LeadInput } from "@/lib/schemas/lead";
 /** Demande validée, sans le pot de miel (Omit distributif : chaque variante garde ses champs). */
 export type LeadPayload = LeadInput extends infer T ? (T extends unknown ? Omit<T, "website"> : never) : never;
 
+/** Référence provisoire sans API : même format que celles de l'API (ETH- + 6 caractères sans ambiguïté). */
 function devReference() {
-  return `ETH-DEV-${Date.now().toString(36).toUpperCase()}`;
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = crypto.getRandomValues(new Uint8Array(6));
+  return `ETH-${Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("")}`;
 }
 
 async function postToApi(path: string, body: unknown): Promise<{ reference: string }> {

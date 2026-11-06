@@ -50,10 +50,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
 
   useEffect(() => {
     if (!playing) return;
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % count),
-      INTERVAL_MS,
-    );
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % count), INTERVAL_MS);
     return () => window.clearInterval(id);
   }, [playing, count]);
 
@@ -82,17 +79,11 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
             fill
             priority={i === 0}
             sizes="100vw"
-            className={clsx(
-              "object-cover transition-opacity duration-1000",
-              i === index ? "opacity-100" : "opacity-0",
-            )}
+            className={clsx("object-cover transition-opacity duration-1000", i === index ? "opacity-100" : "opacity-0")}
           />
         ) : null,
       )}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgb(18_24_21/0.78)_0%,rgb(18_24_21/0.25)_30%,rgb(18_24_21/0.3)_60%,rgb(18_24_21/0.88)_100%)]"
-      />
+      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(18_24_21/0.78)_0%,rgb(18_24_21/0.25)_30%,rgb(18_24_21/0.3)_60%,rgb(18_24_21/0.88)_100%)]" />
 
       <div
         aria-live={playing ? "off" : "polite"}
@@ -104,28 +95,14 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
           {current.kicker}
         </span>
         <h1 className="max-w-[980px] text-[48px] leading-[0.96] font-bold tracking-[-0.045em] sm:text-[clamp(52px,7.6vw,116px)] sm:leading-[0.95]">
-          {current.titleA}{" "}
-          <span className="font-serif font-normal tracking-[-0.02em] text-brand-gold italic">
-            {current.titleB}
-          </span>
+          {current.titleA} <span className="font-serif font-normal tracking-[-0.02em] text-brand-gold italic">{current.titleB}</span>
         </h1>
-        <p className="max-w-[560px] text-[15px] leading-relaxed text-on-dark-2 sm:text-[19px]">
-          {current.sub}
-        </p>
+        <p className="max-w-[560px] text-[15px] leading-relaxed text-on-dark-2 sm:text-[19px]">{current.sub}</p>
         <div className="mt-1.5 hidden flex-wrap gap-3 sm:flex">
-          <ButtonLink
-            href="/billetterie"
-            variant="gold"
-            className="h-[58px] px-[30px]"
-          >
-            {t("ctaTicket")}{" "}
-            <Icon name="arrowRight" size={18} strokeWidth={2.2} />
+          <ButtonLink href="/billetterie" variant="gold" className="h-[58px] px-[30px]">
+            {t("ctaTicket")} <Icon name="arrowRight" size={18} strokeWidth={2.2} />
           </ButtonLink>
-          <ButtonLink
-            href="/circuits"
-            variant="outline-light"
-            className="h-[58px] px-[30px]"
-          >
+          <ButtonLink href="/circuits" variant="outline-light" className="h-[58px] px-[30px]">
             {t("ctaCircuits")}
           </ButtonLink>
         </div>
@@ -134,10 +111,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
       <div className="container-site relative hidden items-center justify-between gap-4 pb-7 sm:flex">
         <div className="flex items-center gap-3.5">
           <span className="font-mono text-sm" aria-hidden="true">
-            <strong className="text-[22px] font-medium">
-              {String(index + 1).padStart(2, "0")}
-            </strong>{" "}
-            / {String(count).padStart(2, "0")}
+            <strong className="text-[22px] font-medium">{String(index + 1).padStart(2, "0")}</strong> / {String(count).padStart(2, "0")}
           </span>
           <Dots count={count} index={index} onPick={go} />
         </div>
@@ -150,11 +124,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
             disabled={reduced}
             className="flex size-[52px] items-center justify-center rounded-full border-[1.5px] border-white/60 text-white hover:bg-white/10 disabled:hidden"
           >
-            <Icon
-              name={paused ? "play" : "pause"}
-              size={18}
-              strokeWidth={2.4}
-            />
+            <Icon name={paused ? "play" : "pause"} size={18} strokeWidth={2.4} />
           </button>
           <button
             type="button"
@@ -164,12 +134,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
           >
             <Icon name="arrowLeft" size={20} />
           </button>
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            aria-label={t("next")}
-            className="flex size-[52px] items-center justify-center rounded-full bg-white text-night hover:bg-cream"
-          >
+          <button type="button" onClick={() => go(index + 1)} aria-label={t("next")} className="flex size-[52px] items-center justify-center rounded-full bg-white text-night hover:bg-cream">
             <Icon name="arrowRight" size={20} />
           </button>
         </div>
@@ -182,17 +147,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
   );
 }
 
-function Dots({
-  count,
-  index,
-  onPick,
-  small,
-}: {
-  count: number;
-  index: number;
-  onPick: (i: number) => void;
-  small?: boolean;
-}) {
+function Dots({ count, index, onPick, small }: { count: number; index: number; onPick: (i: number) => void; small?: boolean }) {
   const t = useTranslations("slider");
   return (
     <div className="flex">
@@ -210,12 +165,7 @@ function Dots({
             className={clsx(
               "block rounded-[3px] transition-all",
               small ? "h-[5px]" : "h-1.5",
-              i === index
-                ? clsx("bg-brand-gold", small ? "w-7" : "w-10")
-                : clsx(
-                    "bg-white/45 group-hover:bg-white/70",
-                    small ? "w-3" : "w-4",
-                  ),
+              i === index ? clsx("bg-brand-gold", small ? "w-7" : "w-10") : clsx("bg-white/45 group-hover:bg-white/70", small ? "w-3" : "w-4"),
             )}
           />
         </button>

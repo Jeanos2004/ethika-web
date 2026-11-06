@@ -8,6 +8,7 @@ import type { Locale } from "@/i18n/routing";
 import { getPage, languageAlternates, localizedPath } from "@/content/pages";
 import { circuits, getCircuits, getLocalizedCircuit, type Circuit, type Departure } from "@/content/circuits";
 import { site } from "@/lib/site";
+import { isDemo } from "@/lib/demo/mode";
 import { PageHero, type Crumb } from "@/components/layout/PageHero";
 import { Itinerary } from "@/components/sections/Itinerary";
 import { CircuitBooking } from "@/components/sections/CircuitBooking";
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: c.headline,
     description: c.summary,
     alternates: { canonical: localizedPath(path, locale), languages: languageAlternates(path) },
+    ...(isDemo && { robots: { index: false, follow: false } }),
     openGraph: { title: c.headline, description: c.summary, url: localizedPath(path, locale) },
   };
 }

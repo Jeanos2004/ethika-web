@@ -1503,5 +1503,166 @@
       "confidentialite": "Privacy",
       "cookies": "Cookies"
     }
+  },
+  "admin": {
+    "title": "Back office",
+    "backOffice": "BACK OFFICE",
+    "navLabel": "Administration",
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu",
+    "nav": {
+      "dashboard": "Dashboard",
+      "leads": "Requests",
+      "circuits": "Tours",
+      "offers": "Deals",
+      "blog": "Blog posts",
+      "gallery": "Gallery",
+      "users": "Users"
+    },
+    "soon": "Phase 2",
+    "agentName": "[Adviser name]",
+    "agentRole": "Agent · Conakry",
+    "viewSite": "View the site",
+    "reset": "Reset the demo",
+    "resetDone": "Demo reset",
+    "demoBanner": "Demo: requests sent from the site are kept in this browser only. Nothing is sent to the agency.",
+    "statuses": {
+      "new": "New",
+      "progress": "In progress",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "statusesPlural": {
+      "all": "All",
+      "new": "New",
+      "progress": "In progress",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "contact": "Contact",
+      "billet": "Flights",
+      "circuit": "Tour",
+      "groupe": "Group",
+      "pelerinage": "Pilgrimage",
+      "pro": "Company / NGO"
+    },
+    "typeFilters": {
+      "all": "All types",
+      "contact": "Contact",
+      "billet": "Flights",
+      "circuit": "Tours",
+      "groupe": "Groups",
+      "pelerinage": "Pilgrimages",
+      "pro": "Pro / NGO"
+    },
+    "sources": {
+      "site": "Website",
+      "manual": "Manual entry",
+      "sample": "Sample"
+    },
+    "history": {
+      "received": "Request received ({source})",
+      "ack": "Acknowledgement sent",
+      "new": "Back to “New”",
+      "progress": "Taken in charge",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "hello": "Hello",
+      "intro": "Overview of the requests received through the website.",
+      "recent": "Latest requests",
+      "seeAll": "See all requests",
+      "byType": "Breakdown by type",
+      "empty": "No requests yet.",
+      "howTitle": "Test the full journey",
+      "how": [
+        "Send a request from the website: flight, tour quote, contact or professional quote.",
+        "Note the reference shown, then come back here: the request appears at the top of the list.",
+        "Open it, change its status, preview the acknowledgement email or export the list as CSV."
+      ],
+      "tryTicket": "Request a ticket",
+      "tryCircuit": "Tour quote",
+      "tryContact": "Contact",
+      "tryPro": "Pro quote"
+    },
+    "leads": {
+      "title": "Requests",
+      "subtitle": "{count, plural, one {# request} other {# requests}} · fictitious samples and your submissions",
+      "export": "Export CSV",
+      "new": "New request",
+      "statusFilter": "Filter by status",
+      "typeFilter": "Filter by type",
+      "search": "Search (name, reference, phone)",
+      "searchPlaceholder": "Search…",
+      "colRef": "REF.",
+      "colClient": "CLIENT",
+      "colType": "TYPE",
+      "colDetail": "DETAILS",
+      "colDate": "RECEIVED",
+      "colStatus": "STATUS",
+      "tableCaption": "List of requests",
+      "listLabel": "Filtered requests",
+      "noRows": "No requests for these filters.",
+      "clearFilters": "Clear the filters",
+      "open": "Open request {ref}",
+      "back": "Requests",
+      "detailLabel": "Request details",
+      "noSelection": "Select a request to see its details.",
+      "changeStatus": "Change the status",
+      "historyTitle": "History",
+      "whatsapp": "WhatsApp",
+      "replyEmail": "Reply by email",
+      "noEmail": "No email provided",
+      "emailSubject": "Your request {ref} – ETHNIKA",
+      "whatsappMessage": "Hello {name}, this is ETHNIKA about your request {ref}.",
+      "previewEmail": "Acknowledgement email preview",
+      "yours": "Your submission"
+    },
+    "newLead": {
+      "title": "New request",
+      "description": "Record a request received by phone, WhatsApp or at the agency.",
+      "type": "Type",
+      "name": "Client name",
+      "phone": "Phone",
+      "email": "Email (optional)",
+      "summary": "Summary",
+      "summaryHint": "E.g. CKY → DSS · one way · 1 adult",
+      "note": "Internal note (optional)",
+      "save": "Save",
+      "cancel": "Cancel",
+      "errName": "Enter the client's name.",
+      "errPhone": "Enter a valid phone number.",
+      "errSummary": "Describe the request in a few words.",
+      "errEmail": "Invalid email address."
+    },
+    "email": {
+      "eyebrow": "PREVIEW",
+      "from": "From: ETHNIKA <contact@ethnikatour.com>",
+      "subject": "Subject: We have received your request {ref}",
+      "hello": "Hello {name},",
+      "title": "Your request has been received",
+      "text": "Thank you for your trust. An ETHNIKA adviser is reviewing your request and will get back to you within 24 working hours with the best options.",
+      "reference": "REFERENCE",
+      "nextSteps": "Next steps",
+      "steps": [
+        "We check availability and fares.",
+        "You receive a detailed proposal by email or WhatsApp.",
+        "You approve, and we issue your travel documents."
+      ],
+      "whatsapp": "Message us on WhatsApp",
+      "circuits": "See our tours",
+      "footerLegal": "Licence no. {licence} · ethnikatour.com",
+      "footerNote": "You are receiving this email following your request on ethnikatour.com.",
+      "privacy": "Privacy",
+      "devNote": "In production (phase 2), this email is sent by the API (React Email) as soon as the request is received."
+    }
+  },
+  "demo": {
+    "banner": "Demo site: requests are not sent to the agency.",
+    "backOffice": "See the back office",
+    "seeRequest": "See my request in the back office (demo)"
   }
 }

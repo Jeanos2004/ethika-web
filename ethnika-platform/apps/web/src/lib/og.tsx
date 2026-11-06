@@ -29,22 +29,20 @@ export async function renderOg({ title, kicker, caption = new URL(site.url).host
     readFile(join(process.cwd(), "node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff")),
   ]);
   return new ImageResponse(
-    (
-      <div style={{ width: "100%", height: "100%", display: "flex", backgroundColor: color.night }}>
-        <div style={{ width: 18, height: "100%", display: "flex", backgroundColor: color.red }} />
+    <div style={{ width: "100%", height: "100%", display: "flex", backgroundColor: color.night }}>
+      <div style={{ width: 18, height: "100%", display: "flex", backgroundColor: color.red }} />
+      {/* eslint-disable-next-line @next/next/no-img-element -- rendu Satori, pas de next/image */}
+      <img src={symbol} alt="" width={520} height={520} style={{ position: "absolute", right: -90, top: 55, opacity: 0.16 }} />
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", padding: "60px 72px" }}>
         {/* eslint-disable-next-line @next/next/no-img-element -- rendu Satori, pas de next/image */}
-        <img src={symbol} alt="" width={520} height={520} style={{ position: "absolute", right: -90, top: 55, opacity: 0.16 }} />
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", padding: "60px 72px" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- rendu Satori, pas de next/image */}
-          <img src={logo} alt="" width={285} height={90} />
-          <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 940 }}>
-            {kicker && <span style={{ fontFamily: "DM Mono", color: color.gold, fontSize: 26, letterSpacing: 3, textTransform: "uppercase" }}>{kicker}</span>}
-            <span style={{ color: color.cream, fontSize: title.length > 48 ? 60 : 76, fontWeight: 700, lineHeight: 1.04, letterSpacing: -2 }}>{title}</span>
-          </div>
-          <span style={{ fontFamily: "DM Mono", color: color.muted, fontSize: 22 }}>{caption}</span>
+        <img src={logo} alt="" width={285} height={90} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 940 }}>
+          {kicker && <span style={{ fontFamily: "DM Mono", color: color.gold, fontSize: 26, letterSpacing: 3, textTransform: "uppercase" }}>{kicker}</span>}
+          <span style={{ color: color.cream, fontSize: title.length > 48 ? 60 : 76, fontWeight: 700, lineHeight: 1.04, letterSpacing: -2 }}>{title}</span>
         </div>
+        <span style={{ fontFamily: "DM Mono", color: color.muted, fontSize: 22 }}>{caption}</span>
       </div>
-    ),
+    </div>,
     { ...ogSize, fonts: [{ name: "DM Mono", data: mono, weight: 500, style: "normal" }] },
   );
 }

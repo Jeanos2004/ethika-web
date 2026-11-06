@@ -3,7 +3,10 @@
 export const site = {
   name: "ETHNIKA",
   tagline: "Tourisme & Voyages",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  /** URL publique : NEXT_PUBLIC_SITE_URL, sinon le domaine de production Vercel (variable système exposée), sinon local. */
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"),
   description:
     "Agence de tourisme et de voyage à Conakry : billetterie aérienne, circuits et séjours en Guinée, groupes, pèlerinages et voyages d'affaires.",
   contact: {

@@ -1,10 +1,13 @@
 "use client";
 
-import { useActionState, useId, type ReactNode } from "react";
+import NextLink from "next/link";
+import { useActionState, useEffect, useId, type ReactNode } from "react";
 import { clsx } from "clsx";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { sendLead, type LeadFormState } from "@/lib/actions/lead";
+import { isDemo } from "@/lib/demo/mode";
+import { capturePending, commitPending } from "@/lib/demo/store";
 import type { LeadType } from "@/lib/schemas/lead";
 import { Icon } from "@/components/ui/Icon";
 import { Checkbox } from "@/components/ui/Field";
@@ -19,6 +22,7 @@ export type FieldError = (field: string) => string | undefined;
  * Les champs propres à chaque formulaire sont fournis par `children(err)`.
  * Les erreurs renvoyées par le serveur sont des clés, traduites ici (messages, espace « errors »).
  * Fonctionne sans JavaScript (progressive enhancement).
+ * Mode démo : les champs sont gardés dans le navigateur pour le back-office de démonstration (lib/demo).
  */
 export function LeadFormShell({
   type,
@@ -58,6 +62,10 @@ export function LeadFormShell({
   const uid = useId();
   const t = useTranslations("forms");
   const tErr = useTranslations("errors");
+  const tDemo = useTranslations("demo");
+  useEffect(() => {
+    if (isDemo && state.status === "success") commitPending(state.reference);
+  }, [state]);
   const translate = (key: string) => (tErr.has(key) ? tErr(key) : tErr("invalid"));
   const err: FieldError = (k) => {
     const key = state.status === "error" ? state.fieldErrors?.[k]?.[0] : undefined;
@@ -73,6 +81,14 @@ export function LeadFormShell({
         <strong className="text-2xl text-night">{successTitle ?? t("successTitle")}</strong>
         <span className="rounded-lg bg-white px-3.5 py-2 font-mono">{t("reference", { ref: state.reference })}</span>
         <p className="max-w-[420px] text-green-700">{successText ?? t("successText")}</p>
+        {isDemo && (
+          <NextLink
+            href={`/admin/demandes?ref=${encodeURIComponent(state.reference)}`}
+            className="inline-flex min-h-11 items-center rounded-full bg-brand-gold px-4 text-sm font-bold text-ink hover:bg-brand-gold-hover"
+          >
+            {tDemo("seeRequest")} →
+          </NextLink>
+        )}
         {onReset && (
           <button type="button" onClick={onReset} className="mt-1 h-10 rounded-full border-[1.5px] border-brand-green px-3.5 text-sm font-semibold text-green-700 hover:bg-white">
             {t("newRequest")}
@@ -83,7 +99,7 @@ export function LeadFormShell({
   }
 
   return (
-    <form action={action} noValidate className={clsx("flex flex-col gap-4", className)}>
+    <form action={action} onSubmit={isDemo ? (e) => capturePending(e.currentTarget) : undefined} noValidate className={clsx("flex flex-col gap-4", className)}>
       <input type="hidden" name="type" value={type} />
       {thanksPage && <input type="hidden" name="after" value="merci" />}
       {hidden && Object.entries(hidden).map(([name, value]) => <input key={name} type="hidden" name={name} value={value} />)}

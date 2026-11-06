@@ -152,6 +152,14 @@ const paths = {
   link: <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />,
   download: <path d="M12 3v12M7 10l5 5 5-5M4 21h16" />,
   filter: <path d="M3 5h18l-7 8v6l-4 2v-8z" />,
+  grid: (
+    <>
+      <rect x="3" y="3" width="7.5" height="7.5" rx="2" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="2" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="2" />
+      <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" />
+    </>
+  ),
   image: (
     <>
       <rect x="3" y="3" width="18" height="18" rx="3" />

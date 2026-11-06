@@ -11,11 +11,7 @@ export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
+export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   const post = getLocalizedPost(slug, locale);
   if (!post) notFound();

@@ -1503,5 +1503,166 @@
       "confidentialite": "Confidentialité",
       "cookies": "Cookies"
     }
+  },
+  "admin": {
+    "title": "Back-office",
+    "backOffice": "BACK-OFFICE",
+    "navLabel": "Administration",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "leads": "Demandes",
+      "circuits": "Circuits",
+      "offers": "Offres",
+      "blog": "Articles du blog",
+      "gallery": "Galerie",
+      "users": "Utilisateurs"
+    },
+    "soon": "Phase 2",
+    "agentName": "[Nom du conseiller]",
+    "agentRole": "Agent · Conakry",
+    "viewSite": "Voir le site",
+    "reset": "Réinitialiser la démo",
+    "resetDone": "Démo réinitialisée",
+    "demoBanner": "Démonstration : les demandes envoyées depuis le site sont gardées dans ce navigateur uniquement. Rien n'est transmis à l'agence.",
+    "statuses": {
+      "new": "Nouvelle",
+      "progress": "En cours",
+      "confirmed": "Confirmée",
+      "cancelled": "Annulée"
+    },
+    "statusesPlural": {
+      "all": "Toutes",
+      "new": "Nouvelles",
+      "progress": "En cours",
+      "confirmed": "Confirmées",
+      "cancelled": "Annulées"
+    },
+    "types": {
+      "contact": "Contact",
+      "billet": "Billetterie",
+      "circuit": "Circuit",
+      "groupe": "Groupe",
+      "pelerinage": "Pèlerinage",
+      "pro": "Entreprise / ONG"
+    },
+    "typeFilters": {
+      "all": "Tous types",
+      "contact": "Contact",
+      "billet": "Billetterie",
+      "circuit": "Circuits",
+      "groupe": "Groupes",
+      "pelerinage": "Pèlerinages",
+      "pro": "Pro / ONG"
+    },
+    "sources": {
+      "site": "Site",
+      "manual": "Saisie manuelle",
+      "sample": "Exemple"
+    },
+    "history": {
+      "received": "Demande reçue ({source})",
+      "ack": "Accusé de réception envoyé",
+      "new": "Repassée en « Nouvelle »",
+      "progress": "Prise en charge",
+      "confirmed": "Confirmée",
+      "cancelled": "Annulée"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "hello": "Bonjour",
+      "intro": "Vue d'ensemble des demandes reçues par le site.",
+      "recent": "Dernières demandes",
+      "seeAll": "Voir toutes les demandes",
+      "byType": "Répartition par type",
+      "empty": "Aucune demande pour l'instant.",
+      "howTitle": "Tester le parcours de bout en bout",
+      "how": [
+        "Envoyez une demande depuis le site : billet, devis circuit, contact ou devis pro.",
+        "Notez la référence affichée, puis revenez ici : la demande apparaît en tête de liste.",
+        "Ouvrez-la, changez son statut, prévisualisez l'e-mail d'accusé ou exportez la liste en CSV."
+      ],
+      "tryTicket": "Demander un billet",
+      "tryCircuit": "Devis circuit",
+      "tryContact": "Contact",
+      "tryPro": "Devis pro"
+    },
+    "leads": {
+      "title": "Demandes",
+      "subtitle": "{count, plural, one {# demande} other {# demandes}} · exemples fictifs et vos envois",
+      "export": "Exporter CSV",
+      "new": "Nouvelle demande",
+      "statusFilter": "Filtrer par statut",
+      "typeFilter": "Filtrer par type",
+      "search": "Rechercher (nom, référence, téléphone)",
+      "searchPlaceholder": "Rechercher…",
+      "colRef": "RÉF.",
+      "colClient": "CLIENT",
+      "colType": "TYPE",
+      "colDetail": "DÉTAIL",
+      "colDate": "REÇUE",
+      "colStatus": "STATUT",
+      "tableCaption": "Liste des demandes",
+      "listLabel": "Demandes filtrées",
+      "noRows": "Aucune demande pour ces filtres.",
+      "clearFilters": "Effacer les filtres",
+      "open": "Ouvrir la demande {ref}",
+      "back": "Demandes",
+      "detailLabel": "Détail de la demande",
+      "noSelection": "Sélectionnez une demande pour voir son détail.",
+      "changeStatus": "Changer le statut",
+      "historyTitle": "Historique",
+      "whatsapp": "WhatsApp",
+      "replyEmail": "Répondre par e-mail",
+      "noEmail": "Pas d'e-mail fourni",
+      "emailSubject": "Votre demande {ref} – ETHNIKA",
+      "whatsappMessage": "Bonjour {name}, ici ETHNIKA au sujet de votre demande {ref}.",
+      "previewEmail": "Aperçu de l'e-mail d'accusé",
+      "yours": "Votre envoi"
+    },
+    "newLead": {
+      "title": "Nouvelle demande",
+      "description": "Saisie d'une demande reçue par téléphone, WhatsApp ou en agence.",
+      "type": "Type",
+      "name": "Nom du client",
+      "phone": "Téléphone",
+      "email": "E-mail (facultatif)",
+      "summary": "Résumé",
+      "summaryHint": "Ex. CKY → DSS · aller simple · 1 adulte",
+      "note": "Note interne (facultatif)",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "errName": "Indiquez le nom du client.",
+      "errPhone": "Indiquez un numéro de téléphone valide.",
+      "errSummary": "Décrivez la demande en quelques mots.",
+      "errEmail": "Adresse e-mail invalide."
+    },
+    "email": {
+      "eyebrow": "APERÇU",
+      "from": "De : ETHNIKA <contact@ethnikatour.com>",
+      "subject": "Objet : Nous avons bien reçu votre demande {ref}",
+      "hello": "Bonjour {name},",
+      "title": "Votre demande est bien reçue",
+      "text": "Merci de votre confiance. Un conseiller ETHNIKA étudie votre demande et vous recontacte sous 24 h ouvrées avec les meilleures options.",
+      "reference": "RÉFÉRENCE",
+      "nextSteps": "Prochaines étapes",
+      "steps": [
+        "Nous vérifions les disponibilités et les tarifs.",
+        "Vous recevez une proposition détaillée par e-mail ou WhatsApp.",
+        "Vous validez, et nous émettons vos documents de voyage."
+      ],
+      "whatsapp": "Écrire sur WhatsApp",
+      "circuits": "Voir nos circuits",
+      "footerLegal": "Licence n° {licence} · ethnikatour.com",
+      "footerNote": "Vous recevez cet e-mail suite à votre demande sur ethnikatour.com.",
+      "privacy": "Confidentialité",
+      "devNote": "En production (phase 2), cet e-mail est envoyé par l'API (React Email) dès réception de la demande."
+    }
+  },
+  "demo": {
+    "banner": "Site de démonstration : les demandes ne sont pas transmises à l'agence.",
+    "backOffice": "Voir le back-office",
+    "seeRequest": "Voir ma demande dans le back-office (démo)"
   }
 }

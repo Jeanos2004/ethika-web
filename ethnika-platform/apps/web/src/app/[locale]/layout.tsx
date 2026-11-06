@@ -16,6 +16,8 @@ import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DemoBanner } from "@/components/layout/DemoBanner";
+import { isDemo } from "@/lib/demo/mode";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
@@ -39,6 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: { type: "website", locale: locale === "en" ? "en_US" : "fr_GN", siteName: site.name },
     twitter: { card: "summary_large_image" },
     formatDetection: { telephone: false },
+    // Démo : placeholders et données fictives, à ne pas indexer.
+    ...(isDemo && { robots: { index: false, follow: false } }),
   };
 }
 
@@ -47,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  * inutile de les sérialiser dans chaque page (environ 100 Ko de moins par document).
  * Ajouter ici tout nouvel espace lu par un composant client (sinon : erreur MISSING_MESSAGE au rendu client).
  */
-const clientNamespaces = ["cards", "common", "cookies", "errors", "faq", "flight", "forms", "header", "mobileBar", "nav", "newsletter", "notFound", "pro", "quote", "search", "share", "site", "slider", "ui", "video"] as const;
+const clientNamespaces = ["cards", "common", "demo", "cookies", "errors", "faq", "flight", "forms", "header", "mobileBar", "nav", "newsletter", "notFound", "pro", "quote", "search", "share", "site", "slider", "ui", "video"] as const;
 
 async function clientMessages() {
   const all = await getMessages();
@@ -83,6 +87,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" },
           }}
         />
+        {isDemo && <DemoBanner />}
         <NextIntlClientProvider messages={await clientMessages()}>
           <SiteHeader />
           <main id="contenu">{children}</main>

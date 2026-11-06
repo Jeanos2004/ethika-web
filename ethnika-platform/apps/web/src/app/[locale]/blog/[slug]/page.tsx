@@ -9,6 +9,7 @@ import { localizedPath } from "@/content/pages";
 import { getLocalizedPost, getPosts, posts } from "@/content/blog";
 import { getToc } from "@/lib/blog";
 import { site } from "@/lib/site";
+import { isDemo } from "@/lib/demo/mode";
 import { Breadcrumbs } from "@/components/layout/PageHero";
 import { ShareLinks } from "@/components/sections/ShareLinks";
 import { SectionNav } from "@/components/sections/SectionNav";
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     alternates: { canonical: localizedPath(path, locale), languages: { fr: localizedPath(path, "fr"), "x-default": localizedPath(path, "fr") } },
     openGraph: { type: "article", title: post.title, description: post.lead, url: localizedPath(path, locale) },
     // Article à rédiger, ou version anglaise d'un texte français : pas d'indexation.
-    robots: post.draft || locale !== "fr" ? { index: false, follow: true } : undefined,
+    robots: isDemo ? { index: false, follow: false } : post.draft || locale !== "fr" ? { index: false, follow: true } : undefined,
   };
 }
 

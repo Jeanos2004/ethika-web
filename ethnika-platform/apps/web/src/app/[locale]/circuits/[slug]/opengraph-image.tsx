@@ -10,11 +10,7 @@ export function generateStaticParams() {
   return circuits.map((c) => ({ slug: c.slug }));
 }
 
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
+export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   const c = getLocalizedCircuit(slug, locale);
   if (!c) notFound();

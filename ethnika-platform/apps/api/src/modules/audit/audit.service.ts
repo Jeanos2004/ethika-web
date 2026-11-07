@@ -21,6 +21,8 @@ export type AuditAction =
   | "content.created"
   | "content.updated"
   | "content.deleted"
+  | "flight.hold"
+  | "flight.cancelled"
   | "maintenance.purge";
 
 /**

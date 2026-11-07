@@ -44,7 +44,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | GET | `/leads/:ref/pdf` | Récapitulatif PDF |
 | agent, admin | POST / GET | `/leads/:ref/quotes` | Devis (numéro `DEV-AAAA-NNNN`, montants entiers) |
 | agent, admin | GET | `/quotes/:number/pdf` | Devis PDF |
-| agent, admin | POST / GET | `/flights/orders`, `/flights/orders/:id`, `/flights/orders/:id/cancel` | Option (hold) sans émission, consultation, annulation |
+| agent, admin | POST | `/flights/orders` | Pose une option (PNR) chez le fournisseur, enregistrée et rattachée à la demande (`leadRef`) ; refus explicite `offer_not_holdable` si paiement immédiat exigé |
+| agent, admin | GET / POST | `/flights/bookings?status=&leadRef=`, `/flights/bookings/:id`, `/flights/bookings/:id/cancel` | Suivi des options (détail resynchronisé avec le fournisseur), annulation |
 | admin | GET / POST / PATCH | `/users`, `/users/:id`, `/users/:id/reset-mfa`, `/users/:id/reset-password` | Comptes |
 | admin | GET | `/audit` | Journal d'audit |
 | admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
@@ -59,11 +60,13 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 - **newsletter** : double opt-in, désinscription, abonnés actifs.
 - **content** : offres et circuits gérés depuis le back-office (FR obligatoire, EN facultatif), liens internes et images vérifiés (pas de redirection ouverte, pas de `javascript:`).
 - **quotes** : devis par demande ; montants en unités entières (GNF, centimes d'euro), totaux en `BigInt`.
-- **flights** : interface `FlightProvider` ; `mock` (développement) ou `duffel` (jeton `duffel_test_…`). Délais, reprises à backoff, journal sans donnée personnelle. Une « réservation » est une option : ni paiement ni émission sans un agent.
+- **flights** : interface `FlightProvider` ; `mock` (développement, tests) ou `duffel` (`FLIGHT_PROVIDER=duffel`, jeton `duffel_test_…`). Délais, reprises à backoff, journal sans donnée personnelle ni identifiant. Chaque offre indique si une option est possible (`holdable`, `payBefore`). Les options posées sont enregistrées (PNR, montant, échéance, trajet résumé) sans copier les données des passagers, rattachées à la demande, et l'agence est alertée par e-mail 24 h avant l'échéance de paiement. Ni paiement ni émission de billet sans un agent.
+  - Validé contre le **bac à sable Duffel** : recherche (50 offres Conakry → Paris), prix et conditions, option, consultation, annulation.
 - **maintenance** : chaque heure, purge des sessions et défis expirés, des e-mails envoyés de plus de 90 jours et des demandes clôturées au-delà de `LEAD_RETENTION_DAYS`.
 
 ## Tests
 - `pnpm --filter @ethnika/api test` : tests unitaires (Jest) — TOTP (vecteurs RFC 6238), chiffrement, garde de clé, schémas, CSV, gabarits (échappement), montants, Duffel (requêtes, reprises), vols.
+- `DUFFEL_LIVE=1 pnpm --filter @ethnika/api exec jest --config test/jest-e2e.json duffel.live` : adaptateur Duffel contre le vrai bac à sable (jeton `duffel_test_…` dans `.env` ; jamais en CI).
 - `pnpm --filter @ethnika/api test:e2e` : API complète contre PostgreSQL (`docker compose up -d`, migrations appliquées) — authentification, 2FA, verrouillage, RBAC, demandes, e-mails en file, devis, vols, PDF si `CHROME_PATH`.
 
 ## Pour plus tard

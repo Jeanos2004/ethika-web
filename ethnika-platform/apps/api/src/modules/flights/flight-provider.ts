@@ -21,6 +21,10 @@ export type FlightOffer = {
   owner: { iata: string; name: string };
   slices: { origin: string; destination: string; departAt: string; arriveAt: string; durationMinutes: number; stops: number; segments: Segment[] }[];
   expiresAt: string | null;
+  /** Une option (hold) sans paiement immédiat est possible sur cette offre. */
+  holdable: boolean;
+  /** Date limite de paiement si l'option est posée (null : paiement immédiat exigé ou inconnu). */
+  payBefore: string | null;
 };
 
 export type PricedOffer = FlightOffer & { conditions: { refundable: boolean | null; changeable: boolean | null }; baggage: string | null };
@@ -57,6 +61,8 @@ export class ProviderError extends Error {
     message: string,
     readonly status: number,
     readonly retryable: boolean,
+    /** Code d'erreur métier renvoyé tel quel au client (ex. offer_not_holdable). */
+    readonly code?: string,
   ) {
     super(message);
   }

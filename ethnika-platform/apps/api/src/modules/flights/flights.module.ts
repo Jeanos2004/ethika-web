@@ -4,6 +4,7 @@ import { DuffelFlightProvider } from "./duffel.provider";
 import { FLIGHT_PROVIDER } from "./flight-provider";
 import { FlightsController } from "./flights.controller";
 import { FlightsService } from "./flights.service";
+import { FlightBookingsService } from "./flight-bookings.service";
 import { MockFlightProvider } from "./mock.provider";
 
 /** Le fournisseur est choisi par la configuration (FLIGHT_PROVIDER) : le reste de l'API n'en dépend pas. */
@@ -16,7 +17,8 @@ import { MockFlightProvider } from "./mock.provider";
       useFactory: (env: Env) => (env.FLIGHT_PROVIDER === "duffel" && env.DUFFEL_TOKEN ? new DuffelFlightProvider(env.DUFFEL_TOKEN) : new MockFlightProvider()),
     },
     FlightsService,
+    FlightBookingsService,
   ],
-  exports: [FlightsService],
+  exports: [FlightsService, FlightBookingsService],
 })
 export class FlightsModule {}

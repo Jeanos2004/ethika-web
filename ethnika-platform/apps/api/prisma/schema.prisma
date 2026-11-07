@@ -33,30 +33,32 @@ enum LeadEventKind {
   note
   exported
   assigned
+  flight_hold
 }
 
 /// Demande reçue du site (ou saisie par un agent).
 model Lead {
-  id           String      @id @default(uuid()) @db.Uuid
+  id             String          @id @default(uuid()) @db.Uuid
   /// Référence publique ETH-XXXXXX, communiquée au client.
-  reference    String      @unique @db.VarChar(16)
-  type         LeadType
-  status       LeadStatus  @default(new)
-  source       String      @default("site") @db.VarChar(16)
-  fullName     String      @db.VarChar(120)
-  phone        String      @db.VarChar(20)
-  email        String?     @db.VarChar(200)
-  locale       String      @default("fr") @db.VarChar(5)
+  reference      String          @unique @db.VarChar(16)
+  type           LeadType
+  status         LeadStatus      @default(new)
+  source         String          @default("site") @db.VarChar(16)
+  fullName       String          @db.VarChar(120)
+  phone          String          @db.VarChar(20)
+  email          String?         @db.VarChar(200)
+  locale         String          @default("fr") @db.VarChar(5)
   /// Détails propres au type (trajet, circuit, effectif…), validés par Zod avant écriture.
-  details      Json
-  message      String?     @db.Text
+  details        Json
+  message        String?         @db.Text
   /// Agent en charge (null = non attribuée).
-  assignedToId String?     @db.Uuid
-  assignedTo   User?       @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  events       LeadEvent[]
-  quotes       Quote[]
+  assignedToId   String?         @db.Uuid
+  assignedTo     User?           @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  events         LeadEvent[]
+  quotes         Quote[]
+  flightBookings FlightBooking[]
 
   @@index([status, createdAt])
   @@index([type, createdAt])
@@ -269,4 +271,40 @@ model Circuit {
   updatedAt    DateTime @updatedAt
 
   @@index([published, position])
+}
+
+/**
+ * ---------------------------- Vols : options posées chez le fournisseur ----------------------------
+ */
+
+enum FlightBookingStatus {
+  held
+  confirmed
+  cancelled
+}
+
+/// Option (PNR) posée chez le fournisseur par un agent. Les données des passagers restent chez le fournisseur.
+model FlightBooking {
+  id                 String              @id @default(uuid()) @db.Uuid
+  provider           String              @db.VarChar(20)
+  providerOrderId    String              @unique @db.VarChar(80)
+  bookingReference   String?             @db.VarChar(20)
+  status             FlightBookingStatus
+  /// Montant décimal tel que renvoyé par le fournisseur (chaîne, jamais un flottant).
+  totalAmount        String              @db.VarChar(20)
+  currency           String              @db.VarChar(3)
+  payBefore          DateTime?
+  /// Trajet résumé (origine, destination, dates, compagnie) pour l'affichage, sans donnée personnelle.
+  itinerary          Json
+  passengerCount     Int
+  leadId             String?             @db.Uuid
+  lead               Lead?               @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  createdBy          String              @db.Uuid
+  /// Alerte d'échéance envoyée à l'agence (une seule fois).
+  deadlineNotifiedAt DateTime?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@index([status, payBefore])
+  @@index([leadId])
 }

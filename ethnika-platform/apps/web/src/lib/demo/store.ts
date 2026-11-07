@@ -30,7 +30,8 @@ export type DemoLead = {
   history: { at: string; status: LeadStatus | "received" | "ack" }[];
 };
 
-const KEY = "ethnika_demo_leads";
+/** Clé versionnée : changer de version recharge les exemples chez les visiteurs ayant déjà ouvert la démo. */
+const KEY = "ethnika_demo_leads_v2";
 const PENDING_KEY = "ethnika_demo_pending";
 const capturedFields = [
   "type",
@@ -92,7 +93,7 @@ function sample(ref: string, type: LeadType, name: string, n: number, fields: Le
     { at, status: "ack" },
   ];
   if (status !== "new") history.push({ at, status });
-  return { ref, type, name, phone: `+224 6XX XX XX 0${n}`, email: `client${n}@exemple.com`, fields, createdAt: at, status, source: "sample", history };
+  return { ref, type, name, phone: `+224 6XX XX XX ${String(n).padStart(2, "0")}`, email: `client${n}@exemple.com`, fields, createdAt: at, status, source: "sample", history };
 }
 
 export function sampleLeads(): DemoLead[] {
@@ -112,7 +113,29 @@ export function sampleLeads(): DemoLead[] {
     sample("ETH-0417", "pelerinage", "Association [Nom]", 5, { request: "pelerinage", travellers: "25", message: "Oumra : demande de devis complet." }, "progress", daysAgo(2, 15, 22)),
     sample("ETH-0416", "billet", "Ousmane K.", 6, { trip: "ow", from: "CKY", to: "IST", adults: "1", cabin: "eco", message: "Le client a trouvé ailleurs." }, "cancelled", daysAgo(3, 10, 48)),
     sample("ETH-0415", "billet", "Fatoumata C.", 7, { trip: "rt", from: "CKY", to: "ABJ", adults: "1", cabin: "eco", message: "Billet émis." }, "confirmed", daysAgo(4, 9, 30)),
+    ...olderSamples(),
   ];
+}
+
+/** Historique fictif sur trois semaines (tableau de bord : tendance, taux de confirmation, file prioritaire). */
+function olderSamples(): DemoLead[] {
+  const rows: [LeadType, string, LeadFields, LeadStatus, number, number][] = [
+    ["billet", "Mamadou B.", { trip: "rt", from: "CKY", to: "DSS", adults: "1", cabin: "eco" }, "new", 2, 10],
+    ["circuit", "Hawa T.", { circuit: "bel-air-sobane-kitikata", travellers: "3" }, "progress", 5, 14],
+    ["billet", "Sékou C.", { trip: "rt", from: "CKY", to: "IST", adults: "2", cabin: "business" }, "confirmed", 6, 9],
+    ["contact", "Kadiatou S.", { subject: "Visa", message: "Question sur le visa pour la France." }, "confirmed", 7, 16],
+    ["billet", "Alpha O.", { trip: "ow", from: "CKY", to: "ABJ", adults: "1", cabin: "eco" }, "confirmed", 8, 11],
+    ["groupe", "École [Nom]", { request: "groupe", travellers: "30", message: "Sortie scolaire aux îles de Loos." }, "progress", 9, 15],
+    ["circuit", "Famille Bah", { circuit: "fouta-djallon-cascades-sommets", travellers: "5" }, "confirmed", 10, 18],
+    ["billet", "Aïssatou K.", { trip: "rt", from: "CKY", to: "CMN", adults: "1", cabin: "eco" }, "cancelled", 11, 8],
+    ["pro", "Entreprise [Nom]", { request: "entreprise", travellers: "6", message: "Séminaire à Dakar, 3 nuits." }, "confirmed", 12, 10],
+    ["billet", "Thierno D.", { trip: "rt", from: "CKY", to: "CDG", adults: "3", cabin: "eco" }, "confirmed", 14, 13],
+    ["circuit", "Nènè C.", { circuit: "dubreka-pirogues-cascades", travellers: "2" }, "cancelled", 15, 17],
+    ["billet", "Lansana K.", { trip: "rt", from: "CKY", to: "JED", adults: "2", cabin: "eco" }, "confirmed", 17, 9],
+    ["pelerinage", "Mosquée [Nom]", { request: "pelerinage", travellers: "40", message: "Hajj 2027 : pré-inscription." }, "progress", 19, 12],
+    ["billet", "Fanta S.", { trip: "ow", from: "CKY", to: "DSS", adults: "1", cabin: "eco" }, "confirmed", 20, 15],
+  ];
+  return rows.map(([type, name, fields, status, days, hour], i) => sample(`ETH-${String(414 - i).padStart(4, "0")}`, type, name, 8 + i, fields, status, daysAgo(days, hour, (i * 17) % 60)));
 }
 
 /* ---------- Magasin observable ---------- */

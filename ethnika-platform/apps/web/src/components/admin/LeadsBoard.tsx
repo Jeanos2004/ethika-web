@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
 import { useTranslations } from "next-intl";
 import { Icon } from "@/components/ui/Icon";
@@ -32,6 +32,9 @@ export function LeadsBoard() {
   const leads = useDemoLeads();
   const hydrated = useHydrated();
   const params = useSearchParams();
+  const router = useRouter();
+  // Arrivée par l'onglet « Nouvelle » (barre mobile) ou le bouton du tableau de bord.
+  const wantsNew = params.get("nouvelle") === "1";
   const initialRef = params.get("ref") ?? undefined;
   const [status, setStatus] = useState<StatusFilter>("all");
   const [type, setType] = useState<TypeFilter>("all");
@@ -240,10 +243,14 @@ export function LeadsBoard() {
       {hydrated && current && sheetOpen && <DetailSheet lead={current} onClose={() => setSheetOpen(false)} onPreviewEmail={() => setEmailOpen(true)} />}
 
       <NewLeadModal
-        open={newOpen}
-        onClose={() => setNewOpen(false)}
+        open={newOpen || wantsNew}
+        onClose={() => {
+          setNewOpen(false);
+          if (wantsNew) router.replace("/admin/demandes", { scroll: false });
+        }}
         onCreated={(ref) => {
           setNewOpen(false);
+          if (wantsNew) router.replace("/admin/demandes", { scroll: false });
           setStatus("all");
           setType("all");
           setQuery("");

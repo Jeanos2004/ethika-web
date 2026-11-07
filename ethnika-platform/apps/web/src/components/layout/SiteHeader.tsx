@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { clsx } from "clsx";
 import { mainNav, site, utilityNav } from "@/lib/site";
 import { pages } from "@/content/pages";
@@ -63,7 +64,22 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+      // Piège de focus : Tab / Maj+Tab restent dans le menu ouvert.
+      if (e.key !== "Tab") return;
+      const items = document.getElementById("menu-mobile")?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+      if (!items?.length) return;
+      const first = items[0]!;
+      const last = items[items.length - 1]!;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     closeButton.current?.focus();
@@ -167,45 +183,47 @@ export function SiteHeader() {
         </header>
       </div>
 
-      {/* Menu mobile plein écran */}
-      {open && (
-        <div id="menu-mobile" role="dialog" aria-modal="true" aria-label={t("menu")} className="fixed inset-0 z-50 flex flex-col bg-night text-white nav:hidden">
-          <div className="container-site flex items-center justify-between py-4">
-            <Image src="/brand/logo-horizontal-inverse.svg" alt={site.name} width={152} height={48} className="h-11 w-auto" />
-            <button ref={closeButton} type="button" onClick={() => setOpen(false)} aria-label={t("closeMenu")} className="flex size-11 items-center justify-center rounded-full bg-night-2">
-              <Icon name="close" size={22} />
-            </button>
-          </div>
-          <nav aria-label={tNav("mobile")} className="container-site flex-1 overflow-y-auto">
-            <ul className="flex flex-col text-[26px] font-bold tracking-tight">
-              {mainNav.map((item) => (
-                <li key={item.href} className="border-b border-night-line">
-                  <Link href={item.href} className={clsx("block py-3", isActive(pathname, item.href) && "text-brand-gold")} aria-current={isActive(pathname, item.href) ? "page" : undefined}>
-                    {tNav(item.key)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="container-site flex flex-col gap-3 pb-6">
-            <ButtonLink href="/billetterie" size="lg">
-              {tCommon("requestQuote")}
-            </ButtonLink>
-            <div className="flex items-center justify-between text-[13px] text-on-dark-muted">
-              <span className="flex gap-1.5">
-                {utilityNav.map((i, n) => (
-                  <span key={i.href} className="flex gap-1.5">
-                    {n > 0 && <span aria-hidden="true">·</span>}
-                    <Link href={i.href} className="hover:text-white">
-                      {tNav(i.key)}
-                    </Link>
-                  </span>
-                ))}
-              </span>
+      {/* Menu mobile plein écran, rendu dans <body> (portail) : aucun élément de la page (bandeau, barres fixes) ne peut le recouvrir. */}
+      {open &&
+        createPortal(
+          <div id="menu-mobile" role="dialog" aria-modal="true" aria-label={t("menu")} className="fixed inset-0 z-50 flex flex-col bg-night text-white nav:hidden">
+            <div className="container-site flex items-center justify-between py-4">
+              <Image src="/brand/logo-horizontal-inverse.svg" alt={site.name} width={152} height={48} className="h-11 w-auto" />
+              <button ref={closeButton} type="button" onClick={() => setOpen(false)} aria-label={t("closeMenu")} className="flex size-11 items-center justify-center rounded-full bg-night-2">
+                <Icon name="close" size={22} />
+              </button>
             </div>
-          </div>
-        </div>
-      )}
+            <nav aria-label={tNav("mobile")} className="container-site flex-1 overflow-y-auto">
+              <ul className="flex flex-col text-[26px] font-bold tracking-tight">
+                {mainNav.map((item) => (
+                  <li key={item.href} className="border-b border-night-line">
+                    <Link href={item.href} className={clsx("block py-3", isActive(pathname, item.href) && "text-brand-gold")} aria-current={isActive(pathname, item.href) ? "page" : undefined}>
+                      {tNav(item.key)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="container-site flex flex-col gap-3 pb-6">
+              <ButtonLink href="/billetterie" size="lg">
+                {tCommon("requestQuote")}
+              </ButtonLink>
+              <div className="flex items-center justify-between text-[13px] text-on-dark-muted">
+                <span className="flex gap-1.5">
+                  {utilityNav.map((i, n) => (
+                    <span key={i.href} className="flex gap-1.5">
+                      {n > 0 && <span aria-hidden="true">·</span>}
+                      <Link href={i.href} className="hover:text-white">
+                        {tNav(i.key)}
+                      </Link>
+                    </span>
+                  ))}
+                </span>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

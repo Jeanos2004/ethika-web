@@ -188,6 +188,53 @@ test.describe("navigation mobile", () => {
     await expect(menu).toBeHidden();
     await expect(page.getByRole("navigation", { name: "Actions rapides" })).toBeVisible();
   });
+
+  test("se referme avec le bouton ✕ ou Échap sans quitter la page", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "mobile", "menu burger sous 1100px");
+    await page.goto("/");
+    const burger = page.getByRole("button", { name: "Ouvrir le menu" });
+    const menu = page.getByRole("dialog", { name: "Menu" });
+
+    await burger.click();
+    await expect(menu).toBeVisible();
+    // Le bouton de fermeture doit être le premier élément cliquable à son emplacement (rien ne le recouvre).
+    const close = menu.getByRole("button", { name: "Fermer le menu" });
+    await close.click({ trial: true });
+    await close.click();
+    await expect(menu).toBeHidden();
+    await expect(page).toHaveURL(/\/$/);
+    await expect(burger).toBeFocused();
+
+    await burger.click();
+    await expect(menu).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(page).toHaveURL(/\/$/);
+  });
+
+  test("aucun élément fixe ne recouvre le menu ouvert", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "mobile", "menu burger sous 1100px");
+    await page.goto("/");
+    await page.getByRole("button", { name: "Ouvrir le menu" }).click();
+    const menu = page.getByRole("dialog", { name: "Menu" });
+    await expect(menu).toBeVisible();
+    // Points de contrôle : haut (bouton fermer), milieu (liens), bas (bouton devis) du menu.
+    const covered = await page.evaluate(() => {
+      const dialog = document.getElementById("menu-mobile");
+      if (!dialog) return ["menu introuvable"];
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      return [
+        [w - 40, 40],
+        [w / 2, h / 2],
+        [w / 2, h - 60],
+        [w - 50, h - 50],
+      ]
+        .filter(([x, y]) => !dialog.contains(document.elementFromPoint(x!, y!)))
+        .map(([x, y]) => `${Math.round(x!)},${Math.round(y!)} → ${document.elementFromPoint(x!, y!)?.outerHTML.slice(0, 80)}`);
+    });
+    expect(covered).toEqual([]);
+  });
 });
 
 test.describe("Langues", () => {

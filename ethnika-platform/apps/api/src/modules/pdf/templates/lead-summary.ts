@@ -1,4 +1,4 @@
-import { asset, brandStyles, esc } from "./html";
+import { asset, brandStyles, esc, frenchDate } from "./html";
 
 /** Données nécessaires au récapitulatif (sous-ensemble du modèle Lead). */
 export type LeadForPdf = {
@@ -69,7 +69,7 @@ function rows(lead: LeadForPdf): [string, string][] {
 
 /** Récapitulatif d'une demande, remis au client ou joint au dossier. Ce n'est ni un devis ni une confirmation. */
 export function leadSummaryHtml(lead: LeadForPdf, agency: AgencyInfo): string {
-  const created = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeStyle: "short", timeZone: "Africa/Conakry" }).format(lead.createdAt);
+  const created = frenchDate(lead.createdAt, true);
   const route = lead.type === "billet" ? ((lead.details ?? {}) as Record<string, unknown>) : undefined;
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>${esc(lead.reference)}</title><style>
   ${brandStyles()}

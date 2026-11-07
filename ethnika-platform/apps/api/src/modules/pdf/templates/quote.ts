@@ -1,5 +1,5 @@
 import { formatMoney, type Currency } from "../../quotes/money";
-import { asset, brandStyles, esc } from "./html";
+import { asset, brandStyles, esc, frenchDate } from "./html";
 import type { AgencyInfo } from "./lead-summary";
 
 export type QuoteForPdf = {
@@ -14,7 +14,7 @@ export type QuoteForPdf = {
   agentName: string;
 };
 
-const dateFr = (d: Date) => new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeZone: "Africa/Conakry" }).format(d);
+const dateFr = (d: Date) => frenchDate(d);
 
 /** Devis A4 aux couleurs ETHNIKA (Puppeteer) : en-tête, client, lignes, total, validité, conditions, signatures. */
 export function quoteHtml(q: QuoteForPdf, agency: AgencyInfo): string {

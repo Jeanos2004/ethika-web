@@ -58,17 +58,30 @@ docker run -d --name ethnika-web --restart unless-stopped \
 
 ## API (`apps/api`) sur VPS
 
-Le site reste sur Vercel ; l'API et sa base tournent sur le VPS (Docker), derrière un reverse proxy TLS.
+Le site reste sur Vercel ; l'API, sa base et le reverse proxy HTTPS tournent sur le VPS avec Docker Compose (`deploy/`).
 
-```bash
-# Depuis la racine du projet
-docker build -f apps/api/Dockerfile -t ethnika-api .
-docker run -d --name ethnika-api --restart unless-stopped \
-  -p 127.0.0.1:4000:4000 --env-file /etc/ethnika/api.env ethnika-api
-```
+### Mise en route (une fois)
+1. VPS Linux avec Docker ; DNS : `api.ethnikatour.com` (A/AAAA) → IP du VPS ; pare-feu : 22, 80, 443 seulement.
+2. Copier le dépôt sur le VPS, puis préparer les secrets (fichiers ignorés par git) :
+   ```bash
+   cp deploy/postgres.env.example deploy/postgres.env   # POSTGRES_PASSWORD : openssl rand -hex 24
+   cp deploy/api.env.example deploy/api.env             # DATABASE_URL (même mot de passe), INTERNAL_API_KEY, DATA_ENCRYPTION_KEY…
+   chmod 600 deploy/*.env
+   ```
+   Sauvegarder `DATA_ENCRYPTION_KEY` **hors du serveur** : sans elle, les 2FA sont à reconfigurer.
+3. Adapter le domaine dans `deploy/Caddyfile`, puis démarrer :
+   ```bash
+   docker compose -f deploy/docker-compose.prod.yml up -d --build
+   docker compose -f deploy/docker-compose.prod.yml exec api node dist/cli/create-admin.js admin@ethnikatour.com "Prénom Nom"
+   ```
+   Les migrations Prisma s'appliquent à chaque démarrage. Caddy obtient et renouvelle seul les certificats Let's Encrypt.
+4. Sauvegardes chiffrées chaque nuit (`deploy/backup.sh`, cron décrit dans le script) ; **tester une restauration** avant la mise en ligne.
 
-- `/etc/ethnika/api.env` : `DATABASE_URL`, `INTERNAL_API_KEY` (32+ caractères), `CORS_ORIGINS`, `SITE_URL`. Les migrations Prisma sont appliquées au démarrage (`prisma migrate deploy`).
-- PostgreSQL : service managé ou conteneur sur le même réseau Docker, **jamais exposé publiquement**, sauvegardes chiffrées et testées.
-- Reverse proxy (Caddy ou Nginx) : `api.ethnikatour.com` → `127.0.0.1:4000`, TLS, en-têtes `X-Forwarded-*` écrasés.
-- Brancher le site : sur Vercel, `API_BASE_URL=https://api.ethnikatour.com` et `API_INTERNAL_KEY=<même clé>`, puis **retirer** `NEXT_PUBLIC_DEMO_MODE` (les demandes partent alors en base).
-- PDF : Chromium est inclus dans l'image (`CHROME_PATH=/usr/bin/chromium-browser`).
+### Sécurité de la pile
+- PostgreSQL sur un réseau Docker interne, sans port publié.
+- API en utilisateur non privilégié, système de fichiers en lecture seule (`/tmp` en mémoire), `no-new-privileges`.
+- Caddy : TLS, HSTS, corps de requête limités à 256 Ko, en-tête `Server` retiré.
+- Image : environ 1,9 Go (Chromium pour les PDF + CLI Prisma pour les migrations) ; testée en lecture seule, PDF compris.
+
+### Brancher le site
+Sur Vercel : `API_BASE_URL=https://api.ethnikatour.com`, `API_INTERNAL_KEY=<INTERNAL_API_KEY>`, puis **retirer** `NEXT_PUBLIC_DEMO_MODE` (les demandes partent alors en base) et redéployer. Le back-office du site sera ensuite relié à l'API (connexion, 2FA, demandes, devis).

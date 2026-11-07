@@ -1,5 +1,6 @@
 import { formatMoney, quoteTotal } from "./money";
 import { quoteHtml } from "../pdf/templates/quote";
+import { frenchDate } from "../pdf/templates/html";
 
 describe("montants des devis", () => {
   it("calcule un total exact en entiers", () => {
@@ -29,5 +30,12 @@ describe("montants des devis", () => {
     );
     expect(html).toContain("&lt;b&gt;Vol&lt;/b&gt;");
     expect(html).toContain("DEV-2026-0001");
+  });
+});
+
+describe("frenchDate", () => {
+  it("écrit « 1er » le premier du mois", () => {
+    expect(frenchDate(new Date("2026-12-01T12:00:00Z"))).toBe("1er décembre 2026");
+    expect(frenchDate(new Date("2026-12-15T12:00:00Z"))).toBe("15 décembre 2026");
   });
 });

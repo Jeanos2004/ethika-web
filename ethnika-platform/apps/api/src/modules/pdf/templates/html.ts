@@ -35,6 +35,12 @@ export function brandStyles(): string {
   `;
 }
 
+/** Date en toutes lettres à la française, heure de Conakry ; « 1er » pour le premier du mois. */
+export function frenchDate(d: Date, withTime = false): string {
+  const text = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", ...(withTime && { timeStyle: "short" }), timeZone: "Africa/Conakry" }).format(d);
+  return text.replace(/^1 /, "1er ");
+}
+
 /** Pied de page Chrome (styles en ligne obligatoires : le gabarit est rendu à part). */
 export function footerTemplate(left: string): string {
   return `<div style="width:100%;padding:0 18mm;font-family:Arial,sans-serif;font-size:8px;color:#6b6259;display:flex;justify-content:space-between">

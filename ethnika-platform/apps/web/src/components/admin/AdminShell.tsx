@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { clsx } from "clsx";
 import { useTranslations } from "next-intl";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
 
 type Section = "dashboard" | "leads";
@@ -13,133 +14,95 @@ type Section = "dashboard" | "leads";
 const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
 
 /**
- * Coquille du back-office (AdminDemandes.dc.html) :
- * - ≥ 1024 px : barre latérale fixe de 248 px ;
- * - en dessous : barre supérieure + menu en tiroir (Échap, clic sur le voile, focus rendu au bouton).
+ * Coquille du back-office.
+ * - ≥ 1024 px : barre latérale fixe (navigation, compte, démo).
+ * - < 1024 px : barre supérieure compacte (logo + titre) et barre d'onglets en bas d'écran, à portée de pouce :
+ *   Accueil · Demandes · Nouvelle (action principale) · Plus (panneau des options secondaires).
  */
-export function AdminShell({ section, children }: { section: Section; children: ReactNode }) {
+export function AdminShell({ section, title, children }: { section: Section; title: string; children: ReactNode }) {
   const t = useTranslations("admin");
-  const [open, setOpen] = useState(false);
-  const menuButton = useRef<HTMLButtonElement>(null);
-  const closeButton = useRef<HTMLButtonElement>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
   const leads = useDemoLeads();
   const newCount = leads.filter((l) => l.status === "new").length;
-
-  useEffect(() => {
-    if (!open) return;
-    closeButton.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    const trigger = menuButton.current;
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      trigger?.focus();
-    };
-  }, [open]);
-
-  const nav = (
-    <nav aria-label={t("navLabel")} className="flex flex-col gap-1 text-[15px] font-semibold">
-      <NavLink href="/admin" current={section === "dashboard"} icon="grid">
-        {t("nav.dashboard")}
-      </NavLink>
-      <NavLink href="/admin/demandes" current={section === "leads"} icon="mail" badge={newCount || undefined}>
-        {t("nav.leads")}
-      </NavLink>
-      {soon.map((k) => (
-        <span key={k} aria-disabled="true" className="flex min-h-11 items-center justify-between gap-2 rounded-xl px-3.5 text-on-dark-muted">
-          {t(`nav.${k}`)}
-          <span className="rounded-full border border-night-muted px-2 py-0.5 font-mono text-[10px] tracking-wide">{t("soon")}</span>
-        </span>
-      ))}
-    </nav>
-  );
-
-  const footer = (
-    <div className="mt-auto flex flex-col gap-3">
-      <div className="flex flex-col gap-0.5 rounded-[14px] bg-night-2 p-3.5 text-[13px] text-on-dark">
-        <strong className="text-white">{t("agentName")}</strong>
-        <span>{t("agentRole")}</span>
-      </div>
-      <Link href="/" className="flex min-h-11 items-center gap-2 rounded-xl px-3.5 text-sm font-semibold text-on-dark hover:bg-night-2 hover:text-white">
-        <Icon name="arrowRight" size={16} className="rotate-180" /> {t("viewSite")}
-      </Link>
-      <button type="button" onClick={() => resetDemo()} className="flex min-h-11 items-center gap-2 rounded-xl px-3.5 text-left text-sm font-semibold text-on-dark hover:bg-night-2 hover:text-white">
-        <Icon name="refresh" size={16} /> {t("reset")}
-      </button>
-    </div>
-  );
 
   return (
     <div className="min-h-dvh lg:flex">
       {/* Barre latérale (≥ 1024 px) */}
-      <aside className="sticky top-0 hidden h-dvh w-[248px] shrink-0 flex-col gap-6 overflow-y-auto bg-night px-4 py-[22px] text-on-dark lg:flex">
-        <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={152} height={48} className="h-12 w-auto self-start" />
-        <span className="px-2.5 font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
-        {nav}
-        {footer}
+      <aside className="sticky top-0 hidden h-dvh w-[252px] shrink-0 flex-col gap-7 overflow-y-auto bg-night px-4 py-6 text-on-dark lg:flex">
+        <div className="flex flex-col gap-2 px-2">
+          <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={152} height={48} className="h-11 w-auto self-start" />
+          <span className="font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
+        </div>
+        <nav aria-label={t("navLabel")} className="flex flex-col gap-1 text-[15px] font-semibold">
+          <SideLink href="/admin" current={section === "dashboard"} icon="grid">
+            {t("nav.dashboard")}
+          </SideLink>
+          <SideLink href="/admin/demandes" current={section === "leads"} icon="mail" badge={newCount || undefined}>
+            {t("nav.leads")}
+          </SideLink>
+          <span className="mt-4 mb-1 px-3.5 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
+          {soon.map((k) => (
+            <span key={k} aria-disabled="true" className="flex min-h-10 items-center rounded-xl px-3.5 text-[14px] font-medium text-on-dark-muted">
+              {t(`nav.${k}`)}
+            </span>
+          ))}
+        </nav>
+        <AccountFooter />
       </aside>
 
-      {/* Barre supérieure (< 1024 px) */}
-      <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 bg-night px-4 text-white lg:hidden">
-        <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={120} height={38} className="h-[38px] w-auto" />
-        <span className="hidden font-mono text-[11px] tracking-[0.14em] text-on-dark-muted sm:inline">{t("backOffice")}</span>
-        <button
-          ref={menuButton}
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-expanded={open}
-          aria-controls="admin-menu"
-          aria-label={t("openMenu")}
-          className="relative flex size-11 items-center justify-center rounded-full bg-night-2"
-        >
-          <Icon name="menu" size={20} />
-          {newCount > 0 && <span className="absolute -top-0.5 -right-0.5 flex min-w-5 items-center justify-center rounded-full bg-brand-red px-1 text-[11px] font-bold">{newCount}</span>}
-        </button>
-      </header>
-
-      {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <button type="button" aria-hidden="true" tabIndex={-1} onClick={() => setOpen(false)} className="absolute inset-0 bg-ink/60" />
-          <div
-            id="admin-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label={t("navLabel")}
-            className="absolute inset-y-0 left-0 flex w-[min(300px,85vw)] flex-col gap-6 overflow-y-auto bg-night px-4 py-5 text-on-dark"
-          >
-            <div className="flex items-center justify-between">
-              <span className="px-2.5 font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
-              <button
-                ref={closeButton}
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label={t("closeMenu")}
-                className="flex size-11 items-center justify-center rounded-full bg-night-2 text-white"
-              >
-                <Icon name="close" size={18} />
-              </button>
-            </div>
-            {nav}
-            {footer}
-          </div>
-        </div>
-      )}
-
       <div className="flex min-w-0 flex-1 flex-col">
+        {/* Barre supérieure (< 1024 px) */}
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-night-line bg-night px-4 text-white lg:hidden">
+          <Image src="/brand/symbole-or.svg" alt="ETHNIKA" width={28} height={28} className="size-7" />
+          <span className="truncate text-[15px] font-semibold">{title}</span>
+        </header>
+
         <p role="note" className="border-b border-line bg-white px-4 py-2.5 text-[13px] leading-snug text-muted sm:px-7">
           {t("demoBanner")}
         </p>
-        <main className="flex min-w-0 flex-1 flex-col gap-5 p-4 sm:p-7">{children}</main>
+        {/* Espace réservé en bas pour la barre d'onglets mobile (+ zone de sécurité des écrans à encoche). */}
+        <main className="flex min-w-0 flex-1 flex-col gap-5 p-4 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:p-7 sm:pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-7">{children}</main>
       </div>
+
+      {/* Barre d'onglets (< 1024 px) */}
+      <nav
+        aria-label={t("mobileNav.label")}
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur supports-[backdrop-filter]:bg-white/85 lg:hidden"
+      >
+        <ul className="mx-auto grid h-16 max-w-md grid-cols-4">
+          <TabLink href="/admin" current={section === "dashboard"} icon="grid" label={t("mobileNav.dashboard")} />
+          <TabLink href="/admin/demandes" current={section === "leads"} icon="mail" label={t("mobileNav.leads")} badge={newCount || undefined} />
+          <li className="flex items-center justify-center">
+            <Link href="/admin/demandes?nouvelle=1" className="flex flex-col items-center gap-0.5 text-[11px] font-semibold text-ink">
+              <span className="flex size-10 items-center justify-center rounded-full bg-brand-gold shadow-sm">
+                <Icon name="plus" size={20} strokeWidth={2.4} />
+              </span>
+              {t("mobileNav.new")}
+            </Link>
+          </li>
+          <li className="flex">
+            <button
+              type="button"
+              onClick={() => setMoreOpen(true)}
+              aria-haspopup="dialog"
+              aria-expanded={moreOpen}
+              className="flex flex-1 flex-col items-center justify-center gap-1 text-[11px] font-semibold text-muted"
+            >
+              <Icon name="menu" size={20} />
+              {t("mobileNav.more")}
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      {moreOpen && <MoreSheet onClose={() => setMoreOpen(false)} />}
     </div>
   );
 }
 
-function NavLink({ href, current, icon, badge, children }: { href: string; current: boolean; icon: "grid" | "mail"; badge?: number; children: ReactNode }) {
+function SideLink({ href, current, icon, badge, children }: { href: string; current: boolean; icon: IconName; badge?: number; children: ReactNode }) {
   return (
-    <a
+    <Link
       href={href}
       aria-current={current ? "page" : undefined}
       className={clsx("flex min-h-11 items-center justify-between gap-2 rounded-xl px-3.5", current ? "bg-night-2 text-white" : "hover:bg-night-2 hover:text-white")}
@@ -148,7 +111,107 @@ function NavLink({ href, current, icon, badge, children }: { href: string; curre
         <Icon name={icon} size={17} />
         {children}
       </span>
-      {badge !== undefined && <span className="rounded-full bg-brand-red px-2 py-0.5 text-xs text-white">{badge}</span>}
-    </a>
+      {badge !== undefined && <span className="rounded-full bg-brand-red px-2 py-0.5 text-xs text-white tabular-nums">{badge}</span>}
+    </Link>
+  );
+}
+
+function TabLink({ href, current, icon, label, badge }: { href: string; current: boolean; icon: IconName; label: string; badge?: number }) {
+  return (
+    <li className="flex">
+      <Link
+        href={href}
+        aria-current={current ? "page" : undefined}
+        className={clsx("relative flex flex-1 flex-col items-center justify-center gap-1 text-[11px] font-semibold", current ? "text-night" : "text-muted")}
+      >
+        <span className="relative">
+          <Icon name={icon} size={20} />
+          {badge !== undefined && (
+            <span className="absolute -top-1.5 -right-2.5 flex min-w-4 items-center justify-center rounded-full bg-brand-red px-1 text-[10px] text-white tabular-nums">{badge}</span>
+          )}
+        </span>
+        {label}
+        {current && <span aria-hidden="true" className="absolute top-0 h-0.5 w-8 rounded-full bg-night" />}
+      </Link>
+    </li>
+  );
+}
+
+function AccountFooter() {
+  const t = useTranslations("admin");
+  return (
+    <div className="mt-auto flex flex-col gap-1">
+      <div className="mb-2 flex items-center gap-3 rounded-xl bg-night-2 p-3">
+        <span aria-hidden="true" className="flex size-9 items-center justify-center rounded-full bg-brand-gold text-sm font-bold text-ink">
+          NC
+        </span>
+        <span className="flex min-w-0 flex-col text-[13px]">
+          <strong className="truncate text-white">{t("agentName")}</strong>
+          <span className="truncate text-on-dark-muted">{t("agentRole")}</span>
+        </span>
+      </div>
+      <Link href="/" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+        <Icon name="arrowLeft" size={16} /> {t("viewSite")}
+      </Link>
+      <button type="button" onClick={() => resetDemo()} className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+        <Icon name="refresh" size={16} /> {t("reset")}
+      </button>
+    </div>
+  );
+}
+
+/** Panneau « Plus » (mobile) : monte du bas, rendu dans <body>, Échap et clic sur le voile pour fermer, focus géré. */
+function MoreSheet({ onClose }: { onClose: () => void }) {
+  const t = useTranslations("admin");
+  const panel = useRef<HTMLDivElement>(null);
+  const close = useRef(onClose);
+  useEffect(() => {
+    close.current = onClose;
+  });
+  useEffect(() => {
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    panel.current?.querySelector<HTMLElement>("button, a")?.focus();
+    const root = document.documentElement;
+    root.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close.current();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      root.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+      previous?.focus();
+    };
+  }, []);
+
+  return createPortal(
+    <div className="fixed inset-0 z-50 lg:hidden">
+      <button type="button" aria-hidden="true" tabIndex={-1} onClick={onClose} className="absolute inset-0 bg-ink/50" />
+      <div
+        ref={panel}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("mobileNav.moreTitle")}
+        className="absolute inset-x-0 bottom-0 flex max-h-[85dvh] flex-col gap-5 overflow-y-auto rounded-t-3xl bg-night px-5 pt-3 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-on-dark"
+      >
+        <span aria-hidden="true" className="mx-auto h-1 w-10 rounded-full bg-night-muted" />
+        <div className="flex items-center justify-between">
+          <strong className="text-white">{t("mobileNav.moreTitle")}</strong>
+          <button type="button" onClick={onClose} aria-label={t("closeMenu")} className="flex size-10 items-center justify-center rounded-full bg-night-2 text-white">
+            <Icon name="close" size={18} />
+          </button>
+        </div>
+        <div className="flex flex-col gap-1">
+          <span className="mb-1 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
+          {soon.map((k) => (
+            <span key={k} aria-disabled="true" className="flex min-h-10 items-center text-[15px] text-on-dark-muted">
+              {t(`nav.${k}`)}
+            </span>
+          ))}
+        </div>
+        <AccountFooter />
+      </div>
+    </div>,
+    document.body,
   );
 }

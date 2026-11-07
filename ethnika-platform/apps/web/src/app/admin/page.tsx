@@ -10,7 +10,7 @@ export default function AdminHomePage() {
   // Phase 1 : démonstration seulement. Phase 2 : session vérifiée côté serveur à chaque requête.
   if (!isDemo) notFound();
   return (
-    <AdminShell section="dashboard">
+    <AdminShell section="dashboard" title="Tableau de bord">
       <Dashboard />
     </AdminShell>
   );

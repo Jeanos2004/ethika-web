@@ -35,7 +35,9 @@ const schema = z.object({
 export type Env = z.infer<typeof schema>;
 
 export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
-  const parsed = schema.safeParse(source);
+  // Une variable vide (« SMTP_URL= » comme dans .env.example) vaut « non renseignée ».
+  const cleaned = Object.fromEntries(Object.entries(source).filter(([, v]) => v !== undefined && v.trim() !== ""));
+  const parsed = schema.safeParse(cleaned);
   if (!parsed.success) {
     const fields = Object.keys(z.flattenError(parsed.error).fieldErrors).join(", ");
     throw new Error(`Configuration invalide (${fields}) — voir apps/api/.env.example`);

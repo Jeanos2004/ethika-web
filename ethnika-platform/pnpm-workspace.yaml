@@ -11,3 +11,9 @@ onlyBuiltDependencies:
   # Prisma : moteur de migration téléchargé à l'installation (CLI uniquement).
   - prisma
   - "@prisma/engines"
+
+# Correctifs de sécurité transitifs (pnpm audit) : versions minimales imposées.
+overrides:
+  multer: ">=2.5.0"
+  basic-ftp: ">=6.2.1"
+  "chromium-bidi>zod": "4.6.7"

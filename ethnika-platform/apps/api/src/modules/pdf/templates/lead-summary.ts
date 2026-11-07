@@ -73,32 +73,32 @@ export function leadSummaryHtml(lead: LeadForPdf, agency: AgencyInfo): string {
   const route = lead.type === "billet" ? ((lead.details ?? {}) as Record<string, unknown>) : undefined;
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>${esc(lead.reference)}</title><style>
   ${brandStyles()}
-  .head { background: var(--night); color: #fff; padding: 14mm 18mm 10mm; position: relative; overflow: hidden; }
+  .head { background: var(--night); color: #fff; padding: 10mm 18mm 7mm; position: relative; overflow: hidden; }
   .head .symbol { position: absolute; right: -18mm; top: -10mm; width: 78mm; opacity: .08; }
   .stripe { display: flex; height: 2.2mm; } .stripe span { flex: 1; }
   .head .logo { height: 15mm; margin-left: -2mm; }
-  .head h1 { margin: 9mm 0 1mm; font-size: 27px; letter-spacing: -0.03em; line-height: 1.1; }
+  .head h1 { margin: 6mm 0 1mm; font-size: 27px; letter-spacing: -0.03em; line-height: 1.1; }
   .head .meta { display: flex; gap: 10mm; color: #d0d4cf; font-size: 11px; margin-top: 4mm; }
   .head .meta b { display: block; color: var(--gold); font-family: "DM Mono", monospace; font-size: 15px; font-weight: 500; }
-  main { padding: 10mm 18mm 0; }
+  main { padding: 7mm 18mm 0; }
   .hello { font-size: 20px; color: var(--red); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 6mm; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 5mm; }
   .card { border-radius: 4mm; padding: 5mm 6mm; background: var(--sand); }
   .card h2 { margin: 0 0 3mm; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--subtle); font-family: "DM Mono", monospace; font-weight: 500; }
   table { width: 100%; border-collapse: collapse; }
-  td { padding: 1.6mm 0; vertical-align: top; border-top: 0.3mm solid var(--line); }
+  td { padding: 1.3mm 0; vertical-align: top; border-top: 0.3mm solid var(--line); }
   tr:first-child td { border-top: 0; }
   td:first-child { color: var(--subtle); width: 40%; }
-  .ticket { margin-top: 6mm; border-radius: 4mm; background: var(--night); color: #fff; padding: 5mm 7mm; display: flex; align-items: center; justify-content: space-between; }
+  .ticket { margin-top: 5mm; border-radius: 4mm; background: var(--night); color: #fff; padding: 5mm 7mm; display: flex; align-items: center; justify-content: space-between; }
   .ticket .code { font-family: "DM Mono", monospace; font-size: 34px; } .ticket .to { color: var(--gold); }
   .ticket .plane { color: var(--gold); font-size: 18px; }
-  .msg { margin-top: 6mm; border-left: 1mm solid var(--gold); padding: 2mm 0 2mm 5mm; color: var(--muted); white-space: pre-line; }
-  .steps { margin-top: 7mm; } .steps h2 { font-size: 15px; margin: 0 0 2mm; color: var(--night); }
+  .msg { margin-top: 5mm; border-left: 1mm solid var(--gold); padding: 2mm 0 2mm 5mm; color: var(--muted); white-space: pre-line; }
+  .steps { margin-top: 5mm; } .steps h2 { font-size: 15px; margin: 0 0 2mm; color: var(--night); }
   .steps ol { margin: 0; padding: 0; list-style: none; }
-  .steps li { display: flex; gap: 5mm; padding: 1.8mm 0; color: var(--muted); }
+  .steps li { display: flex; gap: 5mm; padding: 1.2mm 0; color: var(--muted); }
   .steps li span { font-family: "DM Mono", monospace; width: 7mm; }
-  .notice { margin-top: 7mm; font-size: 10.5px; color: var(--subtle); background: #fff8e8; border-radius: 3mm; padding: 3mm 5mm; }
-  .agency { margin: 8mm 18mm 0; padding-top: 5mm; border-top: 0.3mm solid var(--line); font-size: 10.5px; color: var(--subtle); }
+  .notice { margin-top: 5mm; font-size: 10.5px; color: var(--subtle); background: #fff8e8; border-radius: 3mm; padding: 3mm 5mm; }
+  .agency { margin: 5mm 18mm 0; padding-top: 3mm; border-top: 0.3mm solid var(--line); font-size: 10.5px; color: var(--subtle); }
   .agency strong { color: var(--night); }
   </style></head><body>
   <div class="stripe"><span style="background:var(--red)"></span><span style="background:var(--gold)"></span><span style="background:var(--green)"></span></div>

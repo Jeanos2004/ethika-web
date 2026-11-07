@@ -6,6 +6,9 @@ Spécification : `docs/PROMPT_CLAUDE_CODE.md` § 6 et `docs/SECURITY.md` § 5. D
 
 > Développée **indépendamment du site** : tant que le VPS n'existe pas, le site tourne en mode démo et ne l'appelle pas.
 
+Pile : NestJS 11 (CommonJS), Prisma 7 + PostgreSQL, Zod 4, Jest. NestJS 12 et `puppeteer-core` 25 sont publiés en ESM uniquement :
+on reste volontairement sur NestJS 11 et `puppeteer-core` 24 (CommonJS) tant que l'API n'est pas migrée en ESM.
+
 ## Démarrer en local
 ```bash
 cp apps/api/.env.example apps/api/.env   # INTERNAL_API_KEY et DATA_ENCRYPTION_KEY : openssl rand -hex 32

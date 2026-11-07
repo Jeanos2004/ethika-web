@@ -17,7 +17,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       res.status(status).json(typeof body === "object" ? body : { error: body });
       return;
     }
-    this.logger.error(exception instanceof Error ? exception.message : "Erreur inconnue");
+    // Message technique seulement (jamais le corps de requête) ; robuste aux erreurs venant d'un autre contexte (worker, VM).
+    const message = exception && typeof exception === "object" && "message" in exception ? String((exception as { message: unknown }).message) : String(exception);
+    this.logger.error(message.slice(0, 500));
     res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: "internal_error" });
   }
 }

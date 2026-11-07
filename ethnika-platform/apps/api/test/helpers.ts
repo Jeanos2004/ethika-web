@@ -1,6 +1,7 @@
 import type { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
 import request from "supertest";
+import { config as loadDotenv } from "dotenv";
 import { AppModule } from "../src/app.module";
 import { loadEnv } from "../src/config/env";
 import { HttpExceptionFilter } from "../src/common/http-exception.filter";
@@ -12,11 +13,8 @@ export const TEST_PREFIX = "e2e-";
 
 /** Application complète sur la base de DATABASE_URL (migrations appliquées). */
 export async function createApp() {
-  try {
-    process.loadEnvFile();
-  } catch {
-    // variables déjà présentes (CI)
-  }
+  // Jest isole process.env : dotenv y charge le .env local (sans écraser les variables déjà fournies, ex. CI).
+  loadDotenv({ quiet: true });
   const env = loadEnv({ ...process.env, NODE_ENV: "test", INTERNAL_API_KEY: KEY, DATA_ENCRYPTION_KEY: process.env.DATA_ENCRYPTION_KEY ?? "0".repeat(64) });
   const moduleRef = await Test.createTestingModule({ imports: [AppModule.register(env)] }).compile();
   const app = moduleRef.createNestApplication();

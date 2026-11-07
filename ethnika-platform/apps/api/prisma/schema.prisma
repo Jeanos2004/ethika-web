@@ -1,0 +1,201 @@
+// Base de données de l'API ETHNIKA (PostgreSQL). Migrations versionnées dans prisma/migrations.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum LeadType {
+  contact
+  billet
+  circuit
+  groupe
+  pelerinage
+  pro
+}
+
+enum LeadStatus {
+  new
+  in_progress
+  confirmed
+  cancelled
+}
+
+enum LeadEventKind {
+  received
+  ack_sent
+  status_changed
+  note
+  exported
+}
+
+/// Demande reçue du site (ou saisie par un agent).
+model Lead {
+  id        String     @id @default(uuid()) @db.Uuid
+  /// Référence publique ETH-XXXXXX, communiquée au client.
+  reference String     @unique @db.VarChar(16)
+  type      LeadType
+  status    LeadStatus @default(new)
+  source    String     @default("site") @db.VarChar(16)
+  fullName  String     @db.VarChar(120)
+  phone     String     @db.VarChar(20)
+  email     String?    @db.VarChar(200)
+  locale    String     @default("fr") @db.VarChar(5)
+  /// Détails propres au type (trajet, circuit, effectif…), validés par Zod avant écriture.
+  details   Json
+  message   String?    @db.Text
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  events    LeadEvent[]
+  quotes    Quote[]
+
+  @@index([status, createdAt])
+  @@index([type, createdAt])
+}
+
+/// Historique d'une demande (journal d'audit fonctionnel).
+model LeadEvent {
+  id        String        @id @default(uuid()) @db.Uuid
+  leadId    String        @db.Uuid
+  lead      Lead          @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  kind      LeadEventKind
+  /// Statut cible pour status_changed.
+  status    LeadStatus?
+  /// Auteur (identifiant agent en phase 2 ; « system » ou « site » sinon).
+  actor     String        @default("system") @db.VarChar(64)
+  note      String?       @db.Text
+  createdAt DateTime      @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+/// Inscription aux alertes promo (double opt-in prévu avec le module mail).
+model Subscriber {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique @db.VarChar(200)
+  locale    String   @default("fr") @db.VarChar(5)
+  createdAt DateTime @default(now())
+}
+
+/* ---------------------------- Back-office : comptes, sessions, audit ---------------------------- */
+
+enum Role {
+  admin
+  agent
+}
+
+/// Compte du back-office. Aucun compte par défaut : le premier admin est créé en ligne de commande.
+model User {
+  id               String    @id @default(uuid()) @db.Uuid
+  email            String    @unique @db.VarChar(200)
+  name             String    @db.VarChar(120)
+  role             Role      @default(agent)
+  /// Empreinte argon2id (jamais le mot de passe).
+  passwordHash     String    @db.VarChar(255)
+  /// Secret TOTP chiffré (AES-256-GCM, clé DATA_ENCRYPTION_KEY) ; null tant que la 2FA n'est pas configurée.
+  totpSecret       String?   @db.VarChar(255)
+  totpEnabled      Boolean   @default(false)
+  /// Dernier pas TOTP accepté : un même code ne peut pas servir deux fois (rejeu).
+  totpLastStep     Int?
+  failedAttempts   Int       @default(0)
+  lockCount        Int       @default(0)
+  lockedUntil      DateTime?
+  disabled         Boolean   @default(false)
+  mustChangePassword Boolean @default(true)
+  lastLoginAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  sessions         Session[]
+}
+
+/// Session du back-office. Seule l'empreinte SHA-256 du jeton est stockée.
+model Session {
+  id          String   @id @db.VarChar(64)
+  userId      String   @db.Uuid
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Vrai une fois le code TOTP vérifié (ou pour un agent sans 2FA).
+  mfaVerified Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  expiresAt   DateTime
+  ip          String?  @db.VarChar(64)
+  userAgent   String?  @db.VarChar(255)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// Défi de connexion en deux étapes (mot de passe validé, code TOTP attendu). Courte durée, usage unique.
+model LoginChallenge {
+  id        String   @id @db.VarChar(64)
+  userId    String   @db.Uuid
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([expiresAt])
+}
+
+/// Journal d'audit des actions sensibles (connexions, statuts, exports, comptes). Sans donnée personnelle de client.
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  actorId   String?  @db.Uuid
+  action    String   @db.VarChar(64)
+  target    String?  @db.VarChar(128)
+  ip        String?  @db.VarChar(64)
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([actorId, createdAt])
+}
+
+/* ---------------------------- E-mails (file d'envoi) ---------------------------- */
+
+enum EmailStatus {
+  pending
+  sent
+  failed
+}
+
+/// File d'envoi des e-mails (pattern outbox) : écrite dans la même transaction que la demande, envoyée par un worker avec reprises.
+model EmailOutbox {
+  id            String      @id @default(uuid()) @db.Uuid
+  to            String      @db.VarChar(200)
+  template      String      @db.VarChar(64)
+  payload       Json
+  status        EmailStatus @default(pending)
+  attempts      Int         @default(0)
+  nextAttemptAt DateTime    @default(now())
+  lastError     String?     @db.VarChar(500)
+  sentAt        DateTime?
+  createdAt     DateTime    @default(now())
+
+  @@index([status, nextAttemptAt])
+}
+
+/* ---------------------------- Devis ---------------------------- */
+
+/// Devis rédigé par un agent pour une demande. Montants en unités entières de la devise (GNF sans décimales, EUR en centimes).
+model Quote {
+  id         String   @id @default(uuid()) @db.Uuid
+  /// Numéro lisible, unique : DEV-2026-0001.
+  number     String   @unique @db.VarChar(20)
+  leadId     String   @db.Uuid
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  currency   String   @db.VarChar(3)
+  /// Lignes { label, quantity, unitAmount } validées par Zod.
+  lines      Json
+  totalAmount BigInt
+  validUntil DateTime @db.Date
+  notes      String?  @db.Text
+  createdBy  String   @db.Uuid
+  createdAt  DateTime @default(now())
+
+  @@index([leadId, createdAt])
+}

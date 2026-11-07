@@ -12,8 +12,9 @@ import { SessionGuard } from "../auth/session.guard";
 import { PdfService } from "../pdf/pdf.service";
 import { footerTemplate } from "../pdf/templates/html";
 import { leadSummaryHtml } from "../pdf/templates/lead-summary";
-import { leadInput, leadQuery, newsletterInput, statusChange, type LeadInput, type LeadQuery } from "./lead.schemas";
+import { assignInput, leadInput, leadQuery, noteInput, statusChange, type LeadInput, type LeadQuery } from "./lead.schemas";
 import { LeadsService } from "./leads.service";
+import { StatsService } from "./stats.service";
 import { REFERENCE_PATTERN } from "./reference";
 
 /** Coordonnées de l'agence imprimées sur les documents (placeholders tant que l'agence ne les a pas fournies). */
@@ -35,12 +36,6 @@ export class LeadsIntakeController {
   create(@Body(new ZodPipe(leadInput)) body: LeadInput) {
     return this.leads.create(body);
   }
-
-  @Post("newsletter")
-  @HttpCode(201)
-  subscribe(@Body(new ZodPipe(newsletterInput)) body: z.infer<typeof newsletterInput>) {
-    return this.leads.subscribe(body.email, body.locale);
-  }
 }
 
 /** Back-office des demandes : clé interne + session (agent ou admin), actions historisées et auditées. */
@@ -56,13 +51,13 @@ export class LeadsAdminController {
   ) {}
 
   @Get()
-  list(@Query(new ZodPipe(leadQuery)) q: LeadQuery) {
-    return this.leads.list(q);
+  list(@Query(new ZodPipe(leadQuery)) q: LeadQuery, @CurrentUser() me: AuthContext) {
+    return this.leads.list(q, me.userId);
   }
 
   @Get("export.csv")
   async exportCsv(@Query(new ZodPipe(leadQuery)) q: LeadQuery, @CurrentUser() me: AuthContext, @Req() req: Request, @Res() res: Response) {
-    const { csv, count } = await this.leads.exportCsv(q);
+    const { csv, count } = await this.leads.exportCsv(q, me.userId);
     await this.audit.log("lead.exported", { actorId: me.userId, ip: clientInfo(req).ip, meta: { count, filters: { status: q.status, type: q.type, q: q.q ? "…" : undefined } } });
     // Avec @Res(), les en-têtes se posent à la main (les décorateurs @Header ne s'appliquent pas).
     res.setHeader("content-type", "text/csv; charset=utf-8");
@@ -83,6 +78,19 @@ export class LeadsAdminController {
     return lead;
   }
 
+  @Patch(":ref/assign")
+  async assign(@Param("ref") ref: string, @Body(new ZodPipe(assignInput)) body: z.infer<typeof assignInput>, @CurrentUser() me: AuthContext, @Req() req: Request) {
+    const lead = await this.leads.assign(checkRef(ref), body.userId, me.userId);
+    await this.audit.log("lead.assigned", { actorId: me.userId, target: ref, ip: clientInfo(req).ip, meta: { to: body.userId } });
+    return lead;
+  }
+
+  @Post(":ref/notes")
+  @HttpCode(201)
+  addNote(@Param("ref") ref: string, @Body(new ZodPipe(noteInput)) body: z.infer<typeof noteInput>, @CurrentUser() me: AuthContext) {
+    return this.leads.addNote(checkRef(ref), body.note, me.userId);
+  }
+
   /** Récapitulatif PDF de la demande (Puppeteer). */
   @Get(":ref/pdf")
   async summaryPdf(@Param("ref") ref: string, @CurrentUser() me: AuthContext, @Res() res: Response) {
@@ -93,5 +101,18 @@ export class LeadsAdminController {
     res.setHeader("content-disposition", `inline; filename="${lead.reference}.pdf"`);
     res.setHeader("cache-control", "no-store");
     res.send(pdf);
+  }
+}
+
+/** Indicateurs du tableau de bord du back-office. */
+@Controller("v1/stats")
+@UseGuards(InternalKeyGuard, SessionGuard)
+@Roles("agent", "admin")
+export class StatsController {
+  constructor(private readonly stats: StatsService) {}
+
+  @Get()
+  dashboard() {
+    return this.stats.dashboard();
   }
 }

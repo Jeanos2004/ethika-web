@@ -14,9 +14,13 @@ export type AuditAction =
   | "user.updated"
   | "user.disabled"
   | "lead.status_changed"
+  | "lead.assigned"
   | "lead.exported"
   | "lead.pdf"
   | "quote.created"
+  | "content.created"
+  | "content.updated"
+  | "content.deleted"
   | "maintenance.purge";
 
 /**

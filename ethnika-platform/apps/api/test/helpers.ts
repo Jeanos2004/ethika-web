@@ -37,5 +37,21 @@ export async function cleanup(prisma: PrismaService) {
   await prisma.lead.deleteMany({ where: { fullName: { startsWith: "E2E " } } });
   await prisma.subscriber.deleteMany({ where: { email: { endsWith: "@e2e.example.com" } } });
   await prisma.user.deleteMany({ where: { email: { startsWith: TEST_PREFIX } } });
-  await prisma.emailOutbox.deleteMany({ where: { to: { endsWith: "@example.com" } } });
+  await prisma.emailOutbox.deleteMany({ where: { to: { endsWith: "example.com" } } });
+  await prisma.offer.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+  await prisma.circuit.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+}
+
+/** Session administrateur complète : mot de passe définitif puis 2FA activée (codes TOTP générés localement). */
+export async function adminSession(app: INestApplication, users: UsersService) {
+  const { currentStep, totpAt } = await import("../src/common/security/totp");
+  const agent = await agentSession(app, users, "admin");
+  const setup = await request(app.getHttpServer()).post("/v1/auth/mfa/setup").set("x-internal-key", KEY).set("x-session-token", agent.session).expect(200);
+  const enabled = await request(app.getHttpServer())
+    .post("/v1/auth/mfa/enable")
+    .set("x-internal-key", KEY)
+    .set("x-session-token", agent.session)
+    .send({ code: totpAt(setup.body.secret, currentStep()) })
+    .expect(200);
+  return { ...agent, session: enabled.body.session as string };
 }

@@ -30,12 +30,15 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | Accès | Méthode | Route | Rôle |
 |---|---|---|---|
 | clé | POST | `/leads` | Demande du site (revalidée par Zod, référence `ETH-XXXXXX`, e-mails mis en file) |
-| clé | POST | `/newsletter` | Inscription aux alertes |
+| clé | POST | `/newsletter`, `/newsletter/confirm`, `/newsletter/unsubscribe` | Alertes promo en double opt-in (jetons hachés, pas d'énumération, 1 e-mail / 10 min) |
+| clé | GET | `/public/offers?locale=`, `/public/circuits?locale=`, `/public/circuits/:slug` | Contenus publiés, localisés (repli EN → FR) |
 | clé | POST | `/flights/search` | Recherche de vols (cache 5 min, limite par IP) |
 | clé | GET | `/flights/offers/:id` | Prix et conditions d'une offre |
 | clé | POST | `/auth/login`, `/auth/mfa` | Connexion |
 | session | GET / POST | `/auth/me`, `/auth/logout`, `/auth/password`, `/auth/mfa/setup`, `/auth/mfa/enable` | Compte courant |
-| agent, admin | GET | `/leads?status=&type=&q=&page=&pageSize=` | Liste paginée (25 par défaut, 100 max.) + compteurs |
+| agent, admin | GET | `/leads?status=&type=&q=&assignee=me\|none\|<id>&page=&pageSize=` | Liste paginée (25 par défaut, 100 max.) + compteurs |
+| agent, admin | PATCH / POST | `/leads/:ref/assign`, `/leads/:ref/notes` | Attribution à un agent, notes internes (historisées) |
+| agent, admin | GET | `/stats` | Indicateurs du tableau de bord (à traiter, en retard, taux de confirmation, 14 jours, file prioritaire, activité) |
 | agent, admin | GET | `/leads/export.csv` | Export CSV (formules neutralisées, audité) |
 | agent, admin | GET / PATCH | `/leads/:ref`, `/leads/:ref/status` | Détail, changement de statut (historisé, audité) |
 | agent, admin | GET | `/leads/:ref/pdf` | Récapitulatif PDF |
@@ -44,6 +47,7 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | POST / GET | `/flights/orders`, `/flights/orders/:id`, `/flights/orders/:id/cancel` | Option (hold) sans émission, consultation, annulation |
 | admin | GET / POST / PATCH | `/users`, `/users/:id`, `/users/:id/reset-mfa`, `/users/:id/reset-password` | Comptes |
 | admin | GET | `/audit` | Journal d'audit |
+| admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
 | public | GET | `/health` | Santé (accès base) |
 
 ## Modules
@@ -52,6 +56,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 - **audit** : connexions, échecs, verrouillages, statuts, exports, devis, comptes — sans donnée client.
 - **mail** : file d'envoi en base (outbox) écrite dans la transaction de la demande ; worker toutes les 15 s, reprises à 1 min, 5 min, 30 min, 2 h, 12 h. Accusé client (FR/EN, d'après `EmailAccuse.dc.html`) et notification agence sans coordonnées client. Sans `SMTP_URL`, rien n'est envoyé (journal sans contenu).
 - **pdf** : Puppeteer (`puppeteer-core` + Chrome du système). Gabarits HTML dans `src/modules/pdf/templates` (récapitulatif, devis), polices et logos embarqués ; JavaScript désactivé et réseau bloqué au rendu. Nouveau document = un gabarit + une route.
+- **newsletter** : double opt-in, désinscription, abonnés actifs.
+- **content** : offres et circuits gérés depuis le back-office (FR obligatoire, EN facultatif), liens internes et images vérifiés (pas de redirection ouverte, pas de `javascript:`).
 - **quotes** : devis par demande ; montants en unités entières (GNF, centimes d'euro), totaux en `BigInt`.
 - **flights** : interface `FlightProvider` ; `mock` (développement) ou `duffel` (jeton `duffel_test_…`). Délais, reprises à backoff, journal sans donnée personnelle. Une « réservation » est une option : ni paiement ni émission sans un agent.
 - **maintenance** : chaque heure, purge des sessions et défis expirés, des e-mails envoyés de plus de 90 jours et des demandes clôturées au-delà de `LEAD_RETENTION_DAYS`.

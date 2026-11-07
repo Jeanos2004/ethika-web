@@ -66,18 +66,22 @@ export const leadQuery = z.strictObject({
   status: z.enum(leadStatuses).optional(),
   type: z.enum(["contact", "billet", "circuit", "groupe", "pelerinage", "pro"]).optional(),
   q: z.string().trim().max(80).optional(),
+  /** « me » : mes demandes ; « none » : non attribuées ; ou l'identifiant d'un agent. */
+  assignee: z.union([z.literal("me"), z.literal("none"), z.uuid()]).optional(),
   page: z.coerce.number().int().min(1).max(10_000).default(1),
   pageSize: z.coerce.number().int().min(1).max(100).default(25),
 });
 
 export type LeadQuery = z.infer<typeof leadQuery>;
 
+export const assignInput = z.strictObject({ userId: z.uuid().nullable() });
+export const noteInput = z.strictObject({ note: z.string().trim().min(2).max(2000) });
+
 export const statusChange = z.strictObject({
   status: z.enum(leadStatuses),
   note: z.string().trim().max(1000).optional(),
 });
 
-export const newsletterInput = z.strictObject({ email, locale: z.enum(["fr", "en"]).optional() });
 
 /** Sépare les colonnes communes des détails propres au type (stockés en JSON). */
 export function splitLead(input: LeadInput) {

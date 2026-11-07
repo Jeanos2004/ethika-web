@@ -32,30 +32,35 @@ enum LeadEventKind {
   status_changed
   note
   exported
+  assigned
 }
 
 /// Demande reçue du site (ou saisie par un agent).
 model Lead {
-  id        String     @id @default(uuid()) @db.Uuid
+  id           String      @id @default(uuid()) @db.Uuid
   /// Référence publique ETH-XXXXXX, communiquée au client.
-  reference String     @unique @db.VarChar(16)
-  type      LeadType
-  status    LeadStatus @default(new)
-  source    String     @default("site") @db.VarChar(16)
-  fullName  String     @db.VarChar(120)
-  phone     String     @db.VarChar(20)
-  email     String?    @db.VarChar(200)
-  locale    String     @default("fr") @db.VarChar(5)
+  reference    String      @unique @db.VarChar(16)
+  type         LeadType
+  status       LeadStatus  @default(new)
+  source       String      @default("site") @db.VarChar(16)
+  fullName     String      @db.VarChar(120)
+  phone        String      @db.VarChar(20)
+  email        String?     @db.VarChar(200)
+  locale       String      @default("fr") @db.VarChar(5)
   /// Détails propres au type (trajet, circuit, effectif…), validés par Zod avant écriture.
-  details   Json
-  message   String?    @db.Text
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  events    LeadEvent[]
-  quotes    Quote[]
+  details      Json
+  message      String?     @db.Text
+  /// Agent en charge (null = non attribuée).
+  assignedToId String?     @db.Uuid
+  assignedTo   User?       @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  events       LeadEvent[]
+  quotes       Quote[]
 
   @@index([status, createdAt])
   @@index([type, createdAt])
+  @@index([assignedToId, status])
 }
 
 /// Historique d'une demande (journal d'audit fonctionnel).
@@ -76,13 +81,21 @@ model LeadEvent {
 
 /// Inscription aux alertes promo (double opt-in prévu avec le module mail).
 model Subscriber {
-  id        String   @id @default(uuid()) @db.Uuid
-  email     String   @unique @db.VarChar(200)
-  locale    String   @default("fr") @db.VarChar(5)
-  createdAt DateTime @default(now())
+  id                   String    @id @default(uuid()) @db.Uuid
+  email                String    @unique @db.VarChar(200)
+  locale               String    @default("fr") @db.VarChar(5)
+  /// Empreinte SHA-256 du jeton de confirmation (double opt-in) ; null une fois confirmé.
+  confirmTokenHash     String?   @unique @db.VarChar(64)
+  confirmedAt          DateTime?
+  /// Empreinte du jeton de désinscription (lien présent dans chaque e-mail).
+  unsubscribeTokenHash String    @unique @db.VarChar(64)
+  unsubscribedAt       DateTime?
+  createdAt            DateTime  @default(now())
 }
 
-/* ---------------------------- Back-office : comptes, sessions, audit ---------------------------- */
+/**
+ * ---------------------------- Back-office : comptes, sessions, audit ----------------------------
+ */
 
 enum Role {
   admin
@@ -91,26 +104,27 @@ enum Role {
 
 /// Compte du back-office. Aucun compte par défaut : le premier admin est créé en ligne de commande.
 model User {
-  id               String    @id @default(uuid()) @db.Uuid
-  email            String    @unique @db.VarChar(200)
-  name             String    @db.VarChar(120)
-  role             Role      @default(agent)
+  id                 String    @id @default(uuid()) @db.Uuid
+  email              String    @unique @db.VarChar(200)
+  name               String    @db.VarChar(120)
+  role               Role      @default(agent)
   /// Empreinte argon2id (jamais le mot de passe).
-  passwordHash     String    @db.VarChar(255)
+  passwordHash       String    @db.VarChar(255)
   /// Secret TOTP chiffré (AES-256-GCM, clé DATA_ENCRYPTION_KEY) ; null tant que la 2FA n'est pas configurée.
-  totpSecret       String?   @db.VarChar(255)
-  totpEnabled      Boolean   @default(false)
+  totpSecret         String?   @db.VarChar(255)
+  totpEnabled        Boolean   @default(false)
   /// Dernier pas TOTP accepté : un même code ne peut pas servir deux fois (rejeu).
-  totpLastStep     Int?
-  failedAttempts   Int       @default(0)
-  lockCount        Int       @default(0)
-  lockedUntil      DateTime?
-  disabled         Boolean   @default(false)
-  mustChangePassword Boolean @default(true)
-  lastLoginAt      DateTime?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  sessions         Session[]
+  totpLastStep       Int?
+  failedAttempts     Int       @default(0)
+  lockCount          Int       @default(0)
+  lockedUntil        DateTime?
+  disabled           Boolean   @default(false)
+  mustChangePassword Boolean   @default(true)
+  lastLoginAt        DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  sessions           Session[]
+  assignedLeads      Lead[]    @relation("LeadAssignee")
 }
 
 /// Session du back-office. Seule l'empreinte SHA-256 du jeton est stockée.
@@ -155,7 +169,9 @@ model AuditLog {
   @@index([actorId, createdAt])
 }
 
-/* ---------------------------- E-mails (file d'envoi) ---------------------------- */
+/**
+ * ---------------------------- E-mails (file d'envoi) ----------------------------
+ */
 
 enum EmailStatus {
   pending
@@ -179,23 +195,78 @@ model EmailOutbox {
   @@index([status, nextAttemptAt])
 }
 
-/* ---------------------------- Devis ---------------------------- */
+/**
+ * ---------------------------- Devis ----------------------------
+ */
 
 /// Devis rédigé par un agent pour une demande. Montants en unités entières de la devise (GNF sans décimales, EUR en centimes).
 model Quote {
-  id         String   @id @default(uuid()) @db.Uuid
+  id          String   @id @default(uuid()) @db.Uuid
   /// Numéro lisible, unique : DEV-2026-0001.
-  number     String   @unique @db.VarChar(20)
-  leadId     String   @db.Uuid
-  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
-  currency   String   @db.VarChar(3)
+  number      String   @unique @db.VarChar(20)
+  leadId      String   @db.Uuid
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  currency    String   @db.VarChar(3)
   /// Lignes { label, quantity, unitAmount } validées par Zod.
-  lines      Json
+  lines       Json
   totalAmount BigInt
-  validUntil DateTime @db.Date
-  notes      String?  @db.Text
-  createdBy  String   @db.Uuid
-  createdAt  DateTime @default(now())
+  validUntil  DateTime @db.Date
+  notes       String?  @db.Text
+  createdBy   String   @db.Uuid
+  createdAt   DateTime @default(now())
 
   @@index([leadId, createdAt])
+}
+
+/**
+ * ---------------------------- Contenus gérés depuis le back-office ----------------------------
+ */
+
+enum OfferType {
+  vol
+  pack
+  last
+}
+
+/// Offre promotionnelle (page Offres). Textes FR/EN dans `i18n`, validés par Zod.
+model Offer {
+  id          String    @id @default(uuid()) @db.Uuid
+  slug        String    @unique @db.VarChar(80)
+  type        OfferType
+  /// { fr: { kicker, title, description, imageAlt }, en: { … } }
+  i18n        Json
+  imageUrl    String    @db.VarChar(300)
+  /// Lien interne du site (ex. /billetterie?vers=CDG#demande).
+  href        String    @db.VarChar(300)
+  priceAmount BigInt?
+  currency    String?   @db.VarChar(3)
+  validUntil  DateTime? @db.Date
+  published   Boolean   @default(false)
+  position    Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published, position])
+}
+
+/// Circuit (pages Circuits et fiche). Programme, inclus/non inclus et textes FR/EN dans `i18n` ; départs dans `departures`.
+model Circuit {
+  id           String   @id @default(uuid()) @db.Uuid
+  slug         String   @unique @db.VarChar(80)
+  theme        String   @db.VarChar(20)
+  region       String   @db.VarChar(20)
+  durationDays Int
+  imageUrl     String   @db.VarChar(300)
+  priceFrom    BigInt?
+  currency     String?  @db.VarChar(3)
+  /// { fr: { title, headline, summary, place, imageAlt, intro, days: [...], included: [...], excluded: [...] }, en: { … } }
+  i18n         Json
+  /// [{ dates, status: available|last|request, price }]
+  departures   Json
+  published    Boolean  @default(false)
+  position     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([published, position])
 }

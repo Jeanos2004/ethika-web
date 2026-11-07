@@ -1,4 +1,4 @@
-import { ConflictException, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
+import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { Prisma } from "../../generated/prisma/client";
 import { PrismaService } from "../../prisma/prisma.service";
 import { toCsv } from "../../common/csv";
@@ -71,9 +71,11 @@ export class LeadsService {
     return items;
   }
 
-  private where(q: Omit<LeadQuery, "page" | "pageSize">): Prisma.LeadWhereInput {
+  private where(q: Omit<LeadQuery, "page" | "pageSize">, meId?: string): Prisma.LeadWhereInput {
     const text = q.q?.trim();
+    const assignee = q.assignee === "me" ? meId : q.assignee === "none" ? null : q.assignee;
     return {
+      ...(q.assignee !== undefined && { assignedToId: assignee ?? null }),
       ...(q.status && { status: q.status }),
       ...(q.type && { type: q.type }),
       ...(text && {
@@ -87,8 +89,8 @@ export class LeadsService {
     };
   }
 
-  async list(q: LeadQuery) {
-    const where = this.where(q);
+  async list(q: LeadQuery, meId?: string) {
+    const where = this.where(q, meId);
     const [total, items, counts] = await this.prisma.$transaction([
       this.prisma.lead.count({ where }),
       this.prisma.lead.findMany({
@@ -96,7 +98,7 @@ export class LeadsService {
         orderBy: { createdAt: "desc" },
         skip: (q.page - 1) * q.pageSize,
         take: q.pageSize,
-        select: { reference: true, type: true, status: true, source: true, fullName: true, phone: true, email: true, details: true, createdAt: true },
+        select: { reference: true, type: true, status: true, source: true, fullName: true, phone: true, email: true, details: true, createdAt: true, assignedTo: { select: { id: true, name: true } } },
       }),
       this.prisma.lead.groupBy({ by: ["status"], orderBy: { status: "asc" }, _count: { _all: true } }),
     ]);
@@ -105,7 +107,7 @@ export class LeadsService {
   }
 
   async get(reference: string) {
-    const lead = await this.prisma.lead.findUnique({ where: { reference }, include: { events: { orderBy: { createdAt: "asc" } } } });
+    const lead = await this.prisma.lead.findUnique({ where: { reference }, include: { events: { orderBy: { createdAt: "asc" } }, assignedTo: { select: { id: true, name: true } } } });
     if (!lead) throw new NotFoundException();
     return lead;
   }
@@ -121,9 +123,31 @@ export class LeadsService {
     return this.get(reference);
   }
 
+  /** Attribue la demande à un agent actif (ou la libère avec null) ; historisé. */
+  async assign(reference: string, userId: string | null, actor: string) {
+    const lead = await this.prisma.lead.findUnique({ where: { reference }, select: { id: true } });
+    if (!lead) throw new NotFoundException();
+    let label = "Non attribuée";
+    if (userId) {
+      const user = await this.prisma.user.findUnique({ where: { id: userId }, select: { name: true, disabled: true } });
+      if (!user || user.disabled) throw new BadRequestException({ error: "assignee_invalid" });
+      label = user.name;
+    }
+    await this.prisma.lead.update({ where: { id: lead.id }, data: { assignedToId: userId, events: { create: { kind: "assigned", actor, note: label } } } });
+    return this.get(reference);
+  }
+
+  /** Note interne (jamais visible du client) ; historisée. */
+  async addNote(reference: string, note: string, actor: string) {
+    const lead = await this.prisma.lead.findUnique({ where: { reference }, select: { id: true } });
+    if (!lead) throw new NotFoundException();
+    await this.prisma.leadEvent.create({ data: { leadId: lead.id, kind: "note", actor, note } });
+    return this.get(reference);
+  }
+
   /** Export CSV des demandes filtrées (5 000 lignes maximum) ; l'appelant journalise l'export (audit). */
-  async exportCsv(q: Omit<LeadQuery, "page" | "pageSize">) {
-    const items = await this.prisma.lead.findMany({ where: this.where(q), orderBy: { createdAt: "desc" }, take: 5000 });
+  async exportCsv(q: Omit<LeadQuery, "page" | "pageSize">, meId?: string) {
+    const items = await this.prisma.lead.findMany({ where: this.where(q, meId), orderBy: { createdAt: "desc" }, take: 5000 });
     const csv = toCsv(
       ["Référence", "Reçue le", "Statut", "Type", "Client", "Téléphone", "E-mail", "Détails", "Message", "Source"],
       items.map((l) => [l.reference, l.createdAt.toISOString(), statusLabels[l.status], typeLabels[l.type], l.fullName, l.phone, l.email ?? "", JSON.stringify(l.details), l.message ?? "", l.source]),
@@ -131,10 +155,7 @@ export class LeadsService {
     return { csv, count: items.length };
   }
 
-  async subscribe(email: string, locale = "fr") {
-    await this.prisma.subscriber.upsert({ where: { email: email.toLowerCase() }, update: {}, create: { email: email.toLowerCase(), locale } });
-    return { reference: `NL-${newReference().slice(4)}` };
-  }
+
 }
 
 const statusKeys = ["new", "in_progress", "confirmed", "cancelled"] as const;

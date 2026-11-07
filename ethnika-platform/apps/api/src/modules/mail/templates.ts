@@ -102,5 +102,30 @@ export function agencyEmail(p: AgencyPayload): RenderedEmail {
   return { subject, html, text: `${subject}\n${p.summary}\n${p.backOfficeUrl}` };
 }
 
-export const templates = { ack: ackEmail, agency: agencyEmail } as const;
+export type NewsletterConfirmPayload = { locale: "fr" | "en"; confirmUrl: string; unsubscribeUrl: string };
+
+/** Double opt-in : lien de confirmation (valable jusqu'à usage) et lien de désinscription. */
+export function newsletterConfirmEmail(p: NewsletterConfirmPayload): RenderedEmail {
+  const en = p.locale === "en";
+  const subject = en ? "Confirm your subscription to ETHNIKA deals" : "Confirmez votre inscription aux offres ETHNIKA";
+  const title = en ? "One last step" : "Une dernière étape";
+  const text = en
+    ? "Please confirm that you want to receive our deals and departures. If you did not ask for this, simply ignore this email."
+    : "Merci de confirmer que vous souhaitez recevoir nos offres et nos départs. Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet e-mail.";
+  const button = en ? "Confirm my subscription" : "Confirmer mon inscription";
+  const unsubscribe = en ? "Unsubscribe" : "Se désinscrire";
+  const html = `<!doctype html><html lang="${p.locale}"><head><meta charset="utf-8"><title>${esc(subject)}</title></head><body style="margin:0;padding:24px 12px;background:#efe6d2;${font}">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" align="center" style="max-width:560px;width:100%;background:#fffbf5;border-radius:16px;overflow:hidden">
+<tr><td style="background:#16211c;padding:20px 28px;font-size:22px;letter-spacing:4px;color:#ffffff;font-weight:700">ETHNIKA</td></tr>
+<tr><td style="padding:30px 28px">
+<h1 style="margin:0 0 10px;font-size:26px;color:#16211c">${esc(title)}</h1>
+<p style="margin:0 0 22px;font-size:16px;line-height:1.6;color:#4e463f">${esc(text)}</p>
+<a href="${esc(p.confirmUrl)}" style="display:inline-block;padding:14px 26px;border-radius:999px;background:#b0121b;color:#ffffff;font-weight:700;font-size:15px;text-decoration:none">${esc(button)}</a>
+</td></tr>
+<tr><td style="padding:16px 28px;background:#f5eee3;font-size:12px;color:#6b6259"><a href="${esc(p.unsubscribeUrl)}" style="color:#6b6259">${esc(unsubscribe)}</a></td></tr>
+</table></body></html>`;
+  return { subject, html, text: [title, "", text, "", `${button} : ${p.confirmUrl}`, "", `${unsubscribe} : ${p.unsubscribeUrl}`].join("\n") };
+}
+
+export const templates = { ack: ackEmail, agency: agencyEmail, newsletter_confirm: newsletterConfirmEmail } as const;
 export type TemplateName = keyof typeof templates;

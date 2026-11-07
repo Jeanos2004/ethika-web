@@ -2,9 +2,9 @@ import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from "@nest
 import { Prisma } from "../../generated/prisma/client";
 import { ENV, type Env } from "../../config/env";
 import { PrismaService } from "../../prisma/prisma.service";
-import { templates, type AckPayload, type AgencyPayload, type RenderedEmail, type TemplateName } from "./templates";
+import { templates, type AckPayload, type AgencyPayload, type NewsletterConfirmPayload, type RenderedEmail, type TemplateName } from "./templates";
 
-type Payloads = { ack: AckPayload; agency: AgencyPayload };
+type Payloads = { ack: AckPayload; agency: AgencyPayload; newsletter_confirm: NewsletterConfirmPayload };
 export type OutboxItem = { [K in TemplateName]: { to: string; template: K; payload: Payloads[K] } }[TemplateName];
 
 /** Envoi effectif : SMTP en production, journal (sans contenu) en développement. */

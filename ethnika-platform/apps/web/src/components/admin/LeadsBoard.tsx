@@ -11,7 +11,9 @@ import { leadStatuses, useDemoLeads, useHydrated, type DemoLead, type LeadStatus
 import { digest } from "@/lib/demo/summary";
 import { toCsv } from "@/lib/csv";
 import { slugify } from "@/lib/slug";
-import { formatLong, formatShort, statusStyle } from "@/components/admin/status";
+import { formatLong, formatShort } from "@/components/admin/status";
+import { StatusBadge } from "@/components/admin/StatusBadge";
+
 import { LeadDetail } from "@/components/admin/LeadDetail";
 import { NewLeadModal } from "@/components/admin/NewLeadModal";
 import { AckEmail } from "@/components/admin/AckEmail";
@@ -90,7 +92,7 @@ export function LeadsBoard() {
           <button
             type="button"
             onClick={() => setNewOpen(true)}
-            className="flex h-11 items-center justify-center gap-2 rounded-full bg-brand-red px-4 text-sm font-bold text-white hover:bg-brand-red-dark"
+            className="flex h-11 items-center justify-center gap-2 rounded-full bg-night px-4 text-sm font-semibold text-white hover:bg-night-line"
           >
             <Icon name="plus" size={16} /> {t("leads.new")}
           </button>
@@ -102,7 +104,7 @@ export function LeadsBoard() {
       {/* FILTRES */}
       <div className="flex flex-col gap-3">
         <div role="group" aria-label={t("leads.statusFilter")} className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
-          <div className="flex shrink-0 gap-1 rounded-full bg-white p-1">
+          <div className="flex shrink-0 gap-1 rounded-full border border-line bg-white p-1">
             {(["all", ...leadStatuses] as StatusFilter[]).map((s) => (
               <button
                 key={s}
@@ -126,7 +128,7 @@ export function LeadsBoard() {
                 onClick={() => setType(v)}
                 className={clsx(
                   "h-10 rounded-full border-[1.5px] px-3.5 text-[13px] font-semibold",
-                  type === v ? "border-brand-red bg-red-50 text-red-700" : "border-line-strong bg-white text-night hover:border-night",
+                  type === v ? "border-night bg-night text-white" : "border-line bg-white text-night hover:border-line-strong",
                 )}
               >
                 {t(`typeFilters.${v}`)}
@@ -151,9 +153,9 @@ export function LeadsBoard() {
       <div className="flex items-start gap-4">
         <section aria-label={t("leads.listLabel")} className="min-w-0 flex-1">
           {!hydrated ? (
-            <div className="h-64 animate-pulse rounded-[20px] bg-white" />
+            <div className="h-64 animate-pulse rounded-2xl border border-line bg-white" />
           ) : filtered.length === 0 ? (
-            <div className="flex flex-col items-center gap-3 rounded-[20px] bg-white px-6 py-10 text-center text-muted">
+            <div className="flex flex-col items-center gap-3 rounded-2xl border border-line bg-white px-6 py-10 text-center text-muted">
               {t("leads.noRows")}
               <button
                 type="button"
@@ -178,7 +180,7 @@ export function LeadsBoard() {
                 ))}
               </ul>
               {/* Tableau (≥ 768 px) */}
-              <div className="hidden overflow-x-auto rounded-[20px] bg-white md:block">
+              <div className="hidden overflow-x-auto rounded-2xl border border-line bg-white md:block">
                 <table className="w-full min-w-[640px] border-collapse text-sm">
                   <caption className="sr-only">{t("leads.tableCaption")}</caption>
                   <thead>
@@ -217,7 +219,7 @@ export function LeadsBoard() {
                           <td className="max-w-[280px] px-4 py-3.5 text-muted">{digest(l).summary}</td>
                           <td className="px-4 py-3.5 font-mono text-xs whitespace-nowrap text-muted">{formatShort(l.createdAt)}</td>
                           <td className="px-4 py-3.5">
-                            <span className={clsx("rounded-full px-2.5 py-[5px] text-xs font-bold whitespace-nowrap", statusStyle[l.status].badge)}>{t(`statuses.${l.status}`)}</span>
+                            <StatusBadge status={l.status} />
                           </td>
                         </tr>
                       );
@@ -230,7 +232,7 @@ export function LeadsBoard() {
         </section>
 
         {/* Détail à droite (≥ 1280 px) */}
-        <aside aria-label={t("leads.detailLabel")} className="sticky top-6 hidden w-[360px] shrink-0 rounded-[20px] bg-white p-[22px] xl:block">
+        <aside aria-label={t("leads.detailLabel")} className="sticky top-6 hidden w-[360px] shrink-0 rounded-2xl border border-line bg-white p-[22px] xl:block">
           {hydrated && current ? <LeadDetail lead={current} onPreviewEmail={() => setEmailOpen(true)} /> : <p className="text-sm text-muted">{t("leads.noSelection")}</p>}
         </aside>
       </div>
@@ -265,11 +267,11 @@ function LeadCard({ lead, selected, onOpen }: { lead: DemoLead; selected: boolea
       onClick={onOpen}
       aria-current={selected ? "true" : undefined}
       aria-label={t("leads.open", { ref: lead.ref })}
-      className={clsx("flex w-full flex-col gap-2 rounded-2xl border-l-[5px] bg-white p-4 text-left shadow-[0_6px_20px_rgb(22_33_28/0.05)]", statusStyle[lead.status].accent)}
+      className={clsx("flex w-full flex-col gap-2 rounded-2xl border bg-white p-4 text-left transition-colors hover:border-line-strong", selected ? "border-night" : "border-line")}
     >
       <span className="flex w-full items-center justify-between gap-2">
         <span className="font-mono text-sm font-medium text-night">{lead.ref}</span>
-        <span className={clsx("rounded-full px-2.5 py-1 text-xs font-bold", statusStyle[lead.status].badge)}>{t(`statuses.${lead.status}`)}</span>
+        <StatusBadge status={lead.status} />
       </span>
       <span className="flex flex-col">
         <strong className="text-[15px] break-words text-night">{lead.name}</strong>

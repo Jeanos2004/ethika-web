@@ -128,7 +128,7 @@ export function AdminShell({ section, children }: { section: Section; children: 
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <p role="note" className="bg-gold-50 px-4 py-2.5 text-[13px] leading-snug text-gold-700 sm:px-7">
+        <p role="note" className="border-b border-line bg-white px-4 py-2.5 text-[13px] leading-snug text-muted sm:px-7">
           {t("demoBanner")}
         </p>
         <main className="flex min-w-0 flex-1 flex-col gap-5 p-4 sm:p-7">{children}</main>

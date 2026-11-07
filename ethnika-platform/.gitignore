@@ -21,3 +21,6 @@ next-env.d.ts
 test-results/
 playwright-report/
 captures/
+
+# Client Prisma généré (prisma generate)
+apps/api/src/generated/

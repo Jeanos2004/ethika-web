@@ -83,7 +83,9 @@ export function SiteHeader() {
         <div className="container-site flex flex-wrap justify-between gap-x-6 gap-y-2 py-2.5">
           <div className="hidden flex-wrap gap-x-5 gap-y-2 sm:flex">
             <span>{site.contact.phone}</span>
-            <a href={`mailto:${site.contact.email}`} className="hover:text-white">{site.contact.email}</a>
+            <a href={`mailto:${site.contact.email}`} className="hover:text-white">
+              {site.contact.email}
+            </a>
             <span>{tSite("hours")}</span>
           </div>
           <div className="flex items-center gap-4">
@@ -97,73 +99,72 @@ export function SiteHeader() {
                 {tNav(item.key)}
               </Link>
             ))}
-            <span className="h-3.5 w-px bg-white/30" aria-hidden="true" />
-            <LanguageSwitcher />
           </div>
         </div>
       </div>
 
       {/* Navigation principale */}
       <div className="h-[84px] lg:h-[94px]">
-      <header
-        className={clsx(
-          "h-[84px] lg:h-[94px]",
-          scrolled ? "fixed inset-x-0 top-0 z-40 border-b border-line bg-cream shadow-sm motion-safe:animate-header-in" : !transparent && "border-b border-line bg-cream",
-        )}
-      >
-        <div className="container-site flex h-full items-center justify-between gap-4">
-          <Link href="/" aria-label={t("homeLabel", { name: site.name })} aria-current={pathname === "/" ? "page" : undefined} className="-ml-2.5 flex shrink-0">
-            <Image
-              src={solid ? "/brand/logo-horizontal-couleur.svg" : "/brand/logo-horizontal-inverse.svg"}
-              alt={site.name}
-              width={196}
-              height={62}
-              priority
-              className="h-[52px] w-auto lg:h-[62px]"
-            />
-          </Link>
+        <header
+          className={clsx(
+            "h-[84px] lg:h-[94px]",
+            scrolled ? "fixed inset-x-0 top-0 z-40 border-b border-line bg-cream shadow-sm motion-safe:animate-header-in" : !transparent && "border-b border-line bg-cream",
+          )}
+        >
+          <div className="container-site flex h-full items-center justify-between gap-4">
+            <Link href="/" aria-label={t("homeLabel", { name: site.name })} aria-current={pathname === "/" ? "page" : undefined} className="-ml-2.5 flex shrink-0">
+              <Image
+                src={solid ? "/brand/logo-horizontal-couleur.svg" : "/brand/logo-horizontal-inverse.svg"}
+                alt={site.name}
+                width={196}
+                height={62}
+                priority
+                className="h-[42px] w-auto min-[380px]:h-[52px] lg:h-[62px]"
+              />
+            </Link>
 
-          <nav aria-label={tNav("main")} className="hidden nav:block">
-            <ul className="flex gap-6 text-[15px] font-semibold">
-              {mainNav.map((item) => {
-                const active = isActive(pathname, item.href);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={clsx(
-                        "pb-1",
-                        solid ? "text-night hover:text-brand-red" : "text-white hover:text-brand-gold",
-                        active && (solid ? "border-b-2 border-brand-red text-brand-red!" : "border-b-2 border-brand-gold text-brand-gold!"),
-                      )}
-                    >
-                      {tNav(item.key)}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+            <nav aria-label={tNav("main")} className="hidden nav:block">
+              <ul className="flex gap-6 text-[15px] font-semibold">
+                {mainNav.map((item) => {
+                  const active = isActive(pathname, item.href);
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={clsx(
+                          "pb-1",
+                          solid ? "text-night hover:text-brand-red" : "text-white hover:text-brand-gold",
+                          active && (solid ? "border-b-2 border-brand-red text-brand-red!" : "border-b-2 border-brand-gold text-brand-gold!"),
+                        )}
+                      >
+                        {tNav(item.key)}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:block">
-              <ButtonLink href="/billetterie">{tCommon("requestQuote")}</ButtonLink>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <LanguageSwitcher tone={solid ? "light" : "dark"} />
+              <div className="hidden sm:block">
+                <ButtonLink href="/billetterie">{tCommon("requestQuote")}</ButtonLink>
+              </div>
+              <button
+                ref={burger}
+                type="button"
+                className={clsx("flex size-11 items-center justify-center rounded-full nav:hidden", solid ? "bg-night text-white" : "bg-white/15 text-white")}
+                aria-expanded={open}
+                aria-controls="menu-mobile"
+                aria-label={open ? t("closeMenu") : t("openMenu")}
+                onClick={() => setOpen((v) => !v)}
+              >
+                <Icon name={open ? "close" : "menu"} size={22} />
+              </button>
             </div>
-            <button
-              ref={burger}
-              type="button"
-              className={clsx("flex size-11 items-center justify-center rounded-full nav:hidden", solid ? "bg-night text-white" : "bg-white/15 text-white")}
-              aria-expanded={open}
-              aria-controls="menu-mobile"
-              aria-label={open ? t("closeMenu") : t("openMenu")}
-              onClick={() => setOpen((v) => !v)}
-            >
-              <Icon name={open ? "close" : "menu"} size={22} />
-            </button>
           </div>
-        </div>
-      </header>
+        </header>
       </div>
 
       {/* Menu mobile plein écran */}
@@ -201,7 +202,6 @@ export function SiteHeader() {
                   </span>
                 ))}
               </span>
-              <LanguageSwitcher />
             </div>
           </div>
         </div>

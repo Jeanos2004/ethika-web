@@ -1,27 +1,11 @@
 import type { LeadStatus } from "@/lib/demo/store";
 
-/** Couleurs des statuts (maquette AdminDemandes.dc.html), en tokens. */
-export const statusStyle: Record<LeadStatus, { badge: string; accent: string; active: string }> = {
-  new: {
-    badge: "bg-line text-muted",
-    accent: "border-l-subtle",
-    active: "border-subtle bg-line text-ink",
-  },
-  progress: {
-    badge: "bg-gold-50 text-gold-700",
-    accent: "border-l-brand-gold",
-    active: "border-brand-gold bg-gold-50 text-gold-700",
-  },
-  confirmed: {
-    badge: "bg-green-50 text-green-700",
-    accent: "border-l-brand-green",
-    active: "border-brand-green bg-green-50 text-green-700",
-  },
-  cancelled: {
-    badge: "bg-red-50 text-red-700",
-    accent: "border-l-brand-red",
-    active: "border-brand-red bg-red-50 text-red-700",
-  },
+/** Statuts : une simple pastille de couleur (maquette AdminDemandes.dc.html, version sobre), en tokens. */
+export const statusDot: Record<LeadStatus, string> = {
+  new: "bg-subtle",
+  progress: "bg-brand-gold",
+  confirmed: "bg-brand-green",
+  cancelled: "bg-brand-red",
 };
 
 const dateTime = new Intl.DateTimeFormat("fr-FR", {

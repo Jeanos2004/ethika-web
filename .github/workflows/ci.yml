@@ -16,18 +16,26 @@ jobs:
   web:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Le projet vit dans le sous-dossier ethnika-platform/ du dépôt.
+    defaults:
+      run:
+        working-directory: ethnika-platform
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: ethnika-platform/package.json
       - uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version-file: ethnika-platform/.nvmrc
           cache: pnpm
+          cache-dependency-path: ethnika-platform/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
+      - run: pnpm test
       - run: pnpm build
         env:
           NEXT_TELEMETRY_DISABLED: "1"

@@ -5,7 +5,8 @@ import { useTranslations } from "next-intl";
 import { Icon } from "@/components/ui/Icon";
 import { leadStatuses, setLeadStatus, type DemoLead } from "@/lib/demo/store";
 import { digest } from "@/lib/demo/summary";
-import { formatLong, statusStyle, whatsappTo } from "@/components/admin/status";
+import { formatLong, whatsappTo } from "@/components/admin/status";
+import { StatusBadge } from "@/components/admin/StatusBadge";
 
 /** Détail d'une demande (colonne de droite de AdminDemandes.dc.html). */
 export function LeadDetail({ lead, onPreviewEmail }: { lead: DemoLead; onPreviewEmail: () => void }) {
@@ -18,16 +19,16 @@ export function LeadDetail({ lead, onPreviewEmail }: { lead: DemoLead; onPreview
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="font-mono text-xl text-night">{lead.ref}</span>
-        <span className={clsx("rounded-full px-2.5 py-[5px] text-xs font-bold", statusStyle[lead.status].badge)}>{t(`statuses.${lead.status}`)}</span>
+        <StatusBadge status={lead.status} />
       </div>
       <div className="flex flex-col gap-0.5">
         <strong className="text-xl break-words">{lead.name}</strong>
         <span className="text-sm break-words text-muted">
           {lead.phone} · {lead.email ?? t("leads.noEmail")}
         </span>
-        {lead.source === "site" && <span className="mt-1 self-start rounded-full bg-gold-50 px-2.5 py-1 text-xs font-bold text-gold-700">{t("leads.yours")}</span>}
+        {lead.source === "site" && <span className="mt-1 self-start rounded-full border border-line px-2.5 py-1 text-xs font-semibold text-muted">{t("leads.yours")}</span>}
       </div>
-      <div className="flex flex-col gap-1.5 rounded-[14px] bg-sand p-3.5 text-sm">
+      <div className="flex flex-col gap-1.5 rounded-xl border border-line bg-cream p-3.5 text-sm">
         <span className="font-mono text-[11px] text-muted uppercase">{t(`types.${lead.type}`)}</span>
         <strong className="break-words">{d.summary}</strong>
         {d.tripLine && <span className="text-muted">{d.tripLine}</span>}
@@ -47,7 +48,7 @@ export function LeadDetail({ lead, onPreviewEmail }: { lead: DemoLead; onPreview
                 onClick={() => setLeadStatus(lead.ref, s)}
                 className={clsx(
                   "min-h-10 rounded-full border-[1.5px] px-3 text-[13px] font-semibold transition-colors",
-                  on ? statusStyle[s].active : "border-line-strong bg-white text-night hover:border-night",
+                  on ? "border-night bg-night text-white" : "border-line-strong bg-white text-night hover:border-night",
                 )}
               >
                 {t(`statuses.${s}`)}

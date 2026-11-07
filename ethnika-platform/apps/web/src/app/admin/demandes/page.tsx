@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Demandes" };
 export default function AdminLeadsPage() {
   if (!isDemo) notFound();
   return (
-    <AdminShell section="leads">
+    <AdminShell section="leads" title="Demandes">
       {/* useSearchParams (?ref=) : rendu client sous Suspense. */}
       <Suspense>
         <LeadsBoard />

@@ -1586,7 +1586,31 @@
       "tryTicket": "Demander un billet",
       "tryCircuit": "Devis circuit",
       "tryContact": "Contact",
-      "tryPro": "Devis pro"
+      "tryPro": "Devis pro",
+      "situation": "{count, plural, =0 {Aucune demande à traiter.} one {# demande à traiter.} other {# demandes à traiter.}}",
+      "situationOverdue": "{count, plural, one {Dont # en attente depuis plus de 24 h.} other {Dont # en attente depuis plus de 24 h.}}",
+      "kpiToTreat": "À traiter",
+      "kpiOverdue": "{count, plural, one {# depuis plus de 24 h} other {# depuis plus de 24 h}}",
+      "kpiUpToDate": "Rien en retard",
+      "kpiInProgress": "En cours",
+      "kpiInProgressNote": "Propositions en préparation",
+      "kpiRate": "Taux de confirmation",
+      "kpiRateNote": "Sur les demandes clôturées",
+      "kpi7": "7 derniers jours",
+      "kpi7Delta": "{delta} vs semaine précédente",
+      "chartTitle": "Demandes reçues · 14 derniers jours",
+      "chartTotal": "{count, plural, one {# demande} other {# demandes}} au total",
+      "today": "Aujourd'hui",
+      "todayShort": "Auj.",
+      "requestsCount": "{count, plural, =0 {Aucune demande} one {# demande} other {# demandes}}",
+      "day": "Jour",
+      "requests": "Demandes",
+      "queueTitle": "À traiter en priorité",
+      "queueHint": "Les plus anciennes d'abord",
+      "queueEmpty": "Tout est traité.",
+      "age": "Ancienneté de la demande",
+      "activityTitle": "Activité récente",
+      "eventReceived": "demande reçue de {name}"
     },
     "leads": {
       "title": "Demandes",
@@ -1658,6 +1682,14 @@
       "footerNote": "Vous recevez cet e-mail suite à votre demande sur ethnikatour.com.",
       "privacy": "Confidentialité",
       "devNote": "En production (phase 2), cet e-mail est envoyé par l'API (React Email) dès réception de la demande."
+    },
+    "mobileNav": {
+      "label": "Navigation du back-office",
+      "dashboard": "Accueil",
+      "leads": "Demandes",
+      "new": "Nouvelle",
+      "more": "Plus",
+      "moreTitle": "Plus d'options"
     }
   },
   "demo": {

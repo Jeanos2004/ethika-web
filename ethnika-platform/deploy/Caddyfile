@@ -1,0 +1,26 @@
+# Reverse proxy TLS de l'API (certificats Let's Encrypt automatiques).
+# Remplacer api.ethnikatour.com par le sous-domaine réel, pointé (DNS A/AAAA) vers le VPS.
+api.ethnikatour.com {
+	encode zstd gzip
+
+	# Caddy transmet l'adresse réelle de l'appelant (X-Forwarded-For). X-Client-IP / X-Client-UA, posés par le serveur
+	# du site pour l'internaute final, ne sont lus qu'après vérification de la clé interne.
+	reverse_proxy api:4000
+
+	header {
+		-Server
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+	}
+
+	# Corps de requête bornés (les demandes et devis font quelques Ko).
+	request_body {
+		max_size 256KB
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

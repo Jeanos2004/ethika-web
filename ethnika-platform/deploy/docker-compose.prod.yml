@@ -1,0 +1,68 @@
+# Pile de production sur le VPS : API + PostgreSQL + Caddy (HTTPS automatique).
+# Le site reste sur Vercel. Voir docs/DEPLOIEMENT.md § API.
+#
+#   cp deploy/api.env.example deploy/api.env            # secrets de l'API (jamais commité)
+#   cp deploy/postgres.env.example deploy/postgres.env  # mot de passe de la base (identique à DATABASE_URL)
+#   docker compose -f deploy/docker-compose.prod.yml up -d --build
+#   docker compose -f deploy/docker-compose.prod.yml exec api node dist/cli/create-admin.js admin@ethnikatour.com "Prénom Nom"
+
+name: ethnika
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: postgres.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Aucun port publié : la base n'est joignable que par l'API, sur le réseau interne.
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ethnika"]
+      interval: 10s
+      retries: 10
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    image: ethnika-api:latest
+    restart: unless-stopped
+    env_file: api.env
+    environment:
+      # Système de fichiers en lecture seule : répertoire personnel inscriptible pour Chromium et npx.
+      HOME: /tmp
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [internal, edge]
+    # Mémoire partagée suffisante pour Chromium (rendu PDF).
+    shm_size: 256mb
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [edge]
+    depends_on: [api]
+
+networks:
+  internal:
+    internal: true
+  edge: {}
+
+volumes:
+  pgdata: {}
+  caddy_data: {}
+  caddy_config: {}

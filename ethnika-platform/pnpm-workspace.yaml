@@ -8,3 +8,20 @@ onlyBuiltDependencies:
   - sharp
   - "@tailwindcss/oxide"
   - unrs-resolver
+  # Prisma : moteur de migration téléchargé à l'installation (CLI uniquement).
+  - prisma
+  - "@prisma/engines"
+
+# Correctifs de sécurité transitifs (pnpm audit) : versions minimales imposées.
+overrides:
+  multer: ">=2.5.0"
+  basic-ftp: ">=6.2.1"
+  "chromium-bidi>zod": "4.6.7"
+
+# Avis sans correctif publié, ignorés en connaissance de cause (validé par le responsable du projet le 2026-11-07) :
+# extract-zip ne sert qu'au téléchargement d'un navigateur par @puppeteer/browsers ; l'API utilise le Chrome
+# du système (CHROME_PATH) et n'exécute jamais ce code. À réévaluer à chaque mise à jour de puppeteer-core.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3

@@ -25,12 +25,20 @@ const schema = z.object({
   MAIL_FROM: z.string().default("ETHNIKA <contact@ethnikatour.com>"),
   /** Adresse interne de l'agence qui reçoit la notification de chaque nouvelle demande. */
   AGENCY_NOTIFY_EMAIL: z.email().optional(),
-  /** Vols : « mock » (développement) ou « duffel » (jeton duffel_test_… tant que l'agence n'a pas validé la production). */
-  FLIGHT_PROVIDER: z.enum(["mock", "duffel"]).default("mock"),
+  /** Vols : « mock » (développement), « duffel » (jeton duffel_test_…) ou « amadeus » (Self-Service / Enterprise). */
+  FLIGHT_PROVIDER: z.enum(["mock", "duffel", "amadeus"]).default("mock"),
   DUFFEL_TOKEN: z.string().regex(/^duffel_(test|live)_/).optional(),
+  /** Amadeus : https://test.api.amadeus.com (test), https://api.amadeus.com (production) ou un bac à sable simulé. */
+  AMADEUS_BASE_URL: z.url().refine((u) => u.startsWith("https://"), "HTTPS requis").default("https://test.api.amadeus.com"),
+  AMADEUS_CLIENT_ID: z.string().min(1).optional(),
+  AMADEUS_CLIENT_SECRET: z.string().min(1).optional(),
+  /** Délai par appel (ms) : Amadeus répond en 1 à 5 s, certains bacs à sable simulés en plus d'une minute. */
+  AMADEUS_TIMEOUT_MS: z.coerce.number().int().min(1000).max(180_000).default(30_000),
   /** Conservation des demandes clôturées (jours) avant purge automatique. */
   LEAD_RETENTION_DAYS: z.coerce.number().int().min(30).max(3650).default(730),
-}).refine((e) => e.FLIGHT_PROVIDER !== "duffel" || Boolean(e.DUFFEL_TOKEN), { path: ["DUFFEL_TOKEN"], message: "requis avec FLIGHT_PROVIDER=duffel" });
+})
+  .refine((e) => e.FLIGHT_PROVIDER !== "duffel" || Boolean(e.DUFFEL_TOKEN), { path: ["DUFFEL_TOKEN"], message: "requis avec FLIGHT_PROVIDER=duffel" })
+  .refine((e) => e.FLIGHT_PROVIDER !== "amadeus" || Boolean(e.AMADEUS_CLIENT_ID && e.AMADEUS_CLIENT_SECRET), { path: ["AMADEUS_CLIENT_ID"], message: "AMADEUS_CLIENT_ID et AMADEUS_CLIENT_SECRET requis avec FLIGHT_PROVIDER=amadeus" });
 
 export type Env = z.infer<typeof schema>;
 

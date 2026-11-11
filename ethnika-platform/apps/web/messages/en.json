@@ -441,7 +441,29 @@
     "success": "Subscription saved. You can unsubscribe at any time.",
     "note": "One email alert when new deals are published. Unsubscribe at any time (",
     "privacy": "privacy",
-    "noteEnd": ")."
+    "noteEnd": ").",
+    "token": {
+      "kicker": "Deal alerts",
+      "working": "One moment…",
+      "seeOffers": "See current offers",
+      "confirm": {
+        "title": "Confirm your subscription",
+        "text": "Click the button to receive our offers and low-price departures. You can unsubscribe at any time from each email.",
+        "button": "Confirm my subscription",
+        "done": "Confirmed: you will receive our next deal alerts."
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe",
+        "text": "Click the button to stop receiving our deal alerts.",
+        "button": "Unsubscribe me",
+        "done": "Done: you will no longer receive our deal alerts."
+      },
+      "errors": {
+        "invalid": "This link is no longer valid. It may have been used already; otherwise, subscribe again from the Offers page.",
+        "rateLimited": "Too many attempts. Try again in a few minutes.",
+        "unavailable": "Service temporarily unavailable. Try again later."
+      }
+    }
   },
   "search": {
     "label": "Quick request",

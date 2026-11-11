@@ -441,7 +441,29 @@
     "success": "Inscription enregistrée. Désinscription possible à tout moment.",
     "note": "Une alerte par e-mail lors des nouvelles offres. Désinscription à tout moment (",
     "privacy": "confidentialité",
-    "noteEnd": ")."
+    "noteEnd": ").",
+    "token": {
+      "kicker": "Alertes promo",
+      "working": "Un instant…",
+      "seeOffers": "Voir les offres du moment",
+      "confirm": {
+        "title": "Confirmer votre inscription",
+        "text": "Cliquez sur le bouton pour recevoir nos offres et départs à prix doux. Vous pourrez vous désinscrire à tout moment depuis chaque e-mail.",
+        "button": "Confirmer mon inscription",
+        "done": "C'est confirmé : vous recevrez nos prochaines alertes promo."
+      },
+      "unsubscribe": {
+        "title": "Se désinscrire",
+        "text": "Cliquez sur le bouton pour ne plus recevoir nos alertes promo.",
+        "button": "Me désinscrire",
+        "done": "C'est fait : vous ne recevrez plus nos alertes promo."
+      },
+      "errors": {
+        "invalid": "Ce lien n'est plus valable. Il a peut-être déjà été utilisé ; sinon, inscrivez-vous de nouveau depuis la page Offres.",
+        "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+        "unavailable": "Service momentanément indisponible. Réessayez plus tard."
+      }
+    }
   },
   "search": {
     "label": "Demande rapide",

@@ -2389,6 +2389,13 @@
         "noMatch": "Aucun résultat",
         "noMatchHint": "Aucun élément ne correspond à ces filtres.",
         "reset": "Effacer les filtres"
+      },
+      "failure": {
+        "title": "Service momentanément indisponible",
+        "text": "Le back-office n'arrive pas à joindre le serveur. Vos données ne sont pas perdues : réessayez dans quelques secondes.",
+        "retry": "Réessayer",
+        "home": "Tableau de bord",
+        "hint": "Si le problème persiste plus de quelques minutes, prévenez l'administrateur technique."
       }
     }
   },

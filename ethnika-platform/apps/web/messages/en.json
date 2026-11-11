@@ -2389,6 +2389,13 @@
         "noMatch": "No results",
         "noMatchHint": "Nothing matches these filters.",
         "reset": "Clear filters"
+      },
+      "failure": {
+        "title": "Service temporarily unavailable",
+        "text": "The back-office cannot reach the server. Your data is not lost: try again in a few seconds.",
+        "retry": "Try again",
+        "home": "Dashboard",
+        "hint": "If the problem lasts more than a few minutes, let the technical administrator know."
       }
     }
   },

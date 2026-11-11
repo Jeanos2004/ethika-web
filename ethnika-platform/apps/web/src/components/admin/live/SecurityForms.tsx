@@ -93,7 +93,7 @@ export function MfaSetup() {
           <div className="flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-5 sm:flex-row sm:items-start">
             {setup.qr && (
               // eslint-disable-next-line @next/next/no-img-element -- image data: générée côté serveur
-              <img src={setup.qr} alt={t("mfaQrAlt")} width={180} height={180} className="size-[180px] shrink-0 rounded-xl border border-line" />
+              <img src={setup.qr} alt={t("mfaQrAlt")} width={240} height={240} className="size-[240px] shrink-0 rounded-xl border border-line bg-white" />
             )}
             <div className="flex min-w-0 flex-col gap-2 text-sm">
               <strong className="text-night">{t("mfaScan")}</strong>

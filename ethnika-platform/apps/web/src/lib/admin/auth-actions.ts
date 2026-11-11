@@ -112,7 +112,7 @@ export async function startMfaSetup(): Promise<MfaSetupState> {
   try {
     const res = await api<{ secret: string; otpauthUri: string }>("/v1/auth/mfa/setup", { method: "POST", session });
     // QR code de l'URI otpauth, généré ici (aucun service tiers) et affiché en image data:.
-    const qr = await QRCode.toDataURL(res.otpauthUri, { margin: 1, width: 240, errorCorrectionLevel: "M" });
+    const qr = await QRCode.toDataURL(res.otpauthUri, { margin: 4, width: 320, errorCorrectionLevel: "M" });
     return { secret: res.secret, uri: res.otpauthUri, qr };
   } catch (e) {
     return failure(e);

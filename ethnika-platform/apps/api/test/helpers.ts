@@ -35,6 +35,7 @@ export async function agentSession(app: INestApplication, users: UsersService, r
 }
 
 export async function cleanup(prisma: PrismaService) {
+  await prisma.payment.deleteMany({ where: { lead: { fullName: { startsWith: "E2E " } } } });
   await prisma.lead.deleteMany({ where: { fullName: { startsWith: "E2E " } } });
   await prisma.subscriber.deleteMany({ where: { email: { endsWith: "@e2e.example.com" } } });
   await prisma.user.deleteMany({ where: { email: { startsWith: TEST_PREFIX } } });

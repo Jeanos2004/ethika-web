@@ -1543,7 +1543,8 @@
       "flights": "Vols",
       "security": "Sécurité",
       "audit": "Journal d'audit",
-      "settings": "Paramètres"
+      "settings": "Paramètres",
+      "payments": "Paiements"
     },
     "soon": "Phase 2",
     "agentName": "[Nom du conseiller]",
@@ -1731,7 +1732,9 @@
         "assigned": "Attribution modifiée",
         "note": "Note interne",
         "flight_hold": "Option de vol posée",
-        "other": "Événement"
+        "other": "Événement",
+        "payment_requested": "Lien de paiement envoyé",
+        "payment_received": "Paiement reçu"
       },
       "login": {
         "title": "Connexion",
@@ -1964,7 +1967,11 @@
         "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide.",
         "manualForm": "Demande incomplète.",
         "nameLength": "Le nom doit compter entre 2 et 120 caractères.",
-        "agencyForm": "Vérifiez les champs : adresse, téléphone et e-mail valides, modalités de règlement d'au moins 10 caractères."
+        "agencyForm": "Vérifiez les champs : adresse, téléphone et e-mail valides, modalités de règlement d'au moins 10 caractères.",
+        "paymentsDisabled": "Aucun prestataire de paiement n'est configuré.",
+        "quotePaid": "Ce devis est déjà entièrement payé.",
+        "amountInvalid": "Montant invalide : il doit être positif et ne pas dépasser le reste à payer.",
+        "paymentClosed": "Ce paiement est déjà clos."
       },
       "quotes": {
         "title": "Devis",
@@ -2455,6 +2462,45 @@
         "missingTitle": "{count, plural, one {# information à compléter.} other {# informations à compléter.}}",
         "missingList": "Encore entre crochets ou vide : {fields}. Ces mentions apparaissent telles quelles sur les PDF.",
         "complete": "Toutes les coordonnées sont renseignées."
+      },
+      "payments": {
+        "title": "Paiements",
+        "pageTitle": "Paiements",
+        "pageSubtitle": "Liens de paiement des devis, encaissements et relances.",
+        "disabledBanner": "Aucun prestataire de paiement n'est encore configuré : les liens de paiement sont désactivés. Ils s'activeront dès que le prestataire choisi par l'agence sera branché.",
+        "disabledHint": "Liens de paiement disponibles une fois le prestataire de paiement configuré.",
+        "createLink": "Lien de paiement",
+        "amountLabel": "Montant ({currency}) : vide = reste à payer",
+        "amountPlaceholder": "Acompte (facultatif)",
+        "generate": "Générer",
+        "linkReady": "Lien prêt : envoyez-le au client.",
+        "linkHint": "Affiché une seule fois. En cas de perte, générez un nouveau lien depuis la liste des paiements.",
+        "copy": "Copier",
+        "copied": "Copié",
+        "sendWhatsapp": "Envoyer par WhatsApp",
+        "whatsappText": "Bonjour {name}, voici votre lien de paiement sécurisé ETHNIKA : {link}",
+        "renew": "Nouveau lien",
+        "cancel": "Annuler",
+        "cancelConfirm": "Annuler ce paiement ? Le lien envoyé au client ne fonctionnera plus.",
+        "cancelYes": "Oui, annuler",
+        "paidOn": "payé le {date}",
+        "createdOn": "créé le {date}",
+        "status": {
+          "pending": "En attente",
+          "paid": "Payé",
+          "failed": "Échoué",
+          "cancelled": "Annulé",
+          "expired": "Expiré"
+        },
+        "kpiPaid": "Encaissés · 30 j",
+        "kpiPending": "En attente",
+        "kpiFailed": "Échecs et expirés",
+        "kpiFailedNote": "À relancer avec un nouveau lien",
+        "kpiTotal": "Paiements",
+        "kpiTotalNote": "Tous les liens créés",
+        "searchPlaceholder": "Référence, client, demande…",
+        "empty": "Aucun paiement pour l'instant",
+        "emptyHint": "Créez un lien depuis un devis, sur la fiche d'une demande."
       }
     }
   },
@@ -2462,5 +2508,53 @@
     "banner": "Site de démonstration : les demandes ne sont pas transmises à l'agence.",
     "backOffice": "Voir le back-office",
     "seeRequest": "Voir ma demande dans le back-office (démo)"
+  },
+  "payment": {
+    "title": "Paiement sécurisé",
+    "kicker": "Paiement sécurisé",
+    "hello": "Bonjour {name}, voici votre paiement",
+    "forRequest": "Demande {ref} · paiement {payment}",
+    "step1": "Vérifiez le montant et l'objet ci-dessus.",
+    "step2": "Vous êtes redirigé vers notre prestataire de paiement sécurisé.",
+    "step3": "Vous revenez ici : la confirmation s'affiche dès que le paiement est reçu.",
+    "pay": "Payer {amount}",
+    "expires": "Lien valable jusqu'au {date}.",
+    "mockNotice": "Environnement de test : le paiement est simulé, aucun débit réel n'est effectué.",
+    "secureNote": "Aucune donnée bancaire n'est saisie ni conservée par ETHNIKA.",
+    "contact": "Contacter un conseiller",
+    "whatsappMessage": "Bonjour ETHNIKA, je vous contacte au sujet du paiement de ma demande {ref}.",
+    "invalid": {
+      "title": "Ce lien de paiement n'est pas valable",
+      "text": "Il a peut-être été remplacé par un lien plus récent. Demandez un nouveau lien à votre conseiller."
+    },
+    "paid": {
+      "title": "Merci {name} !",
+      "subtitle": "Paiement reçu",
+      "text": "Nous avons bien reçu votre paiement le {date}. Votre conseiller vous contacte pour la suite de votre voyage."
+    },
+    "failed": {
+      "title": "Le paiement n'a pas abouti",
+      "text": "Aucun montant n'a été débité. Contactez votre conseiller pour recevoir un nouveau lien."
+    },
+    "expired": {
+      "title": "Ce lien a expiré",
+      "text": "Pour votre sécurité, les liens de paiement sont valables 7 jours. Demandez un nouveau lien à votre conseiller."
+    },
+    "cancelled": {
+      "title": "Ce paiement a été annulé",
+      "text": "Votre conseiller vous enverra un nouveau lien si nécessaire."
+    },
+    "errors": {
+      "checkout": "Le prestataire de paiement n'a pas répondu. Réessayez dans un instant.",
+      "rate": "Trop de tentatives. Réessayez dans quelques minutes."
+    },
+    "simulation": {
+      "badge": "Simulation",
+      "title": "Prestataire de paiement (simulation)",
+      "text": "Cette page remplace celle du prestataire tant que l'agence n'a pas choisi le sien. Choisissez le résultat à simuler.",
+      "paid": "Paiement réussi",
+      "failed": "Échec du paiement",
+      "closed": "Ce paiement est déjà clos."
+    }
   }
 }

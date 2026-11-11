@@ -178,6 +178,21 @@ export type ApiAgency = {
   updatedAt: string;
 };
 
+export type ApiPayment = {
+  id: string;
+  reference: string;
+  amount: string;
+  currency: string;
+  label: string;
+  status: "pending" | "paid" | "failed" | "cancelled" | "expired";
+  provider: string;
+  method: string | null;
+  expiresAt: string;
+  paidAt: string | null;
+  createdAt: string;
+  lead: { reference: string; fullName: string };
+};
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

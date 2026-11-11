@@ -10,7 +10,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
 import { logout } from "@/lib/admin/auth-actions";
 
-type Section = "dashboard" | "leads" | "flights" | "security" | "settings" | "users" | "audit" | "offers" | "circuits";
+type Section = "dashboard" | "leads" | "flights" | "payments" | "security" | "settings" | "users" | "audit" | "offers" | "circuits";
 
 /** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
 export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number };
@@ -64,6 +64,11 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
           {live && (
             <SideLink href="/admin/vols" current={section === "flights"} icon="plane">
               {t("nav.flights")}
+            </SideLink>
+          )}
+          {live && (
+            <SideLink href="/admin/paiements" current={section === "payments"} icon="briefcase">
+              {t("nav.payments")}
             </SideLink>
           )}
           {toolsFor(live).map((x) => (
@@ -258,6 +263,11 @@ function MoreSheet({ live, onClose }: { live?: LiveAccount; onClose: () => void 
           {live && (
             <Link href="/admin/vols" className="flex min-h-11 items-center gap-2.5 text-[15px] font-semibold text-white">
               <Icon name="plane" size={17} /> {t("nav.flights")}
+            </Link>
+          )}
+          {live && (
+            <Link href="/admin/paiements" className="flex min-h-11 items-center gap-2.5 text-[15px] font-semibold text-white">
+              <Icon name="briefcase" size={17} /> {t("nav.payments")}
             </Link>
           )}
           {toolsFor(live).map((x) => (

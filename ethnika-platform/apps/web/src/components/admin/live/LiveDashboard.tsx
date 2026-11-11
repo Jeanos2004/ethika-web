@@ -239,6 +239,8 @@ export function eventLabel(t: T, e: { kind: string; status: ApiStats["activity"]
   if (e.kind === "assigned") return t("live.events.assigned");
   if (e.kind === "note") return t("live.events.note");
   if (e.kind === "flight_hold") return t("live.events.flight_hold");
+  if (e.kind === "payment_requested") return t("live.events.payment_requested");
+  if (e.kind === "payment_received") return t("live.events.payment_received");
   if (e.kind === "ack_sent") return t("history.ack");
   return t("live.events.other");
 }

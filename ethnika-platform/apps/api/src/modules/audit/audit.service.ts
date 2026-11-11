@@ -2,7 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 import { Prisma } from "../../generated/prisma/client";
 import { PrismaService } from "../../prisma/prisma.service";
 
-export const auditCategories = ["auth", "user", "lead", "quote", "content", "flight", "maintenance"] as const;
+export const auditCategories = ["auth", "user", "lead", "quote", "payment", "content", "flight", "maintenance"] as const;
 export type AuditCategory = (typeof auditCategories)[number];
 
 export type AuditAction =
@@ -22,6 +22,10 @@ export type AuditAction =
   | "lead.exported"
   | "lead.pdf"
   | "quote.created"
+  | "payment.created"
+  | "payment.paid"
+  | "payment.failed"
+  | "payment.cancelled"
   | "content.created"
   | "content.updated"
   | "content.deleted"

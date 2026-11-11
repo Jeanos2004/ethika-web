@@ -14,7 +14,9 @@ import { NoteForm } from "@/components/admin/live/NoteForm";
 import { BookingRow } from "@/components/admin/live/BookingRow";
 import { QuoteForm } from "@/components/admin/live/QuoteForm";
 import { formatMoney } from "@/lib/admin/money";
-import type { ApiQuote } from "@/lib/admin/types";
+import type { ApiPayment, ApiQuote } from "@/lib/admin/types";
+import { PaymentLinkForm } from "@/components/admin/live/PaymentLink";
+import { PaymentRow } from "@/components/admin/live/PaymentRow";
 
 const statuses: ApiLeadStatus[] = ["new", "in_progress", "confirmed", "cancelled"];
 
@@ -34,7 +36,21 @@ function flightSearchHref(lead: ApiLead) {
 }
 
 /** Fiche d'une demande : coordonnées, détail, statut, attribution, notes, historique, options de vol. */
-export async function LiveLeadDetail({ lead, bookings, quotes, me }: { lead: ApiLead; bookings: FlightBooking[]; quotes: ApiQuote[]; me: string }) {
+export async function LiveLeadDetail({
+  lead,
+  bookings,
+  quotes,
+  payments,
+  paymentsEnabled,
+  me,
+}: {
+  lead: ApiLead;
+  bookings: FlightBooking[];
+  quotes: ApiQuote[];
+  payments: ApiPayment[];
+  paymentsEnabled: boolean;
+  me: string;
+}) {
   const t = await getTranslations({ locale: "fr", namespace: "admin" });
   const d = liveDigest(lead);
   const wa = whatsappTo(lead.phone, t("leads.whatsappMessage", { name: lead.fullName, ref: lead.reference }));
@@ -96,7 +112,7 @@ export async function LiveLeadDetail({ lead, bookings, quotes, me }: { lead: Api
             ) : (
               <ul className="divide-y divide-line">
                 {quotes.map((q) => (
-                  <li key={q.number} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2.5 text-sm">
+                  <li key={q.number} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-2.5 text-sm">
                     <span className="flex flex-col">
                       <strong className="font-mono text-night">{q.number}</strong>
                       <span className="text-xs text-muted">{t("live.quotes.validUntilShort", { date: q.validUntil.slice(0, 10).split("-").reverse().join("/") })}</span>
@@ -107,10 +123,22 @@ export async function LiveLeadDetail({ lead, bookings, quotes, me }: { lead: Api
                         <Icon name="download" size={14} /> PDF
                       </a>
                     </span>
+                    {paymentsEnabled && <PaymentLinkForm quote={q.number} reference={lead.reference} currency={q.currency} phone={lead.phone} clientName={lead.fullName.split(/s+/)[0] ?? lead.fullName} />}
                   </li>
                 ))}
               </ul>
             )}
+            {payments.length > 0 && (
+              <div className="flex flex-col gap-1 border-t border-line pt-3">
+                <h3 className="text-sm font-bold text-night">{t("live.payments.title")}</h3>
+                <ul className="divide-y divide-line">
+                  {payments.map((p) => (
+                    <PaymentRow key={p.id} p={p} phone={lead.phone} clientName={lead.fullName.split(/s+/)[0] ?? lead.fullName} />
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!paymentsEnabled && quotes.length > 0 && <p className="text-xs text-muted">{t("live.payments.disabledHint")}</p>}
             <QuoteForm reference={lead.reference} defaultValidUntil={new Date(new Date().getTime() + 14 * 86_400_000).toISOString().slice(0, 10)} />
           </section>
 

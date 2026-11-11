@@ -2,6 +2,7 @@ import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from "@nest
 import { ENV, type Env } from "../../config/env";
 import { PrismaService } from "../../prisma/prisma.service";
 import { AuditService } from "../audit/audit.service";
+import { PaymentsService } from "../payments/payments.service";
 import { FlightBookingsService } from "../flights/flight-bookings.service";
 
 const HOUR = 3600_000;
@@ -22,6 +23,7 @@ export class MaintenanceService implements OnModuleInit, OnModuleDestroy {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly flightBookings: FlightBookingsService,
+    private readonly payments: PaymentsService,
     @Inject(ENV) private readonly env: Env,
   ) {}
 
@@ -43,6 +45,7 @@ export class MaintenanceService implements OnModuleInit, OnModuleDestroy {
     const leads = await this.prisma.lead.deleteMany({ where: { status: { in: ["confirmed", "cancelled"] }, updatedAt: { lt: cutoff } } });
     if (leads.count) await this.audit.log("maintenance.purge", { meta: { leads: leads.count, before: cutoff.toISOString() } });
     const flightDeadlines = await this.flightBookings.alertDeadlines(now);
-    return { sessions: sessions.count, challenges: challenges.count, emails: emails.count, leads: leads.count, flightDeadlines };
+    const paymentLinksExpired = await this.payments.expire(now);
+    return { sessions: sessions.count, challenges: challenges.count, emails: emails.count, leads: leads.count, flightDeadlines, paymentLinksExpired };
   }
 }

@@ -10,6 +10,7 @@ import { QuotesModule } from "./modules/quotes/quotes.module";
 import { NewsletterModule } from "./modules/newsletter/newsletter.module";
 import { ContentModule } from "./modules/content/content.module";
 import { AgencyModule } from "./modules/agency/agency.module";
+import { PaymentsModule } from "./modules/payments/payments.module";
 import { HealthController } from "./modules/health/health.controller";
 import { MaintenanceService } from "./modules/maintenance/maintenance.service";
 
@@ -23,7 +24,7 @@ export class AppModule {
     const config = { provide: ENV, useValue: env };
     return {
       module: AppModule,
-      imports: [{ module: ConfigModule, providers: [config], exports: [config], global: true }, PrismaModule, AuditModule, AuthModule, AgencyModule, MailModule, LeadsModule, QuotesModule, NewsletterModule, ContentModule, FlightsModule],
+      imports: [{ module: ConfigModule, providers: [config], exports: [config], global: true }, PrismaModule, AuditModule, AuthModule, AgencyModule, MailModule, LeadsModule, QuotesModule, NewsletterModule, ContentModule, FlightsModule, PaymentsModule],
       controllers: [HealthController],
       providers: [MaintenanceService],
     };

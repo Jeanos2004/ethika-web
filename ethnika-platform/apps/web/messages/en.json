@@ -1543,7 +1543,8 @@
       "flights": "Flights",
       "security": "Security",
       "audit": "Audit log",
-      "settings": "Settings"
+      "settings": "Settings",
+      "payments": "Payments"
     },
     "soon": "Phase 2",
     "agentName": "[Adviser name]",
@@ -1731,7 +1732,9 @@
         "assigned": "Assignment changed",
         "note": "Internal note",
         "flight_hold": "Flight hold placed",
-        "other": "Event"
+        "other": "Event",
+        "payment_requested": "Payment link sent",
+        "payment_received": "Payment received"
       },
       "login": {
         "title": "Sign in",
@@ -1964,7 +1967,11 @@
         "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price.",
         "manualForm": "Incomplete request.",
         "nameLength": "The name must be 2 to 120 characters long.",
-        "agencyForm": "Check the fields: valid address, phone and email, payment terms of at least 10 characters."
+        "agencyForm": "Check the fields: valid address, phone and email, payment terms of at least 10 characters.",
+        "paymentsDisabled": "No payment provider is configured.",
+        "quotePaid": "This quote is already fully paid.",
+        "amountInvalid": "Invalid amount: it must be positive and not exceed the balance due.",
+        "paymentClosed": "This payment is already closed."
       },
       "quotes": {
         "title": "Quotes",
@@ -2455,6 +2462,45 @@
         "missingTitle": "{count, plural, one {# item to complete.} other {# items to complete.}}",
         "missingList": "Still in brackets or empty: {fields}. These appear as-is on the PDFs.",
         "complete": "All details are filled in."
+      },
+      "payments": {
+        "title": "Payments",
+        "pageTitle": "Payments",
+        "pageSubtitle": "Quote payment links, collections and follow-ups.",
+        "disabledBanner": "No payment provider is configured yet: payment links are disabled. They will be enabled once the provider chosen by the agency is connected.",
+        "disabledHint": "Payment links available once the payment provider is configured.",
+        "createLink": "Payment link",
+        "amountLabel": "Amount ({currency}): empty = balance due",
+        "amountPlaceholder": "Deposit (optional)",
+        "generate": "Generate",
+        "linkReady": "Link ready: send it to the client.",
+        "linkHint": "Shown only once. If lost, generate a new link from the payments list.",
+        "copy": "Copy",
+        "copied": "Copied",
+        "sendWhatsapp": "Send via WhatsApp",
+        "whatsappText": "Hello {name}, here is your secure ETHNIKA payment link: {link}",
+        "renew": "New link",
+        "cancel": "Cancel",
+        "cancelConfirm": "Cancel this payment? The link sent to the client will stop working.",
+        "cancelYes": "Yes, cancel",
+        "paidOn": "paid on {date}",
+        "createdOn": "created on {date}",
+        "status": {
+          "pending": "Pending",
+          "paid": "Paid",
+          "failed": "Failed",
+          "cancelled": "Cancelled",
+          "expired": "Expired"
+        },
+        "kpiPaid": "Collected · 30 d",
+        "kpiPending": "Pending",
+        "kpiFailed": "Failed and expired",
+        "kpiFailedNote": "Follow up with a new link",
+        "kpiTotal": "Payments",
+        "kpiTotalNote": "All links created",
+        "searchPlaceholder": "Reference, client, request…",
+        "empty": "No payments yet",
+        "emptyHint": "Create a link from a quote, on a request page."
       }
     }
   },
@@ -2462,5 +2508,53 @@
     "banner": "Demo site: requests are not sent to the agency.",
     "backOffice": "See the back office",
     "seeRequest": "See my request in the back office (demo)"
+  },
+  "payment": {
+    "title": "Secure payment",
+    "kicker": "Secure payment",
+    "hello": "Hello {name}, here is your payment",
+    "forRequest": "Request {ref} · payment {payment}",
+    "step1": "Check the amount and purpose above.",
+    "step2": "You are redirected to our secure payment provider.",
+    "step3": "You come back here: the confirmation appears as soon as the payment is received.",
+    "pay": "Pay {amount}",
+    "expires": "Link valid until {date}.",
+    "mockNotice": "Test environment: the payment is simulated, nothing is actually charged.",
+    "secureNote": "No bank details are entered on or stored by ETHNIKA.",
+    "contact": "Contact an adviser",
+    "whatsappMessage": "Hello ETHNIKA, I am contacting you about the payment of my request {ref}.",
+    "invalid": {
+      "title": "This payment link is not valid",
+      "text": "It may have been replaced by a newer link. Ask your adviser for a new one."
+    },
+    "paid": {
+      "title": "Thank you {name}!",
+      "subtitle": "Payment received",
+      "text": "We received your payment on {date}. Your adviser will contact you about the next steps of your trip."
+    },
+    "failed": {
+      "title": "The payment did not go through",
+      "text": "Nothing was charged. Contact your adviser to receive a new link."
+    },
+    "expired": {
+      "title": "This link has expired",
+      "text": "For your security, payment links are valid for 7 days. Ask your adviser for a new one."
+    },
+    "cancelled": {
+      "title": "This payment was cancelled",
+      "text": "Your adviser will send you a new link if needed."
+    },
+    "errors": {
+      "checkout": "The payment provider did not answer. Try again in a moment.",
+      "rate": "Too many attempts. Try again in a few minutes."
+    },
+    "simulation": {
+      "badge": "Simulation",
+      "title": "Payment provider (simulation)",
+      "text": "This page stands in for the provider's until the agency chooses one. Pick the outcome to simulate.",
+      "paid": "Payment succeeds",
+      "failed": "Payment fails",
+      "closed": "This payment is already closed."
+    }
   }
 }

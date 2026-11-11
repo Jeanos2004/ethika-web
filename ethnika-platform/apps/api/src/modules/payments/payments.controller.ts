@@ -1,4 +1,9 @@
-import { Body, Controller, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Query, Res, UseGuards } from "@nestjs/common";
+import type { Response } from "express";
+import { AgencyService } from "../agency/agency.service";
+import { PdfService } from "../pdf/pdf.service";
+import { footerTemplate } from "../pdf/templates/html";
+import { receiptHtml } from "../pdf/templates/receipt";
 import { z } from "zod";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { ZodPipe } from "../../common/zod.pipe";
@@ -14,6 +19,16 @@ const listQuery = z.strictObject({ status: z.enum(["pending", "paid", "failed", 
 const tokenInput = z.strictObject({ token: z.string().regex(/^[A-Za-z0-9_-]{30,100}$/) });
 const simulateInput = tokenInput.extend({ outcome: z.enum(["paid", "failed"]) });
 
+/** Reçu PDF (Puppeteer) envoyé tel quel au serveur du site. */
+async function sendReceipt(res: Response, pdf: PdfService, agency: AgencyService, data: Awaited<ReturnType<PaymentsService["receipt"]>>) {
+  const file = await pdf.render(receiptHtml(data, await agency.pdfInfo()), { footer: footerTemplate(`ETHNIKA · ${data.reference}`) });
+  res.status(200);
+  res.setHeader("content-type", "application/pdf");
+  res.setHeader("content-disposition", `inline; filename="recu-${data.reference}.pdf"`);
+  res.setHeader("cache-control", "no-store");
+  res.send(file);
+}
+
 function checkRef(reference: string) {
   if (!PAYMENT_REFERENCE.test(reference)) throw new NotFoundException();
   return reference;
@@ -24,7 +39,11 @@ function checkRef(reference: string) {
 @UseGuards(InternalKeyGuard, SessionGuard)
 @Roles("agent", "admin")
 export class PaymentsAdminController {
-  constructor(private readonly payments: PaymentsService) {}
+  constructor(
+    private readonly payments: PaymentsService,
+    private readonly pdf: PdfService,
+    private readonly agency: AgencyService,
+  ) {}
 
   @Get("payments/config")
   config() {
@@ -49,6 +68,11 @@ export class PaymentsAdminController {
     return this.payments.renewLink(id, me.userId);
   }
 
+  @Get("payments/:id/receipt")
+  async receipt(@Param("id", ParseUUIDPipe) id: string, @Res() res: Response) {
+    await sendReceipt(res, this.pdf, this.agency, await this.payments.receipt({ id }));
+  }
+
   @Post("payments/:id/cancel")
   @HttpCode(200)
   cancel(@Param("id", ParseUUIDPipe) id: string, @CurrentUser() me: AuthContext) {
@@ -64,7 +88,11 @@ export class PaymentsAdminController {
 @Controller("v1/public/payments")
 @UseGuards(InternalKeyGuard)
 export class PaymentsPublicController {
-  constructor(private readonly payments: PaymentsService) {}
+  constructor(
+    private readonly payments: PaymentsService,
+    private readonly pdf: PdfService,
+    private readonly agency: AgencyService,
+  ) {}
 
   @Post(":reference")
   @HttpCode(200)
@@ -76,6 +104,11 @@ export class PaymentsPublicController {
   @HttpCode(200)
   checkout(@Param("reference") reference: string, @Body(new ZodPipe(tokenInput)) body: z.infer<typeof tokenInput>) {
     return this.payments.checkout(checkRef(reference), body.token);
+  }
+
+  @Post(":reference/receipt")
+  async publicReceipt(@Param("reference") reference: string, @Body(new ZodPipe(tokenInput)) body: z.infer<typeof tokenInput>, @Res() res: Response) {
+    await sendReceipt(res, this.pdf, this.agency, await this.payments.receipt({ reference: checkRef(reference), token: body.token }));
   }
 
   @Post(":reference/simulate")

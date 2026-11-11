@@ -35,6 +35,11 @@ export async function PaymentRow({ p, showLead = false, phone, clientName }: { p
           </span>
         </span>
         <strong className="text-night tabular-nums">{formatMoney(p.amount, p.currency)}</strong>
+        {p.status === "paid" && (
+          <a href={`/admin/paiements/${p.id}/recu`} target="_blank" rel="noopener" className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-sand px-3 text-[13px] font-semibold text-night hover:bg-line">
+            {t("receipt")}
+          </a>
+        )}
         <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs font-semibold">
           <span aria-hidden="true" className={clsx("size-2 rounded-full", paymentDot[p.status])} />
           {t(`status.${p.status}`)}

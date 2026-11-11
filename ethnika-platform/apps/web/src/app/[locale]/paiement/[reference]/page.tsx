@@ -91,7 +91,19 @@ export default async function PaymentPage({ params, searchParams }: Props) {
         </>
       )}
 
-      {p.status === "paid" && <Status icon="check" tone="good" title={t("paid.subtitle")} text={t("paid.text", { date: p.paidAt ? dateFmt.format(new Date(p.paidAt)) : "" })} />}
+      {p.status === "paid" && (
+        <>
+          <Status icon="check" tone="good" title={t("paid.subtitle")} text={t("paid.text", { date: p.paidAt ? dateFmt.format(new Date(p.paidAt)) : "" })} />
+          <a
+            href={`${locale === "en" ? "/en" : ""}/paiement/${p.reference}/recu?t=${encodeURIComponent(token)}`}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-night px-6 font-semibold text-white hover:bg-night-2"
+          >
+            <Icon name="download" size={17} /> {t("receipt")}
+          </a>
+        </>
+      )}
       {p.status === "failed" && <Status icon="alert" tone="bad" title={t("failed.title")} text={t("failed.text")} />}
       {(p.status === "expired" || p.status === "cancelled") && <Status icon="clock" tone="neutral" title={t(`${p.status}.title`)} text={t(`${p.status}.text`)} />}
 

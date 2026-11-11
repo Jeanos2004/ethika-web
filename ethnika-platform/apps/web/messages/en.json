@@ -2403,7 +2403,7 @@
         "servicesHint": "Server configuration (api.env file). A change requires an API restart.",
         "configured": "Configured",
         "notConfigured": "Not configured",
-        "smtp": "Email sending (SMTP)",
+        "smtp": "Email sending",
         "agencyNotify": "Agency alerts",
         "pdf": "PDF generation",
         "flightProvider": "Flight provider",
@@ -2422,7 +2422,15 @@
         "retention": "Retention of closed requests",
         "minutes": "{n} minutes",
         "hours": "{n} hours",
-        "daysLong": "{n} days"
+        "daysLong": "{n} days",
+        "payments": "Online payments",
+        "mailProviders": {
+          "resend": "Resend",
+          "smtp": "SMTP"
+        },
+        "paymentProviders": {
+          "mock": "Simulation (test)"
+        }
       },
       "list": {
         "search": "Search",
@@ -2504,7 +2512,8 @@
         "kpiTotalNote": "All links created",
         "searchPlaceholder": "Reference, client, request…",
         "empty": "No payments yet",
-        "emptyHint": "Create a link from a quote, on a request page."
+        "emptyHint": "Create a link from a quote, on a request page.",
+        "receipt": "PDF receipt"
       }
     }
   },
@@ -2559,6 +2568,7 @@
       "paid": "Payment succeeds",
       "failed": "Payment fails",
       "closed": "This payment is already closed."
-    }
+    },
+    "receipt": "Download the receipt (PDF)"
   }
 }

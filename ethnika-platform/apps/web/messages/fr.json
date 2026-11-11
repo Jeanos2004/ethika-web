@@ -2403,7 +2403,7 @@
         "servicesHint": "Configuration du serveur (fichier api.env). Une modification demande un redémarrage de l'API.",
         "configured": "Configuré",
         "notConfigured": "Non configuré",
-        "smtp": "Envoi des e-mails (SMTP)",
+        "smtp": "Envoi des e-mails",
         "agencyNotify": "Alertes à l'agence",
         "pdf": "Génération des PDF",
         "flightProvider": "Fournisseur de vols",
@@ -2422,7 +2422,15 @@
         "retention": "Conservation des demandes clôturées",
         "minutes": "{n} minutes",
         "hours": "{n} heures",
-        "daysLong": "{n} jours"
+        "daysLong": "{n} jours",
+        "payments": "Paiements en ligne",
+        "mailProviders": {
+          "resend": "Resend",
+          "smtp": "SMTP"
+        },
+        "paymentProviders": {
+          "mock": "Simulation (test)"
+        }
       },
       "list": {
         "search": "Rechercher",
@@ -2504,7 +2512,8 @@
         "kpiTotalNote": "Tous les liens créés",
         "searchPlaceholder": "Référence, client, demande…",
         "empty": "Aucun paiement pour l'instant",
-        "emptyHint": "Créez un lien depuis un devis, sur la fiche d'une demande."
+        "emptyHint": "Créez un lien depuis un devis, sur la fiche d'une demande.",
+        "receipt": "Reçu PDF"
       }
     }
   },
@@ -2559,6 +2568,7 @@
       "paid": "Paiement réussi",
       "failed": "Échec du paiement",
       "closed": "Ce paiement est déjà clos."
-    }
+    },
+    "receipt": "Télécharger le reçu (PDF)"
   }
 }

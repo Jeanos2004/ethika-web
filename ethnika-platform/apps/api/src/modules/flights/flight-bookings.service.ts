@@ -115,6 +115,7 @@ export class FlightBookingsService {
             payload: {
               reference: b.bookingReference ?? b.providerOrderId,
               type: "Option à payer sous 24 h",
+              heading: "Option à payer sous 24 h",
               summary: `${b.totalAmount} ${b.currency} · échéance ${b.payBefore?.toISOString().slice(0, 16).replace("T", " ")} UTC${b.lead ? ` · demande ${b.lead.reference}` : ""}`,
               backOfficeUrl: `${this.env.SITE_URL}/admin/demandes${b.lead ? `?ref=${b.lead.reference}` : ""}`,
             },

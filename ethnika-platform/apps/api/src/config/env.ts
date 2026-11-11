@@ -22,6 +22,8 @@ const schema = z.object({
   SESSION_MAX_MINUTES: z.coerce.number().int().min(30).max(7 * 24 * 60).default(12 * 60),
   /** E-mails : SMTP (smtp://user:pass@host:587) ; vide = e-mails journalisés sans être envoyés (développement). */
   SMTP_URL: z.string().optional(),
+  /** Resend (prioritaire sur SMTP) : clé re_…, domaine de MAIL_FROM vérifié dans Resend. */
+  RESEND_API_KEY: z.string().regex(/^re_[A-Za-z0-9_]{8,}$/, "clé Resend attendue (re_…)").optional(),
   MAIL_FROM: z.string().default("ETHNIKA <contact@ethnikatour.com>"),
   /** Adresse interne de l'agence qui reçoit la notification de chaque nouvelle demande. */
   AGENCY_NOTIFY_EMAIL: z.email().optional(),

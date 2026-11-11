@@ -59,7 +59,18 @@ describe("Paiements (e2e)", () => {
     const checkout = await site(api().post(`/v1/public/payments/${dRef}/checkout`)).send({ token: dToken }).expect(200);
     expect(checkout.body.checkoutUrl).toMatch(new RegExp(`/paiement/${dRef}/simulation\\?t=`));
 
+    await site(api().post(`/v1/public/payments/${dRef}/receipt`)).send({ token: dToken }).expect(409);
     await site(api().post(`/v1/public/payments/${dRef}/simulate`)).send({ token: dToken, outcome: "paid" }).expect(200);
+    expect(await prisma.emailOutbox.count({ where: { template: "receipt", to: "paiement@e2e.example.com" } })).toBe(1);
+    if (process.env.CHROME_PATH) {
+      const pdf = await site(api().post(`/v1/public/payments/${dRef}/receipt`)).send({ token: dToken }).buffer(true).parse((res, cb) => {
+        const chunks: Buffer[] = [];
+        res.on("data", (c: Buffer) => chunks.push(c));
+        res.on("end", () => cb(null, Buffer.concat(chunks)));
+      }).expect(200);
+      expect(pdf.headers["content-type"]).toBe("application/pdf");
+      expect((pdf.body as Buffer).subarray(0, 4).toString()).toBe("%PDF");
+    }
     const again = await site(api().post(`/v1/public/payments/${dRef}/simulate`)).send({ token: dToken, outcome: "failed" }).expect(200);
     expect(again.body.changed).toBe(false);
     let lead = await bo(api().get(`/v1/leads/${ref}`)).expect(200);

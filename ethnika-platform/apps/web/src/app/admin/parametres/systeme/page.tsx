@@ -51,7 +51,8 @@ export default async function SettingsSystemPage() {
 
       <SettingsCard title={t("servicesTitle")} hint={t("servicesHint")}>
         <dl>
-          <SettingRow label={t("smtp")}>{ok(s.smtpConfigured)}</SettingRow>
+          <SettingRow label={t("smtp")}>{s.mailProvider === "none" ? ok(false) : <Status ok label={t(`mailProviders.${s.mailProvider}`)} />}</SettingRow>
+          <SettingRow label={t("payments")}>{s.paymentProvider === "none" ? ok(false) : <Status ok={false} label={t(`paymentProviders.${s.paymentProvider}`)} />}</SettingRow>
           <SettingRow label={t("agencyNotify")}>{ok(s.agencyNotifyConfigured)}</SettingRow>
           <SettingRow label={t("pdf")}>{ok(s.pdfConfigured)}</SettingRow>
           <SettingRow label={t("flightProvider")}>

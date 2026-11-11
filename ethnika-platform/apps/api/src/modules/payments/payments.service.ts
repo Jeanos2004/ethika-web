@@ -8,6 +8,8 @@ import { MailService } from "../mail/mail.service";
 import { formatMoney, type Currency } from "../quotes/money";
 import { newPaymentReference } from "../leads/reference";
 import { PAYMENT_PROVIDER, type PaymentProvider, type PaymentResult } from "./payment-provider";
+import { AgencyService } from "../agency/agency.service";
+import type { ReceiptForPdf } from "../pdf/templates/receipt";
 
 const LINK_TTL_MS = 7 * 24 * 3600_000;
 
@@ -27,6 +29,7 @@ export class PaymentsService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly mail: MailService,
+    private readonly agency: AgencyService,
     @Inject(PAYMENT_PROVIDER) private readonly provider: PaymentProvider,
     @Inject(ENV) private readonly env: Env,
   ) {}
@@ -146,9 +149,10 @@ export class PaymentsService {
    * déjà clos n'est jamais modifié. Un devis soldé confirme la demande ; l'agence est prévenue par e-mail.
    */
   async applyResult(result: PaymentResult) {
-    const p = await this.prisma.payment.findUnique({ where: { reference: result.reference }, include: { lead: { select: { id: true, reference: true, status: true } } } });
+    const p = await this.prisma.payment.findUnique({ where: { reference: result.reference }, include: { lead: { select: { id: true, reference: true, status: true, email: true, fullName: true, locale: true } } } });
     if (!p) throw new NotFoundException();
     if (p.status !== "pending") return { status: p.status, changed: false };
+    const agency = p.lead.email ? await this.agency.get() : null;
 
     if (result.outcome === "failed") {
       await this.prisma.payment.update({ where: { id: p.id }, data: { status: "failed", providerRef: result.providerRef ?? p.providerRef, method: result.method } });
@@ -156,8 +160,9 @@ export class PaymentsService {
       return { status: "failed" as const, changed: true };
     }
 
+    const paidAt = new Date();
     const confirmed = await this.prisma.$transaction(async (tx) => {
-      await tx.payment.update({ where: { id: p.id }, data: { status: "paid", paidAt: new Date(), providerRef: result.providerRef ?? p.providerRef, method: result.method } });
+      await tx.payment.update({ where: { id: p.id }, data: { status: "paid", paidAt, providerRef: result.providerRef ?? p.providerRef, method: result.method } });
       const amount = formatMoney(p.amount, p.currency as Currency);
       await tx.leadEvent.create({ data: { leadId: p.lead.id, kind: "payment_received", actor: "system", note: `${p.reference} · ${amount}` } });
       let leadConfirmed = false;
@@ -169,12 +174,32 @@ export class PaymentsService {
           leadConfirmed = true;
         }
       }
+      // Reçu au client (s'il a donné un e-mail), dans sa langue.
+      if (p.lead.email && agency) {
+        await this.mail.enqueue(tx, [
+          {
+            to: p.lead.email,
+            template: "receipt",
+            payload: {
+              locale: p.lead.locale === "en" ? "en" : "fr",
+              firstName: p.lead.fullName.split(/s+/)[0] ?? p.lead.fullName,
+              paymentReference: p.reference,
+              leadReference: p.lead.reference,
+              amount,
+              label: p.label,
+              paidAt: paidAt.toISOString(),
+              agency: { phone: agency.phone, email: agency.email, address: agency.address },
+              siteUrl: this.env.SITE_URL,
+            },
+          },
+        ]);
+      }
       if (this.env.AGENCY_NOTIFY_EMAIL) {
         await this.mail.enqueue(tx, [
           {
             to: this.env.AGENCY_NOTIFY_EMAIL,
             template: "agency",
-            payload: { reference: p.lead.reference, type: "Paiement reçu", summary: `${p.reference} · ${amount} · ${p.label}`, backOfficeUrl: `${this.env.SITE_URL}/admin/demandes?ref=${p.lead.reference}` },
+            payload: { reference: p.lead.reference, type: "Paiement reçu", heading: "Paiement reçu", summary: `${p.reference} · ${amount} · ${p.label}`, backOfficeUrl: `${this.env.SITE_URL}/admin/demandes?ref=${p.lead.reference}` },
           },
         ]);
       }
@@ -190,6 +215,18 @@ export class PaymentsService {
     if (this.provider.name !== "mock") throw new NotFoundException();
     const p = await this.byToken(reference, token);
     return this.applyResult({ reference: p.reference, outcome, providerRef: `MOCK-${p.reference}`, method: "simulation" });
+  }
+
+  /** Données du reçu PDF d'un paiement encaissé (par jeton côté client, par identifiant côté back-office). */
+  async receipt(by: { reference: string; token: string } | { id: string }): Promise<ReceiptForPdf> {
+    const p =
+      "id" in by
+        ? await this.prisma.payment.findUnique({ where: { id: by.id }, include: { lead: { select: { reference: true, fullName: true, phone: true, email: true } } } })
+        : await this.byToken(by.reference, by.token).then((x) => this.prisma.payment.findUnique({ where: { id: x.id }, include: { lead: { select: { reference: true, fullName: true, phone: true, email: true } } } }));
+    if (!p) throw new NotFoundException();
+    if (p.status !== "paid" || !p.paidAt) throw new ConflictException({ error: "payment_not_paid" });
+    const quote = p.quoteId ? await this.prisma.quote.findUnique({ where: { id: p.quoteId }, select: { number: true } }) : null;
+    return { reference: p.reference, amount: formatMoney(p.amount, p.currency as Currency), label: p.label, paidAt: p.paidAt, method: p.method, providerRef: p.providerRef, quoteNumber: quote?.number ?? null, lead: p.lead };
   }
 
   /** Maintenance : liens en attente expirés. */

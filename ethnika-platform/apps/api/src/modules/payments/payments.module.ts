@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { PdfModule } from "../pdf/pdf.module";
 import { ENV, type Env } from "../../config/env";
 import { DisabledPaymentProvider, MockPaymentProvider, PAYMENT_PROVIDER } from "./payment-provider";
 import { PaymentsAdminController, PaymentsPublicController } from "./payments.controller";
@@ -6,6 +7,7 @@ import { PaymentsService } from "./payments.service";
 
 /** Prestataire choisi par PAYMENT_PROVIDER ; un nouveau prestataire = une classe qui implémente PaymentProvider. */
 @Module({
+  imports: [PdfModule],
   controllers: [PaymentsAdminController, PaymentsPublicController],
   providers: [
     PaymentsService,

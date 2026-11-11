@@ -152,7 +152,8 @@ export type ApiSystem = {
   uptimeSeconds: number;
   siteUrl: string;
   flightProvider: "mock" | "duffel" | "amadeus";
-  smtpConfigured: boolean;
+  mailProvider: "resend" | "smtp" | "none";
+  paymentProvider: "none" | "mock";
   agencyNotifyConfigured: boolean;
   pdfConfigured: boolean;
   sessionIdleMinutes: number;

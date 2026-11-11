@@ -1733,24 +1733,27 @@
         "other": "Événement"
       },
       "login": {
-        "title": "Connexion au back-office",
-        "hint": "Réservé à l'équipe ETHNIKA.",
+        "title": "Connexion",
+        "hint": "Accès réservé à l'équipe ETHNIKA.",
         "email": "E-mail",
         "password": "Mot de passe",
         "submit": "Se connecter",
         "checking": "Vérification…",
-        "mfaTitle": "Vérification en deux étapes",
-        "mfaHint": "Saisissez le code à 6 chiffres affiché par votre application d'authentification.",
+        "mfaTitle": "Code de vérification",
+        "mfaHint": "Ouvrez votre application d'authentification et saisissez le code à 6 chiffres affiché pour ETHNIKA.",
         "code": "Code",
         "verify": "Valider",
-        "restart": "Recommencer la connexion"
+        "restart": "Recommencer la connexion",
+        "show": "Afficher",
+        "hide": "Masquer",
+        "forgot": "Mot de passe oublié ou téléphone perdu : demandez une réinitialisation à un administrateur."
       },
       "security": {
         "title": "Sécurité du compte",
         "allSet": "Compte {email} : mot de passe définitif et vérification en deux étapes en place.",
         "pending": "Avant d'accéder au back-office, terminez la sécurisation de votre compte.",
         "passwordTitle": "Mot de passe",
-        "passwordRequired": "Votre mot de passe est temporaire : choisissez-en un nouveau (12 caractères minimum).",
+        "passwordRequired": "Le mot de passe reçu est temporaire : choisissez le vôtre (12 caractères minimum, sans le partager).",
         "passwordHint": "12 caractères minimum. Les autres sessions seront fermées.",
         "fields": {
           "current": "Mot de passe actuel",
@@ -1760,13 +1763,29 @@
         "passwordSubmit": "Changer le mot de passe",
         "saving": "Enregistrement…",
         "mfaTitle": "Vérification en deux étapes",
-        "mfaHint": "Obligatoire pour les administrateurs. Utilisez Google Authenticator, Microsoft Authenticator ou une application équivalente.",
-        "mfaStart": "Configurer",
+        "mfaHint": "À chaque connexion, en plus du mot de passe, un code à 6 chiffres affiché par votre téléphone vous sera demandé.",
+        "mfaStart": "Afficher le QR code",
         "mfaKey": "Clé à saisir dans l'application",
         "mfaOpenApp": "Ouvrir dans l'application (sur ce téléphone)",
-        "mfaCode": "Premier code affiché",
-        "mfaEnable": "Activer",
-        "passwordSaved": "Mot de passe enregistré."
+        "mfaCode": "Code à 6 chiffres",
+        "mfaEnable": "Activer et accéder au back-office",
+        "passwordSaved": "Mot de passe enregistré.",
+        "welcome": "Bienvenue, {name}",
+        "setupTitle": "Sécurisez votre compte",
+        "setupHint": "Deux étapes rapides avant d'accéder au back-office. Elles protègent les données des clients de l'agence.",
+        "progress": "Étapes de sécurisation",
+        "steps": {
+          "password": "Mot de passe",
+          "mfa": "Vérification en deux étapes"
+        },
+        "mfaStep1": "Installez une application d'authentification sur votre téléphone.",
+        "mfaApps": "Google Authenticator, Microsoft Authenticator ou 2FAS.",
+        "mfaStep2": "Cliquez sur « Afficher le QR code », puis scannez-le avec l'application (bouton « + »).",
+        "mfaStep3": "Saisissez ici le code à 6 chiffres que l'application affiche pour ETHNIKA.",
+        "mfaQrAlt": "QR code à scanner avec l'application d'authentification",
+        "mfaScan": "Scannez ce QR code avec l'application.",
+        "mfaKeyHint": "Impossible de scanner ? Ajoutez un compte « avec une clé » et saisissez celle-ci :",
+        "later": "Se déconnecter et terminer plus tard"
       },
       "leads": {
         "subtitle": "{count, plural, =0 {Aucune demande} one {# demande} other {# demandes}} pour ces filtres",
@@ -2162,6 +2181,13 @@
           "request": "nature",
           "type": "type"
         }
+      },
+      "auth": {
+        "kicker": "Back-office ETHNIKA",
+        "tagline": "Demandes, devis et vols, au même endroit.",
+        "taglineText": "L'espace de travail de l'équipe : suivez chaque voyageur, de la première demande à l'émission du billet.",
+        "secure": "Connexion chiffrée · vérification en deux étapes",
+        "backToSite": "Retour au site"
       }
     }
   },

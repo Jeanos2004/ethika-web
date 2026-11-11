@@ -1733,24 +1733,27 @@
         "other": "Event"
       },
       "login": {
-        "title": "Back-office sign-in",
+        "title": "Sign in",
         "hint": "ETHNIKA team only.",
         "email": "Email",
         "password": "Password",
         "submit": "Sign in",
         "checking": "Checking…",
-        "mfaTitle": "Two-step verification",
-        "mfaHint": "Enter the 6-digit code shown in your authenticator app.",
+        "mfaTitle": "Verification code",
+        "mfaHint": "Open your authenticator app and enter the 6-digit code shown for ETHNIKA.",
         "code": "Code",
         "verify": "Verify",
-        "restart": "Start again"
+        "restart": "Start again",
+        "show": "Show",
+        "hide": "Hide",
+        "forgot": "Forgotten password or lost phone: ask an administrator for a reset."
       },
       "security": {
         "title": "Account security",
         "allSet": "Account {email}: permanent password and two-step verification in place.",
         "pending": "Finish securing your account before using the back-office.",
         "passwordTitle": "Password",
-        "passwordRequired": "Your password is temporary: choose a new one (12 characters minimum).",
+        "passwordRequired": "The password you received is temporary: choose your own (12 characters minimum, never shared).",
         "passwordHint": "12 characters minimum. Other sessions will be closed.",
         "fields": {
           "current": "Current password",
@@ -1760,13 +1763,29 @@
         "passwordSubmit": "Change password",
         "saving": "Saving…",
         "mfaTitle": "Two-step verification",
-        "mfaHint": "Required for administrators. Use Google Authenticator, Microsoft Authenticator or a similar app.",
-        "mfaStart": "Set up",
+        "mfaHint": "At each sign-in, in addition to the password, you will be asked for a 6-digit code shown on your phone.",
+        "mfaStart": "Show the QR code",
         "mfaKey": "Key to enter in the app",
         "mfaOpenApp": "Open in the app (on this phone)",
-        "mfaCode": "First code shown",
-        "mfaEnable": "Enable",
-        "passwordSaved": "Password saved."
+        "mfaCode": "6-digit code",
+        "mfaEnable": "Enable and open the back-office",
+        "passwordSaved": "Password saved.",
+        "welcome": "Welcome, {name}",
+        "setupTitle": "Secure your account",
+        "setupHint": "Two quick steps before using the back-office. They protect the agency's client data.",
+        "progress": "Security steps",
+        "steps": {
+          "password": "Password",
+          "mfa": "Two-step verification"
+        },
+        "mfaStep1": "Install an authenticator app on your phone.",
+        "mfaApps": "Google Authenticator, Microsoft Authenticator or 2FAS.",
+        "mfaStep2": "Click \"Show the QR code\", then scan it with the app (\"+\" button).",
+        "mfaStep3": "Enter here the 6-digit code the app shows for ETHNIKA.",
+        "mfaQrAlt": "QR code to scan with the authenticator app",
+        "mfaScan": "Scan this QR code with the app.",
+        "mfaKeyHint": "Can't scan? Add an account \"with a key\" and enter this one:",
+        "later": "Sign out and finish later"
       },
       "leads": {
         "subtitle": "{count, plural, =0 {No requests} one {# request} other {# requests}} for these filters",
@@ -2162,6 +2181,13 @@
           "request": "kind",
           "type": "type"
         }
+      },
+      "auth": {
+        "kicker": "ETHNIKA back-office",
+        "tagline": "Requests, quotes and flights, in one place.",
+        "taglineText": "The team's workspace: follow every traveller from the first request to ticketing.",
+        "secure": "Encrypted sign-in · two-step verification",
+        "backToSite": "Back to the website"
       }
     }
   },

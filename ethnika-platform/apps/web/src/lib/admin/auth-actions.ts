@@ -7,6 +7,7 @@ import { rateLimit } from "@/lib/security/rate-limit";
 import { getClientIp } from "@/lib/security/client-ip";
 import { adminMode, clearCookie, MFA_COOKIE, requireUser, SESSION_COOKIE, setCookie } from "@/lib/admin/session";
 import { cookies } from "next/headers";
+import QRCode from "qrcode";
 
 /*
  * Connexion au back-office. Chaque action suit le patron du site : limitation de débit → Zod → appel API → réponse
@@ -102,7 +103,7 @@ export async function changePassword(_prev: AuthState, formData: FormData): Prom
   return { saved: true };
 }
 
-export type MfaSetupState = { error?: string; secret?: string; uri?: string };
+export type MfaSetupState = { error?: string; secret?: string; uri?: string; qr?: string };
 
 /** Nouveau secret 2FA (affiché une seule fois) ; il ne devient actif qu'après la saisie d'un premier code. */
 export async function startMfaSetup(): Promise<MfaSetupState> {
@@ -110,7 +111,9 @@ export async function startMfaSetup(): Promise<MfaSetupState> {
   if (await limited("mfa-setup")) return { error: "rateLimited" };
   try {
     const res = await api<{ secret: string; otpauthUri: string }>("/v1/auth/mfa/setup", { method: "POST", session });
-    return { secret: res.secret, uri: res.otpauthUri };
+    // QR code de l'URI otpauth, généré ici (aucun service tiers) et affiché en image data:.
+    const qr = await QRCode.toDataURL(res.otpauthUri, { margin: 1, width: 240, errorCorrectionLevel: "M" });
+    return { secret: res.secret, uri: res.otpauthUri, qr };
   } catch (e) {
     return failure(e);
   }

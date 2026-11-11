@@ -1519,7 +1519,8 @@
       "gallery": "Galerie",
       "users": "Utilisateurs",
       "flights": "Vols",
-      "security": "Sécurité"
+      "security": "Sécurité",
+      "audit": "Journal d'audit"
     },
     "soon": "Phase 2",
     "agentName": "[Nom du conseiller]",
@@ -1867,7 +1868,10 @@
         "timeout": "Le fournisseur n'a pas répondu à temps. Réessayez.",
         "searchForm": "Vérifiez la recherche : codes IATA à 3 lettres différents, dates à venir, au plus un bébé par adulte.",
         "holdForm": "Vérifiez les passagers : tous les champs sont obligatoires, téléphone au format +224…",
-        "quoteForm": "Vérifiez le devis : chaque ligne a un libellé (2 caractères min.), une quantité et un prix valides ; date de validité à venir."
+        "quoteForm": "Vérifiez le devis : chaque ligne a un libellé (2 caractères min.), une quantité et un prix valides ; date de validité à venir.",
+        "cannotDemoteSelf": "Vous ne pouvez ni désactiver votre propre compte ni retirer votre rôle d'administrateur.",
+        "emailTaken": "Un compte existe déjà avec cet e-mail.",
+        "userForm": "Vérifiez le nom (2 caractères minimum), l'e-mail et le rôle."
       },
       "quotes": {
         "title": "Devis",
@@ -1886,6 +1890,72 @@
         "create": "Créer le devis",
         "creating": "Création…",
         "created": "Devis {number} créé."
+      },
+      "users": {
+        "title": "Utilisateurs",
+        "subtitle": "Comptes de l'équipe : rôle, vérification en deux étapes, accès.",
+        "newTitle": "Nouveau compte",
+        "name": "Nom complet",
+        "email": "E-mail",
+        "role": "Rôle",
+        "roles": {
+          "admin": "Administrateur",
+          "agent": "Agent"
+        },
+        "create": "Créer le compte",
+        "tempTitle": "Mot de passe temporaire pour {email}",
+        "tempHint": "Affiché une seule fois. Transmettez-le en main propre ou par téléphone ; il devra être changé à la première connexion.",
+        "you": "vous",
+        "mfaOn": "2FA active",
+        "mfaOff": "2FA non configurée",
+        "disabled": "Désactivé",
+        "tempPassword": "Mot de passe temporaire",
+        "locked": "Verrouillé",
+        "lastLogin": "Dernière connexion {date}",
+        "neverLoggedIn": "Jamais connecté",
+        "saveRole": "Enregistrer le rôle",
+        "disable": "Désactiver",
+        "enable": "Réactiver",
+        "disableConfirm": "Désactiver ce compte ? Ses sessions seront fermées immédiatement.",
+        "enableConfirm": "Réactiver ce compte ?",
+        "resetPassword": "Nouveau mot de passe",
+        "resetPasswordConfirm": "Générer un mot de passe temporaire ? L'actuel ne fonctionnera plus.",
+        "resetMfa": "Réinitialiser la 2FA",
+        "resetMfaConfirm": "Réinitialiser la 2FA ? La personne devra la reconfigurer à sa prochaine connexion.",
+        "confirm": "Confirmer"
+      },
+      "audit": {
+        "title": "Journal d'audit",
+        "subtitle": "Connexions, comptes, demandes, devis, contenus et vols. Aucune donnée client n'y figure.",
+        "empty": "Aucune entrée.",
+        "system": "Système",
+        "unknownActor": "Compte supprimé",
+        "pagination": "Pages du journal",
+        "newer": "Plus récent",
+        "older": "Plus ancien",
+        "actions": {
+          "auth_login": "Connexion",
+          "auth_login_failed": "Échec de connexion",
+          "auth_locked": "Compte verrouillé",
+          "auth_logout": "Déconnexion",
+          "auth_mfa_enabled": "2FA activée",
+          "auth_mfa_reset": "2FA réinitialisée",
+          "auth_password_changed": "Mot de passe changé",
+          "user_created": "Compte créé",
+          "user_updated": "Compte modifié",
+          "user_disabled": "Compte désactivé",
+          "lead_status_changed": "Statut de demande changé",
+          "lead_assigned": "Demande attribuée",
+          "lead_exported": "Export CSV",
+          "lead_pdf": "Récapitulatif PDF",
+          "quote_created": "Devis créé",
+          "content_created": "Contenu créé",
+          "content_updated": "Contenu modifié",
+          "content_deleted": "Contenu supprimé",
+          "flight_hold": "Option de vol posée",
+          "flight_cancelled": "Option de vol annulée",
+          "maintenance_purge": "Purge automatique"
+        }
       }
     }
   },

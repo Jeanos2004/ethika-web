@@ -1519,7 +1519,8 @@
       "gallery": "Gallery",
       "users": "Users",
       "flights": "Flights",
-      "security": "Security"
+      "security": "Security",
+      "audit": "Audit log"
     },
     "soon": "Phase 2",
     "agentName": "[Adviser name]",
@@ -1867,7 +1868,10 @@
         "timeout": "The provider did not answer in time. Try again.",
         "searchForm": "Check the search: two different 3-letter IATA codes, future dates, at most one infant per adult.",
         "holdForm": "Check the passengers: all fields are required, phone as +224…",
-        "quoteForm": "Check the quote: each line needs a label (2 characters min.), a valid quantity and price; validity date in the future."
+        "quoteForm": "Check the quote: each line needs a label (2 characters min.), a valid quantity and price; validity date in the future.",
+        "cannotDemoteSelf": "You cannot disable your own account or remove your own administrator role.",
+        "emailTaken": "An account already exists with this email.",
+        "userForm": "Check the name (2 characters minimum), email and role."
       },
       "quotes": {
         "title": "Quotes",
@@ -1886,6 +1890,72 @@
         "create": "Create quote",
         "creating": "Creating…",
         "created": "Quote {number} created."
+      },
+      "users": {
+        "title": "Users",
+        "subtitle": "Team accounts: role, two-step verification, access.",
+        "newTitle": "New account",
+        "name": "Full name",
+        "email": "Email",
+        "role": "Role",
+        "roles": {
+          "admin": "Administrator",
+          "agent": "Agent"
+        },
+        "create": "Create account",
+        "tempTitle": "Temporary password for {email}",
+        "tempHint": "Shown only once. Hand it over in person or by phone; it must be changed at first sign-in.",
+        "you": "you",
+        "mfaOn": "2FA on",
+        "mfaOff": "2FA not set up",
+        "disabled": "Disabled",
+        "tempPassword": "Temporary password",
+        "locked": "Locked",
+        "lastLogin": "Last sign-in {date}",
+        "neverLoggedIn": "Never signed in",
+        "saveRole": "Save role",
+        "disable": "Disable",
+        "enable": "Enable",
+        "disableConfirm": "Disable this account? Its sessions will be closed immediately.",
+        "enableConfirm": "Enable this account?",
+        "resetPassword": "New password",
+        "resetPasswordConfirm": "Generate a temporary password? The current one will stop working.",
+        "resetMfa": "Reset 2FA",
+        "resetMfaConfirm": "Reset 2FA? The person will have to set it up again at next sign-in.",
+        "confirm": "Confirm"
+      },
+      "audit": {
+        "title": "Audit log",
+        "subtitle": "Sign-ins, accounts, requests, quotes, content and flights. No client data is stored here.",
+        "empty": "No entries.",
+        "system": "System",
+        "unknownActor": "Deleted account",
+        "pagination": "Log pages",
+        "newer": "Newer",
+        "older": "Older",
+        "actions": {
+          "auth_login": "Sign-in",
+          "auth_login_failed": "Failed sign-in",
+          "auth_locked": "Account locked",
+          "auth_logout": "Sign-out",
+          "auth_mfa_enabled": "2FA enabled",
+          "auth_mfa_reset": "2FA reset",
+          "auth_password_changed": "Password changed",
+          "user_created": "Account created",
+          "user_updated": "Account updated",
+          "user_disabled": "Account disabled",
+          "lead_status_changed": "Request status changed",
+          "lead_assigned": "Request assigned",
+          "lead_exported": "CSV export",
+          "lead_pdf": "PDF summary",
+          "quote_created": "Quote created",
+          "content_created": "Content created",
+          "content_updated": "Content updated",
+          "content_deleted": "Content deleted",
+          "flight_hold": "Flight hold placed",
+          "flight_cancelled": "Flight hold cancelled",
+          "maintenance_purge": "Automatic purge"
+        }
       }
     }
   },

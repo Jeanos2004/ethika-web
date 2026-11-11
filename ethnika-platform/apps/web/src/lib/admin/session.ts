@@ -58,3 +58,10 @@ export async function requireUser({ allowPending = false } = {}) {
   if (!allowPending && (!user.mfaVerified || user.mustChangePassword)) redirect("/admin/securite");
   return { user, session };
 }
+
+/** Pages et actions réservées aux administrateurs (404 pour un agent : rien n'est révélé). */
+export async function requireAdmin() {
+  const ctx = await requireUser();
+  if (ctx.user.role !== "admin") notFound();
+  return ctx;
+}

@@ -10,12 +10,27 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
 import { logout } from "@/lib/admin/auth-actions";
 
-type Section = "dashboard" | "leads" | "flights" | "security";
+type Section = "dashboard" | "leads" | "flights" | "security" | "users" | "audit" | "offers" | "circuits";
 
 /** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
 export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number };
 
 const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
+
+/** Outils réservés aux administrateurs (back-office connecté) : retirés de la liste « bientôt ». */
+const adminTools = [
+  { key: "users", href: "/admin/utilisateurs", icon: "users" },
+  { key: "audit", href: "/admin/journal", icon: "shieldCheck" },
+] as const;
+
+function toolsFor(live?: LiveAccount) {
+  return live?.role === "admin" ? adminTools : [];
+}
+
+function soonFor(live?: LiveAccount) {
+  const tools = toolsFor(live).map((x) => x.key as string);
+  return soon.filter((k) => !tools.includes(k));
+}
 
 /**
  * Coquille du back-office.
@@ -49,8 +64,13 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
               {t("nav.flights")}
             </SideLink>
           )}
+          {toolsFor(live).map((x) => (
+            <SideLink key={x.key} href={x.href} current={section === x.key} icon={x.icon}>
+              {t(`nav.${x.key}`)}
+            </SideLink>
+          ))}
           <span className="mt-4 mb-1 px-3.5 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
-          {soon.map((k) => (
+          {soonFor(live).map((k) => (
             <span key={k} aria-disabled="true" className="flex min-h-10 items-center rounded-xl px-3.5 text-[14px] font-medium text-on-dark-muted">
               {t(`nav.${k}`)}
             </span>
@@ -237,8 +257,13 @@ function MoreSheet({ live, onClose }: { live?: LiveAccount; onClose: () => void 
           </button>
         </div>
         <div className="flex flex-col gap-1">
-          <span className="mb-1 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
-          {soon.map((k) => (
+          {toolsFor(live).map((x) => (
+            <Link key={x.key} href={x.href} className="flex min-h-11 items-center gap-2.5 text-[15px] font-semibold text-white">
+              <Icon name={x.icon} size={17} /> {t(`nav.${x.key}`)}
+            </Link>
+          ))}
+          <span className="mt-2 mb-1 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
+          {soonFor(live).map((k) => (
             <span key={k} aria-disabled="true" className="flex min-h-10 items-center text-[15px] text-on-dark-muted">
               {t(`nav.${k}`)}
             </span>

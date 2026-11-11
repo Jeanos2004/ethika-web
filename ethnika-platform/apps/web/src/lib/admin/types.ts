@@ -67,6 +67,21 @@ export type FlightBooking = {
   lead: { reference: string; fullName: string } | null;
 };
 
+export type ApiUser = {
+  id: string;
+  email: string;
+  name: string;
+  role: "admin" | "agent";
+  totpEnabled: boolean;
+  disabled: boolean;
+  mustChangePassword: boolean;
+  lastLoginAt: string | null;
+  lockedUntil: string | null;
+  createdAt: string;
+};
+
+export type ApiAuditEntry = { id: string; actorId: string | null; action: string; target: string | null; ip: string | null; createdAt: string };
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

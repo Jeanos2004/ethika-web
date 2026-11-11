@@ -2525,6 +2525,22 @@
         "empty": "Aucun paiement pour l'instant",
         "emptyHint": "Créez un lien depuis un devis, sur la fiche d'une demande.",
         "receipt": "Reçu PDF"
+      },
+      "notifications": {
+        "label": "Notifications",
+        "labelUnread": "Notifications : {count, plural, one {# non lue} other {# non lues}}",
+        "title": "Notifications",
+        "subtitle": "Ce qui demande votre attention · 7 derniers jours",
+        "close": "Fermer",
+        "empty": "Tout est à jour",
+        "emptyHint": "Aucune nouvelle demande, aucun paiement ni échéance à surveiller.",
+        "kinds": {
+          "lead_new": "Nouvelle demande à traiter",
+          "lead_assigned": "Demande qui vous est attribuée",
+          "payment_received": "Paiement reçu : {amount}",
+          "payment_failed": "Paiement échoué : nouveau lien à envoyer",
+          "hold_due": "Option {reference} à payer sous 24 h"
+        }
       }
     }
   },

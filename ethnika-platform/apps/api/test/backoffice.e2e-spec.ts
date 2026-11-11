@@ -208,4 +208,19 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
       await prisma.agencySettings.update({ where: { id: 1 }, data: { verified: current.body.verified } });
     });
   });
+
+  describe("notifications", () => {
+    it("nouvelle demande et attribution visibles, compteur remis à zéro après lecture", async () => {
+      const created = await api().post("/v1/leads").set("x-internal-key", KEY).send({ type: "contact", fullName: "E2E Notif Client", phone: "+224 620 00 00 00", email: "notif@e2e.example.com", consent: true, message: "Bonjour, une question sur un circuit." }).expect(201);
+      const me = await as(agent, api().get("/v1/auth/me")).expect(200);
+      await as(admin, api().patch(`/v1/leads/${created.body.reference}/assign`)).send({ userId: me.body.userId }).expect(200);
+      const list = await as(agent, api().get("/v1/notifications")).expect(200);
+      const kinds = list.body.items.filter((i: { reference: string }) => i.reference === created.body.reference).map((i: { kind: string }) => i.kind);
+      expect(kinds).toEqual(expect.arrayContaining(["lead_new", "lead_assigned"]));
+      expect(list.body.unread).toBeGreaterThanOrEqual(2);
+      await as(agent, api().post("/v1/notifications/seen")).expect(200);
+      const after = await as(agent, api().get("/v1/notifications")).expect(200);
+      expect(after.body.unread).toBe(after.body.items.filter((i: { kind: string }) => i.kind === "hold_due").length);
+    });
+  });
 });

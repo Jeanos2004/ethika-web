@@ -2525,6 +2525,22 @@
         "empty": "No payments yet",
         "emptyHint": "Create a link from a quote, on a request page.",
         "receipt": "PDF receipt"
+      },
+      "notifications": {
+        "label": "Notifications",
+        "labelUnread": "Notifications: {count, plural, one {# unread} other {# unread}}",
+        "title": "Notifications",
+        "subtitle": "What needs your attention · last 7 days",
+        "close": "Close",
+        "empty": "All caught up",
+        "emptyHint": "No new request, payment or deadline to watch.",
+        "kinds": {
+          "lead_new": "New request to handle",
+          "lead_assigned": "Request assigned to you",
+          "payment_received": "Payment received: {amount}",
+          "payment_failed": "Payment failed: send a new link",
+          "hold_due": "Hold {reference} due within 24 h"
+        }
       }
     }
   },

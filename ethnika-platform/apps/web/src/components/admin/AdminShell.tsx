@@ -8,12 +8,14 @@ import { clsx } from "clsx";
 import { useTranslations } from "next-intl";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
+import { NotificationBell } from "@/components/admin/live/NotificationBell";
+import type { ApiNotifications } from "@/lib/admin/types";
 import { logout } from "@/lib/admin/auth-actions";
 
 type Section = "dashboard" | "leads" | "flights" | "payments" | "security" | "settings" | "users" | "audit" | "offers" | "circuits";
 
 /** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
-export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number };
+export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number; notifications?: ApiNotifications };
 
 const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
 
@@ -50,9 +52,12 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
     <div className="min-h-dvh lg:flex">
       {/* Barre latérale (≥ 1024 px) */}
       <aside className="sticky top-0 hidden h-dvh w-[252px] shrink-0 flex-col gap-7 overflow-y-auto bg-night px-4 py-6 text-on-dark lg:flex">
-        <div className="flex flex-col gap-2 px-2">
-          <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={152} height={48} className="h-11 w-auto self-start" />
-          <span className="font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
+        <div className="flex items-start justify-between gap-2 px-2">
+          <div className="flex flex-col gap-2">
+            <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={152} height={48} className="h-11 w-auto self-start" />
+            <span className="font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
+          </div>
+          {live?.notifications && <NotificationBell key={live.notifications.unread} data={live.notifications} />}
         </div>
         <nav aria-label={t("navLabel")} className="flex flex-col gap-1 text-[15px] font-semibold">
           <SideLink href="/admin" current={section === "dashboard"} icon="grid">
@@ -90,7 +95,8 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
         {/* Barre supérieure (< 1024 px) */}
         <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-night-line bg-night px-4 text-white lg:hidden">
           <Image src="/brand/symbole-or.svg" alt="ETHNIKA" width={28} height={28} className="size-7" />
-          <span className="truncate text-[15px] font-semibold">{title}</span>
+          <span className="min-w-0 flex-1 truncate text-[15px] font-semibold">{title}</span>
+          {live?.notifications && <NotificationBell key={live.notifications.unread} data={live.notifications} />}
         </header>
 
         {!live && (

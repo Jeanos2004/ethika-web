@@ -51,7 +51,10 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | admin | GET | `/audit`, `/audit/search?category=&actorId=`, `/audit/summary` | Journal d'audit (recherche paginée, volumes 24 h / 7 j) |
 | session | GET / PATCH | `/account`, `/account/sessions`, `/account/sessions/revoke`, `/account/sessions/revoke-others` | Profil, sessions actives (déconnexion d'un appareil ou des autres) |
 | admin | GET | `/system` | État de fonctionnement (configuration, file d'e-mails, volumes), sans secret |
-| agent, admin / admin | GET / PATCH | `/agency` | Coordonnées de l'agence reprises sur les PDF (modification : admin) |
+| agent, admin / admin | GET / PATCH | `/agency` | Coordonnées de l'agence (site public et PDF ; modification : admin) |
+| clé | GET | `/public/agency` | Coordonnées publiques lues par le site (en-tête, pied de page, Contact, carte) |
+| agent, admin | GET / POST | `/notifications`, `/notifications/seen` | Cloche du back-office (7 derniers jours : demandes, attributions, paiements, échéances) |
+| agent, admin / clé | GET / POST | `/payments/:id/receipt`, `/public/payments/:reference/receipt` | Reçu PDF d'un paiement encaissé |
 | agent, admin | POST | `/quotes/:number/payments` | Lien de paiement d'un devis (reste dû ou acompte) |
 | agent, admin | GET / POST | `/payments`, `/payments/config`, `/payments/:id/renew`, `/payments/:id/cancel` | Suivi, nouveau lien, annulation |
 | clé | POST | `/public/payments/:reference` (+ `/checkout`, `/simulate`) | Page de paiement du site (jeton du lien), redirection chez le prestataire, simulation |
@@ -71,7 +74,9 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
   - Validé contre le **bac à sable Duffel** : recherche (50 offres Conakry → Paris), prix et conditions, option, consultation, annulation.
   - **Amadeus** (`FLIGHT_PROVIDER=amadeus`, `AMADEUS_BASE_URL`, `AMADEUS_CLIENT_ID`, `AMADEUS_CLIENT_SECRET`) : jeton OAuth2 en cache (une seule demande même en parallèle, renouvelé avant expiration ou après un 401). Amadeus étant sans état, les offres d'une recherche sont gardées 30 min sous un identifiant opaque (`am_…`) pour le prix et la réservation. Réservation avec émission différée (`DELAY_TO_QUEUE`) ; offres à émission immédiate refusées (`offer_not_holdable`). Adresses : `https://test.api.amadeus.com` (clés gratuites sur developers.amadeus.com), `https://api.amadeus.com` (production), ou le bac à sable simulé `https://amadeus-api.mock.beeceptor.com` (données aléatoires, réponses d'environ une minute : `AMADEUS_TIMEOUT_MS=150000`).
 - **payments** : interface `PaymentProvider` (`PAYMENT_PROVIDER=none|mock` ; `mock` = simulation, refusée en production). Lien client `/paiement/PAY-XXXXXX?t=…` (jeton haché, 7 jours, renouvelable), redirection chez le prestataire (aucune donnée de carte chez ETHNIKA), résultat idempotent, historique de la demande, demande confirmée quand le devis est soldé, alerte agence. Brancher un prestataire réel : une classe `PaymentProvider` + une route de notification authentifiée par sa signature, qui appelle `PaymentsService.applyResult`.
-- **agency** : coordonnées et mentions de l'agence (ligne unique), reprises sur les PDF.
+- **agency** : coordonnées et mentions de l'agence (ligne unique), reprises sur le site public et les PDF ; valeurs fictives (`verified = false`) jusqu'au premier enregistrement.
+- **mail** : file d'envoi ; transport Resend (`RESEND_API_KEY`, prioritaire), SMTP (`SMTP_URL`) ou journal en développement. Reçu de paiement au client (FR/EN).
+- **notifications** : calculées à la volée (aucune table), compteur non lu par compte (`User.notificationsSeenAt`).
 - **maintenance** : chaque heure, purge des sessions et défis expirés, des e-mails envoyés de plus de 90 jours et des demandes clôturées au-delà de `LEAD_RETENTION_DAYS`.
 
 ## Tests

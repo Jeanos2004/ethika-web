@@ -130,6 +130,8 @@ model User {
   updatedAt          DateTime  @updatedAt
   sessions           Session[]
   assignedLeads      Lead[]    @relation("LeadAssignee")
+  /// Dernière ouverture de la cloche du back-office (compteur de notifications non lues).
+  notificationsSeenAt DateTime?
 }
 
 /// Session du back-office. Seule l'empreinte SHA-256 du jeton est stockée.

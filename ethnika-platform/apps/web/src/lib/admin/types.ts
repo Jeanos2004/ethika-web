@@ -200,6 +200,9 @@ export type ApiPayment = {
   lead: { reference: string; fullName: string };
 };
 
+export type ApiNotification = { id: string; kind: "lead_new" | "lead_assigned" | "payment_received" | "payment_failed" | "hold_due"; at: string; reference: string; name?: string; amount?: string; href: string };
+export type ApiNotifications = { unread: number; items: ApiNotification[] };
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

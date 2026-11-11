@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { metadataFor } from "@/content/pages";
-import { getCircuits } from "@/content/circuits";
+import { siteCircuits } from "@/lib/content-source";
 import { getHomePosts } from "@/content/blog";
 import { getHomeContent, type MosaicItem } from "@/content/home";
 import { site, whatsappLink } from "@/lib/site";
@@ -32,7 +32,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const tSearch = await getTranslations("search");
   const tc = await getTranslations("common");
   const c = getHomeContent(locale);
-  const circuits = getCircuits(locale);
+  const circuits = await siteCircuits(locale);
   const posts = getHomePosts(locale);
 
   return (

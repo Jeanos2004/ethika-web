@@ -2056,7 +2056,11 @@
         "removeDeparture": "Retirer le départ {n}",
         "published": "Publié sur le site",
         "save": "Enregistrer",
-        "saving": "Enregistrement…"
+        "saving": "Enregistrement…",
+        "importHint": "{count, plural, one {# élément du site actuel n'est} other {# éléments du site actuel ne sont}} pas encore dans le back-office. Dès qu'un contenu est publié ici, le site n'affiche plus que les contenus publiés : importez d'abord l'existant.",
+        "import": "Importer {count, plural, one {l'élément} other {les # éléments}}",
+        "importing": "Import…",
+        "importDone": "Import terminé : {created} créé(s), {skipped} déjà présent(s), {failed} en échec."
       }
     }
   },

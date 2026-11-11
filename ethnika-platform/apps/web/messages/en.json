@@ -2056,7 +2056,11 @@
         "removeDeparture": "Remove departure {n}",
         "published": "Published on the website",
         "save": "Save",
-        "saving": "Saving…"
+        "saving": "Saving…",
+        "importHint": "{count, plural, one {# item from the current website is} other {# items from the current website are}} not in the back-office yet. As soon as content is published here, the website only shows published content: import the existing items first.",
+        "import": "Import {count, plural, one {the item} other {the # items}}",
+        "importing": "Importing…",
+        "importDone": "Import finished: {created} created, {skipped} already present, {failed} failed."
       }
     }
   },

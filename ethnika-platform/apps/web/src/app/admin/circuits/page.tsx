@@ -6,6 +6,7 @@ import { api } from "@/lib/api/server";
 import { liveAccount } from "@/lib/admin/account";
 import { requireAdmin } from "@/lib/admin/session";
 import type { ApiCircuit } from "@/lib/admin/types";
+import { getCircuits } from "@/content/circuits";
 
 export const metadata: Metadata = { title: "Circuits" };
 
@@ -26,7 +27,7 @@ export default async function AdminCircuitsPage({ searchParams }: { searchParams
   }));
   return (
     <AdminShell section="circuits" title={t("circuitsTitle")} live={await liveAccount(user, session)}>
-      <ContentList kind="circuits" rows={rows} newHref="/admin/circuits/nouveau" saved={(await searchParams).enregistre === "1"} />
+      <ContentList kind="circuits" rows={rows} newHref="/admin/circuits/nouveau" saved={(await searchParams).enregistre === "1"} importable={getCircuits("fr").filter((c) => !circuits.some((x) => x.slug === c.slug)).length} />
     </AdminShell>
   );
 }

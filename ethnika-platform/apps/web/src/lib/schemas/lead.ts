@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { circuitSlugs } from "@/content/circuits";
 import { cabins, proRequestTypes, tripTypes } from "@/lib/schemas/search";
 
 /**
@@ -50,7 +49,8 @@ const circuitLead = z.object({
   ...base,
   type: z.literal("circuit"),
   email,
-  circuit: z.enum(circuitSlugs, { error: "circuitUnknown" }),
+  // Slug seulement : les circuits publiés depuis le back-office ne sont pas connus à la compilation.
+  circuit: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "circuitUnknown").max(80),
   travellers: intIn(1, 12, "travellers"),
   travelDate: futureDate.optional(),
   message: optionalMessage,

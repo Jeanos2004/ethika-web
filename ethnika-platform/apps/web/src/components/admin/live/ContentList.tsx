@@ -4,11 +4,12 @@ import { getTranslations } from "next-intl/server";
 import { deleteContent, setPublished } from "@/lib/admin/content-actions";
 import { formatMoney } from "@/lib/admin/money";
 import { Icon } from "@/components/ui/Icon";
+import { ImportContent } from "@/components/admin/live/ImportContent";
 
 export type ContentRow = { id: string; slug: string; title: string; subtitle: string; published: boolean; position: number; amount: string | null; currency: string | null; image: string };
 
 /** Liste des offres ou des circuits : statut de publication, ordre, prix, actions rapides. */
-export async function ContentList({ kind, rows, newHref, saved }: { kind: "offers" | "circuits"; rows: ContentRow[]; newHref: string; saved: boolean }) {
+export async function ContentList({ kind, rows, newHref, saved, importable }: { kind: "offers" | "circuits"; rows: ContentRow[]; newHref: string; saved: boolean; importable: number }) {
   const t = await getTranslations({ locale: "fr", namespace: "admin.live.content" });
   const base = kind === "offers" ? "/admin/offres" : "/admin/circuits";
   return (
@@ -27,6 +28,7 @@ export async function ContentList({ kind, rows, newHref, saved }: { kind: "offer
           {t("savedNotice")}
         </p>
       )}
+      {importable > 0 && <ImportContent kind={kind} count={importable} />}
       <section className="overflow-hidden rounded-2xl border border-line bg-white">
         {rows.length === 0 ? (
           <p className="px-5 py-12 text-center text-sm text-muted">{t("empty")}</p>

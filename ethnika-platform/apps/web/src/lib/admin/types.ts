@@ -25,7 +25,22 @@ export type ApiLead = ApiLeadRow & {
 };
 
 export type ApiStats = {
-  kpis: { toTreat: number; overdue: number; inProgress: number; confirmationRate: number | null; last7: number; prev7: number };
+  kpis: {
+    toTreat: number;
+    overdue: number;
+    inProgress: number;
+    confirmationRate: number | null;
+    last7: number;
+    prev7: number;
+    mineOpen: number;
+    /** Délai médian (heures) entre la réception et la première prise en charge, demandes des 30 derniers jours. */
+    medianHandlingHours: number | null;
+    handledShare: number | null;
+  };
+  byStatus: Record<ApiLeadStatus, number>;
+  bySource: Partial<Record<string, number>>;
+  flights: { held: number; dueSoon: number };
+  quotes30: { currency: string; count: number; total: string }[];
   daily: { date: string; count: number }[];
   byType: Partial<Record<ApiLeadType, number>>;
   priorityQueue: { reference: string; fullName: string; type: ApiLeadType; status: ApiLeadStatus; createdAt: string; assignedTo: { name: string } | null }[];

@@ -96,7 +96,11 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
     it("calcule les indicateurs du tableau de bord", async () => {
       const stats = await as(agent, api().get("/v1/stats")).expect(200);
       expect(stats.body.kpis.toTreat).toBeGreaterThanOrEqual(1);
-      expect(stats.body.daily).toHaveLength(14);
+      expect(stats.body.daily).toHaveLength(30);
+      expect(stats.body.kpis).toHaveProperty("mineOpen");
+      expect(stats.body.byStatus.new).toBeGreaterThanOrEqual(1);
+      expect(stats.body.flights).toMatchObject({ held: expect.any(Number), dueSoon: expect.any(Number) });
+      expect(Array.isArray(stats.body.quotes30)).toBe(true);
       expect(stats.body.daily.at(-1).count).toBeGreaterThanOrEqual(1);
       expect(stats.body.byType.contact).toBeGreaterThanOrEqual(1);
       expect(Array.isArray(stats.body.priorityQueue)).toBe(true);

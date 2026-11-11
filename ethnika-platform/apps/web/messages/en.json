@@ -2188,6 +2188,31 @@
         "taglineText": "The team's workspace: follow every traveller from the first request to ticketing.",
         "secure": "Encrypted sign-in · two-step verification",
         "backToSite": "Back to the website"
+      },
+      "dash": {
+        "chartTitle": "Requests received",
+        "chartTotal": "{count, plural, =0 {No requests} one {# request} other {# requests}} over {days} days",
+        "period": "Period",
+        "days": "{n} d",
+        "myRequests": "My requests",
+        "dueSoonBanner": "{count, plural, one {# flight hold is} other {# flight holds are}} due within 24 h.",
+        "kpiMine": "My open requests",
+        "kpiMineNote": "New or in progress, assigned to you",
+        "kpiHandling": "Handling time",
+        "kpiHandlingNote": "Median over 30 days",
+        "kpiHolds": "Flight holds",
+        "kpiHoldsDue": "{count} to pay within 24 h",
+        "kpiHoldsOk": "No deadline soon",
+        "statusTitle": "By status",
+        "statusHint": "{count, plural, one {# request} other {# requests}} in total",
+        "sourceSite": "Received via the website",
+        "sourceManual": "Entered by the team",
+        "quotesTitle": "Quotes · last 30 days",
+        "quotesCount": "{count, plural, one {quote issued} other {quotes issued}}",
+        "quotesTotal": "Total in {currency}",
+        "quotesNone": "No quote over the period.",
+        "fullLog": "Full log",
+        "trend": "7-day trend: {delta}"
       }
     }
   },

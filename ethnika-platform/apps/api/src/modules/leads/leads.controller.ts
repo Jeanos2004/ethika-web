@@ -125,7 +125,7 @@ export class StatsController {
   constructor(private readonly stats: StatsService) {}
 
   @Get()
-  dashboard() {
-    return this.stats.dashboard();
+  dashboard(@CurrentUser() me: AuthContext) {
+    return this.stats.dashboard(new Date(), me.userId);
   }
 }

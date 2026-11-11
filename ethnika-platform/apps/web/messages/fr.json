@@ -2188,6 +2188,31 @@
         "taglineText": "L'espace de travail de l'équipe : suivez chaque voyageur, de la première demande à l'émission du billet.",
         "secure": "Connexion chiffrée · vérification en deux étapes",
         "backToSite": "Retour au site"
+      },
+      "dash": {
+        "chartTitle": "Demandes reçues",
+        "chartTotal": "{count, plural, =0 {Aucune demande} one {# demande} other {# demandes}} sur {days} jours",
+        "period": "Période",
+        "days": "{n} j",
+        "myRequests": "Mes demandes",
+        "dueSoonBanner": "{count, plural, one {# option de vol arrive} other {# options de vol arrivent}} à échéance sous 24 h.",
+        "kpiMine": "Mes demandes ouvertes",
+        "kpiMineNote": "Nouvelles ou en cours, attribuées à vous",
+        "kpiHandling": "Prise en charge",
+        "kpiHandlingNote": "Délai médian sur 30 jours",
+        "kpiHolds": "Options de vol",
+        "kpiHoldsDue": "{count} à payer sous 24 h",
+        "kpiHoldsOk": "Aucune échéance proche",
+        "statusTitle": "Répartition par statut",
+        "statusHint": "{count, plural, one {# demande} other {# demandes}} au total",
+        "sourceSite": "Reçues par le site",
+        "sourceManual": "Saisies par l'équipe",
+        "quotesTitle": "Devis · 30 derniers jours",
+        "quotesCount": "{count, plural, =0 {devis émis} one {devis émis} other {devis émis}}",
+        "quotesTotal": "Total en {currency}",
+        "quotesNone": "Aucun devis sur la période.",
+        "fullLog": "Journal complet",
+        "trend": "Tendance sur 7 jours : {delta}"
       }
     }
   },

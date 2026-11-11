@@ -24,7 +24,7 @@ export default async function AdminHomePage() {
   const stats = await api<ApiStats>("/v1/stats", { session });
   return (
     <AdminShell section="dashboard" title="Tableau de bord" live={await liveAccount(user, session, stats.kpis.toTreat)}>
-      <LiveDashboard stats={stats} name={user.name} />
+      <LiveDashboard stats={stats} name={user.name} role={user.role} />
     </AdminShell>
   );
 }

@@ -203,9 +203,12 @@ function AccountFooter({ live }: { live?: LiveAccount }) {
           <Link href="/admin/parametres" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
             <Icon name="sliders" size={16} /> {t("nav.settings")}
           </Link>
-          <form action={logout}>
-            <button type="submit" className="flex min-h-10 w-full items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
-              <Icon name="close" size={16} /> {t("live.logout")}
+          <form action={logout} className="mt-1">
+            <button
+              type="submit"
+              className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-red px-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-red-dark"
+            >
+              <Icon name="arrowLeft" size={16} /> {t("live.logout")}
             </button>
           </form>
         </>

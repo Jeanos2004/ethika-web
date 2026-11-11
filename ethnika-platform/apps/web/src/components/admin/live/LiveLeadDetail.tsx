@@ -57,6 +57,44 @@ export async function LiveLeadDetail({
   const mail = lead.email ? `mailto:${lead.email}?subject=${encodeURIComponent(t("leads.emailSubject", { ref: lead.reference }))}` : undefined;
   const mine = lead.assignedTo?.id === me;
 
+  /** Statut et attribution : sous le client sur mobile et tablette, dans la colonne de droite sur grand écran. */
+  const statusCard = (visibility: string) => (
+        <section className={clsx("flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6", visibility)}>
+          <h2 className="text-base font-bold text-night">{t("leads.changeStatus")}</h2>
+          <div className="flex flex-wrap gap-1.5">
+            {statuses.map((s) => {
+              const on = lead.status === s;
+              return (
+                <form key={s} action={setLeadStatus}>
+                  <input type="hidden" name="ref" value={lead.reference} />
+                  <input type="hidden" name="status" value={s} />
+                  <button
+                    type="submit"
+                    aria-pressed={on}
+                    disabled={on}
+                    className={clsx("min-h-10 rounded-full border-[1.5px] px-3 text-[13px] font-semibold", on ? "border-night bg-night text-white" : "border-line-strong bg-white text-night hover:border-night")}
+                  >
+                    {t(`statuses.${uiStatus[s]}`)}
+                  </button>
+                </form>
+              );
+            })}
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-sm">
+            <span className="text-muted">
+              {t("live.leads.assignedTo")} <strong className="text-night">{lead.assignedTo?.name ?? t("live.leads.unassigned")}</strong>
+            </span>
+            <form action={assignLead}>
+              <input type="hidden" name="ref" value={lead.reference} />
+              <input type="hidden" name="to" value={mine ? "none" : "me"} />
+              <button type="submit" className="min-h-10 rounded-full border-[1.5px] border-line-strong bg-white px-3.5 text-[13px] font-semibold text-night hover:border-night">
+                {mine ? t("live.leads.release") : t("live.leads.takeIt")}
+              </button>
+            </form>
+          </div>
+        </section>
+  );
+
   return (
     <>
       <Link href="/admin/demandes" className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-night hover:underline">
@@ -104,6 +142,9 @@ export async function LiveLeadDetail({
               </a>
             </div>
           </section>
+
+          {/* Mobile et tablette : statut et attribution juste sous le client (action la plus fréquente). */}
+          {statusCard("flex xl:hidden")}
 
           <section className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6">
             <h2 className="text-base font-bold text-night">{t("live.quotes.title")}</h2>
@@ -154,40 +195,7 @@ export async function LiveLeadDetail({
         </div>
 
         <div className="flex min-w-0 flex-col gap-4">
-          <section className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6">
-            <h2 className="text-base font-bold text-night">{t("leads.changeStatus")}</h2>
-            <div className="flex flex-wrap gap-1.5">
-              {statuses.map((s) => {
-                const on = lead.status === s;
-                return (
-                  <form key={s} action={setLeadStatus}>
-                    <input type="hidden" name="ref" value={lead.reference} />
-                    <input type="hidden" name="status" value={s} />
-                    <button
-                      type="submit"
-                      aria-pressed={on}
-                      disabled={on}
-                      className={clsx("min-h-10 rounded-full border-[1.5px] px-3 text-[13px] font-semibold", on ? "border-night bg-night text-white" : "border-line-strong bg-white text-night hover:border-night")}
-                    >
-                      {t(`statuses.${uiStatus[s]}`)}
-                    </button>
-                  </form>
-                );
-              })}
-            </div>
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-sm">
-              <span className="text-muted">
-                {t("live.leads.assignedTo")} <strong className="text-night">{lead.assignedTo?.name ?? t("live.leads.unassigned")}</strong>
-              </span>
-              <form action={assignLead}>
-                <input type="hidden" name="ref" value={lead.reference} />
-                <input type="hidden" name="to" value={mine ? "none" : "me"} />
-                <button type="submit" className="min-h-10 rounded-full border-[1.5px] border-line-strong bg-white px-3.5 text-[13px] font-semibold text-night hover:border-night">
-                  {mine ? t("live.leads.release") : t("live.leads.takeIt")}
-                </button>
-              </form>
-            </div>
-          </section>
+          {statusCard("hidden xl:flex")}
 
           <section className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6">
             <h2 className="text-base font-bold text-night">{t("leads.historyTitle")}</h2>

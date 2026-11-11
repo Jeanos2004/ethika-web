@@ -22,6 +22,11 @@ export const site = {
     ],
     hours: "Lun – Sam · [HORAIRES]",
     address: "[Quartier], Conakry",
+    /**
+     * Position de l'agence sur la carte de la page Contact. Valeur provisoire : centre de Kaloum (Conakry).
+     * Remplacer par les coordonnées exactes (clic droit sur Google Maps → coordonnées) et passer `approximate` à false.
+     */
+    geo: { lat: 9.5092, lng: -13.7122, approximate: true },
     whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
   },
   legal: {

@@ -1451,7 +1451,11 @@
       }
     ],
     "followKicker": "Suivez-nous",
-    "followTitle": "Offres, départs et photos de Guinée"
+    "followTitle": "Offres, départs et photos de Guinée",
+    "mapTitle": "Carte : emplacement de l'agence ETHNIKA à Conakry",
+    "mapApproximate": "Position indicative : adresse exacte à confirmer.",
+    "mapDirections": "Itinéraire",
+    "mapOpen": "Agrandir"
   },
   "faq": {
     "kicker": "Questions fréquentes",

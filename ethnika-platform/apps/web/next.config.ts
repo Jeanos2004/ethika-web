@@ -19,7 +19,7 @@ const csp = [
   "img-src 'self' data: blob:",
   "font-src 'self'",
   `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws:" : ""}`,
-  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com",
+  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com https://www.openstreetmap.org",
   "frame-ancestors 'none'",
   "form-action 'self'",
   "base-uri 'self'",

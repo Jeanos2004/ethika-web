@@ -1451,7 +1451,11 @@
       }
     ],
     "followKicker": "Follow us",
-    "followTitle": "Deals, departures and photos of Guinea"
+    "followTitle": "Deals, departures and photos of Guinea",
+    "mapTitle": "Map: location of the ETHNIKA agency in Conakry",
+    "mapApproximate": "Approximate location: exact address to be confirmed.",
+    "mapDirections": "Directions",
+    "mapOpen": "Enlarge"
   },
   "faq": {
     "kicker": "Frequently asked questions",

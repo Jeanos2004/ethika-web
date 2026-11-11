@@ -73,8 +73,9 @@ function QuoteLines() {
     <fieldset className="flex flex-col gap-2">
       <legend className="mb-1 text-[13px] font-semibold">{t("lines")}</legend>
       {rows.map((id, i) => (
-        <div key={id} className="grid grid-cols-[minmax(0,1fr)_4.5rem_7.5rem_auto] items-end gap-2">
-          <input name="label" aria-label={t("label", { n: i + 1 })} placeholder={t("labelPlaceholder")} maxLength={160} required={i === 0} className={input} />
+        // Mobile : libellé sur toute la largeur, puis quantité / prix / retrait ; une seule ligne dès 640 px.
+        <div key={id} className="grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-end gap-2 sm:grid-cols-[minmax(0,1fr)_4.5rem_7.5rem_auto]">
+          <input name="label" aria-label={t("label", { n: i + 1 })} placeholder={t("labelPlaceholder")} maxLength={160} required={i === 0} className={`${input} col-span-3 sm:col-span-1`} />
           <input name="quantity" aria-label={t("quantity", { n: i + 1 })} type="number" min={1} max={999} defaultValue={1} className={input} />
           <input name="unitPrice" aria-label={t("unitPrice", { n: i + 1 })} inputMode="decimal" placeholder="0" required={i === 0} className={`${input} text-right tabular-nums`} />
           <button

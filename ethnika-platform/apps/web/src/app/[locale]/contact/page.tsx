@@ -6,6 +6,7 @@ import { getPage, metadataFor } from "@/content/pages";
 import { phoneLink, site, whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { AgencyMap } from "@/components/sections/AgencyMap";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
 export const generateMetadata = metadataFor("contact");
@@ -88,11 +89,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           <LeadForm />
         </div>
         <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-[18px]">
-          <div className="flex min-h-[340px] flex-1 flex-col items-center justify-center gap-2.5 rounded-[30px] border-[1.5px] border-dashed border-line-strong bg-sand text-subtle">
-            <Icon name="pin" size={30} />
-            <strong>{t("map")}</strong>
-            <span className="text-sm">{site.contact.address}</span>
-          </div>
+          <AgencyMap />
           <div className="flex flex-col gap-3 rounded-[var(--radius-card)] bg-night p-[26px] text-white">
             <h2 className="text-[19px] font-bold">{t("hoursTitle")}</h2>
             <dl>

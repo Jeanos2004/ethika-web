@@ -40,7 +40,7 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | POST | `/leads/manual` | Demande saisie par un agent (téléphone, WhatsApp) : même validation que le site, source `manual`, attribuée à l'agent, auditée |
 | agent, admin | PATCH / POST | `/leads/:ref/assign`, `/leads/:ref/notes` | Attribution à un agent, notes internes (historisées) |
 | agent, admin | GET | `/stats` | Indicateurs du tableau de bord (à traiter, en retard, taux de confirmation, 14 jours, file prioritaire, activité) |
-| agent, admin | GET | `/leads/export.csv` | Export CSV (formules neutralisées, audité) |
+| agent, admin | GET | `/leads/export.csv`, `/leads/export.xlsx` | Export CSV (formules neutralisées) ou Excel mis en forme (feuilles Demandes et Synthèse), audités |
 | agent, admin | GET / PATCH | `/leads/:ref`, `/leads/:ref/status` | Détail, changement de statut (historisé, audité) |
 | agent, admin | GET | `/leads/:ref/pdf` | Récapitulatif PDF |
 | agent, admin | POST / GET | `/leads/:ref/quotes` | Devis (numéro `DEV-AAAA-NNNN`, montants entiers) |
@@ -48,7 +48,13 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | POST | `/flights/orders` | Pose une option (PNR) chez le fournisseur, enregistrée et rattachée à la demande (`leadRef`) ; refus explicite `offer_not_holdable` si paiement immédiat exigé |
 | agent, admin | GET / POST | `/flights/bookings?status=&leadRef=`, `/flights/bookings/:id`, `/flights/bookings/:id/cancel` | Suivi des options (détail resynchronisé avec le fournisseur), annulation |
 | admin | GET / POST / PATCH | `/users`, `/users/:id`, `/users/:id/reset-mfa`, `/users/:id/reset-password` | Comptes |
-| admin | GET | `/audit` | Journal d'audit |
+| admin | GET | `/audit`, `/audit/search?category=&actorId=`, `/audit/summary` | Journal d'audit (recherche paginée, volumes 24 h / 7 j) |
+| session | GET / PATCH | `/account`, `/account/sessions`, `/account/sessions/revoke`, `/account/sessions/revoke-others` | Profil, sessions actives (déconnexion d'un appareil ou des autres) |
+| admin | GET | `/system` | État de fonctionnement (configuration, file d'e-mails, volumes), sans secret |
+| agent, admin / admin | GET / PATCH | `/agency` | Coordonnées de l'agence reprises sur les PDF (modification : admin) |
+| agent, admin | POST | `/quotes/:number/payments` | Lien de paiement d'un devis (reste dû ou acompte) |
+| agent, admin | GET / POST | `/payments`, `/payments/config`, `/payments/:id/renew`, `/payments/:id/cancel` | Suivi, nouveau lien, annulation |
+| clé | POST | `/public/payments/:reference` (+ `/checkout`, `/simulate`) | Page de paiement du site (jeton du lien), redirection chez le prestataire, simulation |
 | admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
 | public | GET | `/health` | Santé (accès base) |
 
@@ -64,6 +70,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 - **flights** : interface `FlightProvider` ; `mock` (développement, tests) ou `duffel` (`FLIGHT_PROVIDER=duffel`, jeton `duffel_test_…`). Délais, reprises à backoff, journal sans donnée personnelle ni identifiant. Chaque offre indique si une option est possible (`holdable`, `payBefore`). Les options posées sont enregistrées (PNR, montant, échéance, trajet résumé) sans copier les données des passagers, rattachées à la demande, et l'agence est alertée par e-mail 24 h avant l'échéance de paiement. Ni paiement ni émission de billet sans un agent.
   - Validé contre le **bac à sable Duffel** : recherche (50 offres Conakry → Paris), prix et conditions, option, consultation, annulation.
   - **Amadeus** (`FLIGHT_PROVIDER=amadeus`, `AMADEUS_BASE_URL`, `AMADEUS_CLIENT_ID`, `AMADEUS_CLIENT_SECRET`) : jeton OAuth2 en cache (une seule demande même en parallèle, renouvelé avant expiration ou après un 401). Amadeus étant sans état, les offres d'une recherche sont gardées 30 min sous un identifiant opaque (`am_…`) pour le prix et la réservation. Réservation avec émission différée (`DELAY_TO_QUEUE`) ; offres à émission immédiate refusées (`offer_not_holdable`). Adresses : `https://test.api.amadeus.com` (clés gratuites sur developers.amadeus.com), `https://api.amadeus.com` (production), ou le bac à sable simulé `https://amadeus-api.mock.beeceptor.com` (données aléatoires, réponses d'environ une minute : `AMADEUS_TIMEOUT_MS=150000`).
+- **payments** : interface `PaymentProvider` (`PAYMENT_PROVIDER=none|mock` ; `mock` = simulation, refusée en production). Lien client `/paiement/PAY-XXXXXX?t=…` (jeton haché, 7 jours, renouvelable), redirection chez le prestataire (aucune donnée de carte chez ETHNIKA), résultat idempotent, historique de la demande, demande confirmée quand le devis est soldé, alerte agence. Brancher un prestataire réel : une classe `PaymentProvider` + une route de notification authentifiée par sa signature, qui appelle `PaymentsService.applyResult`.
+- **agency** : coordonnées et mentions de l'agence (ligne unique), reprises sur les PDF.
 - **maintenance** : chaque heure, purge des sessions et défis expirés, des e-mails envoyés de plus de 90 jours et des demandes clôturées au-delà de `LEAD_RETENTION_DAYS`.
 
 ## Tests

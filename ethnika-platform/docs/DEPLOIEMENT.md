@@ -93,5 +93,7 @@ Première connexion :
 1. Créer le premier administrateur (commande `create-admin` ci-dessus) ; il choisit son mot de passe et active la 2FA à la première connexion.
 2. Dans **Circuits** puis **Offres**, cliquer sur « Importer » pour reprendre les contenus actuels du site avant toute publication : dès qu'un élément est publié, le site n'affiche plus que les contenus publiés.
 3. Créer les comptes des agents dans **Utilisateurs** (mot de passe temporaire affiché une fois, à transmettre de vive voix).
+4. Renseigner **Paramètres > Agence** (adresse, téléphone, licence, modalités de règlement) : ces informations remplacent les `[…]` des PDF.
+5. Paiements : `PAYMENT_PROVIDER=none` tant que le prestataire n'est pas choisi (liens désactivés, `mock` est refusé en production). Le brancher = un adaptateur dans `apps/api/src/modules/payments` (voir README de l'API).
 
 Limite connue : sur Vercel (serverless), la limitation de débit du site est par instance ; celle de l'API (VPS, instance unique) reste exacte.

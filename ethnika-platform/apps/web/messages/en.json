@@ -2541,7 +2541,8 @@
           "payment_failed": "Payment failed: send a new link",
           "hold_due": "Hold {reference} due within 24 h"
         }
-      }
+      },
+      "soon": "Coming soon"
     }
   },
   "demo": {

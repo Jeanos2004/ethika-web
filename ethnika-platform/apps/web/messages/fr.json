@@ -2541,7 +2541,8 @@
           "payment_failed": "Paiement échoué : nouveau lien à envoyer",
           "hold_due": "Option {reference} à payer sous 24 h"
         }
-      }
+      },
+      "soon": "Bientôt"
     }
   },
   "demo": {

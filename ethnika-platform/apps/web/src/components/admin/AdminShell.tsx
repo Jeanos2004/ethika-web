@@ -31,7 +31,12 @@ function toolsFor(live?: LiveAccount) {
   return live?.role === "admin" ? adminTools : [];
 }
 
+/**
+ * Rubrique « à venir » : démo = tout le futur back-office ; administrateur = ce qui n'existe pas encore
+ * (blog, galerie) ; agent = rien (circuits, offres et comptes existent, mais ne le concernent pas).
+ */
 function soonFor(live?: LiveAccount) {
+  if (live?.role === "agent") return [];
   const tools = toolsFor(live).map((x) => x.key as string);
   return soon.filter((k) => !tools.includes(k));
 }
@@ -81,7 +86,7 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
               {t(`nav.${x.key}`)}
             </SideLink>
           ))}
-          <span className="mt-4 mb-1 px-3.5 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
+          {soonFor(live).length > 0 && <span className="mt-4 mb-1 px-3.5 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{(live ? t("live.soon") : t("soon")).toUpperCase()}</span>}
           {soonFor(live).map((k) => (
             <span key={k} aria-disabled="true" className="flex min-h-10 items-center rounded-xl px-3.5 text-[14px] font-medium text-on-dark-muted">
               {t(`nav.${k}`)}
@@ -284,7 +289,7 @@ function MoreSheet({ live, onClose }: { live?: LiveAccount; onClose: () => void 
               <Icon name={x.icon} size={17} /> {t(`nav.${x.key}`)}
             </Link>
           ))}
-          <span className="mt-2 mb-1 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
+          {soonFor(live).length > 0 && <span className="mt-2 mb-1 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{(live ? t("live.soon") : t("soon")).toUpperCase()}</span>}
           {soonFor(live).map((k) => (
             <span key={k} aria-disabled="true" className="flex min-h-10 items-center text-[15px] text-on-dark-muted">
               {t(`nav.${k}`)}

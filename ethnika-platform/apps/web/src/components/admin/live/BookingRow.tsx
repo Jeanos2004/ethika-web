@@ -1,57 +1,50 @@
-import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { clsx } from "clsx";
-import { cancelBooking } from "@/lib/admin/actions";
+import { getTranslations } from "next-intl/server";
 import type { FlightBooking } from "@/lib/admin/types";
-import { formatLong } from "@/components/admin/status";
+import { formatShort } from "@/components/admin/status";
+import { Icon } from "@/components/ui/Icon";
 
-const dot = { held: "bg-brand-gold", confirmed: "bg-brand-green", cancelled: "bg-brand-red" } as const;
+export const bookingDot = { held: "bg-brand-gold", confirmed: "bg-brand-green", cancelled: "bg-brand-red" } as const;
 
-/** Option de vol (PNR) : trajet, montant, échéance, demande liée, annulation. */
+/** Ligne d'une option de vol : PNR, trajet, compagnie, montant, échéance ; ouvre la fiche de l'option. */
 export async function BookingRow({ booking: b, showLead = false }: { booking: FlightBooking; showLead?: boolean }) {
   const t = await getTranslations({ locale: "fr", namespace: "admin.live.flights" });
   const route = b.itinerary.slices.map((s) => `${s.origin} → ${s.destination}`).join(" · ");
-  const soon = b.status === "held" && b.payBefore && new Date(b.payBefore).getTime() - new Date().getTime() < 24 * 3600_000;
+  const dueMs = b.payBefore ? new Date(b.payBefore).getTime() - new Date().getTime() : null;
+  const soon = b.status === "held" && dueMs !== null && dueMs < 24 * 3600_000;
   return (
-    <li className="flex flex-wrap items-center gap-x-4 gap-y-2 py-3">
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="flex items-center gap-2">
-          <strong className="font-mono text-[15px] text-night">{b.bookingReference ?? "—"}</strong>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2 py-0.5 text-xs font-semibold">
-            <span aria-hidden="true" className={clsx("size-2 rounded-full", dot[b.status])} />
-            {t(`bookingStatus.${b.status}`)}
+    <li>
+      <Link href={`/admin/vols/options/${b.id}`} className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3.5 gap-y-1 px-4 py-3.5 hover:bg-cream sm:px-5 lg:grid-cols-[auto_minmax(0,1.3fr)_minmax(0,1fr)_9rem_auto]">
+        <span className={clsx("flex size-10 items-center justify-center rounded-xl", soon ? "bg-red-50 text-red-700" : "bg-sand text-night")}>
+          <Icon name="plane" size={17} />
+        </span>
+        <span className="flex min-w-0 flex-col">
+          <strong className="truncate text-night">
+            <span className="font-mono">{b.bookingReference ?? "—"}</span> · {route}
+          </strong>
+          <span className="truncate text-xs text-muted">
+            {b.itinerary.airline} · {t("passengers", { count: b.passengerCount })}
+            {showLead && b.lead && (
+              <>
+                {" · "}
+                <span className="font-mono">{b.lead.reference}</span> {b.lead.fullName}
+              </>
+            )}
           </span>
         </span>
-        <span className="truncate text-sm text-ink">
-          {route} · {b.itinerary.airline} · {t("passengers", { count: b.passengerCount })}
+        <span className="col-span-3 flex flex-wrap items-center gap-1.5 text-xs lg:col-span-1">
+          <strong className="text-night tabular-nums">
+            {b.totalAmount} {b.currency}
+          </strong>
+          {b.status === "held" && b.payBefore && <span className={clsx("rounded-full px-2 py-0.5 font-semibold", soon ? "bg-red-50 text-red-700" : "bg-sand text-night")}>{t("payBeforeShort", { date: formatShort(b.payBefore) })}</span>}
         </span>
-        <span className={clsx("text-xs", soon ? "font-semibold text-red-700" : "text-muted")}>
-          {b.totalAmount} {b.currency}
-          {b.payBefore && b.status === "held" && <> · {t("payBefore", { date: formatLong(b.payBefore) })}</>}
-          {showLead && b.lead && (
-            <>
-              {" · "}
-              <Link href={`/admin/demandes/${b.lead.reference}`} className="font-mono text-night hover:underline">
-                {b.lead.reference}
-              </Link>{" "}
-              {b.lead.fullName}
-            </>
-          )}
+        <span className="hidden text-xs text-muted lg:block">{formatShort(b.createdAt)}</span>
+        <span className="col-start-3 row-start-1 inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs font-semibold lg:col-start-auto lg:row-start-auto">
+          <span aria-hidden="true" className={clsx("size-2 rounded-full", bookingDot[b.status])} />
+          {t(`bookingStatus.${b.status}`)}
         </span>
-      </span>
-      {b.status === "held" && (
-        // Annulation irréversible chez la compagnie : confirmation explicite en deux temps.
-        <details className="group relative">
-          <summary className="flex min-h-10 cursor-pointer list-none items-center rounded-full border-[1.5px] border-line-strong bg-white px-3.5 text-[13px] font-semibold text-night hover:border-night">{t("cancel")}</summary>
-          <form action={cancelBooking} className="absolute right-0 z-10 mt-2 flex w-64 flex-col gap-2 rounded-xl border border-line bg-white p-3 text-sm shadow-lg">
-            <input type="hidden" name="id" value={b.id} />
-            <span className="text-ink">{t("cancelConfirm")}</span>
-            <button type="submit" className="min-h-10 rounded-full bg-brand-red px-3.5 text-[13px] font-semibold text-white">
-              {t("cancelYes")}
-            </button>
-          </form>
-        </details>
-      )}
+      </Link>
     </li>
   );
 }

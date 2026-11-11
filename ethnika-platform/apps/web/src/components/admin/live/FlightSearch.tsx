@@ -24,7 +24,7 @@ export function FlightSearch({ prefill }: { prefill: Record<string, string> }) {
 
   return (
     <>
-      <form action={action} className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <form action={action} className="flex flex-col gap-4">
         {lead && <input type="hidden" name="lead" value={lead} />}
         {lead && (
           <p className="text-sm text-muted">

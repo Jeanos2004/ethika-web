@@ -154,4 +154,5 @@ export async function cancelBooking(formData: FormData) {
   const id = uuid.parse(formData.get("id"));
   await api(`/v1/flights/bookings/${id}/cancel`, { method: "POST", session, timeoutMs: 60_000 });
   revalidatePath("/admin/vols");
+  revalidatePath(`/admin/vols/options/${id}`);
 }

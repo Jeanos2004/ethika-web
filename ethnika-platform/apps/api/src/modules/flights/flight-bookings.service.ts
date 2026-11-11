@@ -8,6 +8,7 @@ import type { Passenger, PricedOffer } from "./flight-provider";
 import { FlightsService } from "./flights.service";
 
 const DAY = 24 * 3600_000;
+const withLead = { lead: { select: { reference: true, fullName: true } } } as const;
 
 /** Résumé du trajet stocké avec l'option : sans donnée personnelle. */
 function itinerary(offer: PricedOffer) {
@@ -75,12 +76,12 @@ export class FlightBookingsService {
 
   /** Détail, resynchronisé avec le fournisseur (statut, échéance) : la compagnie peut avoir annulé l'option. */
   async get(id: string) {
-    const booking = await this.prisma.flightBooking.findUnique({ where: { id } });
+    const booking = await this.prisma.flightBooking.findUnique({ where: { id }, include: withLead });
     if (!booking) throw new NotFoundException();
     if (booking.status === "cancelled") return booking;
     const order = await this.flights.getOrder(booking.providerOrderId);
     if (order.status !== booking.status || (order.payBefore ?? null) !== (booking.payBefore?.toISOString() ?? null)) {
-      return this.prisma.flightBooking.update({ where: { id }, data: { status: order.status, payBefore: order.payBefore ? new Date(order.payBefore) : null, bookingReference: order.bookingReference } });
+      return this.prisma.flightBooking.update({ where: { id }, data: { status: order.status, payBefore: order.payBefore ? new Date(order.payBefore) : null, bookingReference: order.bookingReference }, include: withLead });
     }
     return booking;
   }

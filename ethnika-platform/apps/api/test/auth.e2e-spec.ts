@@ -108,6 +108,12 @@ describe("Authentification du back-office (e2e)", () => {
     const system = await as(api().get("/v1/system"), admin.session).expect(200);
     expect(system.body).toMatchObject({ flightProvider: "mock", mail: expect.any(Object), counts: expect.any(Object) });
     expect(JSON.stringify(system.body)).not.toMatch(/DATABASE_URL|postgresql|INTERNAL_API_KEY/);
+    const search = await as(api().get("/v1/audit/search?category=auth&pageSize=5"), admin.session).expect(200);
+    expect(search.body.total).toBeGreaterThan(0);
+    expect(search.body.items.every((e: { action: string }) => e.action.startsWith("auth."))).toBe(true);
+    await as(api().get("/v1/audit/search?category=inconnue"), admin.session).expect(400);
+    const summary = await as(api().get("/v1/audit/summary"), admin.session).expect(200);
+    expect(summary.body.last24h.logins).toBeGreaterThan(0);
   });
 
   it("la déconnexion invalide la session", async () => {

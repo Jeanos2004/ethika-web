@@ -162,6 +162,9 @@ export type ApiSystem = {
   mail: { pending: number; failed: number; sent24h: number };
 };
 
+export type ApiAuditPage = { total: number; page: number; pageSize: number; items: ApiAuditEntry[] };
+export type ApiAuditSummary = { last24h: { logins: number; failedLogins: number }; last7d: { locked: number; total: number; byCategory: Record<string, number> } };
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

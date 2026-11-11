@@ -19,7 +19,11 @@ export default async function AdminOffersPage({ searchParams }: { searchParams: 
     id: o.id,
     slug: o.slug,
     title: o.i18n.fr.title,
-    subtitle: `${t(`offerTypes.${o.type}`)} · ${o.i18n.fr.kicker}`,
+    subtitle: o.i18n.fr.kicker,
+    category: o.type,
+    categoryLabel: t(`offerTypes.${o.type}`),
+    expired: Boolean(o.validUntil && o.validUntil.slice(0, 10) < new Date().toISOString().slice(0, 10)),
+    updatedAt: o.updatedAt,
     published: o.published,
     position: o.position,
     amount: o.priceAmount,
@@ -28,7 +32,7 @@ export default async function AdminOffersPage({ searchParams }: { searchParams: 
   }));
   return (
     <AdminShell section="offers" title={t("offersTitle")} live={await liveAccount(user, session)}>
-      <ContentList kind="offers" rows={rows} newHref="/admin/offres/nouvelle" saved={(await searchParams).enregistre === "1"} importable={getOffers("fr").filter((o) => !offers.some((x) => x.slug === slugify(`${o.type}-${o.title}`).slice(0, 80))).length} />
+      <ContentList kind="offers" rows={rows} newHref="/admin/offres/nouvelle" params={await searchParams} importable={getOffers("fr").filter((o) => !offers.some((x) => x.slug === slugify(`${o.type}-${o.title}`).slice(0, 80))).length} />
     </AdminShell>
   );
 }

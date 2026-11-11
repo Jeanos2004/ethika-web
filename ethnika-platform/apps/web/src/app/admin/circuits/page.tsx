@@ -18,7 +18,11 @@ export default async function AdminCircuitsPage({ searchParams }: { searchParams
     id: c.id,
     slug: c.slug,
     title: c.i18n.fr.title,
-    subtitle: `${t(`themes.${c.theme}`)} · ${c.i18n.fr.durationLabel}`,
+    subtitle: `${c.i18n.fr.place} · ${c.i18n.fr.durationLabel}`,
+    category: c.theme,
+    categoryLabel: t(`themes.${c.theme}`),
+    noDeparture: c.departures.length === 0,
+    updatedAt: c.updatedAt,
     published: c.published,
     position: c.position,
     amount: c.priceFrom,
@@ -27,7 +31,7 @@ export default async function AdminCircuitsPage({ searchParams }: { searchParams
   }));
   return (
     <AdminShell section="circuits" title={t("circuitsTitle")} live={await liveAccount(user, session)}>
-      <ContentList kind="circuits" rows={rows} newHref="/admin/circuits/nouveau" saved={(await searchParams).enregistre === "1"} importable={getCircuits("fr").filter((c) => !circuits.some((x) => x.slug === c.slug)).length} />
+      <ContentList kind="circuits" rows={rows} newHref="/admin/circuits/nouveau" params={await searchParams} importable={getCircuits("fr").filter((c) => !circuits.some((x) => x.slug === c.slug)).length} />
     </AdminShell>
   );
 }

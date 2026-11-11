@@ -1968,7 +1968,25 @@
         "resetPasswordConfirm": "Générer un mot de passe temporaire ? L'actuel ne fonctionnera plus.",
         "resetMfa": "Réinitialiser la 2FA",
         "resetMfaConfirm": "Réinitialiser la 2FA ? La personne devra la reconfigurer à sa prochaine connexion.",
-        "confirm": "Confirmer"
+        "confirm": "Confirmer",
+        "newHint": "Un mot de passe temporaire est généré et affiché une seule fois.",
+        "kpiActive": "Comptes actifs",
+        "kpiActiveNote": "{disabled, plural, =0 {Aucun désactivé} one {# désactivé} other {# désactivés}}",
+        "kpiAdmins": "Administrateurs",
+        "kpiAgents": "{count, plural, =0 {aucun agent} one {# agent} other {# agents}}",
+        "kpiMfa": "2FA activée",
+        "kpiMfaNote": "{count} compte(s) sur {total}",
+        "kpiAttention": "À surveiller",
+        "kpiAttentionNote": "Verrouillé, mot de passe temporaire ou admin sans 2FA",
+        "searchPlaceholder": "Nom ou e-mail…",
+        "states": {
+          "active": "Actifs",
+          "disabled": "Désactivés",
+          "nomfa": "Sans 2FA",
+          "attention": "À surveiller"
+        },
+        "manage": "Gérer",
+        "selfHint": "Votre propre rôle et votre accès se gèrent par un autre administrateur."
       },
       "audit": {
         "title": "Journal d'audit",
@@ -2000,8 +2018,28 @@
           "content_deleted": "Contenu supprimé",
           "flight_hold": "Option de vol posée",
           "flight_cancelled": "Option de vol annulée",
-          "maintenance_purge": "Purge automatique"
-        }
+          "maintenance_purge": "Purge automatique",
+          "lead_created": "Demande saisie par l'équipe"
+        },
+        "kpiLogins": "Connexions",
+        "kpiFailed": "Échecs de connexion",
+        "kpiLocked": "Comptes verrouillés",
+        "kpiTotal": "Actions tracées",
+        "kpiTotalNote": "Sur les 7 derniers jours",
+        "last24h": "Dernières 24 heures",
+        "last7d": "Sur les 7 derniers jours",
+        "categories": {
+          "auth": "Connexions",
+          "user": "Comptes",
+          "lead": "Demandes",
+          "quote": "Devis",
+          "content": "Contenus",
+          "flight": "Vols",
+          "maintenance": "Maintenance"
+        },
+        "actorFilter": "Personne",
+        "everyone": "Toute l'équipe",
+        "countHint": "Compteurs des puces : 7 derniers jours"
       },
       "content": {
         "offersTitle": "Offres",
@@ -2104,7 +2142,22 @@
         "importHint": "{count, plural, one {# élément du site actuel n'est} other {# éléments du site actuel ne sont}} pas encore dans le back-office. Dès qu'un contenu est publié ici, le site n'affiche plus que les contenus publiés : importez d'abord l'existant.",
         "import": "Importer {count, plural, one {l'élément} other {les # éléments}}",
         "importing": "Import…",
-        "importDone": "Import terminé : {created} créé(s), {skipped} déjà présent(s), {failed} en échec."
+        "importDone": "Import terminé : {created} créé(s), {skipped} déjà présent(s), {failed} en échec.",
+        "kpiTotal": "Au total",
+        "kpiTotalNote": "Brouillons compris",
+        "kpiPublished": "Publiés",
+        "kpiPublishedNote": "Visibles sur le site",
+        "kpiDraft": "Brouillons",
+        "kpiDraftNote": "Invisibles tant que non publiés",
+        "kpiExpired": "Expirées",
+        "kpiExpiredNote": "Date de validité dépassée : masquées du site",
+        "kpiNoDeparture": "Sans départ",
+        "kpiNoDepartureNote": "Aucune date proposée sur la fiche",
+        "searchPlaceholder": "Titre, identifiant, lieu…",
+        "expired": "Expirée",
+        "noDeparture": "Aucun départ",
+        "updated": "modifié le {date}",
+        "editLabel": "Modifier {title}"
       },
       "manual": {
         "title": "Nouvelle demande",
@@ -2311,6 +2364,19 @@
         "minutes": "{n} minutes",
         "hours": "{n} heures",
         "daysLong": "{n} jours"
+      },
+      "list": {
+        "search": "Rechercher",
+        "apply": "Filtrer",
+        "all": "Tous",
+        "pagination": "Pagination",
+        "range": "{from}–{to} sur {total}",
+        "page": "Page {page} sur {pages}",
+        "previous": "Page précédente",
+        "next": "Page suivante",
+        "noMatch": "Aucun résultat",
+        "noMatchHint": "Aucun élément ne correspond à ces filtres.",
+        "reset": "Effacer les filtres"
       }
     }
   },

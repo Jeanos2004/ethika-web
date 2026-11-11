@@ -1968,7 +1968,25 @@
         "resetPasswordConfirm": "Generate a temporary password? The current one will stop working.",
         "resetMfa": "Reset 2FA",
         "resetMfaConfirm": "Reset 2FA? The person will have to set it up again at next sign-in.",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "newHint": "A temporary password is generated and shown only once.",
+        "kpiActive": "Active accounts",
+        "kpiActiveNote": "{disabled, plural, =0 {None disabled} one {# disabled} other {# disabled}}",
+        "kpiAdmins": "Administrators",
+        "kpiAgents": "{count, plural, =0 {no agents} one {# agent} other {# agents}}",
+        "kpiMfa": "2FA enabled",
+        "kpiMfaNote": "{count} account(s) out of {total}",
+        "kpiAttention": "To watch",
+        "kpiAttentionNote": "Locked, temporary password or admin without 2FA",
+        "searchPlaceholder": "Name or email…",
+        "states": {
+          "active": "Active",
+          "disabled": "Disabled",
+          "nomfa": "No 2FA",
+          "attention": "To watch"
+        },
+        "manage": "Manage",
+        "selfHint": "Your own role and access are managed by another administrator."
       },
       "audit": {
         "title": "Audit log",
@@ -2000,8 +2018,28 @@
           "content_deleted": "Content deleted",
           "flight_hold": "Flight hold placed",
           "flight_cancelled": "Flight hold cancelled",
-          "maintenance_purge": "Automatic purge"
-        }
+          "maintenance_purge": "Automatic purge",
+          "lead_created": "Request entered by the team"
+        },
+        "kpiLogins": "Sign-ins",
+        "kpiFailed": "Failed sign-ins",
+        "kpiLocked": "Locked accounts",
+        "kpiTotal": "Logged actions",
+        "kpiTotalNote": "Over the last 7 days",
+        "last24h": "Last 24 hours",
+        "last7d": "Over the last 7 days",
+        "categories": {
+          "auth": "Sign-ins",
+          "user": "Accounts",
+          "lead": "Requests",
+          "quote": "Quotes",
+          "content": "Content",
+          "flight": "Flights",
+          "maintenance": "Maintenance"
+        },
+        "actorFilter": "Person",
+        "everyone": "Whole team",
+        "countHint": "Chip counters: last 7 days"
       },
       "content": {
         "offersTitle": "Offers",
@@ -2104,7 +2142,22 @@
         "importHint": "{count, plural, one {# item from the current website is} other {# items from the current website are}} not in the back-office yet. As soon as content is published here, the website only shows published content: import the existing items first.",
         "import": "Import {count, plural, one {the item} other {the # items}}",
         "importing": "Importing…",
-        "importDone": "Import finished: {created} created, {skipped} already present, {failed} failed."
+        "importDone": "Import finished: {created} created, {skipped} already present, {failed} failed.",
+        "kpiTotal": "In total",
+        "kpiTotalNote": "Drafts included",
+        "kpiPublished": "Published",
+        "kpiPublishedNote": "Visible on the website",
+        "kpiDraft": "Drafts",
+        "kpiDraftNote": "Hidden until published",
+        "kpiExpired": "Expired",
+        "kpiExpiredNote": "Validity date passed: hidden from the website",
+        "kpiNoDeparture": "No departure",
+        "kpiNoDepartureNote": "No date offered on the page",
+        "searchPlaceholder": "Title, identifier, place…",
+        "expired": "Expired",
+        "noDeparture": "No departure",
+        "updated": "updated {date}",
+        "editLabel": "Edit {title}"
       },
       "manual": {
         "title": "New request",
@@ -2311,6 +2364,19 @@
         "minutes": "{n} minutes",
         "hours": "{n} hours",
         "daysLong": "{n} days"
+      },
+      "list": {
+        "search": "Search",
+        "apply": "Filter",
+        "all": "All",
+        "pagination": "Pagination",
+        "range": "{from}–{to} of {total}",
+        "page": "Page {page} of {pages}",
+        "previous": "Previous page",
+        "next": "Next page",
+        "noMatch": "No results",
+        "noMatchHint": "Nothing matches these filters.",
+        "reset": "Clear filters"
       }
     }
   },

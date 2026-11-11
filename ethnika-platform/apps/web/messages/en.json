@@ -1963,7 +1963,8 @@
         "slugTaken": "This URL identifier is already used.",
         "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price.",
         "manualForm": "Incomplete request.",
-        "nameLength": "The name must be 2 to 120 characters long."
+        "nameLength": "The name must be 2 to 120 characters long.",
+        "agencyForm": "Check the fields: valid address, phone and email, payment terms of at least 10 characters."
       },
       "quotes": {
         "title": "Quotes",
@@ -2332,7 +2333,8 @@
           "profile": "Profile",
           "security": "Security",
           "sessions": "Active sessions",
-          "system": "System"
+          "system": "System",
+          "agency": "Agency"
         },
         "profileTitle": "Profile",
         "profileHint": "Your name appears in assignments, request history and on quotes.",
@@ -2430,6 +2432,29 @@
         "retry": "Try again",
         "home": "Dashboard",
         "hint": "If the problem lasts more than a few minutes, let the technical administrator know."
+      },
+      "agency": {
+        "contact": "Contact details",
+        "legal": "Legal information",
+        "documents": "Documents",
+        "documentsHint": "Texts printed on PDF quotes.",
+        "address": "Address",
+        "openingHours": "Opening hours",
+        "phone": "Phone",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "licence": "Travel agency licence",
+        "rccm": "Trade register (RCCM)",
+        "paymentInstructions": "Payment terms",
+        "paymentHint": "Deposit, balance, accepted payment methods (Orange Money number, bank details, payment at the agency).",
+        "quoteTerms": "Terms recalled on quotes",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Details saved: the next PDFs will use them.",
+        "placeholderHint": "Text in square brackets [ ] is a placeholder to complete.",
+        "missingTitle": "{count, plural, one {# item to complete.} other {# items to complete.}}",
+        "missingList": "Still in brackets or empty: {fields}. These appear as-is on the PDFs.",
+        "complete": "All details are filled in."
       }
     }
   },

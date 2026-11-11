@@ -5,12 +5,13 @@ import { getTranslations } from "next-intl/server";
 import { AdminShell, type LiveAccount } from "@/components/admin/AdminShell";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-export type SettingsTab = "profile" | "security" | "sessions" | "system";
+export type SettingsTab = "profile" | "security" | "sessions" | "agency" | "system";
 
 const tabs: { key: SettingsTab; href: string; icon: IconName; adminOnly?: boolean }[] = [
   { key: "profile", href: "/admin/parametres", icon: "users" },
   { key: "security", href: "/admin/parametres/securite", icon: "shieldCheck" },
   { key: "sessions", href: "/admin/parametres/sessions", icon: "globe" },
+  { key: "agency", href: "/admin/parametres/agence", icon: "homeHeart", adminOnly: true },
   { key: "system", href: "/admin/parametres/systeme", icon: "sliders", adminOnly: true },
 ];
 

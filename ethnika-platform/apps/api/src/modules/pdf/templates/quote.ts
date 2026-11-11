@@ -70,7 +70,7 @@ export function quoteHtml(q: QuoteForPdf, agency: AgencyInfo): string {
   <div class="total"><div><span>Total TTC</span><b>${esc(formatMoney(q.totalAmount, q.currency))}</b></div></div>
   <section class="info">
     <div class="card"><h3>Validité</h3>Ce devis est valable jusqu'au <strong>${esc(dateFr(q.validUntil))}</strong>, sous réserve de disponibilité au moment de la confirmation. Les tarifs aériens peuvent évoluer jusqu'à l'émission des billets.</div>
-    <div class="card"><h3>Règlement</h3>Acompte à la confirmation, solde avant l'émission des billets. En agence (espèces, carte), par virement ou Orange Money : [COORDONNÉES À COMPLÉTER]. Conditions générales de vente : [À COMPLÉTER].</div>
+    <div class="card"><h3>Règlement</h3>${esc(agency.paymentInstructions ?? "Acompte à la confirmation, solde avant l'émission des billets.")}${agency.quoteTerms ? ` ${esc(agency.quoteTerms)}` : ""}</div>
   </section>
   ${q.notes ? `<p class="notes"><strong>Notes de votre conseiller :</strong> ${esc(q.notes)}</p>` : ""}
   <section class="sign"><div>Bon pour accord — date et signature du client</div><div>Pour ETHNIKA</div></section>

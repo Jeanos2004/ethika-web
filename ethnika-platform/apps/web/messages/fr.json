@@ -1963,7 +1963,8 @@
         "slugTaken": "Cet identifiant d'URL est déjà utilisé.",
         "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide.",
         "manualForm": "Demande incomplète.",
-        "nameLength": "Le nom doit compter entre 2 et 120 caractères."
+        "nameLength": "Le nom doit compter entre 2 et 120 caractères.",
+        "agencyForm": "Vérifiez les champs : adresse, téléphone et e-mail valides, modalités de règlement d'au moins 10 caractères."
       },
       "quotes": {
         "title": "Devis",
@@ -2332,7 +2333,8 @@
           "profile": "Profil",
           "security": "Sécurité",
           "sessions": "Sessions actives",
-          "system": "Système"
+          "system": "Système",
+          "agency": "Agence"
         },
         "profileTitle": "Profil",
         "profileHint": "Votre nom apparaît dans les attributions, l'historique des demandes et sur les devis.",
@@ -2430,6 +2432,29 @@
         "retry": "Réessayer",
         "home": "Tableau de bord",
         "hint": "Si le problème persiste plus de quelques minutes, prévenez l'administrateur technique."
+      },
+      "agency": {
+        "contact": "Coordonnées",
+        "legal": "Mentions légales",
+        "documents": "Documents",
+        "documentsHint": "Textes imprimés sur les devis PDF.",
+        "address": "Adresse",
+        "openingHours": "Horaires",
+        "phone": "Téléphone",
+        "whatsapp": "WhatsApp",
+        "email": "E-mail",
+        "licence": "Licence d'agence de voyages",
+        "rccm": "RCCM",
+        "paymentInstructions": "Modalités de règlement",
+        "paymentHint": "Acompte, solde, moyens de paiement acceptés (numéro Orange Money, coordonnées bancaires, paiement en agence).",
+        "quoteTerms": "Conditions rappelées sur les devis",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Coordonnées enregistrées : les prochains PDF les utiliseront.",
+        "placeholderHint": "Les mentions entre crochets [ ] sont des emplacements à compléter.",
+        "missingTitle": "{count, plural, one {# information à compléter.} other {# informations à compléter.}}",
+        "missingList": "Encore entre crochets ou vide : {fields}. Ces mentions apparaissent telles quelles sur les PDF.",
+        "complete": "Toutes les coordonnées sont renseignées."
       }
     }
   },

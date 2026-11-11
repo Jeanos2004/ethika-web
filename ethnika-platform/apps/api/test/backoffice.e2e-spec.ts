@@ -173,4 +173,28 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
       await api().get("/v1/public/circuits/e2e-inexistant").set("x-internal-key", KEY).expect(404);
     });
   });
+
+  describe("coordonnées de l'agence", () => {
+    it("lecture par l'équipe, modification par un administrateur, reprise sur le devis PDF", async () => {
+      const current = await as(agent, api().get("/v1/agency")).expect(200);
+      expect(current.body).toMatchObject({ id: 1, email: expect.any(String) });
+      const body = {
+        address: "Kaloum, Conakry",
+        phone: "+224 620 00 00 00",
+        whatsapp: "+224 620 00 00 00",
+        email: "contact@ethnikatour.com",
+        licence: "LIC-E2E",
+        rccm: "RCCM-E2E",
+        openingHours: "Lun – Sam · 9 h – 18 h",
+        paymentInstructions: "Orange Money au 620 00 00 00, ou espèces en agence.",
+        quoteTerms: "CGV sur ethnikatour.com/cgv.",
+      };
+      await as(agent, api().patch("/v1/agency")).send(body).expect(403);
+      await as(admin, api().patch("/v1/agency")).send({ ...body, email: "pas-un-email" }).expect(400);
+      const saved = await as(admin, api().patch("/v1/agency")).send(body).expect(200);
+      expect(saved.body).toMatchObject({ licence: "LIC-E2E", paymentInstructions: body.paymentInstructions });
+      // Remise des valeurs d'origine (la base de développement est partagée).
+      await as(admin, api().patch("/v1/agency")).send({ ...body, ...Object.fromEntries(Object.keys(body).map((k) => [k, current.body[k]])) });
+    });
+  });
 });

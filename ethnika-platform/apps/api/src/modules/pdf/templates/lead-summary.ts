@@ -12,7 +12,7 @@ export type LeadForPdf = {
   createdAt: Date;
 };
 
-export type AgencyInfo = { address: string; phone: string; email: string; licence: string; site: string };
+export type AgencyInfo = { address: string; phone: string; email: string; licence: string; site: string; paymentInstructions?: string; quoteTerms?: string };
 
 const typeTitles: Record<LeadForPdf["type"], string> = {
   contact: "Message",

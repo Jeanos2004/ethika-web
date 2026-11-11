@@ -1,9 +1,8 @@
-import { Body, Controller, Get, HttpCode, Inject, NotFoundException, Param, Patch, Post, Query, Req, Res, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, NotFoundException, Param, Patch, Post, Query, Req, Res, UseGuards } from "@nestjs/common";
 import type { Request, Response } from "express";
 import { z } from "zod";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { ZodPipe } from "../../common/zod.pipe";
-import { ENV, type Env } from "../../config/env";
 import { AuditService } from "../audit/audit.service";
 import { CurrentUser, Roles } from "../auth/auth.decorators";
 import type { AuthContext } from "../auth/auth.types";
@@ -15,10 +14,9 @@ import { leadSummaryHtml } from "../pdf/templates/lead-summary";
 import { assignInput, leadInput, leadQuery, noteInput, statusChange, type LeadInput, type LeadQuery } from "./lead.schemas";
 import { LeadsService } from "./leads.service";
 import { StatsService } from "./stats.service";
+import { AgencyService } from "../agency/agency.service";
 import { REFERENCE_PATTERN } from "./reference";
 
-/** Coordonnées de l'agence imprimées sur les documents (placeholders tant que l'agence ne les a pas fournies). */
-export const agencyInfo = (env: Env) => ({ address: "[Quartier], Conakry", phone: "+224 [NUMÉRO]", email: "contact@ethnikatour.com", licence: "[À COMPLÉTER]", site: new URL(env.SITE_URL).host });
 
 function checkRef(ref: string) {
   if (!REFERENCE_PATTERN.test(ref)) throw new NotFoundException();
@@ -47,7 +45,7 @@ export class LeadsAdminController {
     private readonly leads: LeadsService,
     private readonly pdf: PdfService,
     private readonly audit: AuditService,
-    @Inject(ENV) private readonly env: Env,
+    private readonly agency: AgencyService,
   ) {}
 
   @Get()
@@ -118,7 +116,7 @@ export class LeadsAdminController {
   @Get(":ref/pdf")
   async summaryPdf(@Param("ref") ref: string, @CurrentUser() me: AuthContext, @Res() res: Response) {
     const lead = await this.leads.get(checkRef(ref));
-    const pdf = await this.pdf.render(leadSummaryHtml(lead, agencyInfo(this.env)), { footer: footerTemplate(`ETHNIKA · ${lead.reference}`) });
+    const pdf = await this.pdf.render(leadSummaryHtml(lead, await this.agency.pdfInfo()), { footer: footerTemplate(`ETHNIKA · ${lead.reference}`) });
     await this.audit.log("lead.pdf", { actorId: me.userId, target: ref });
     res.setHeader("content-type", "application/pdf");
     res.setHeader("content-disposition", `inline; filename="${lead.reference}.pdf"`);

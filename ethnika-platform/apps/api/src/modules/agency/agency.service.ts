@@ -16,6 +16,11 @@ export const agencyInput = z.strictObject({
   licence: line(80),
   rccm: line(80),
   openingHours: line(200),
+  hoursWeekdays: line(60),
+  hoursSaturday: line(60),
+  hoursSunday: line(60),
+  latitude: z.number().min(-90).max(90),
+  longitude: z.number().min(-180).max(180),
   paymentInstructions: line(1200).min(10),
   quoteTerms: line(1200),
 });
@@ -36,9 +41,26 @@ export class AgencyService {
   }
 
   async update(input: AgencyInput, actorId: string) {
-    const row = await this.prisma.agencySettings.upsert({ where: { id: 1 }, update: { ...input, updatedBy: actorId }, create: { id: 1, ...input, updatedBy: actorId } });
+    const row = await this.prisma.agencySettings.upsert({ where: { id: 1 }, update: { ...input, verified: true, updatedBy: actorId }, create: { id: 1, ...input, verified: true, updatedBy: actorId } });
     await this.audit.log("content.updated", { actorId, target: "agency", meta: { fields: Object.keys(input) } });
     return row;
+  }
+
+  /** Coordonnées publiées sur le site (sans les mentions internes ni l'auteur de la modification). */
+  async publicInfo() {
+    const a = await this.get();
+    return {
+      address: a.address,
+      phone: a.phone,
+      whatsapp: a.whatsapp,
+      email: a.email,
+      licence: a.licence,
+      rccm: a.rccm,
+      openingHours: a.openingHours,
+      hours: { weekdays: a.hoursWeekdays, saturday: a.hoursSaturday, sunday: a.hoursSunday },
+      geo: { lat: a.latitude, lng: a.longitude },
+      verified: a.verified,
+    };
   }
 
   /** Informations imprimées sur les PDF. */

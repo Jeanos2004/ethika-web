@@ -10,18 +10,20 @@ export const site = {
   description:
     "Agence de tourisme et de voyage à Conakry : billetterie aérienne, circuits et séjours en Guinée, groupes, pèlerinages et voyages d'affaires.",
   contact: {
-    phone: "+224 [NUMÉRO]",
+    /* Coordonnées de repli (fictives tant que l'agence n'a pas fourni les vraies) : le site affiche celles de
+       Paramètres > Agence dès que l'API est branchée (src/lib/content-source.ts, getAgency). */
+    phone: "+224 622 00 00 00",
     email: "contact@ethnikatour.com",
     /** Adresses par service (maquette Contact.dc.html). */
     emails: ["contact@ethnikatour.com", "billetterie@ethnikatour.com", "reservation@ethnikatour.com"],
     /** Horaires détaillés (à fournir par le client). */
     openingHours: [
-      { days: "Lundi – Vendredi", hours: "[HH:MM – HH:MM]" },
-      { days: "Samedi", hours: "[HH:MM – HH:MM]" },
+      { days: "Lundi – Vendredi", hours: "8 h 30 – 18 h 00" },
+      { days: "Samedi", hours: "9 h 00 – 13 h 00" },
       { days: "Dimanche", hours: "Fermé · WhatsApp" },
     ],
-    hours: "Lun – Sam · [HORAIRES]",
-    address: "[Quartier], Conakry",
+    hours: "Lun – Sam · 8 h 30 – 18 h",
+    address: "Immeuble Kakimbo, Avenue de la République, Kaloum, Conakry",
     /**
      * Position de l'agence sur la carte de la page Contact. Valeur provisoire : centre de Kaloum (Conakry).
      * Remplacer par les coordonnées exactes (clic droit sur Google Maps → coordonnées) et passer `approximate` à false.
@@ -30,8 +32,8 @@ export const site = {
     whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
   },
   legal: {
-    licence: "[À COMPLÉTER]",
-    rccm: "[À COMPLÉTER]",
+    licence: "AGV-GN-2026-0000",
+    rccm: "GN.TCC.2026.B.00000",
   },
   social: {
     facebook: "#",
@@ -113,7 +115,7 @@ export function whatsappLink(message?: string): string {
  * Lien « tel: » si le numéro est renseigné (chiffres uniquement), sinon la page Contact.
  * Tant que le placeholder « [NUMÉRO] » est en place, aucun lien d'appel cassé n'est produit.
  */
-export function phoneLink(): string {
-  const digits = site.contact.phone.replace(/[^\d+]/g, "");
+export function phoneLink(phone: string = site.contact.phone): string {
+  const digits = phone.replace(/[^\d+]/g, "");
   return /^\+?\d{8,15}$/.test(digits) ? `tel:${digits}` : "/contact";
 }

@@ -2,6 +2,7 @@ import "server-only";
 import { env } from "@/lib/env";
 import { circuitLabels, getCircuits, type Circuit, type CircuitDuration, type CircuitRegion, type CircuitTheme, type Departure, type TagTone } from "@/content/circuits";
 import { getOffers } from "@/content/offers";
+import { site } from "@/lib/site";
 import type { OfferCardData, OfferType } from "@/components/cards/OfferCard";
 import { formatMoney } from "@/lib/admin/money";
 
@@ -125,4 +126,37 @@ export async function siteOffers(locale: string): Promise<OfferCardData[]> {
     imageAlt: o.imageAlt,
     ...(o.price !== null && o.currency && { price: formatMoney(o.price, o.currency) }),
   }));
+}
+
+export type AgencyPublic = {
+  address: string;
+  phone: string;
+  whatsapp: string;
+  email: string;
+  licence: string;
+  rccm: string;
+  openingHours: string;
+  hours: { weekdays: string; saturday: string; sunday: string };
+  geo: { lat: number; lng: number };
+  /** Faux tant que les coordonnées sont fictives (repère « position indicative » sur la carte). */
+  verified: boolean;
+};
+
+/** Coordonnées de l'agence : Paramètres > Agence via l'API, sinon les valeurs de repli de site.ts. */
+export async function getAgency(): Promise<AgencyPublic> {
+  const api = await publicGet<AgencyPublic>("/v1/public/agency");
+  if (api) return api;
+  const h = site.contact.openingHours;
+  return {
+    address: site.contact.address,
+    phone: site.contact.phone,
+    whatsapp: site.contact.whatsapp,
+    email: site.contact.email,
+    licence: site.legal.licence,
+    rccm: site.legal.rccm,
+    openingHours: site.contact.hours,
+    hours: { weekdays: h[0]?.hours ?? "", saturday: h[1]?.hours ?? "", sunday: h[2]?.hours ?? "" },
+    geo: { lat: site.contact.geo.lat, lng: site.contact.geo.lng },
+    verified: !site.contact.geo.approximate,
+  };
 }

@@ -4,11 +4,11 @@ import { clsx } from "clsx";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
-import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { getAgency } from "@/lib/content-source";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 
 export const generateMetadata = metadataFor("apropos");
@@ -25,12 +25,13 @@ export default async function AProposPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("apropos");
+  const agency = await getAgency();
   const tc = await getTranslations("common");
   const page = await getPage("apropos", locale);
   const promises = t.raw("promises") as { title: string; text: string }[];
   const credentials = [
-    { label: t("credLicence"), value: t("credLicenceValue", { value: site.legal.licence }), pending: false },
-    { label: t("credRccm"), value: `RCCM ${site.legal.rccm}`, pending: false },
+    { label: t("credLicence"), value: t("credLicenceValue", { value: agency.licence }), pending: false },
+    { label: t("credRccm"), value: `RCCM ${agency.rccm}`, pending: false },
     { label: t("credIata"), value: t("credIataValue"), pending: true },
     { label: t("credAmadeus"), value: t("credAmadeusValue"), pending: true },
   ];

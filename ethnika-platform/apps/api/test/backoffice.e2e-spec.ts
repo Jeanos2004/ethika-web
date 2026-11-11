@@ -186,15 +186,26 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
         licence: "LIC-E2E",
         rccm: "RCCM-E2E",
         openingHours: "Lun – Sam · 9 h – 18 h",
+        hoursWeekdays: "9 h – 18 h",
+        hoursSaturday: "9 h – 13 h",
+        hoursSunday: "Fermé",
+        latitude: 9.51,
+        longitude: -13.71,
         paymentInstructions: "Orange Money au 620 00 00 00, ou espèces en agence.",
         quoteTerms: "CGV sur ethnikatour.com/cgv.",
       };
       await as(agent, api().patch("/v1/agency")).send(body).expect(403);
       await as(admin, api().patch("/v1/agency")).send({ ...body, email: "pas-un-email" }).expect(400);
       const saved = await as(admin, api().patch("/v1/agency")).send(body).expect(200);
-      expect(saved.body).toMatchObject({ licence: "LIC-E2E", paymentInstructions: body.paymentInstructions });
+      expect(saved.body).toMatchObject({ licence: "LIC-E2E", paymentInstructions: body.paymentInstructions, verified: true });
+      const pub = await api().get("/v1/public/agency").set("x-internal-key", KEY).expect(200);
+      expect(pub.body).toMatchObject({ licence: "LIC-E2E", geo: { lat: 9.51, lng: -13.71 }, hours: { saturday: "9 h – 13 h" } });
+      expect(pub.body).not.toHaveProperty("paymentInstructions");
+      expect(pub.body).not.toHaveProperty("updatedBy");
       // Remise des valeurs d'origine (la base de développement est partagée).
       await as(admin, api().patch("/v1/agency")).send({ ...body, ...Object.fromEntries(Object.keys(body).map((k) => [k, current.body[k]])) });
+      // La remise en l'état d'origine passe par une modification : on rétablit aussi le marqueur « fictif ».
+      await prisma.agencySettings.update({ where: { id: 1 }, data: { verified: current.body.verified } });
     });
   });
 });

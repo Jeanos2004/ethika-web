@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { site } from "@/lib/site";
+import type { AgencyPublic } from "@/lib/content-source";
 import { Icon } from "@/components/ui/Icon";
 
 /**
@@ -7,9 +7,10 @@ import { Icon } from "@/components/ui/Icon";
  * chargé paresseusement ; liens « Itinéraire » (Google Maps) et « Agrandir » (OpenStreetMap).
  * Domaine autorisé dans la CSP (frame-src, next.config.ts).
  */
-export async function AgencyMap() {
+export async function AgencyMap({ agency }: { agency: AgencyPublic }) {
   const t = await getTranslations("contact");
-  const { lat, lng, approximate } = site.contact.geo;
+  const { lat, lng } = agency.geo;
+  const approximate = !agency.verified;
   const d = 0.012; // ≈ 1,3 km autour du point : quartier lisible
   const embed = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - d}%2C${lat - d}%2C${lng + d}%2C${lat + d}&layer=mapnik&marker=${lat}%2C${lng}`;
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
@@ -24,7 +25,7 @@ export async function AgencyMap() {
             <Icon name="pin" size={17} />
           </span>
           <span className="flex min-w-0 flex-col">
-            <strong className="text-[15px] text-night">{site.contact.address}</strong>
+            <strong className="text-[15px] text-night">{agency.address}</strong>
             {approximate && <span className="text-xs text-muted">{t("mapApproximate")}</span>}
           </span>
         </span>

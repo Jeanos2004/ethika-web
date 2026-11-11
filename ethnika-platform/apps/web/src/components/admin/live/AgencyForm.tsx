@@ -25,6 +25,27 @@ export function AgencyForm({ agency }: { agency: ApiAgency }) {
         </div>
       </section>
       <section className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-base font-bold text-night">{t("hoursTitle")}</h2>
+          <p className="text-sm text-muted">{t("hoursHint")}</p>
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <Field name="hoursWeekdays" label={t("hoursWeekdays")} maxLength={60} defaultValue={agency.hoursWeekdays} />
+          <Field name="hoursSaturday" label={t("hoursSaturday")} maxLength={60} defaultValue={agency.hoursSaturday} />
+          <Field name="hoursSunday" label={t("hoursSunday")} maxLength={60} defaultValue={agency.hoursSunday} />
+        </div>
+      </section>
+      <section className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-base font-bold text-night">{t("mapTitle")}</h2>
+          <p className="text-sm text-muted">{t("mapHint")}</p>
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Field name="latitude" label={t("latitude")} required defaultValue={agency.latitude} placeholder="9.5092" />
+          <Field name="longitude" label={t("longitude")} required defaultValue={agency.longitude} placeholder="-13.7122" />
+        </div>
+      </section>
+      <section className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
         <h2 className="text-base font-bold text-night">{t("legal")}</h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Field name="licence" label={t("licence")} maxLength={80} defaultValue={agency.licence} />

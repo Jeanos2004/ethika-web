@@ -174,6 +174,12 @@ export type ApiAgency = {
   licence: string;
   rccm: string;
   openingHours: string;
+  hoursWeekdays: string;
+  hoursSaturday: string;
+  hoursSunday: string;
+  latitude: number;
+  longitude: number;
+  verified: boolean;
   paymentInstructions: string;
   quoteTerms: string;
   updatedAt: string;

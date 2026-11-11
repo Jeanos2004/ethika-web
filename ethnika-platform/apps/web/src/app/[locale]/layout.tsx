@@ -17,6 +17,7 @@ import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DemoBanner } from "@/components/layout/DemoBanner";
+import { getAgency } from "@/lib/content-source";
 import { isDemo } from "@/lib/demo/mode";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
@@ -69,6 +70,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("common");
+  const agency = await getAgency();
+  const contact = { phone: agency.phone, email: agency.email, hours: agency.openingHours };
 
   return (
     <html lang={locale}>
@@ -82,19 +85,21 @@ export default async function LocaleLayout({ children, params }: Props) {
             "@type": "TravelAgency",
             name: site.name,
             url: site.url,
-            email: site.contact.email,
+            email: agency.email,
+            telephone: agency.phone,
             logo: `${site.url}/brand/logo-vertical-couleur.svg`,
-            address: { "@type": "PostalAddress", addressLocality: "Conakry", addressCountry: "GN" },
+            address: { "@type": "PostalAddress", streetAddress: agency.address, addressLocality: "Conakry", addressCountry: "GN" },
+            geo: { "@type": "GeoCoordinates", latitude: agency.geo.lat, longitude: agency.geo.lng },
           }}
         />
         {isDemo && <DemoBanner />}
         <NextIntlClientProvider messages={await clientMessages()}>
           {/* Repère de l'en-tête transparent (absolute top-0) : il commence sous le bandeau démo éventuel. */}
           <div className="relative">
-            <SiteHeader />
+            <SiteHeader contact={contact} />
             <main id="contenu">{children}</main>
           </div>
-          <SiteFooter />
+          <SiteFooter agency={agency} />
           <WhatsAppFab />
           <MobileActionBar />
           <CookieBanner />

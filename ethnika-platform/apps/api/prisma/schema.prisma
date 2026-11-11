@@ -317,20 +317,28 @@ model FlightBooking {
  */
 
 /// Coordonnées et mentions de l'agence (ligne unique, id = 1), modifiables par un administrateur.
-/// Utilisées sur les PDF (récapitulatif, devis) ; tant qu'elles ne sont pas saisies, les placeholders […] restent visibles.
+/// Utilisées sur le site public et les PDF. Valeurs fictives par défaut (verified = false) jusqu'à la saisie des vraies.
 model AgencySettings {
   id                  Int      @id @default(1)
-  address             String   @default("[Quartier], Conakry") @db.VarChar(200)
-  phone               String   @default("+224 [NUMÉRO]") @db.VarChar(40)
-  whatsapp            String   @default("") @db.VarChar(40)
+  address             String   @default("Immeuble Kakimbo, Avenue de la République, Kaloum, Conakry") @db.VarChar(200)
+  phone               String   @default("+224 622 00 00 00") @db.VarChar(40)
+  whatsapp            String   @default("+224 622 00 00 00") @db.VarChar(40)
   email               String   @default("contact@ethnikatour.com") @db.VarChar(200)
-  licence             String   @default("[À COMPLÉTER]") @db.VarChar(80)
-  rccm                String   @default("[À COMPLÉTER]") @db.VarChar(80)
-  openingHours        String   @default("Lun – Sam · [HORAIRES]") @db.VarChar(200)
+  licence             String   @default("AGV-GN-2026-0000") @db.VarChar(80)
+  rccm                String   @default("GN.TCC.2026.B.00000") @db.VarChar(80)
+  openingHours        String   @default("Lun – Sam · 8 h 30 – 18 h") @db.VarChar(200)
+  hoursWeekdays       String   @default("8 h 30 – 18 h 00") @db.VarChar(60)
+  hoursSaturday       String   @default("9 h 00 – 13 h 00") @db.VarChar(60)
+  hoursSunday         String   @default("Fermé · WhatsApp") @db.VarChar(60)
+  /// Position sur la carte de la page Contact (degrés décimaux).
+  latitude            Float    @default(9.5092)
+  longitude           Float    @default(-13.7122)
   /// Modalités de règlement imprimées sur les devis (comptes, Orange Money, espèces en agence…).
-  paymentInstructions String   @default("Acompte à la confirmation, solde avant l'émission des billets. En agence (espèces, carte), par virement ou Orange Money : [COORDONNÉES À COMPLÉTER].") @db.Text
+  paymentInstructions String   @default("Acompte de 30 % à la confirmation, solde avant l'émission des billets. Orange Money : 622 00 00 00 · virement : Ecobank Guinée, compte 0000 0000 0000 · espèces ou carte en agence.") @db.Text
   /// Conditions rappelées sur les devis (renvoi aux CGV).
-  quoteTerms          String   @default("Conditions générales de vente : [À COMPLÉTER].") @db.Text
+  quoteTerms          String   @default("Conditions générales de vente sur ethnikatour.com/cgv.") @db.Text
+  /// Faux tant qu'un administrateur n'a pas enregistré les vraies coordonnées (les valeurs par défaut sont fictives).
+  verified            Boolean  @default(false)
   updatedBy           String?  @db.Uuid
   updatedAt           DateTime @updatedAt
 }

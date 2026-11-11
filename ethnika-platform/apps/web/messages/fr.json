@@ -2473,7 +2473,18 @@
         "placeholderHint": "Les mentions entre crochets [ ] sont des emplacements à compléter.",
         "missingTitle": "{count, plural, one {# information à compléter.} other {# informations à compléter.}}",
         "missingList": "Encore entre crochets ou vide : {fields}. Ces mentions apparaissent telles quelles sur les PDF.",
-        "complete": "Toutes les coordonnées sont renseignées."
+        "complete": "Toutes les coordonnées sont renseignées.",
+        "hoursTitle": "Horaires d'ouverture",
+        "hoursHint": "Affichés sur la page Contact ; la ligne « Horaires » ci-dessus apparaît dans le bandeau du site.",
+        "hoursWeekdays": "Lundi – vendredi",
+        "hoursSaturday": "Samedi",
+        "hoursSunday": "Dimanche",
+        "mapTitle": "Position sur la carte",
+        "mapHint": "Sur Google Maps, clic droit sur l'agence : les deux nombres affichés sont la latitude puis la longitude.",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "fictitiousTitle": "Coordonnées fictives.",
+        "fictitiousText": "Ces valeurs servent de démonstration (site, documents PDF, carte). Remplacez-les par les vraies puis enregistrez : la mention « position indicative » disparaîtra de la carte."
       },
       "payments": {
         "title": "Paiements",

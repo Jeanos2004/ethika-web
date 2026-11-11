@@ -32,11 +32,11 @@ function isActive(pathname: string, href: string) {
  * Au-delà de 80px de défilement (Composants §09), la barre de navigation passe en "solid",
  * fixée en haut avec une ombre. Un emplacement de hauteur fixe évite tout saut de mise en page.
  */
-export function SiteHeader() {
+/** `contact` : coordonnées de Paramètres > Agence (ou de repli), lues par le layout côté serveur. */
+export function SiteHeader({ contact }: { contact: { phone: string; email: string; hours: string } }) {
   const pathname = usePathname() ?? "/";
   const t = useTranslations("header");
   const tNav = useTranslations("nav");
-  const tSite = useTranslations("site");
   const tCommon = useTranslations("common");
   const transparent = isTransparent(pathname);
   const [open, setOpen] = useState(false);
@@ -98,11 +98,11 @@ export function SiteHeader() {
       <div className={clsx("text-[13px]", transparent ? "border-b border-white/15 text-on-dark-2" : "bg-night text-on-dark-2")}>
         <div className="container-site flex flex-wrap justify-between gap-x-6 gap-y-2 py-2.5">
           <div className="hidden flex-wrap gap-x-5 gap-y-2 sm:flex">
-            <span>{site.contact.phone}</span>
-            <a href={`mailto:${site.contact.email}`} className="hover:text-white">
-              {site.contact.email}
+            <span>{contact.phone}</span>
+            <a href={`mailto:${contact.email}`} className="hover:text-white">
+              {contact.email}
             </a>
-            <span>{tSite("hours")}</span>
+            <span>{contact.hours}</span>
           </div>
           <div className="flex items-center gap-4">
             {utilityNav.map((item) => (

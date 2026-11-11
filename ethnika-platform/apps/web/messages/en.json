@@ -2473,7 +2473,18 @@
         "placeholderHint": "Text in square brackets [ ] is a placeholder to complete.",
         "missingTitle": "{count, plural, one {# item to complete.} other {# items to complete.}}",
         "missingList": "Still in brackets or empty: {fields}. These appear as-is on the PDFs.",
-        "complete": "All details are filled in."
+        "complete": "All details are filled in.",
+        "hoursTitle": "Opening hours",
+        "hoursHint": "Shown on the Contact page; the Opening hours line above appears in the website top bar.",
+        "hoursWeekdays": "Monday – Friday",
+        "hoursSaturday": "Saturday",
+        "hoursSunday": "Sunday",
+        "mapTitle": "Map position",
+        "mapHint": "On Google Maps, right-click the agency: the two numbers shown are the latitude then the longitude.",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "fictitiousTitle": "Fictitious details.",
+        "fictitiousText": "These values are for demonstration (website, PDF documents, map). Replace them with the real ones and save: the approximate-location note will disappear from the map."
       },
       "payments": {
         "title": "Payments",

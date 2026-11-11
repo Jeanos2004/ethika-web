@@ -2213,6 +2213,15 @@
         "quotesNone": "Aucun devis sur la période.",
         "fullLog": "Journal complet",
         "trend": "Tendance sur 7 jours : {delta}"
+      },
+      "drawer": {
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "received": "Reçue le",
+        "source": "Origine",
+        "sourceSite": "Formulaire du site",
+        "sourceManual": "Saisie par l'équipe",
+        "open": "Fiche complète"
       }
     }
   },

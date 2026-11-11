@@ -2213,6 +2213,15 @@
         "quotesNone": "No quote over the period.",
         "fullLog": "Full log",
         "trend": "7-day trend: {delta}"
+      },
+      "drawer": {
+        "phone": "Phone",
+        "email": "Email",
+        "received": "Received on",
+        "source": "Origin",
+        "sourceSite": "Website form",
+        "sourceManual": "Entered by the team",
+        "open": "Full record"
       }
     }
   },

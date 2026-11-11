@@ -33,6 +33,7 @@ export async function setLeadStatus(formData: FormData) {
   const status = z.enum(["new", "in_progress", "confirmed", "cancelled"]).parse(formData.get("status"));
   await api(`/v1/leads/${reference}/status`, { method: "PATCH", session, body: { status } });
   revalidatePath(`/admin/demandes/${reference}`);
+  revalidatePath("/admin/demandes");
 }
 
 export type NoteState = { error?: string; ok?: number };
@@ -57,6 +58,7 @@ export async function assignLead(formData: FormData) {
   const target = formData.get("to") === "me" ? user.userId : null;
   await api(`/v1/leads/${reference}/assign`, { method: "PATCH", session, body: { userId: target } });
   revalidatePath(`/admin/demandes/${reference}`);
+  revalidatePath("/admin/demandes");
 }
 
 /* ---------- Vols ---------- */

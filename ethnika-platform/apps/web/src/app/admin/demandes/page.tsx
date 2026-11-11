@@ -33,7 +33,7 @@ export default async function AdminLeadsPage({ searchParams }: { searchParams: P
   const list = await api<ApiLeadList>(`/v1/leads?${query.toString()}`, { session });
   return (
     <AdminShell section="leads" title="Demandes" live={await liveAccount(user, session, list.byStatus.new ?? 0)}>
-      <LiveLeads list={list} query={query} />
+      <LiveLeads list={list} query={query} me={user.userId} />
     </AdminShell>
   );
 }

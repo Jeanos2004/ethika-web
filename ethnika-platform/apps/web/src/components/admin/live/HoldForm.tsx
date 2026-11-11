@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 import { holdFlight, type HoldState } from "@/lib/admin/actions";
+import { keepValues } from "@/components/admin/live/keep-values";
 
 const input = "h-11 w-full rounded-xl border border-line-strong bg-white px-3.5 text-[15px] outline-none focus:border-night";
 const titles = ["mr", "mrs", "ms", "miss", "dr"] as const;
@@ -18,7 +19,7 @@ export function HoldForm({ offerId, leadRef, pax }: { offerId: string; leadRef: 
   const types: ("adult" | "child" | "infant")[] = [...Array<"adult">(pax.adults).fill("adult"), ...Array<"child">(pax.children).fill("child"), ...Array<"infant">(pax.infants).fill("infant")];
 
   return (
-    <form action={action} className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
+    <form onSubmit={keepValues(action)} className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-5 sm:p-6">
       <input type="hidden" name="offerId" value={offerId} />
       <input type="hidden" name="count" value={types.length} />
       <div className="flex flex-col gap-1">

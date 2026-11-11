@@ -12,6 +12,13 @@ export function toMinorUnits(text: string, currency: QuoteCurrency): number | nu
   return Number(whole) * 10 ** decimals + Number(frac.padEnd(decimals, "0") || 0);
 }
 
+/** Unités entières → texte de saisie (« 812,40 », « 1250000 ») pour préremplir un formulaire. */
+export function fromMinorUnits(amount: number | string | null, currency: string | null) {
+  if (amount === null || amount === "" || !currency) return "";
+  const decimals = quoteCurrencies[currency as QuoteCurrency] ?? 0;
+  return decimals === 0 ? String(amount) : (Number(amount) / 10 ** decimals).toFixed(decimals).replace(".", ",");
+}
+
 /** Unités entières → « 1 250 000 GNF », « 812,40 € ». */
 export function formatMoney(amount: number | string, currency: string) {
   const decimals = quoteCurrencies[currency as QuoteCurrency] ?? 0;

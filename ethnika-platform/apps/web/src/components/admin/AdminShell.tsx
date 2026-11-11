@@ -19,6 +19,8 @@ const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
 
 /** Outils réservés aux administrateurs (back-office connecté) : retirés de la liste « bientôt ». */
 const adminTools = [
+  { key: "circuits", href: "/admin/circuits", icon: "mountain" },
+  { key: "offers", href: "/admin/offres", icon: "ticket" },
   { key: "users", href: "/admin/utilisateurs", icon: "users" },
   { key: "audit", href: "/admin/journal", icon: "shieldCheck" },
 ] as const;

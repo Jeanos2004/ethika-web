@@ -82,6 +82,51 @@ export type ApiUser = {
 
 export type ApiAuditEntry = { id: string; actorId: string | null; action: string; target: string | null; ip: string | null; createdAt: string };
 
+type OfferTexts = { kicker: string; title: string; description: string; imageAlt: string };
+export type ApiOffer = {
+  id: string;
+  slug: string;
+  type: "vol" | "pack" | "last";
+  i18n: { fr: OfferTexts; en?: Partial<OfferTexts> };
+  imageUrl: string;
+  href: string;
+  priceAmount: string | null;
+  currency: string | null;
+  validUntil: string | null;
+  published: boolean;
+  position: number;
+  updatedAt: string;
+};
+
+export type CircuitDayInput = { title: string; meta?: string; text: string; night?: string; meals?: string };
+type CircuitTexts = {
+  title: string;
+  headline: string;
+  summary: string;
+  place: string;
+  imageAlt: string;
+  durationLabel: string;
+  intro?: string;
+  days: CircuitDayInput[];
+  included: string[];
+  excluded: string[];
+};
+export type ApiCircuit = {
+  id: string;
+  slug: string;
+  theme: "nature" | "plage" | "culture" | "diaspora";
+  region: "moyenne-guinee" | "basse-cote" | "conakry" | "guinee";
+  durationDays: number;
+  imageUrl: string;
+  priceFrom: string | null;
+  currency: string | null;
+  i18n: { fr: CircuitTexts; en?: Partial<CircuitTexts> };
+  departures: { dates: string; status: "available" | "last" | "request"; price: string }[];
+  published: boolean;
+  position: number;
+  updatedAt: string;
+};
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

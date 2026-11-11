@@ -13,7 +13,7 @@ export class ApiError extends Error {
   }
 }
 
-type Options = { method?: "GET" | "POST" | "PATCH"; body?: unknown; session?: string; timeoutMs?: number };
+type Options = { method?: "GET" | "POST" | "PATCH" | "DELETE"; body?: unknown; session?: string; timeoutMs?: number };
 
 /**
  * Appel serveur → API : clé interne, jeton de session éventuel, IP et navigateur du client final (journal, limites),

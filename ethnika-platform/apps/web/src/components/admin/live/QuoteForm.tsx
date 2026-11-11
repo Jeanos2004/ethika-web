@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { createQuote, type QuoteState } from "@/lib/admin/quote-actions";
 import { quoteCurrencies } from "@/lib/admin/money";
 import { Icon } from "@/components/ui/Icon";
+import { keepValues } from "@/components/admin/live/keep-values";
 
 const input = "h-11 w-full rounded-xl border border-line-strong bg-white px-3.5 text-[15px] outline-none focus:border-night";
 
@@ -16,7 +17,7 @@ export function QuoteForm({ reference, defaultValidUntil }: { reference: string;
 
   return (
     // Clé = dernier devis créé : le formulaire repart vierge après une création.
-    <form key={state.created ?? "new"} action={action} className="flex flex-col gap-3 border-t border-line pt-4">
+    <form key={state.created ?? "new"} onSubmit={keepValues(action)} className="flex flex-col gap-3 border-t border-line pt-4">
       <input type="hidden" name="ref" value={reference} />
       <div className="grid grid-cols-2 gap-3">
         <div className="flex flex-col gap-1.5">

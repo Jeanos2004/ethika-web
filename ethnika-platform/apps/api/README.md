@@ -4,7 +4,7 @@ API métier : demandes, back-office (comptes, 2FA, rôles, audit), devis et PDF,
 Le site (`apps/web`) l'appelle **côté serveur uniquement**, avec la clé partagée `X-Internal-Key` ; le navigateur ne parle jamais à l'API.
 Spécification : `docs/PROMPT_CLAUDE_CODE.md` § 6 et `docs/SECURITY.md` § 5. Déploiement : `docs/DEPLOIEMENT.md`.
 
-> Développée **indépendamment du site** : tant que le VPS n'existe pas, le site tourne en mode démo et ne l'appelle pas.
+> Branchée au site (back-office connecté, contenus publics, newsletter) dès que `API_BASE_URL` est défini côté site ; sans cela, le site tourne en mode démo et ne l'appelle pas.
 
 Pile : NestJS 11 (CommonJS), Prisma 7 + PostgreSQL, Zod 4, Jest. NestJS 12 et `puppeteer-core` 25 sont publiés en ESM uniquement :
 on reste volontairement sur NestJS 11 et `puppeteer-core` 24 (CommonJS) tant que l'API n'est pas migrée en ESM.
@@ -37,6 +37,7 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | clé | POST | `/auth/login`, `/auth/mfa` | Connexion |
 | session | GET / POST | `/auth/me`, `/auth/logout`, `/auth/password`, `/auth/mfa/setup`, `/auth/mfa/enable` | Compte courant |
 | agent, admin | GET | `/leads?status=&type=&q=&assignee=me\|none\|<id>&page=&pageSize=` | Liste paginée (25 par défaut, 100 max.) + compteurs |
+| agent, admin | POST | `/leads/manual` | Demande saisie par un agent (téléphone, WhatsApp) : même validation que le site, source `manual`, attribuée à l'agent, auditée |
 | agent, admin | PATCH / POST | `/leads/:ref/assign`, `/leads/:ref/notes` | Attribution à un agent, notes internes (historisées) |
 | agent, admin | GET | `/stats` | Indicateurs du tableau de bord (à traiter, en retard, taux de confirmation, 14 jours, file prioritaire, activité) |
 | agent, admin | GET | `/leads/export.csv` | Export CSV (formules neutralisées, audité) |

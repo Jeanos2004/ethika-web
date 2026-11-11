@@ -84,4 +84,14 @@ Le site reste sur Vercel ; l'API, sa base et le reverse proxy HTTPS tournent sur
 - Image : environ 1,9 Go (Chromium pour les PDF + CLI Prisma pour les migrations) ; testée en lecture seule, PDF compris.
 
 ### Brancher le site
-Sur Vercel : `API_BASE_URL=https://api.ethnikatour.com`, `API_INTERNAL_KEY=<INTERNAL_API_KEY>`, puis **retirer** `NEXT_PUBLIC_DEMO_MODE` (les demandes partent alors en base) et redéployer. Le back-office du site sera ensuite relié à l'API (connexion, 2FA, demandes, devis).
+Sur Vercel : `API_BASE_URL=https://api.ethnikatour.com`, `API_INTERNAL_KEY=<INTERNAL_API_KEY>`, puis **retirer** `NEXT_PUBLIC_DEMO_MODE` et redéployer. Dès lors :
+- les formulaires du site (demandes, newsletter) écrivent en base ; les liens des e-mails pointent vers `/newsletter/confirmer` et `/newsletter/desinscription` ;
+- `/admin` est le back-office réel : connexion (`/admin/connexion`), 2FA, demandes (liste, fiche, statut, attribution, notes, PDF, devis, export CSV, saisie d'une demande reçue par téléphone), vols (recherche, option, suivi), et pour les administrateurs : circuits, offres, utilisateurs, journal d'audit ;
+- les pages Circuits, Offres et l'accueil lisent les contenus **publiés** depuis le back-office (cache 60 s). Tant que rien n'est publié, le site garde ses contenus actuels.
+
+Première connexion :
+1. Créer le premier administrateur (commande `create-admin` ci-dessus) ; il choisit son mot de passe et active la 2FA à la première connexion.
+2. Dans **Circuits** puis **Offres**, cliquer sur « Importer » pour reprendre les contenus actuels du site avant toute publication : dès qu'un élément est publié, le site n'affiche plus que les contenus publiés.
+3. Créer les comptes des agents dans **Utilisateurs** (mot de passe temporaire affiché une fois, à transmettre de vive voix).
+
+Limite connue : sur Vercel (serverless), la limitation de débit du site est par instance ; celle de l'API (VPS, instance unique) reste exacte.

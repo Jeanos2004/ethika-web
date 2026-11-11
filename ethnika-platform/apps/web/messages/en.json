@@ -1763,7 +1763,8 @@
         "takeIt": "I'll take it",
         "release": "Release",
         "noteLabel": "Add an internal note",
-        "addNote": "Add note"
+        "addNote": "Add note",
+        "export": "Export CSV"
       },
       "flights": {
         "title": "Flights",
@@ -1865,7 +1866,26 @@
         "providerRefused": "The provider rejected the request. Check the details or choose another offer.",
         "timeout": "The provider did not answer in time. Try again.",
         "searchForm": "Check the search: two different 3-letter IATA codes, future dates, at most one infant per adult.",
-        "holdForm": "Check the passengers: all fields are required, phone as +224…"
+        "holdForm": "Check the passengers: all fields are required, phone as +224…",
+        "quoteForm": "Check the quote: each line needs a label (2 characters min.), a valid quantity and price; validity date in the future."
+      },
+      "quotes": {
+        "title": "Quotes",
+        "none": "No quote for this request.",
+        "validUntilShort": "Valid until {date}",
+        "currency": "Currency",
+        "validUntil": "Valid until",
+        "lines": "Items",
+        "label": "Item {n}",
+        "labelPlaceholder": "Conakry – Paris return ticket",
+        "quantity": "Quantity, line {n}",
+        "unitPrice": "Unit price, line {n}",
+        "removeLine": "Remove line {n}",
+        "addLine": "Add a line",
+        "notes": "Notes for the client (optional)",
+        "create": "Create quote",
+        "creating": "Creating…",
+        "created": "Quote {number} created."
       }
     }
   },

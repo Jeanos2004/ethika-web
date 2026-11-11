@@ -10,21 +10,6 @@ import { formatShort, statusDot } from "@/components/admin/status";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 
 const statuses: ApiLeadStatus[] = ["new", "in_progress", "confirmed", "cancelled"];
-const assignees = ["me", "none"] as const;
-
-/** Paramètres d'URL → requête API, en liste blanche (rien d'autre n'est transmis). */
-export function leadListQuery(params: Record<string, string | string[] | undefined>) {
-  const one = (k: string) => (typeof params[k] === "string" ? (params[k] as string) : "");
-  const q = new URLSearchParams({ pageSize: "25" });
-  if ((statuses as string[]).includes(one("status"))) q.set("status", one("status"));
-  if ((leadTypes as readonly string[]).includes(one("type"))) q.set("type", one("type"));
-  if ((assignees as readonly string[]).includes(one("assignee"))) q.set("assignee", one("assignee"));
-  const text = one("q").trim().slice(0, 80);
-  if (text) q.set("q", text);
-  const page = Number(one("page"));
-  if (Number.isInteger(page) && page > 1 && page <= 10_000) q.set("page", String(page));
-  return q;
-}
 
 function withParam(query: URLSearchParams, key: string, value?: string) {
   const next = new URLSearchParams(query);
@@ -42,6 +27,7 @@ export async function LiveLeads({ list, query }: { list: ApiLeadList; query: URL
   const status = query.get("status") ?? undefined;
   const pages = Math.max(1, Math.ceil(list.total / list.pageSize));
   const filtered = ["status", "type", "assignee", "q"].some((k) => query.has(k));
+  const exportQuery = new URLSearchParams([...query].filter(([k]) => k !== "page" && k !== "pageSize")).toString();
   const pageHref = (p: number) => {
     const next = new URLSearchParams(query);
     next.delete("pageSize");
@@ -56,6 +42,12 @@ export async function LiveLeads({ list, query }: { list: ApiLeadList; query: URL
           <h1 className="text-[26px] leading-tight font-bold tracking-[-0.03em] text-night">{t("leads.title")}</h1>
           <p className="text-sm text-muted">{t("live.leads.subtitle", { count: list.total })}</p>
         </div>
+        <a
+          href={`/admin/demandes/export${exportQuery ? `?${exportQuery}` : ""}`}
+          className="inline-flex h-11 items-center gap-2 rounded-full border-[1.5px] border-night px-5 text-sm font-semibold text-night hover:bg-night hover:text-white"
+        >
+          <Icon name="download" size={16} /> {t("leads.export")}
+        </a>
       </div>
 
       {/* Compteurs = filtres de statut */}

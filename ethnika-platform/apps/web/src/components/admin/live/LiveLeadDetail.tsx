@@ -12,6 +12,9 @@ import { StatusBadge } from "@/components/admin/StatusBadge";
 import { eventLabel } from "@/components/admin/live/LiveDashboard";
 import { NoteForm } from "@/components/admin/live/NoteForm";
 import { BookingRow } from "@/components/admin/live/BookingRow";
+import { QuoteForm } from "@/components/admin/live/QuoteForm";
+import { formatMoney } from "@/lib/admin/money";
+import type { ApiQuote } from "@/lib/admin/types";
 
 const statuses: ApiLeadStatus[] = ["new", "in_progress", "confirmed", "cancelled"];
 
@@ -31,7 +34,7 @@ function flightSearchHref(lead: ApiLead) {
 }
 
 /** Fiche d'une demande : coordonnées, détail, statut, attribution, notes, historique, options de vol. */
-export async function LiveLeadDetail({ lead, bookings, me }: { lead: ApiLead; bookings: FlightBooking[]; me: string }) {
+export async function LiveLeadDetail({ lead, bookings, quotes, me }: { lead: ApiLead; bookings: FlightBooking[]; quotes: ApiQuote[]; me: string }) {
   const t = await getTranslations({ locale: "fr", namespace: "admin" });
   const d = liveDigest(lead);
   const wa = whatsappTo(lead.phone, t("leads.whatsappMessage", { name: lead.fullName, ref: lead.reference }));
@@ -84,6 +87,31 @@ export async function LiveLeadDetail({ lead, bookings, me }: { lead: ApiLead; bo
                 <Icon name="download" size={16} /> {t("live.leads.pdf")}
               </a>
             </div>
+          </section>
+
+          <section className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6">
+            <h2 className="text-base font-bold text-night">{t("live.quotes.title")}</h2>
+            {quotes.length === 0 ? (
+              <p className="text-sm text-muted">{t("live.quotes.none")}</p>
+            ) : (
+              <ul className="divide-y divide-line">
+                {quotes.map((q) => (
+                  <li key={q.number} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2.5 text-sm">
+                    <span className="flex flex-col">
+                      <strong className="font-mono text-night">{q.number}</strong>
+                      <span className="text-xs text-muted">{t("live.quotes.validUntilShort", { date: q.validUntil.slice(0, 10).split("-").reverse().join("/") })}</span>
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <strong className="text-night tabular-nums">{formatMoney(q.totalAmount, q.currency)}</strong>
+                      <a href={`/admin/devis/${q.number}`} target="_blank" rel="noopener" className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-sand px-3.5 text-[13px] font-semibold text-night hover:bg-line">
+                        <Icon name="download" size={14} /> PDF
+                      </a>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <QuoteForm reference={lead.reference} defaultValidUntil={new Date(new Date().getTime() + 14 * 86_400_000).toISOString().slice(0, 10)} />
           </section>
 
           <section className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 sm:p-6">

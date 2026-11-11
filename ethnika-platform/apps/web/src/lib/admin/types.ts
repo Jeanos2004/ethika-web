@@ -67,5 +67,7 @@ export type FlightBooking = {
   lead: { reference: string; fullName: string } | null;
 };
 
+export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
+
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */
 export const uiStatus = { new: "new", in_progress: "progress", confirmed: "confirmed", cancelled: "cancelled" } as const;

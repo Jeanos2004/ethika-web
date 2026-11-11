@@ -1763,7 +1763,8 @@
         "takeIt": "Je m'en occupe",
         "release": "Libérer",
         "noteLabel": "Ajouter une note interne",
-        "addNote": "Ajouter la note"
+        "addNote": "Ajouter la note",
+        "export": "Exporter CSV"
       },
       "flights": {
         "title": "Vols",
@@ -1865,7 +1866,26 @@
         "providerRefused": "Le fournisseur a refusé la demande. Vérifiez les informations ou choisissez une autre offre.",
         "timeout": "Le fournisseur n'a pas répondu à temps. Réessayez.",
         "searchForm": "Vérifiez la recherche : codes IATA à 3 lettres différents, dates à venir, au plus un bébé par adulte.",
-        "holdForm": "Vérifiez les passagers : tous les champs sont obligatoires, téléphone au format +224…"
+        "holdForm": "Vérifiez les passagers : tous les champs sont obligatoires, téléphone au format +224…",
+        "quoteForm": "Vérifiez le devis : chaque ligne a un libellé (2 caractères min.), une quantité et un prix valides ; date de validité à venir."
+      },
+      "quotes": {
+        "title": "Devis",
+        "none": "Aucun devis pour cette demande.",
+        "validUntilShort": "Valable jusqu'au {date}",
+        "currency": "Devise",
+        "validUntil": "Valable jusqu'au",
+        "lines": "Prestations",
+        "label": "Prestation {n}",
+        "labelPlaceholder": "Billet Conakry – Paris A/R",
+        "quantity": "Quantité, ligne {n}",
+        "unitPrice": "Prix unitaire, ligne {n}",
+        "removeLine": "Retirer la ligne {n}",
+        "addLine": "Ajouter une ligne",
+        "notes": "Notes pour le client (facultatif)",
+        "create": "Créer le devis",
+        "creating": "Création…",
+        "created": "Devis {number} créé."
       }
     }
   },

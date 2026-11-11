@@ -8,8 +8,12 @@ import { clsx } from "clsx";
 import { useTranslations } from "next-intl";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
+import { logout } from "@/lib/admin/auth-actions";
 
-type Section = "dashboard" | "leads";
+type Section = "dashboard" | "leads" | "flights" | "security";
+
+/** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
+export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number };
 
 const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
 
@@ -19,11 +23,11 @@ const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
  * - < 1024 px : barre supérieure compacte (logo + titre) et barre d'onglets en bas d'écran, à portée de pouce :
  *   Accueil · Demandes · Nouvelle (action principale) · Plus (panneau des options secondaires).
  */
-export function AdminShell({ section, title, children }: { section: Section; title: string; children: ReactNode }) {
+export function AdminShell({ section, title, live, children }: { section: Section; title: string; live?: LiveAccount; children: ReactNode }) {
   const t = useTranslations("admin");
   const [moreOpen, setMoreOpen] = useState(false);
   const leads = useDemoLeads();
-  const newCount = leads.filter((l) => l.status === "new").length;
+  const newCount = live ? live.newCount : leads.filter((l) => l.status === "new").length;
 
   return (
     <div className="min-h-dvh lg:flex">
@@ -40,6 +44,11 @@ export function AdminShell({ section, title, children }: { section: Section; tit
           <SideLink href="/admin/demandes" current={section === "leads"} icon="mail" badge={newCount || undefined}>
             {t("nav.leads")}
           </SideLink>
+          {live && (
+            <SideLink href="/admin/vols" current={section === "flights"} icon="plane">
+              {t("nav.flights")}
+            </SideLink>
+          )}
           <span className="mt-4 mb-1 px-3.5 font-mono text-[10px] tracking-[0.14em] text-on-dark-muted">{t("soon").toUpperCase()}</span>
           {soon.map((k) => (
             <span key={k} aria-disabled="true" className="flex min-h-10 items-center rounded-xl px-3.5 text-[14px] font-medium text-on-dark-muted">
@@ -47,7 +56,7 @@ export function AdminShell({ section, title, children }: { section: Section; tit
             </span>
           ))}
         </nav>
-        <AccountFooter />
+        <AccountFooter live={live} />
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
@@ -57,9 +66,11 @@ export function AdminShell({ section, title, children }: { section: Section; tit
           <span className="truncate text-[15px] font-semibold">{title}</span>
         </header>
 
-        <p role="note" className="border-b border-line bg-white px-4 py-2.5 text-[13px] leading-snug text-muted sm:px-7">
-          {t("demoBanner")}
-        </p>
+        {!live && (
+          <p role="note" className="border-b border-line bg-white px-4 py-2.5 text-[13px] leading-snug text-muted sm:px-7">
+            {t("demoBanner")}
+          </p>
+        )}
         {/* Espace réservé en bas pour la barre d'onglets mobile (+ zone de sécurité des écrans à encoche). */}
         <main className="flex min-w-0 flex-1 flex-col gap-5 p-4 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:p-7 sm:pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-7">{children}</main>
       </div>
@@ -72,6 +83,9 @@ export function AdminShell({ section, title, children }: { section: Section; tit
         <ul className="mx-auto grid h-16 max-w-md grid-cols-4">
           <TabLink href="/admin" current={section === "dashboard"} icon="grid" label={t("mobileNav.dashboard")} />
           <TabLink href="/admin/demandes" current={section === "leads"} icon="mail" label={t("mobileNav.leads")} badge={newCount || undefined} />
+          {live ? (
+            <TabLink href="/admin/vols" current={section === "flights"} icon="plane" label={t("mobileNav.flights")} />
+          ) : (
           <li className="flex items-center justify-center">
             <Link href="/admin/demandes?nouvelle=1" className="flex flex-col items-center gap-0.5 text-[11px] font-semibold text-ink">
               <span className="flex size-10 items-center justify-center rounded-full bg-brand-gold shadow-sm">
@@ -80,6 +94,7 @@ export function AdminShell({ section, title, children }: { section: Section; tit
               {t("mobileNav.new")}
             </Link>
           </li>
+          )}
           <li className="flex">
             <button
               type="button"
@@ -95,7 +110,7 @@ export function AdminShell({ section, title, children }: { section: Section; tit
         </ul>
       </nav>
 
-      {moreOpen && <MoreSheet onClose={() => setMoreOpen(false)} />}
+      {moreOpen && <MoreSheet live={live} onClose={() => setMoreOpen(false)} />}
     </div>
   );
 }
@@ -137,31 +152,51 @@ function TabLink({ href, current, icon, label, badge }: { href: string; current:
   );
 }
 
-function AccountFooter() {
+function AccountFooter({ live }: { live?: LiveAccount }) {
   const t = useTranslations("admin");
+  const name = live?.name ?? t("agentName");
+  const initials = name
+    .split(/s+/)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
   return (
     <div className="mt-auto flex flex-col gap-1">
       <div className="mb-2 flex items-center gap-3 rounded-xl bg-night-2 p-3">
         <span aria-hidden="true" className="flex size-9 items-center justify-center rounded-full bg-brand-gold text-sm font-bold text-ink">
-          NC
+          {initials}
         </span>
         <span className="flex min-w-0 flex-col text-[13px]">
-          <strong className="truncate text-white">{t("agentName")}</strong>
-          <span className="truncate text-on-dark-muted">{t("agentRole")}</span>
+          <strong className="truncate text-white">{name}</strong>
+          <span className="truncate text-on-dark-muted">{live ? t(`live.roles.${live.role}`) : t("agentRole")}</span>
         </span>
       </div>
       <Link href="/" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
         <Icon name="arrowLeft" size={16} /> {t("viewSite")}
       </Link>
-      <button type="button" onClick={() => resetDemo()} className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
-        <Icon name="refresh" size={16} /> {t("reset")}
-      </button>
+      {live ? (
+        <>
+          <Link href="/admin/securite" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+            <Icon name="shieldCheck" size={16} /> {t("nav.security")}
+          </Link>
+          <form action={logout}>
+            <button type="submit" className="flex min-h-10 w-full items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+              <Icon name="close" size={16} /> {t("live.logout")}
+            </button>
+          </form>
+        </>
+      ) : (
+        <button type="button" onClick={() => resetDemo()} className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+          <Icon name="refresh" size={16} /> {t("reset")}
+        </button>
+      )}
     </div>
   );
 }
 
 /** Panneau « Plus » (mobile) : monte du bas, rendu dans <body>, Échap et clic sur le voile pour fermer, focus géré. */
-function MoreSheet({ onClose }: { onClose: () => void }) {
+function MoreSheet({ live, onClose }: { live?: LiveAccount; onClose: () => void }) {
   const t = useTranslations("admin");
   const panel = useRef<HTMLDivElement>(null);
   const close = useRef(onClose);
@@ -209,7 +244,7 @@ function MoreSheet({ onClose }: { onClose: () => void }) {
             </span>
           ))}
         </div>
-        <AccountFooter />
+        <AccountFooter live={live} />
       </div>
     </div>,
     document.body,

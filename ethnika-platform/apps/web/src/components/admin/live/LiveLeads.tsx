@@ -46,12 +46,20 @@ export async function LiveLeads({ list, query, me }: { list: ApiLeadList; query:
         <Link href="/admin/demandes/nouvelle" className="inline-flex h-11 items-center gap-2 rounded-full bg-brand-gold px-5 text-sm font-bold text-ink hover:bg-brand-gold-hover">
           <Icon name="plus" size={16} /> {t("leads.new")}
         </Link>
-        <a
-          href={`/admin/demandes/export${exportQuery ? `?${exportQuery}` : ""}`}
-          className="inline-flex h-11 items-center gap-2 rounded-full border-[1.5px] border-night px-5 text-sm font-semibold text-night hover:bg-night hover:text-white"
-        >
-          <Icon name="download" size={16} /> {t("live.leads.export")}
-        </a>
+        <details className="relative">
+          <summary className="inline-flex h-11 cursor-pointer list-none items-center gap-2 rounded-full border-[1.5px] border-night px-5 text-sm font-semibold text-night hover:bg-night hover:text-white">
+            <Icon name="download" size={16} /> {t("live.leads.exportMenu")} <Icon name="chevronDown" size={15} />
+          </summary>
+          <div className="absolute right-0 z-20 mt-2 flex w-72 flex-col rounded-xl border border-line bg-white p-1.5 text-sm shadow-lg">
+            {(["xlsx", "csv"] as const).map((f) => (
+              <a key={f} href={`/admin/demandes/export?${new URLSearchParams([...new URLSearchParams(exportQuery), ["format", f]]).toString()}`} className="flex flex-col rounded-lg px-3 py-2.5 hover:bg-sand">
+                <strong className="text-night">{t(`live.leads.formats.${f}.label`)}</strong>
+                <span className="text-xs text-muted">{t(`live.leads.formats.${f}.hint`)}</span>
+              </a>
+            ))}
+            <span className="px-3 pt-1.5 pb-1 text-[11px] text-muted">{t("live.leads.exportScope", { count: list.total })}</span>
+          </div>
+        </details>
         </div>
       </div>
 

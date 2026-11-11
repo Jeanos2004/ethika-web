@@ -1807,7 +1807,19 @@
         "release": "Release",
         "noteLabel": "Add an internal note",
         "addNote": "Add note",
-        "export": "Export CSV"
+        "export": "Export CSV",
+        "exportMenu": "Export",
+        "exportScope": "{count, plural, one {# request} other {# requests}}, with the current filters",
+        "formats": {
+          "xlsx": {
+            "label": "Excel (.xlsx)",
+            "hint": "Formatted: filters, dates, summary by status and type"
+          },
+          "csv": {
+            "label": "CSV",
+            "hint": "Raw, for another tool or an import"
+          }
+        }
       },
       "flights": {
         "title": "Flights",

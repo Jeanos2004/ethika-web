@@ -3,6 +3,7 @@ import { Prisma } from "../../generated/prisma/client";
 import { PrismaService } from "../../prisma/prisma.service";
 import { AuditService } from "../audit/audit.service";
 import { quoteTotal, type Currency } from "./money";
+import { leadSummary } from "../leads/summary";
 import type { QuoteInput } from "./quotes.schemas";
 
 @Injectable()
@@ -53,7 +54,7 @@ export class QuotesService {
 
   /** Devis + demande + auteur, pour le PDF. */
   async forPdf(number: string) {
-    const quote = await this.prisma.quote.findUnique({ where: { number }, include: { lead: { select: { reference: true, fullName: true, phone: true, email: true } } } });
+    const quote = await this.prisma.quote.findUnique({ where: { number }, include: { lead: { select: { reference: true, fullName: true, phone: true, email: true, type: true, details: true } } } });
     if (!quote) throw new NotFoundException();
     const author = await this.prisma.user.findUnique({ where: { id: quote.createdBy }, select: { name: true } });
     return {
@@ -64,7 +65,8 @@ export class QuotesService {
       validUntil: quote.validUntil,
       notes: quote.notes,
       createdAt: quote.createdAt,
-      lead: quote.lead,
+      lead: { reference: quote.lead.reference, fullName: quote.lead.fullName, phone: quote.lead.phone, email: quote.lead.email },
+      subject: subjectOf(quote.lead.type, quote.lead.details),
       agentName: author?.name ?? "ETHNIKA",
     };
   }
@@ -73,4 +75,10 @@ export class QuotesService {
 /** BigInt n'est pas sérialisable en JSON : le total part en chaîne. */
 function serialize<T extends { totalAmount: bigint }>(q: T) {
   return { ...q, totalAmount: q.totalAmount.toString() };
+}
+
+/** Objet du devis : résumé de la demande, trajet en tête pour un billet. */
+function subjectOf(type: string, details: unknown) {
+  const { summary, route } = leadSummary(type, (details ?? {}) as Record<string, unknown>, "fr");
+  return route?.from && route.to ? `${route.from} → ${route.to} · ${summary}` : summary;
 }

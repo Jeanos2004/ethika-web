@@ -79,6 +79,16 @@ export class LeadsAdminController {
     res.send(csv);
   }
 
+  @Get("export.xlsx")
+  async exportXlsx(@Query(new ZodPipe(leadQuery)) q: LeadQuery, @CurrentUser() me: AuthContext, @Req() req: Request, @Res() res: Response) {
+    const { file, count } = await this.leads.exportXlsx(q, me.userId);
+    await this.audit.log("lead.exported", { actorId: me.userId, ip: clientInfo(req).ip, meta: { count, format: "xlsx", filters: { status: q.status, type: q.type, q: q.q ? "…" : undefined } } });
+    res.setHeader("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    res.setHeader("cache-control", "no-store");
+    res.setHeader("content-disposition", `attachment; filename="ethnika-demandes-${new Date().toISOString().slice(0, 10)}.xlsx"`);
+    res.send(file);
+  }
+
   @Get(":ref")
   get(@Param("ref") ref: string) {
     return this.leads.get(checkRef(ref));

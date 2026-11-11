@@ -1807,7 +1807,19 @@
         "release": "Libérer",
         "noteLabel": "Ajouter une note interne",
         "addNote": "Ajouter la note",
-        "export": "Exporter CSV"
+        "export": "Exporter CSV",
+        "exportMenu": "Exporter",
+        "exportScope": "{count, plural, one {# demande} other {# demandes}}, avec les filtres en cours",
+        "formats": {
+          "xlsx": {
+            "label": "Excel (.xlsx)",
+            "hint": "Mis en forme : filtres, dates, synthèse par statut et par type"
+          },
+          "csv": {
+            "label": "CSV",
+            "hint": "Brut, pour un autre logiciel ou un import"
+          }
+        }
       },
       "flights": {
         "title": "Vols",

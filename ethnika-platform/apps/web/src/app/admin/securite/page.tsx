@@ -1,37 +1,25 @@
 import type { Metadata } from "next";
 import { clsx } from "clsx";
 import { getTranslations } from "next-intl/server";
-import { AdminShell } from "@/components/admin/AdminShell";
 import { AuthLayout } from "@/components/admin/live/AuthLayout";
 import { MfaSetup, PasswordForm } from "@/components/admin/live/SecurityForms";
 import { Icon } from "@/components/ui/Icon";
 import { logout } from "@/lib/admin/auth-actions";
-import { liveAccount } from "@/lib/admin/account";
 import { requireUser } from "@/lib/admin/session";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = { title: "Sécurité" };
 
 /**
  * Premier accès : parcours guidé hors du back-office (mot de passe définitif, puis 2FA pour un administrateur).
- * Compte prêt : page Sécurité dans le back-office (changement de mot de passe).
+ * Compte prêt : redirection vers Paramètres · Sécurité.
  */
 export default async function AdminSecurityPage() {
-  const { user, session } = await requireUser({ allowPending: true });
+  const { user } = await requireUser({ allowPending: true });
   const t = await getTranslations({ locale: "fr", namespace: "admin.live.security" });
 
-  if (user.mfaVerified && !user.mustChangePassword) {
-    return (
-      <AdminShell section="security" title={t("title")} live={await liveAccount(user, session)}>
-        <div className="flex flex-col gap-1">
-          <h1 className="text-[26px] leading-tight font-bold tracking-[-0.03em] text-night">{t("title")}</h1>
-          <p className="text-sm text-muted">{t("allSet", { email: user.email })}</p>
-        </div>
-        <div className="max-w-xl">
-          <PasswordForm mustChange={false} />
-        </div>
-      </AdminShell>
-    );
-  }
+  // Compte prêt : la sécurité se gère dans Paramètres.
+  if (user.mfaVerified && !user.mustChangePassword) redirect("/admin/parametres/securite");
 
   const steps = [
     { key: "password", done: !user.mustChangePassword },

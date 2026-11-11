@@ -142,6 +142,26 @@ export type ApiCircuit = {
   updatedAt: string;
 };
 
+export type ApiProfile = { name: string; email: string; role: "admin" | "agent"; totpEnabled: boolean; lastLoginAt: string | null; createdAt: string; mfaVerified: boolean };
+
+export type ApiSession = { handle: string; current: boolean; createdAt: string; lastSeenAt: string; expiresAt: string; ip: string | null; device: string | null };
+
+export type ApiSystem = {
+  version: string;
+  environment: string;
+  uptimeSeconds: number;
+  siteUrl: string;
+  flightProvider: "mock" | "duffel" | "amadeus";
+  smtpConfigured: boolean;
+  agencyNotifyConfigured: boolean;
+  pdfConfigured: boolean;
+  sessionIdleMinutes: number;
+  sessionMaxMinutes: number;
+  leadRetentionDays: number;
+  counts: { users: number; leads: number; subscribers: number; holds: number };
+  mail: { pending: number; failed: number; sent24h: number };
+};
+
 export type ApiQuote = { number: string; currency: string; totalAmount: string; validUntil: string; notes: string | null; createdAt: string };
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */

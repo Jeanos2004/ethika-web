@@ -1542,7 +1542,8 @@
       "users": "Utilisateurs",
       "flights": "Vols",
       "security": "Sécurité",
-      "audit": "Journal d'audit"
+      "audit": "Journal d'audit",
+      "settings": "Paramètres"
     },
     "soon": "Phase 2",
     "agentName": "[Nom du conseiller]",
@@ -1915,7 +1916,8 @@
         "userForm": "Vérifiez le nom (2 caractères minimum), l'e-mail et le rôle.",
         "slugTaken": "Cet identifiant d'URL est déjà utilisé.",
         "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide.",
-        "manualForm": "Demande incomplète."
+        "manualForm": "Demande incomplète.",
+        "nameLength": "Le nom doit compter entre 2 et 120 caractères."
       },
       "quotes": {
         "title": "Devis",
@@ -2222,6 +2224,93 @@
         "sourceSite": "Formulaire du site",
         "sourceManual": "Saisie par l'équipe",
         "open": "Fiche complète"
+      },
+      "settings": {
+        "title": "Paramètres",
+        "subtitle": "Votre compte, sa sécurité et l'état de la plateforme.",
+        "navLabel": "Rubriques des paramètres",
+        "tabs": {
+          "profile": "Profil",
+          "security": "Sécurité",
+          "sessions": "Sessions actives",
+          "system": "Système"
+        },
+        "profileTitle": "Profil",
+        "profileHint": "Votre nom apparaît dans les attributions, l'historique des demandes et sur les devis.",
+        "name": "Nom affiché",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Profil mis à jour.",
+        "accountTitle": "Compte",
+        "email": "Identifiant (e-mail)",
+        "emailHint": "L'e-mail de connexion ne se modifie pas ici : demandez à un administrateur de créer un nouveau compte si besoin.",
+        "role": "Rôle",
+        "roles": {
+          "admin": "Administrateur",
+          "agent": "Agent"
+        },
+        "roleHint": {
+          "admin": "tout le back-office, contenus et comptes compris",
+          "agent": "demandes, devis et vols"
+        },
+        "mfa": "Vérification en deux étapes",
+        "mfaOn": "Activée",
+        "mfaOff": "Non activée",
+        "memberSince": "Compte créé le",
+        "lastLogin": "Dernière connexion",
+        "mfaActiveHint": "Un code de votre application d'authentification est demandé à chaque connexion.",
+        "mfaAgentHint": "Facultative pour un agent, mais fortement conseillée : elle protège votre compte même si votre mot de passe fuite.",
+        "mfaLost": "Téléphone perdu ou changé : demandez à un administrateur de réinitialiser votre 2FA depuis Utilisateurs, puis reconfigurez-la à la connexion suivante.",
+        "tipsTitle": "Bonnes pratiques",
+        "tip1": "Un mot de passe propre à ETHNIKA, jamais réutilisé ailleurs, d'au moins 12 caractères.",
+        "tip2": "Ne partagez jamais vos codes ni votre mot de passe, même avec un collègue : chaque personne a son compte.",
+        "tip3": "Déconnectez-vous sur un ordinateur partagé ; les sessions inactives se ferment seules au bout de 30 minutes.",
+        "tip4": "Un message ou un appel qui vous demande un code est une tentative de fraude : l'équipe technique ne le demande jamais.",
+        "sessionsTitle": "Sessions actives",
+        "sessionsHint": "Les appareils actuellement connectés à votre compte. Déconnectez ceux que vous ne reconnaissez pas.",
+        "revokeOthers": "Déconnecter {count, plural, one {l'autre appareil} other {les # autres appareils}}",
+        "revoke": "Déconnecter",
+        "thisDevice": "Cet appareil",
+        "unknownDevice": "Appareil inconnu",
+        "lastSeen": "active {date}",
+        "since": "depuis {date}",
+        "sessionsRules": "Une session expire après 12 heures, ou 30 minutes sans activité. Changer de mot de passe ferme toutes les autres sessions.",
+        "counts": {
+          "users": "Comptes actifs",
+          "leads": "Demandes en base",
+          "subscribers": "Abonnés newsletter",
+          "holds": "Options de vol en cours"
+        },
+        "apiTitle": "API",
+        "online": "En ligne",
+        "version": "Version",
+        "environment": "Environnement",
+        "uptime": "En service depuis",
+        "siteUrl": "Adresse du site",
+        "servicesTitle": "Services",
+        "servicesHint": "Configuration du serveur (fichier api.env). Une modification demande un redémarrage de l'API.",
+        "configured": "Configuré",
+        "notConfigured": "Non configuré",
+        "smtp": "Envoi des e-mails (SMTP)",
+        "agencyNotify": "Alertes à l'agence",
+        "pdf": "Génération des PDF",
+        "flightProvider": "Fournisseur de vols",
+        "providers": {
+          "mock": "fictif (développement)",
+          "duffel": "Duffel",
+          "amadeus": "Amadeus"
+        },
+        "mailTitle": "E-mails",
+        "mailSent": "Envoyés sur 24 h",
+        "mailPending": "En file d'attente",
+        "mailFailed": "En échec définitif",
+        "policyTitle": "Règles de sécurité et de conservation",
+        "sessionIdle": "Déconnexion après inactivité",
+        "sessionMax": "Durée maximale d'une session",
+        "retention": "Conservation des demandes clôturées",
+        "minutes": "{n} minutes",
+        "hours": "{n} heures",
+        "daysLong": "{n} jours"
       }
     }
   },

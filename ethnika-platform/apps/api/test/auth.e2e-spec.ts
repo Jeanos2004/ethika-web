@@ -3,7 +3,7 @@ import request from "supertest";
 import { currentStep, totpAt } from "../src/common/security/totp";
 import type { PrismaService } from "../src/prisma/prisma.service";
 import type { UsersService } from "../src/modules/auth/users.service";
-import { agentSession, cleanup, createApp, KEY, TEST_PREFIX } from "./helpers";
+import { adminSession, agentSession, cleanup, createApp, KEY, TEST_PREFIX } from "./helpers";
 
 describe("Authentification du back-office (e2e)", () => {
   let app: INestApplication;
@@ -79,6 +79,35 @@ describe("Authentification du back-office (e2e)", () => {
     await api().post("/v1/auth/login").set("x-internal-key", KEY).send({ email: agent.email, password: agent.password }).expect(401);
     const user = await prisma.user.findUniqueOrThrow({ where: { email: agent.email } });
     expect(user.lockedUntil?.getTime()).toBeGreaterThan(Date.now());
+  });
+
+  it("paramètres du compte : profil, renommage, sessions et révocation des autres appareils", async () => {
+    const first = await agentSession(app, users);
+    const as = (r: request.Test, token = first.session) => r.set("x-internal-key", KEY).set("x-session-token", token);
+    const second = await api().post("/v1/auth/login").set("x-internal-key", KEY).send({ email: first.email, password: first.password }).expect(200);
+
+    const profile = await as(api().get("/v1/account")).expect(200);
+    expect(profile.body).toMatchObject({ email: first.email, role: "agent", totpEnabled: false });
+    expect(profile.body).not.toHaveProperty("passwordHash");
+    await as(api().patch("/v1/account")).send({ name: "E2E Nouveau Nom" }).expect(200);
+    await as(api().patch("/v1/account")).send({ name: "E2E Nouveau Nom", role: "admin" }).expect(400);
+
+    const sessions = await as(api().get("/v1/account/sessions")).expect(200);
+    expect(sessions.body).toHaveLength(2);
+    const current = sessions.body.find((x: { current: boolean }) => x.current);
+    expect(current.handle).toMatch(/^[a-f0-9]{16}$/);
+    await as(api().post("/v1/account/sessions/revoke")).send({ handle: current.handle }).expect(400);
+    const other = await as(api().post("/v1/account/sessions/revoke-others")).expect(200);
+    expect(other.body.revoked).toBe(1);
+    await as(api().get("/v1/auth/me"), second.body.session).expect(401);
+    await as(api().get("/v1/auth/me")).expect(200);
+
+    // État du système : administrateurs uniquement, sans secret.
+    await as(api().get("/v1/system")).expect(403);
+    const admin = await adminSession(app, users);
+    const system = await as(api().get("/v1/system"), admin.session).expect(200);
+    expect(system.body).toMatchObject({ flightProvider: "mock", mail: expect.any(Object), counts: expect.any(Object) });
+    expect(JSON.stringify(system.body)).not.toMatch(/DATABASE_URL|postgresql|INTERNAL_API_KEY/);
   });
 
   it("la déconnexion invalide la session", async () => {

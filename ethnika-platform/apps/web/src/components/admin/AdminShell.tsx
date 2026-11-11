@@ -10,7 +10,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { resetDemo, useDemoLeads } from "@/lib/demo/store";
 import { logout } from "@/lib/admin/auth-actions";
 
-type Section = "dashboard" | "leads" | "flights" | "security" | "users" | "audit" | "offers" | "circuits";
+type Section = "dashboard" | "leads" | "flights" | "security" | "settings" | "users" | "audit" | "offers" | "circuits";
 
 /** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
 export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number };
@@ -195,8 +195,8 @@ function AccountFooter({ live }: { live?: LiveAccount }) {
       </Link>
       {live ? (
         <>
-          <Link href="/admin/securite" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
-            <Icon name="shieldCheck" size={16} /> {t("nav.security")}
+          <Link href="/admin/parametres" className="flex min-h-10 items-center gap-2 rounded-xl px-3.5 text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">
+            <Icon name="sliders" size={16} /> {t("nav.settings")}
           </Link>
           <form action={logout}>
             <button type="submit" className="flex min-h-10 w-full items-center gap-2 rounded-xl px-3.5 text-left text-sm font-medium text-on-dark hover:bg-night-2 hover:text-white">

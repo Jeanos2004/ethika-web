@@ -1542,7 +1542,8 @@
       "users": "Users",
       "flights": "Flights",
       "security": "Security",
-      "audit": "Audit log"
+      "audit": "Audit log",
+      "settings": "Settings"
     },
     "soon": "Phase 2",
     "agentName": "[Adviser name]",
@@ -1915,7 +1916,8 @@
         "userForm": "Check the name (2 characters minimum), email and role.",
         "slugTaken": "This URL identifier is already used.",
         "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price.",
-        "manualForm": "Incomplete request."
+        "manualForm": "Incomplete request.",
+        "nameLength": "The name must be 2 to 120 characters long."
       },
       "quotes": {
         "title": "Quotes",
@@ -2222,6 +2224,93 @@
         "sourceSite": "Website form",
         "sourceManual": "Entered by the team",
         "open": "Full record"
+      },
+      "settings": {
+        "title": "Settings",
+        "subtitle": "Your account, its security and the platform status.",
+        "navLabel": "Settings sections",
+        "tabs": {
+          "profile": "Profile",
+          "security": "Security",
+          "sessions": "Active sessions",
+          "system": "System"
+        },
+        "profileTitle": "Profile",
+        "profileHint": "Your name appears in assignments, request history and on quotes.",
+        "name": "Display name",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Profile updated.",
+        "accountTitle": "Account",
+        "email": "Login (email)",
+        "emailHint": "The login email cannot be changed here: ask an administrator to create a new account if needed.",
+        "role": "Role",
+        "roles": {
+          "admin": "Administrator",
+          "agent": "Agent"
+        },
+        "roleHint": {
+          "admin": "the whole back-office, including content and accounts",
+          "agent": "requests, quotes and flights"
+        },
+        "mfa": "Two-step verification",
+        "mfaOn": "On",
+        "mfaOff": "Off",
+        "memberSince": "Account created on",
+        "lastLogin": "Last sign-in",
+        "mfaActiveHint": "A code from your authenticator app is required at each sign-in.",
+        "mfaAgentHint": "Optional for an agent, but strongly recommended: it protects your account even if your password leaks.",
+        "mfaLost": "Lost or changed phone: ask an administrator to reset your 2FA in Users, then set it up again at your next sign-in.",
+        "tipsTitle": "Good practice",
+        "tip1": "A password used only for ETHNIKA, never reused elsewhere, at least 12 characters long.",
+        "tip2": "Never share your codes or password, even with a colleague: everyone has their own account.",
+        "tip3": "Sign out on a shared computer; idle sessions close on their own after 30 minutes.",
+        "tip4": "A message or call asking for a code is a fraud attempt: the technical team never asks for it.",
+        "sessionsTitle": "Active sessions",
+        "sessionsHint": "Devices currently signed in to your account. Sign out the ones you do not recognise.",
+        "revokeOthers": "Sign out {count, plural, one {the other device} other {the # other devices}}",
+        "revoke": "Sign out",
+        "thisDevice": "This device",
+        "unknownDevice": "Unknown device",
+        "lastSeen": "active {date}",
+        "since": "since {date}",
+        "sessionsRules": "A session expires after 12 hours, or 30 minutes without activity. Changing your password closes all other sessions.",
+        "counts": {
+          "users": "Active accounts",
+          "leads": "Requests stored",
+          "subscribers": "Newsletter subscribers",
+          "holds": "Active flight holds"
+        },
+        "apiTitle": "API",
+        "online": "Online",
+        "version": "Version",
+        "environment": "Environment",
+        "uptime": "Running for",
+        "siteUrl": "Website address",
+        "servicesTitle": "Services",
+        "servicesHint": "Server configuration (api.env file). A change requires an API restart.",
+        "configured": "Configured",
+        "notConfigured": "Not configured",
+        "smtp": "Email sending (SMTP)",
+        "agencyNotify": "Agency alerts",
+        "pdf": "PDF generation",
+        "flightProvider": "Flight provider",
+        "providers": {
+          "mock": "mock (development)",
+          "duffel": "Duffel",
+          "amadeus": "Amadeus"
+        },
+        "mailTitle": "Emails",
+        "mailSent": "Sent in 24 h",
+        "mailPending": "Queued",
+        "mailFailed": "Permanently failed",
+        "policyTitle": "Security and retention rules",
+        "sessionIdle": "Sign-out after inactivity",
+        "sessionMax": "Maximum session length",
+        "retention": "Retention of closed requests",
+        "minutes": "{n} minutes",
+        "hours": "{n} hours",
+        "daysLong": "{n} days"
       }
     }
   },

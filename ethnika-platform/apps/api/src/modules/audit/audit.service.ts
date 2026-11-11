@@ -13,6 +13,7 @@ export type AuditAction =
   | "user.created"
   | "user.updated"
   | "user.disabled"
+  | "lead.created"
   | "lead.status_changed"
   | "lead.assigned"
   | "lead.exported"

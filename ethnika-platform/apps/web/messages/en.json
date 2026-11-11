@@ -1895,7 +1895,8 @@
         "emailTaken": "An account already exists with this email.",
         "userForm": "Check the name (2 characters minimum), email and role.",
         "slugTaken": "This URL identifier is already used.",
-        "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price."
+        "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price.",
+        "manualForm": "Incomplete request."
       },
       "quotes": {
         "title": "Quotes",
@@ -2083,6 +2084,84 @@
         "import": "Import {count, plural, one {the item} other {the # items}}",
         "importing": "Importing…",
         "importDone": "Import finished: {created} created, {skipped} already present, {failed} failed."
+      },
+      "manual": {
+        "title": "New request",
+        "subtitle": "Request received by phone, WhatsApp or at the agency. It is assigned to you automatically.",
+        "back": "Requests",
+        "client": "Client",
+        "type": "Request type",
+        "kinds": {
+          "billet": "Flight ticket",
+          "circuit": "Tour",
+          "pro": "Group, pilgrimage, business",
+          "contact": "Other"
+        },
+        "fullName": "Full name",
+        "phone": "Phone / WhatsApp",
+        "email": "Email",
+        "emailOptional": "Email (optional)",
+        "flight": "Flight",
+        "trip": "Trip",
+        "trips": {
+          "rt": "Round trip",
+          "ow": "One way"
+        },
+        "from": "From (IATA)",
+        "to": "To (IATA)",
+        "cabin": "Cabin",
+        "cabins": {
+          "eco": "Economy",
+          "business": "Business",
+          "first": "First"
+        },
+        "departDate": "Outbound",
+        "returnDate": "Return",
+        "adults": "Adults",
+        "children": "Children",
+        "infants": "Infants",
+        "circuit": "Tour",
+        "circuitName": "Chosen tour",
+        "travellers": "Travellers",
+        "travelDate": "Preferred date",
+        "pro": "Business request",
+        "request": "Kind",
+        "requests": {
+          "groupe": "Group",
+          "pelerinage": "Pilgrimage",
+          "entreprise": "Company",
+          "ong": "NGO / institution"
+        },
+        "organisation": "Organisation",
+        "period": "Period",
+        "details": "Details",
+        "subject": "Subject",
+        "message": "Details (optional)",
+        "messageRequired": "Details (10 characters minimum)",
+        "consent": "The client agrees to their data being used to handle the request (consent collected by the agent).",
+        "hint": "An acknowledgement is sent if the client gave an email.",
+        "save": "Save request",
+        "saving": "Saving…",
+        "fieldsToCheck": "Fields to check: {fields}.",
+        "fields": {
+          "fullName": "name",
+          "phone": "phone",
+          "email": "email",
+          "consent": "consent",
+          "from": "from",
+          "to": "to",
+          "departDate": "outbound",
+          "returnDate": "return",
+          "adults": "adults",
+          "children": "children",
+          "infants": "infants",
+          "travellers": "travellers",
+          "travelDate": "date",
+          "message": "details",
+          "circuit": "tour",
+          "request": "kind",
+          "type": "type"
+        }
       }
     }
   },

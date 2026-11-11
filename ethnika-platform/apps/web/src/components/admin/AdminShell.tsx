@@ -105,18 +105,14 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
         <ul className="mx-auto grid h-16 max-w-md grid-cols-4">
           <TabLink href="/admin" current={section === "dashboard"} icon="grid" label={t("mobileNav.dashboard")} />
           <TabLink href="/admin/demandes" current={section === "leads"} icon="mail" label={t("mobileNav.leads")} badge={newCount || undefined} />
-          {live ? (
-            <TabLink href="/admin/vols" current={section === "flights"} icon="plane" label={t("mobileNav.flights")} />
-          ) : (
           <li className="flex items-center justify-center">
-            <Link href="/admin/demandes?nouvelle=1" className="flex flex-col items-center gap-0.5 text-[11px] font-semibold text-ink">
+            <Link href={live ? "/admin/demandes/nouvelle" : "/admin/demandes?nouvelle=1"} className="flex flex-col items-center gap-0.5 text-[11px] font-semibold text-ink">
               <span className="flex size-10 items-center justify-center rounded-full bg-brand-gold shadow-sm">
                 <Icon name="plus" size={20} strokeWidth={2.4} />
               </span>
               {t("mobileNav.new")}
             </Link>
           </li>
-          )}
           <li className="flex">
             <button
               type="button"
@@ -259,6 +255,11 @@ function MoreSheet({ live, onClose }: { live?: LiveAccount; onClose: () => void 
           </button>
         </div>
         <div className="flex flex-col gap-1">
+          {live && (
+            <Link href="/admin/vols" className="flex min-h-11 items-center gap-2.5 text-[15px] font-semibold text-white">
+              <Icon name="plane" size={17} /> {t("nav.flights")}
+            </Link>
+          )}
           {toolsFor(live).map((x) => (
             <Link key={x.key} href={x.href} className="flex min-h-11 items-center gap-2.5 text-[15px] font-semibold text-white">
               <Icon name={x.icon} size={17} /> {t(`nav.${x.key}`)}

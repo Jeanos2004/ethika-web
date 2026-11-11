@@ -1895,7 +1895,8 @@
         "emailTaken": "Un compte existe déjà avec cet e-mail.",
         "userForm": "Vérifiez le nom (2 caractères minimum), l'e-mail et le rôle.",
         "slugTaken": "Cet identifiant d'URL est déjà utilisé.",
-        "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide."
+        "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide.",
+        "manualForm": "Demande incomplète."
       },
       "quotes": {
         "title": "Devis",
@@ -2083,6 +2084,84 @@
         "import": "Importer {count, plural, one {l'élément} other {les # éléments}}",
         "importing": "Import…",
         "importDone": "Import terminé : {created} créé(s), {skipped} déjà présent(s), {failed} en échec."
+      },
+      "manual": {
+        "title": "Nouvelle demande",
+        "subtitle": "Demande reçue par téléphone, WhatsApp ou en agence. Elle vous est attribuée automatiquement.",
+        "back": "Demandes",
+        "client": "Client",
+        "type": "Type de demande",
+        "kinds": {
+          "billet": "Billet d'avion",
+          "circuit": "Circuit",
+          "pro": "Groupe, pèlerinage, pro",
+          "contact": "Autre"
+        },
+        "fullName": "Nom complet",
+        "phone": "Téléphone / WhatsApp",
+        "email": "E-mail",
+        "emailOptional": "E-mail (facultatif)",
+        "flight": "Vol",
+        "trip": "Trajet",
+        "trips": {
+          "rt": "Aller-retour",
+          "ow": "Aller simple"
+        },
+        "from": "Départ (IATA)",
+        "to": "Arrivée (IATA)",
+        "cabin": "Cabine",
+        "cabins": {
+          "eco": "Économique",
+          "business": "Affaires",
+          "first": "Première"
+        },
+        "departDate": "Aller",
+        "returnDate": "Retour",
+        "adults": "Adultes",
+        "children": "Enfants",
+        "infants": "Bébés",
+        "circuit": "Circuit",
+        "circuitName": "Circuit choisi",
+        "travellers": "Voyageurs",
+        "travelDate": "Date souhaitée",
+        "pro": "Demande professionnelle",
+        "request": "Nature",
+        "requests": {
+          "groupe": "Groupe",
+          "pelerinage": "Pèlerinage",
+          "entreprise": "Entreprise",
+          "ong": "ONG / institution"
+        },
+        "organisation": "Organisation",
+        "period": "Période",
+        "details": "Détails",
+        "subject": "Objet",
+        "message": "Précisions (facultatif)",
+        "messageRequired": "Précisions (10 caractères minimum)",
+        "consent": "Le client accepte que ses données soient utilisées pour traiter sa demande (consentement recueilli par l'agent).",
+        "hint": "Un accusé de réception est envoyé si le client a donné un e-mail.",
+        "save": "Enregistrer la demande",
+        "saving": "Enregistrement…",
+        "fieldsToCheck": "Champs à vérifier : {fields}.",
+        "fields": {
+          "fullName": "nom",
+          "phone": "téléphone",
+          "email": "e-mail",
+          "consent": "consentement",
+          "from": "départ",
+          "to": "arrivée",
+          "departDate": "aller",
+          "returnDate": "retour",
+          "adults": "adultes",
+          "children": "enfants",
+          "infants": "bébés",
+          "travellers": "voyageurs",
+          "travelDate": "date",
+          "message": "précisions",
+          "circuit": "circuit",
+          "request": "nature",
+          "type": "type"
+        }
       }
     }
   },

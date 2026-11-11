@@ -42,12 +42,17 @@ export async function LiveLeads({ list, query }: { list: ApiLeadList; query: URL
           <h1 className="text-[26px] leading-tight font-bold tracking-[-0.03em] text-night">{t("leads.title")}</h1>
           <p className="text-sm text-muted">{t("live.leads.subtitle", { count: list.total })}</p>
         </div>
+        <div className="flex flex-wrap gap-2">
+        <Link href="/admin/demandes/nouvelle" className="inline-flex h-11 items-center gap-2 rounded-full bg-brand-gold px-5 text-sm font-bold text-ink hover:bg-brand-gold-hover">
+          <Icon name="plus" size={16} /> {t("leads.new")}
+        </Link>
         <a
           href={`/admin/demandes/export${exportQuery ? `?${exportQuery}` : ""}`}
           className="inline-flex h-11 items-center gap-2 rounded-full border-[1.5px] border-night px-5 text-sm font-semibold text-night hover:bg-night hover:text-white"
         >
-          <Icon name="download" size={16} /> {t("leads.export")}
+          <Icon name="download" size={16} /> {t("live.leads.export")}
         </a>
+        </div>
       </div>
 
       {/* Compteurs = filtres de statut */}

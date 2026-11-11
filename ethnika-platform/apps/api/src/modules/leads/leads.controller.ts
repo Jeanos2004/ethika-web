@@ -55,6 +55,19 @@ export class LeadsAdminController {
     return this.leads.list(q, me.userId);
   }
 
+  /**
+   * Demande saisie par un agent (appel, WhatsApp, passage en agence) : même validation que le site,
+   * source « manual », attribuée à l'agent qui la saisit. L'accusé part si le client a donné un e-mail.
+   */
+  @Post("manual")
+  @HttpCode(201)
+  async createManual(@Body(new ZodPipe(leadInput)) body: LeadInput, @CurrentUser() me: AuthContext, @Req() req: Request) {
+    const { reference } = await this.leads.create(body, "manual");
+    await this.leads.assign(reference, me.userId, me.userId);
+    await this.audit.log("lead.created", { actorId: me.userId, target: reference, ip: clientInfo(req).ip, meta: { type: body.type, source: "manual" } });
+    return { reference };
+  }
+
   @Get("export.csv")
   async exportCsv(@Query(new ZodPipe(leadQuery)) q: LeadQuery, @CurrentUser() me: AuthContext, @Req() req: Request, @Res() res: Response) {
     const { csv, count } = await this.leads.exportCsv(q, me.userId);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { LeadsBoard } from "@/components/admin/LeadsBoard";
 import { LiveLeads } from "@/components/admin/live/LiveLeads";
@@ -26,7 +26,10 @@ export default async function AdminLeadsPage({ searchParams }: { searchParams: P
     );
   }
   const { user, session } = await requireUser();
-  const query = leadListQuery(await searchParams);
+  const params = await searchParams;
+  // Lien des e-mails de notification de l'agence : /admin/demandes?ref=ETH-XXXXXX → fiche de la demande.
+  if (typeof params.ref === "string" && /^ETH-[A-HJ-NP-Z2-9]{6}$/.test(params.ref)) redirect(`/admin/demandes/${params.ref}`);
+  const query = leadListQuery(params);
   const list = await api<ApiLeadList>(`/v1/leads?${query.toString()}`, { session });
   return (
     <AdminShell section="leads" title="Demandes" live={await liveAccount(user, session, list.byStatus.new ?? 0)}>

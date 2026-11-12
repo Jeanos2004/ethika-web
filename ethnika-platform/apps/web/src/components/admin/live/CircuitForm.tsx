@@ -7,6 +7,7 @@ import { fromMinorUnits } from "@/lib/admin/money";
 import type { ApiCircuit, CircuitDayInput } from "@/lib/admin/types";
 import { Icon } from "@/components/ui/Icon";
 import { Area, Field, PriceFields, SaveBar, Section, Select, area, input } from "@/components/admin/live/ContentFields";
+import { ImageField } from "@/components/admin/live/ImageField";
 import { keepValues } from "@/components/admin/live/keep-values";
 
 /** Lignes répétables (jours du programme, départs) avec identifiants stables pour React. */
@@ -50,7 +51,7 @@ export function CircuitForm({ circuit }: { circuit?: ApiCircuit }) {
           <Field name="durationDays" label={t("durationDays")} type="number" required defaultValue={circuit?.durationDays ?? 1} />
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1fr)_8rem]">
-          <Field name="imageUrl" label={t("imageUrl")} required maxLength={300} defaultValue={circuit?.imageUrl ?? "/images/"} hint={t("imageHint")} />
+          <ImageField label={t("imageUrl")} defaultValue={circuit?.imageUrl ?? "/images/"} />
           <Field name="position" label={t("position")} type="number" defaultValue={circuit?.position ?? 0} hint={t("positionHint")} />
         </div>
         <PriceFields name="priceFrom" label={t("priceFrom")} amount={fromMinorUnits(circuit?.priceFrom ?? null, circuit?.currency ?? null)} currency={circuit?.currency ?? null} />

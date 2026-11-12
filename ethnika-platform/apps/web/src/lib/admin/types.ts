@@ -207,3 +207,33 @@ export type ApiQuote = { number: string; currency: string; totalAmount: string; 
 
 /** Statut de l'API → statut de l'interface (pastilles et libellés communs avec la démo). */
 export const uiStatus = { new: "new", in_progress: "progress", confirmed: "confirmed", cancelled: "cancelled" } as const;
+
+export type BlogCategoryKey = "destinations" | "conseils" | "culture" | "billetterie" | "actualites";
+export type PostTexts = { title: string; lead: string; excerpt: string; tag: string; imageAlt: string; body: string; tags: string[] };
+
+export type ApiPost = {
+  id: string;
+  slug: string;
+  category: BlogCategoryKey;
+  imageUrl: string;
+  i18n: { fr: PostTexts; en?: Partial<PostTexts> };
+  featured: boolean;
+  published: boolean;
+  publishedAt: string | null;
+  position: number;
+  readingMinutes: number;
+  updatedAt: string;
+};
+
+export type GalleryCategoryKey = "fouta" | "cote" | "loos" | "vie";
+
+export type ApiPhoto = {
+  id: string;
+  imageUrl: string;
+  category: GalleryCategoryKey;
+  tall: boolean;
+  i18n: { fr: { alt: string; place: string }; en?: Partial<{ alt: string; place: string }> };
+  published: boolean;
+  position: number;
+  updatedAt: string;
+};

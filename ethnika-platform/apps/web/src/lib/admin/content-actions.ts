@@ -8,7 +8,8 @@ import { requireAdmin } from "@/lib/admin/session";
 import { quoteCurrencies, toMinorUnits, type QuoteCurrency } from "@/lib/admin/money";
 
 /*
- * Contenus du site gérés depuis le back-office (administrateurs) : offres et circuits, FR obligatoire, EN facultatif.
+ * Contenus du site gérés depuis le back-office (administrateurs) : offres, circuits, articles et galerie.
+ * FR obligatoire, EN facultatif.
  * Validation ici pour des messages clairs, puis validation stricte par l'API (liens internes, images, slugs).
  */
 
@@ -145,10 +146,85 @@ export async function saveCircuit(_prev: ContentState, fd: FormData): Promise<Co
   redirect("/admin/circuits?enregistre=1");
 }
 
+/* ---------- Articles du blog ---------- */
+
+export async function savePost(_prev: ContentState, fd: FormData): Promise<ContentState> {
+  const { session } = await requireAdmin();
+  const existing = str(fd, "id");
+  if (!slug.safeParse(str(fd, "slug")).success || (existing && !id.safeParse(existing).success)) return { error: "contentForm" };
+  const tags = (k: string) =>
+    str(fd, k)
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean)
+      .slice(0, 8);
+  const fr = {
+    title: str(fd, "fr.title"),
+    lead: str(fd, "fr.lead"),
+    excerpt: str(fd, "fr.excerpt") || str(fd, "fr.lead").slice(0, 200),
+    tag: str(fd, "fr.tag"),
+    imageAlt: str(fd, "fr.imageAlt"),
+    body: String(fd.get("fr.body") ?? "").trim(),
+    tags: tags("fr.tags"),
+  };
+  const en = compact({
+    title: str(fd, "en.title"),
+    lead: str(fd, "en.lead"),
+    excerpt: str(fd, "en.excerpt"),
+    tag: str(fd, "en.tag"),
+    imageAlt: str(fd, "en.imageAlt"),
+    body: String(fd.get("en.body") ?? "").trim(),
+    tags: tags("en.tags"),
+  });
+  const body = {
+    slug: str(fd, "slug"),
+    category: str(fd, "category"),
+    imageUrl: str(fd, "imageUrl"),
+    i18n: { fr, ...(Object.keys(en).length && { en }) },
+    featured: fd.get("featured") === "on",
+    published: fd.get("published") === "on",
+    publishedAt: str(fd, "publishedAt") || null,
+    position: Number(str(fd, "position") || 0),
+  };
+  try {
+    if (existing) await api(`/v1/admin/posts/${existing}`, { method: "PATCH", session, body });
+    else await api("/v1/admin/posts", { method: "POST", session, body });
+  } catch (e) {
+    return { error: errorKey(e) };
+  }
+  revalidatePath("/admin/blog");
+  redirect("/admin/blog?enregistre=1");
+}
+
+/* ---------- Galerie ---------- */
+
+export async function savePhoto(_prev: ContentState, fd: FormData): Promise<ContentState> {
+  const { session } = await requireAdmin();
+  const existing = str(fd, "id");
+  if (existing && !id.safeParse(existing).success) return { error: "contentForm" };
+  const en = compact({ alt: str(fd, "en.alt"), place: str(fd, "en.place") });
+  const body = {
+    imageUrl: str(fd, "imageUrl"),
+    category: str(fd, "category"),
+    tall: fd.get("tall") === "on",
+    i18n: { fr: { alt: str(fd, "fr.alt"), place: str(fd, "fr.place") }, ...(Object.keys(en).length && { en }) },
+    published: fd.get("published") === "on",
+    position: Number(str(fd, "position") || 0),
+  };
+  try {
+    if (existing) await api(`/v1/admin/gallery/${existing}`, { method: "PATCH", session, body });
+    else await api("/v1/admin/gallery", { method: "POST", session, body });
+  } catch (e) {
+    return { error: errorKey(e) };
+  }
+  revalidatePath("/admin/galerie");
+  redirect("/admin/galerie?enregistre=1");
+}
+
 /* ---------- Commun ---------- */
 
-const kind = z.enum(["offers", "circuits"]);
-const pathOf = { offers: "/admin/offres", circuits: "/admin/circuits" } as const;
+const kind = z.enum(["offers", "circuits", "posts", "gallery"]);
+const pathOf = { offers: "/admin/offres", circuits: "/admin/circuits", posts: "/admin/blog", gallery: "/admin/galerie" } as const;
 
 export async function setPublished(fd: FormData) {
   const { session } = await requireAdmin();

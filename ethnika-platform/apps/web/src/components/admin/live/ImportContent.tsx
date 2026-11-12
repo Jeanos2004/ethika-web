@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { importSiteContent, type ImportState } from "@/lib/admin/import-content";
 
 /** Reprise des contenus actuels du site dans le back-office (idempotent). */
-export function ImportContent({ kind, count }: { kind: "offers" | "circuits"; count: number }) {
+export function ImportContent({ kind, count }: { kind: "offers" | "circuits" | "posts" | "gallery"; count: number }) {
   const t = useTranslations("admin.live.content");
   const [state, action, pending] = useActionState<ImportState, FormData>(importSiteContent, {});
   return (

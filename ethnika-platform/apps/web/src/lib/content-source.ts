@@ -2,12 +2,14 @@ import "server-only";
 import { env } from "@/lib/env";
 import { circuitLabels, getCircuits, type Circuit, type CircuitDuration, type CircuitRegion, type CircuitTheme, type Departure, type TagTone } from "@/content/circuits";
 import { getOffers } from "@/content/offers";
+import { blogCategories, categorySlugs, getHomePosts, getPosts, type BlogCategory, type Post } from "@/content/blog";
+import { getGallery, type GalleryFilter, type GalleryPhoto } from "@/content/gallery";
 import { site } from "@/lib/site";
 import type { OfferCardData, OfferType } from "@/components/cards/OfferCard";
 import { formatMoney } from "@/lib/admin/money";
 
 /*
- * Contenus du site (circuits, offres) : l'API est la source de vérité dès qu'elle est configurée et qu'elle publie
+ * Contenus du site (circuits, offres, blog, galerie) : l'API est la source de vérité dès qu'elle est configurée et qu'elle publie
  * au moins un élément ; sinon le site garde ses contenus statiques (src/content). Un circuit publié par l'API reprend
  * la version statique du même slug comme base (galerie, informations pratiques), ce que l'API ne gère pas encore.
  * Appels mis en cache 60 s (ISR) et bornés à 5 s : une API indisponible ne casse jamais une page publique.
@@ -126,6 +128,95 @@ export async function siteOffers(locale: string): Promise<OfferCardData[]> {
     imageAlt: o.imageAlt,
     ...(o.price !== null && o.currency && { price: formatMoney(o.price, o.currency) }),
   }));
+}
+
+/* ---------- Blog ---------- */
+
+type ApiPublicPost = {
+  slug: string;
+  category: string;
+  image: string;
+  featured: boolean;
+  publishedAt: string | null;
+  updatedAt: string | null;
+  readingMinutes: number;
+  title: string;
+  lead: string;
+  excerpt: string;
+  tag: string;
+  imageAlt: string;
+  tags: string[];
+  body?: string;
+  bodyLocale?: "fr" | "en";
+};
+
+/** Article du site, avec son corps Markdown quand il vient du back-office (sinon fichier MDX). */
+export type SitePost = Post & { body?: string; bodyLocale?: "fr" | "en"; featured?: boolean; publishedIso?: string; updatedIso?: string };
+
+const categoryBySlug = Object.fromEntries(blogCategories.map((c) => [categorySlugs[c], c])) as Record<string, BlogCategory>;
+
+function displayDate(iso: string | null, locale: string) {
+  if (!iso) return "";
+  return new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
+}
+
+function fromApiPost(a: ApiPublicPost, locale: string): SitePost {
+  return {
+    slug: a.slug,
+    title: a.title,
+    lead: a.lead,
+    excerpt: a.excerpt,
+    category: categoryBySlug[a.category] ?? "Actualités",
+    tag: a.tag,
+    readingMinutes: a.readingMinutes,
+    image: a.image,
+    imageAlt: a.imageAlt,
+    published: displayDate(a.publishedAt, locale),
+    updated: displayDate(a.updatedAt, locale),
+    draft: false,
+    tags: a.tags,
+    featured: a.featured,
+    ...(a.publishedAt && { publishedIso: a.publishedAt }),
+    ...(a.updatedAt && { updatedIso: a.updatedAt }),
+    ...(a.body !== undefined && { body: a.body, bodyLocale: a.bodyLocale ?? "fr" }),
+  };
+}
+
+/** Articles publiés (liste, suggestions). */
+export async function sitePosts(locale: string): Promise<SitePost[]> {
+  const fromApi = await publicGet<ApiPublicPost[]>(`/v1/public/posts?locale=${locale === "en" ? "en" : "fr"}`);
+  if (!fromApi?.length) return getPosts(locale);
+  return fromApi.map((a) => fromApiPost(a, locale));
+}
+
+/** Un article : version du back-office (avec son corps), sinon statique tant que l'API ne publie rien. */
+export async function sitePost(slug: string, locale: string): Promise<SitePost | undefined> {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return undefined;
+  const lang = locale === "en" ? "en" : "fr";
+  const [one, all] = await Promise.all([publicGet<ApiPublicPost>(`/v1/public/posts/${slug}?locale=${lang}`), publicGet<ApiPublicPost[]>(`/v1/public/posts?locale=${lang}`)]);
+  if (one) return fromApiPost(one, locale);
+  // L'API publie des articles mais pas celui-ci : retiré ou dépublié par l'agence.
+  if (all?.length) return undefined;
+  return getPosts(locale).find((p) => p.slug === slug);
+}
+
+/** Bloc « Préparez votre voyage » de l'accueil : articles mis en avant (sinon les plus récents), trois au plus. */
+export async function siteHomePosts(locale: string): Promise<SitePost[]> {
+  const fromApi = await publicGet<ApiPublicPost[]>(`/v1/public/posts?locale=${locale === "en" ? "en" : "fr"}`);
+  if (!fromApi?.length) return getHomePosts(locale);
+  const posts = fromApi.map((a) => fromApiPost(a, locale));
+  return [...posts.filter((p) => p.featured), ...posts.filter((p) => !p.featured)].slice(0, 3);
+}
+
+/* ---------- Galerie ---------- */
+
+type ApiPublicPhoto = { id: string; image: string; category: GalleryFilter; tall: boolean; alt: string; place: string };
+
+/** Photos publiées de la galerie. */
+export async function siteGallery(locale: string): Promise<GalleryPhoto[]> {
+  const fromApi = await publicGet<ApiPublicPhoto[]>(`/v1/public/gallery?locale=${locale === "en" ? "en" : "fr"}`);
+  if (!fromApi?.length) return getGallery(locale);
+  return fromApi.map((p) => ({ src: p.image, alt: p.alt, place: p.place, category: p.category, tall: p.tall }));
 }
 
 export type AgencyPublic = {

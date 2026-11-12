@@ -32,6 +32,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | clé | POST | `/leads` | Demande du site (revalidée par Zod, référence `ETH-XXXXXX`, e-mails mis en file) |
 | clé | POST | `/newsletter`, `/newsletter/confirm`, `/newsletter/unsubscribe` | Alertes promo en double opt-in (jetons hachés, pas d'énumération, 1 e-mail / 10 min) |
 | clé | GET | `/public/offers?locale=`, `/public/circuits?locale=`, `/public/circuits/:slug` | Contenus publiés, localisés (repli EN → FR) |
+| clé | GET | `/public/posts?locale=`, `/public/posts/:slug`, `/public/gallery?locale=` | Articles du blog (corps Markdown) et photos de la galerie publiés |
+| clé | GET | `/public/media/:id` | Image envoyée depuis le back-office (servie par le site sous `/media/<id>.<ext>`, cache long) |
 | clé | POST | `/flights/search` | Recherche de vols (cache 5 min, limite par IP) |
 | clé | GET | `/flights/offers/:id` | Prix et conditions d'une offre |
 | clé | POST | `/auth/login`, `/auth/mfa` | Connexion |
@@ -58,7 +60,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | POST | `/quotes/:number/payments` | Lien de paiement d'un devis (reste dû ou acompte) |
 | agent, admin | GET / POST | `/payments`, `/payments/config`, `/payments/:id/renew`, `/payments/:id/cancel` | Suivi, nouveau lien, annulation |
 | clé | POST | `/public/payments/:reference` (+ `/checkout`, `/simulate`) | Page de paiement du site (jeton du lien), redirection chez le prestataire, simulation |
-| admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
+| admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits`, `/admin/posts`, `/admin/gallery` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
+| admin | POST | `/admin/media` | Envoi d'une image (corps brut JPEG, PNG ou WebP, 5 Mo max, type reconnu par son contenu) |
 | public | GET | `/health` | Santé (accès base) |
 
 ## Modules
@@ -68,7 +71,8 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 - **mail** : file d'envoi en base (outbox) écrite dans la transaction de la demande ; worker toutes les 15 s, reprises à 1 min, 5 min, 30 min, 2 h, 12 h. Accusé client (FR/EN, d'après `EmailAccuse.dc.html`) et notification agence sans coordonnées client. Sans `SMTP_URL`, rien n'est envoyé (journal sans contenu).
 - **pdf** : Puppeteer (`puppeteer-core` + Chrome du système). Gabarits HTML dans `src/modules/pdf/templates` (récapitulatif, devis), polices et logos embarqués ; JavaScript désactivé et réseau bloqué au rendu. Nouveau document = un gabarit + une route.
 - **newsletter** : double opt-in, désinscription, abonnés actifs.
-- **content** : offres et circuits gérés depuis le back-office (FR obligatoire, EN facultatif), liens internes et images vérifiés (pas de redirection ouverte, pas de `javascript:`).
+- **content** : offres, circuits, articles du blog et photos de la galerie gérés depuis le back-office (FR obligatoire, EN facultatif), liens internes et images vérifiés (pas de redirection ouverte, pas de `javascript:`). Corps des articles en Markdown limité, jamais de HTML.
+- **media** : images envoyées, stockées en base (`Media`, pas de service de fichiers). Supprimées avec le dernier contenu qui les utilise ; celles jamais utilisées sont purgées après 24 h par la maintenance.
 - **quotes** : devis par demande ; montants en unités entières (GNF, centimes d'euro), totaux en `BigInt`.
 - **flights** : interface `FlightProvider` ; `mock` (développement, tests) ou `duffel` (`FLIGHT_PROVIDER=duffel`, jeton `duffel_test_…`). Délais, reprises à backoff, journal sans donnée personnelle ni identifiant. Chaque offre indique si une option est possible (`holdable`, `payBefore`). Les options posées sont enregistrées (PNR, montant, échéance, trajet résumé) sans copier les données des passagers, rattachées à la demande, et l'agence est alertée par e-mail 24 h avant l'échéance de paiement. Ni paiement ni émission de billet sans un agent.
   - Validé contre le **bac à sable Duffel** : recherche (50 offres Conakry → Paris), prix et conditions, option, consultation, annulation.

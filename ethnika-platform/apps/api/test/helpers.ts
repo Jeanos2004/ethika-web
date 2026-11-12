@@ -42,6 +42,9 @@ export async function cleanup(prisma: PrismaService) {
   await prisma.emailOutbox.deleteMany({ where: { to: { endsWith: "example.com" } } });
   await prisma.offer.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
   await prisma.circuit.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+  await prisma.blogPost.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+  await prisma.galleryPhoto.deleteMany({ where: { i18n: { path: ["fr", "place"], equals: "E2E" } } });
+  await prisma.media.deleteMany({ where: { name: { startsWith: "e2e-" } } });
   await prisma.flightBooking.deleteMany({ where: { provider: "mock" } });
 }
 

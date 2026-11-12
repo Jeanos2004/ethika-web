@@ -12,6 +12,7 @@ import { ContentModule } from "./modules/content/content.module";
 import { AgencyModule } from "./modules/agency/agency.module";
 import { PaymentsModule } from "./modules/payments/payments.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
+import { MediaModule } from "./modules/media/media.module";
 import { HealthController } from "./modules/health/health.controller";
 import { MaintenanceService } from "./modules/maintenance/maintenance.service";
 
@@ -25,7 +26,7 @@ export class AppModule {
     const config = { provide: ENV, useValue: env };
     return {
       module: AppModule,
-      imports: [{ module: ConfigModule, providers: [config], exports: [config], global: true }, PrismaModule, AuditModule, AuthModule, AgencyModule, MailModule, LeadsModule, QuotesModule, NewsletterModule, ContentModule, FlightsModule, PaymentsModule, NotificationsModule],
+      imports: [{ module: ConfigModule, providers: [config], exports: [config], global: true }, PrismaModule, AuditModule, AuthModule, AgencyModule, MailModule, LeadsModule, QuotesModule, NewsletterModule, ContentModule, FlightsModule, PaymentsModule, NotificationsModule, MediaModule],
       controllers: [HealthController],
       providers: [MaintenanceService],
     };

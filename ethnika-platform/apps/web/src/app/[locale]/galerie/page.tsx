@@ -1,7 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
-import { galleryFilters, getGallery, getGalleryFilters, type GalleryFilter } from "@/content/gallery";
+import { galleryFilters, getGalleryFilters, type GalleryFilter } from "@/content/gallery";
+import { siteGallery } from "@/lib/content-source";
 import { site } from "@/lib/site";
 import { Chip } from "@/components/ui/Chip";
 import { ButtonLink } from "@/components/ui/Button";
@@ -25,7 +26,7 @@ export default async function GaleriePage({ params, searchParams }: Props) {
   const tc = await getTranslations("common");
   const page = await getPage("galerie", locale);
   const filter = parseFilter((await searchParams).filtre);
-  const photos = getGallery(locale).filter((p) => !filter || p.category === filter);
+  const photos = (await siteGallery(locale)).filter((p) => !filter || p.category === filter);
   const labels = getGalleryFilters(locale);
   const filters: { value?: GalleryFilter; label: string }[] = [{ label: t("all") }, ...(Object.entries(labels) as [GalleryFilter, string][]).map(([value, label]) => ({ value, label }))];
 

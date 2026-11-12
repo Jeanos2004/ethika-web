@@ -4,6 +4,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import { AuditService } from "../audit/audit.service";
 import { PaymentsService } from "../payments/payments.service";
 import { FlightBookingsService } from "../flights/flight-bookings.service";
+import { MediaService } from "../media/media.service";
 
 const HOUR = 3600_000;
 
@@ -12,7 +13,8 @@ const HOUR = 3600_000;
  * - sessions et défis de connexion expirés ;
  * - e-mails envoyés de plus de 90 jours ;
  * - demandes clôturées (confirmées ou annulées) plus anciennes que LEAD_RETENTION_DAYS ;
- * - alerte à l'agence pour les options de vol à payer dans moins de 24 h.
+ * - alerte à l'agence pour les options de vol à payer dans moins de 24 h ;
+ * - images envoyées depuis le back-office mais jamais utilisées depuis 24 h.
  */
 @Injectable()
 export class MaintenanceService implements OnModuleInit, OnModuleDestroy {
@@ -24,6 +26,7 @@ export class MaintenanceService implements OnModuleInit, OnModuleDestroy {
     private readonly audit: AuditService,
     private readonly flightBookings: FlightBookingsService,
     private readonly payments: PaymentsService,
+    private readonly media: MediaService,
     @Inject(ENV) private readonly env: Env,
   ) {}
 
@@ -46,6 +49,7 @@ export class MaintenanceService implements OnModuleInit, OnModuleDestroy {
     if (leads.count) await this.audit.log("maintenance.purge", { meta: { leads: leads.count, before: cutoff.toISOString() } });
     const flightDeadlines = await this.flightBookings.alertDeadlines(now);
     const paymentLinksExpired = await this.payments.expire(now);
-    return { sessions: sessions.count, challenges: challenges.count, emails: emails.count, leads: leads.count, flightDeadlines, paymentLinksExpired };
+    const orphanMedia = await this.media.purgeOrphans(new Date(now.getTime() - 24 * HOUR));
+    return { sessions: sessions.count, challenges: challenges.count, emails: emails.count, leads: leads.count, flightDeadlines, paymentLinksExpired, orphanMedia };
   }
 }

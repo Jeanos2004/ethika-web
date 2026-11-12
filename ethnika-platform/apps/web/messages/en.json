@@ -1975,7 +1975,9 @@
         "paymentsDisabled": "No payment provider is configured.",
         "quotePaid": "This quote is already fully paid.",
         "amountInvalid": "Invalid amount: it must be positive and not exceed the balance due.",
-        "paymentClosed": "This payment is already closed."
+        "paymentClosed": "This payment is already closed.",
+        "uploadType": "Unsupported format: send a JPEG, PNG or WebP photo.",
+        "uploadTooLarge": "Photo too large (5 MB max). Reduce it and try again."
       },
       "quotes": {
         "title": "Quotes",
@@ -2215,7 +2217,14 @@
         "expired": "Expired",
         "noDeparture": "No departure",
         "updated": "updated {date}",
-        "editLabel": "Edit {title}"
+        "editLabel": "Edit {title}",
+        "postsTitle": "Blog posts",
+        "postsSubtitle": "Website posts and news. Only published posts are visible.",
+        "postsNew": "New post",
+        "kpiTodo": "To write",
+        "kpiTodoNote": "Text still marked “to write”",
+        "featured": "Featured",
+        "todo": "To write"
       },
       "manual": {
         "title": "New request",
@@ -2542,7 +2551,97 @@
           "hold_due": "Hold {reference} due within 24 h"
         }
       },
-      "soon": "Coming soon"
+      "soon": "Coming soon",
+      "media": {
+        "upload": "Upload a photo",
+        "uploading": "Uploading…",
+        "hint": "JPEG, PNG or WebP, 5 MB max. Or a site path (/images/…)."
+      },
+      "blog": {
+        "slugHint": "Post address: /blog/my-post",
+        "category": "Category",
+        "categories": {
+          "destinations": "Destinations",
+          "conseils": "Tips",
+          "culture": "Culture",
+          "billetterie": "Flights",
+          "actualites": "News"
+        },
+        "publishedAt": "Publication date",
+        "publishedAtHint": "Empty: today's date when published",
+        "cover": "Cover image",
+        "featured": "Featured",
+        "featuredHint": "shown on the home page (“Plan your trip”, 3 posts max) and at the top of the blog",
+        "lead": "Standfirst",
+        "leadHint": "One or two sentences under the post title.",
+        "excerpt": "Card summary",
+        "excerptHint": "Empty: start of the standfirst",
+        "tag": "Label",
+        "tagHint": "Short, shown on the home page",
+        "tags": "Keywords",
+        "tagsHint": "Comma-separated (8 max)",
+        "body": "Post text",
+        "bodyHint": "Simple formatting (see the help below). Reading time is computed automatically.",
+        "bodyEnHint": "Optional: without a translation, the English version shows the French text with a note.",
+        "textsEnHint": "Optional: each empty field falls back to French.",
+        "bodyMode": "Editing mode",
+        "write": "Write",
+        "preview": "Preview",
+        "previewEmpty": "Nothing to show yet.",
+        "syntax": {
+          "title": "Formatting help",
+          "h2": "Heading (shown in the table of contents)",
+          "h3": "Subheading",
+          "emphasis": "Bold and italic",
+          "link": "Link to a site page or an external site",
+          "list": "Bulleted list (1. for a numbered list)",
+          "quote": "Highlighted quote",
+          "image": "Photo with caption: upload it first with “Upload a photo”, then copy its address",
+          "table": "Table",
+          "cta": "Call-to-action box (link, title, text, button)"
+        },
+        "minutes": "{n} min read",
+        "viewOnSite": "View on the website"
+      },
+      "gallery": {
+        "title": "Gallery",
+        "subtitle": "Photos of the website Gallery page. Only visible photos appear there.",
+        "new": "Add a photo",
+        "edit": "Edit photo",
+        "photo": "Photo",
+        "image": "File",
+        "imageHint": "JPEG, PNG or WebP, 5 MB max. Portrait photos are detected automatically.",
+        "category": "Gallery filter",
+        "categories": {
+          "fouta": "Fouta Djallon",
+          "cote": "Lower Coast",
+          "loos": "Loos Islands",
+          "vie": "Local life"
+        },
+        "tall": "Portrait format",
+        "tallHint": "spans two rows of the mosaic",
+        "tallShort": "Portrait",
+        "alt": "Description",
+        "altHint": "What the photo shows (screen readers, viewer)",
+        "place": "Place",
+        "placeHint": "Shown on the thumbnail",
+        "kpiTotal": "Photos",
+        "kpiTotalNote": "Hidden ones included",
+        "kpiPublishedNote": "Visible in the gallery",
+        "kpiHidden": "Hidden",
+        "kpiHiddenNote": "Kept without being shown",
+        "kpiUploaded": "Uploaded",
+        "kpiUploadedNote": "Agency photos (not illustrations)",
+        "searchPlaceholder": "Search a description or place",
+        "visible": "Visible",
+        "hidden": "Hidden",
+        "empty": "No photos yet",
+        "emptyHint": "Add a photo or import the current website's ones.",
+        "show": "Show",
+        "hide": "Hide",
+        "editLabel": "Edit photo “{alt}”",
+        "deleteConfirm": "Delete this photo? The uploaded file is deleted too."
+      }
     }
   },
   "demo": {

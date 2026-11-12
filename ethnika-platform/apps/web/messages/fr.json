@@ -1975,7 +1975,9 @@
         "paymentsDisabled": "Aucun prestataire de paiement n'est configuré.",
         "quotePaid": "Ce devis est déjà entièrement payé.",
         "amountInvalid": "Montant invalide : il doit être positif et ne pas dépasser le reste à payer.",
-        "paymentClosed": "Ce paiement est déjà clos."
+        "paymentClosed": "Ce paiement est déjà clos.",
+        "uploadType": "Format non accepté : envoyez une photo JPEG, PNG ou WebP.",
+        "uploadTooLarge": "Photo trop lourde (5 Mo maximum). Réduisez-la puis réessayez."
       },
       "quotes": {
         "title": "Devis",
@@ -2215,7 +2217,14 @@
         "expired": "Expirée",
         "noDeparture": "Aucun départ",
         "updated": "modifié le {date}",
-        "editLabel": "Modifier {title}"
+        "editLabel": "Modifier {title}",
+        "postsTitle": "Articles du blog",
+        "postsSubtitle": "Articles et actualités du site. Seuls les articles publiés sont visibles.",
+        "postsNew": "Nouvel article",
+        "kpiTodo": "À rédiger",
+        "kpiTodoNote": "Texte encore marqué « à rédiger »",
+        "featured": "À la une",
+        "todo": "À rédiger"
       },
       "manual": {
         "title": "Nouvelle demande",
@@ -2542,7 +2551,97 @@
           "hold_due": "Option {reference} à payer sous 24 h"
         }
       },
-      "soon": "Bientôt"
+      "soon": "Bientôt",
+      "media": {
+        "upload": "Envoyer une photo",
+        "uploading": "Envoi…",
+        "hint": "JPEG, PNG ou WebP, 5 Mo max. Ou un chemin du site (/images/…)."
+      },
+      "blog": {
+        "slugHint": "Adresse de l'article : /blog/mon-article",
+        "category": "Catégorie",
+        "categories": {
+          "destinations": "Destinations",
+          "conseils": "Conseils",
+          "culture": "Culture",
+          "billetterie": "Billetterie",
+          "actualites": "Actualités"
+        },
+        "publishedAt": "Date de publication",
+        "publishedAtHint": "Vide : la date du jour à la publication",
+        "cover": "Image de couverture",
+        "featured": "À la une",
+        "featuredHint": "affiché sur l'accueil (bloc « Préparez votre voyage », 3 articles au plus) et en tête du blog",
+        "lead": "Chapô",
+        "leadHint": "Une ou deux phrases sous le titre de l'article.",
+        "excerpt": "Résumé des cartes",
+        "excerptHint": "Vide : début du chapô",
+        "tag": "Étiquette",
+        "tagHint": "Courte, affichée sur l'accueil",
+        "tags": "Mots-clés",
+        "tagsHint": "Séparés par des virgules (8 au plus)",
+        "body": "Texte de l'article",
+        "bodyHint": "Mise en forme simple (voir l'aide ci-dessous). Le temps de lecture est calculé automatiquement.",
+        "bodyEnHint": "Facultatif : sans traduction, la version anglaise affiche le texte français avec une mention.",
+        "textsEnHint": "Facultatif : chaque champ vide reprend le français.",
+        "bodyMode": "Mode d'édition",
+        "write": "Écrire",
+        "preview": "Aperçu",
+        "previewEmpty": "Rien à afficher pour l'instant.",
+        "syntax": {
+          "title": "Aide à la mise en forme",
+          "h2": "Intertitre (apparaît dans le sommaire)",
+          "h3": "Sous-titre",
+          "emphasis": "Gras et italique",
+          "link": "Lien vers une page du site ou un site externe",
+          "list": "Liste à puces (1. pour une liste numérotée)",
+          "quote": "Citation mise en valeur",
+          "image": "Photo avec légende : envoyez-la d'abord avec « Envoyer une photo », puis copiez son adresse",
+          "table": "Tableau",
+          "cta": "Encart d'appel à l'action (lien, titre, texte, bouton)"
+        },
+        "minutes": "{n} min de lecture",
+        "viewOnSite": "Voir sur le site"
+      },
+      "gallery": {
+        "title": "Galerie",
+        "subtitle": "Photos de la page Galerie du site. Seules les photos visibles y apparaissent.",
+        "new": "Ajouter une photo",
+        "edit": "Modifier la photo",
+        "photo": "Photo",
+        "image": "Fichier",
+        "imageHint": "JPEG, PNG ou WebP, 5 Mo max. Une photo en hauteur est repérée automatiquement.",
+        "category": "Filtre de la galerie",
+        "categories": {
+          "fouta": "Fouta Djallon",
+          "cote": "Basse Côte",
+          "loos": "Îles de Loos",
+          "vie": "Vie locale"
+        },
+        "tall": "Format portrait",
+        "tallHint": "occupe deux rangées de la mosaïque",
+        "tallShort": "Portrait",
+        "alt": "Description",
+        "altHint": "Ce que montre la photo (lecteurs d'écran, visionneuse)",
+        "place": "Lieu",
+        "placeHint": "Affiché sur la vignette",
+        "kpiTotal": "Photos",
+        "kpiTotalNote": "Masquées comprises",
+        "kpiPublishedNote": "Visibles dans la galerie",
+        "kpiHidden": "Masquées",
+        "kpiHiddenNote": "Gardées sans être affichées",
+        "kpiUploaded": "Envoyées",
+        "kpiUploadedNote": "Photos de l'agence (hors illustrations)",
+        "searchPlaceholder": "Rechercher une description ou un lieu",
+        "visible": "Visible",
+        "hidden": "Masquée",
+        "empty": "Aucune photo pour l'instant",
+        "emptyHint": "Ajoutez une photo ou importez celles du site actuel.",
+        "show": "Afficher",
+        "hide": "Masquer",
+        "editLabel": "Modifier la photo « {alt} »",
+        "deleteConfirm": "Supprimer cette photo ? Le fichier envoyé est supprimé aussi."
+      }
     }
   },
   "demo": {

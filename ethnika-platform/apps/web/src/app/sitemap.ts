@@ -2,11 +2,12 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { languageAlternates, localizedPath, pages } from "@/content/pages";
 import { circuits } from "@/content/circuits";
-import { posts } from "@/content/blog";
+import { sitePosts } from "@/lib/content-source";
 import { site } from "@/lib/site";
 
 /** Une entrée par langue, avec les alternatives hreflang. Les articles ne sont indexés qu'en français (corps non traduit). */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await sitePosts("fr");
   const absolute = (path: string) => `${site.url}${path}`;
   const entry = (path: string, priority: number) =>
     routing.locales.map((locale) => ({

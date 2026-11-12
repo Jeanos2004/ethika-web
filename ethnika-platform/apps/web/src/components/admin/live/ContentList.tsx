@@ -20,6 +20,10 @@ export type ContentRow = {
   expired?: boolean;
   /** Circuit sans aucun départ renseigné. */
   noDeparture?: boolean;
+  /** Article mis en avant sur l'accueil. */
+  featured?: boolean;
+  /** Article dont le texte contient encore un bloc « à rédiger ». */
+  todo?: boolean;
   position: number;
   amount: string | null;
   currency: string | null;
@@ -30,7 +34,7 @@ export type ContentRow = {
 const PAGE_SIZE = 8;
 const updated = new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "short", timeZone: "Africa/Conakry" });
 
-/** Offres ou circuits : indicateurs, filtres (statut, catégorie, recherche), lignes compactes, pagination. */
+/** Offres, circuits ou articles : indicateurs, filtres (statut, catégorie, recherche), lignes compactes, pagination. */
 export async function ContentList({
   kind,
   rows,
@@ -38,7 +42,7 @@ export async function ContentList({
   importable,
   params,
 }: {
-  kind: "offers" | "circuits";
+  kind: "offers" | "circuits" | "posts";
   rows: ContentRow[];
   newHref: string;
   importable: number;
@@ -46,7 +50,9 @@ export async function ContentList({
 }) {
   const t = await getTranslations({ locale: "fr", namespace: "admin.live.content" });
   const tl = await getTranslations({ locale: "fr", namespace: "admin.live.list" });
-  const base = kind === "offers" ? "/admin/offres" : "/admin/circuits";
+  const base = { offers: "/admin/offres", circuits: "/admin/circuits", posts: "/admin/blog" }[kind];
+  const icon = ({ offers: "ticket", circuits: "mountain", posts: "globe" } as const)[kind];
+  const flag = ({ offers: "Expired", circuits: "NoDeparture", posts: "Todo" } as const)[kind];
   const { one, page } = readParams(params);
   const status = ["published", "draft"].includes(one("status")) ? one("status") : "";
   const category = rows.some((r) => r.category === one("cat")) ? one("cat") : "";
@@ -63,7 +69,7 @@ export async function ContentList({
   const href = (over: Record<string, string | number | undefined>) => listHref(base, { status, cat: category, q: one("q"), ...over });
   const categories = [...new Map(rows.map((r) => [r.category, r.categoryLabel])).entries()];
   const published = rows.filter((r) => r.published).length;
-  const flagged = rows.filter((r) => (kind === "offers" ? r.expired : r.noDeparture)).length;
+  const flagged = rows.filter((r) => r.expired || r.noDeparture || r.todo).length;
 
   return (
     <>
@@ -83,10 +89,10 @@ export async function ContentList({
       )}
 
       <KpiGrid>
-        <KpiTile icon={kind === "offers" ? "ticket" : "mountain"} label={t("kpiTotal")} value={rows.length} note={t("kpiTotalNote")} href={href({ status: undefined, cat: undefined, q: undefined })} />
+        <KpiTile icon={icon} label={t("kpiTotal")} value={rows.length} note={t("kpiTotalNote")} href={href({ status: undefined, cat: undefined, q: undefined })} />
         <KpiTile icon="check" tone="good" label={t("kpiPublished")} value={published} note={t("kpiPublishedNote")} href={href({ status: "published", page: 1 })} />
         <KpiTile icon="infoMark" label={t("kpiDraft")} value={rows.length - published} note={t("kpiDraftNote")} href={href({ status: "draft", page: 1 })} />
-        <KpiTile icon="alert" tone={flagged ? "alert" : "default"} label={t(kind === "offers" ? "kpiExpired" : "kpiNoDeparture")} value={flagged} note={t(kind === "offers" ? "kpiExpiredNote" : "kpiNoDepartureNote")} />
+        <KpiTile icon="alert" tone={flagged ? "alert" : "default"} label={t(`kpi${flag}`)} value={flagged} note={t(`kpi${flag}Note`)} />
       </KpiGrid>
 
       {importable > 0 && <ImportContent kind={kind} count={importable} />}
@@ -112,7 +118,7 @@ export async function ContentList({
       <ListCard footer={<Pager page={current} pageSize={PAGE_SIZE} total={filtered.length} hrefFor={(p) => href({ page: p })} />}>
         {shown.length === 0 ? (
           <EmptyState
-            icon={kind === "offers" ? "ticket" : "mountain"}
+            icon={icon}
             title={rows.length ? tl("noMatch") : t("empty")}
             text={rows.length ? tl("noMatchHint") : undefined}
             action={
@@ -140,6 +146,8 @@ export async function ContentList({
                     {r.amount !== null && r.currency && <span className="rounded-full bg-sand px-2 py-0.5 font-semibold text-night tabular-nums">{formatMoney(r.amount, r.currency)}</span>}
                     {r.expired && <span className="rounded-full bg-red-50 px-2 py-0.5 font-semibold text-red-700">{t("expired")}</span>}
                     {r.noDeparture && <span className="rounded-full bg-gold-50 px-2 py-0.5 font-semibold text-gold-700">{t("noDeparture")}</span>}
+                    {r.featured && <span className="rounded-full bg-night px-2 py-0.5 font-semibold text-white">{t("featured")}</span>}
+                    {r.todo && <span className="rounded-full bg-gold-50 px-2 py-0.5 font-semibold text-gold-700">{t("todo")}</span>}
                     <span>{t("updated", { date: updated.format(new Date(r.updatedAt)) })}</span>
                   </span>
                 </Link>

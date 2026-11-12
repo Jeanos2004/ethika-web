@@ -109,27 +109,27 @@ enum Role {
 
 /// Compte du back-office. Aucun compte par défaut : le premier admin est créé en ligne de commande.
 model User {
-  id                 String    @id @default(uuid()) @db.Uuid
-  email              String    @unique @db.VarChar(200)
-  name               String    @db.VarChar(120)
-  role               Role      @default(agent)
+  id                  String    @id @default(uuid()) @db.Uuid
+  email               String    @unique @db.VarChar(200)
+  name                String    @db.VarChar(120)
+  role                Role      @default(agent)
   /// Empreinte argon2id (jamais le mot de passe).
-  passwordHash       String    @db.VarChar(255)
+  passwordHash        String    @db.VarChar(255)
   /// Secret TOTP chiffré (AES-256-GCM, clé DATA_ENCRYPTION_KEY) ; null tant que la 2FA n'est pas configurée.
-  totpSecret         String?   @db.VarChar(255)
-  totpEnabled        Boolean   @default(false)
+  totpSecret          String?   @db.VarChar(255)
+  totpEnabled         Boolean   @default(false)
   /// Dernier pas TOTP accepté : un même code ne peut pas servir deux fois (rejeu).
-  totpLastStep       Int?
-  failedAttempts     Int       @default(0)
-  lockCount          Int       @default(0)
-  lockedUntil        DateTime?
-  disabled           Boolean   @default(false)
-  mustChangePassword Boolean   @default(true)
-  lastLoginAt        DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  sessions           Session[]
-  assignedLeads      Lead[]    @relation("LeadAssignee")
+  totpLastStep        Int?
+  failedAttempts      Int       @default(0)
+  lockCount           Int       @default(0)
+  lockedUntil         DateTime?
+  disabled            Boolean   @default(false)
+  mustChangePassword  Boolean   @default(true)
+  lastLoginAt         DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  sessions            Session[]
+  assignedLeads       Lead[]    @relation("LeadAssignee")
   /// Dernière ouverture de la cloche du back-office (compteur de notifications non lues).
   notificationsSeenAt DateTime?
 }
@@ -276,6 +276,57 @@ model Circuit {
   updatedAt    DateTime @updatedAt
 
   @@index([published, position])
+}
+
+/// Article du blog. Corps en Markdown (sous-ensemble sûr rendu par le site) et textes FR/EN dans `i18n`.
+model BlogPost {
+  id          String    @id @default(uuid()) @db.Uuid
+  slug        String    @unique @db.VarChar(80)
+  /// destinations | conseils | culture | billetterie | actualites
+  category    String    @db.VarChar(20)
+  imageUrl    String    @db.VarChar(300)
+  /// { fr: { title, lead, excerpt, tag, imageAlt, body, tags: [] }, en: { … } }
+  i18n        Json
+  /// Mis en avant sur l'accueil (bloc « Préparez votre voyage »).
+  featured    Boolean   @default(false)
+  published   Boolean   @default(false)
+  /// Date affichée : fixée à la première publication, modifiable.
+  publishedAt DateTime? @db.Date
+  position    Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published, position])
+}
+
+/// Photo de la page Galerie. Légendes FR/EN dans `i18n` : { fr: { alt, place }, en: { … } }.
+model GalleryPhoto {
+  id        String   @id @default(uuid()) @db.Uuid
+  imageUrl  String   @db.VarChar(300)
+  /// fouta | cote | loos | vie
+  category  String   @db.VarChar(20)
+  /// Photo en hauteur (occupe deux lignes de la mosaïque).
+  tall      Boolean  @default(false)
+  i18n      Json
+  published Boolean  @default(true)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, position])
+}
+
+/// Image envoyée depuis le back-office, stockée en base (pas de service de fichiers à gérer). Servie par le site sous /media/<id>.
+model Media {
+  id          String   @id @default(uuid()) @db.Uuid
+  mimeType    String   @db.VarChar(40)
+  bytes       Bytes
+  size        Int
+  width       Int?
+  height      Int?
+  name        String?  @db.VarChar(160)
+  createdById String?  @db.Uuid
+  createdAt   DateTime @default(now())
 }
 
 /**

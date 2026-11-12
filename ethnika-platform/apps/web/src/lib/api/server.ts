@@ -13,13 +13,14 @@ export class ApiError extends Error {
   }
 }
 
-type Options = { method?: "GET" | "POST" | "PATCH" | "DELETE"; body?: unknown; session?: string; timeoutMs?: number };
+/** `raw` : envoi d'un fichier tel quel (image du back-office) au lieu d'un corps JSON. */
+type Options = { method?: "GET" | "POST" | "PATCH" | "DELETE"; body?: unknown; raw?: { data: ArrayBuffer; type: string; name?: string }; session?: string; timeoutMs?: number };
 
 /**
  * Appel serveur → API : clé interne, jeton de session éventuel, IP et navigateur du client final (journal, limites),
  * sans redirection ni cache. Le navigateur ne parle jamais directement à l'API.
  */
-export async function apiFetch(path: string, { method = "GET", body, session, timeoutMs = 10_000 }: Options = {}): Promise<Response> {
+export async function apiFetch(path: string, { method = "GET", body, raw, session, timeoutMs = 10_000 }: Options = {}): Promise<Response> {
   if (!env.API_BASE_URL) throw new ApiError(503, "api_not_configured");
   const ua = (await headers()).get("user-agent") ?? "";
   const res = await fetch(new URL(path, env.API_BASE_URL), {
@@ -31,8 +32,9 @@ export async function apiFetch(path: string, { method = "GET", body, session, ti
       "x-client-ua": ua.slice(0, 255),
       ...(session && { "x-session-token": session }),
       ...(body !== undefined && { "content-type": "application/json" }),
+      ...(raw && { "content-type": raw.type, ...(raw.name && { "x-file-name": encodeURIComponent(raw.name.slice(0, 160)) }) }),
     },
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: raw ? raw.data : body === undefined ? undefined : JSON.stringify(body),
     redirect: "error",
     cache: "no-store",
     signal: AbortSignal.timeout(timeoutMs),

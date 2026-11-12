@@ -48,7 +48,11 @@ const nextConfig: NextConfig = {
     // Monorepo pnpm : tracer les dépendances depuis la racine du dépôt.
     outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
     // Fichiers lus à l'exécution par les images OG (src/lib/og.tsx).
-    outputFileTracingIncludes: { "/**/opengraph-image": ["./public/brand/**", "./node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff"] },
+    outputFileTracingIncludes: {
+      "/**/opengraph-image": ["./public/brand/**", "./node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff"],
+      // Reprise des articles MDX dans le back-office (lecture des fichiers à l'exécution).
+      "/admin/blog": ["./src/content/blog/**"],
+    },
   }),
   poweredByHeader: false,
   experimental: {

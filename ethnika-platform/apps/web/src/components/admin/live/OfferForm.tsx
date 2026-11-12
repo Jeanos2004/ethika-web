@@ -6,6 +6,7 @@ import { saveOffer, type ContentState } from "@/lib/admin/content-actions";
 import { fromMinorUnits } from "@/lib/admin/money";
 import type { ApiOffer } from "@/lib/admin/types";
 import { Area, Field, PriceFields, SaveBar, Section, Select } from "@/components/admin/live/ContentFields";
+import { ImageField } from "@/components/admin/live/ImageField";
 import { keepValues } from "@/components/admin/live/keep-values";
 
 /** Création ou modification d'une offre (carte de la page Offres du site). */
@@ -33,8 +34,8 @@ export function OfferForm({ offer }: { offer?: ApiOffer }) {
           <Field name="position" label={t("position")} type="number" defaultValue={offer?.position ?? 0} hint={t("positionHint")} />
           <Field name="validUntil" label={t("validUntil")} type="date" defaultValue={offer?.validUntil?.slice(0, 10)} />
         </div>
+        <ImageField label={t("imageUrl")} defaultValue={offer?.imageUrl ?? "/images/"} />
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Field name="imageUrl" label={t("imageUrl")} required maxLength={300} defaultValue={offer?.imageUrl ?? "/images/"} hint={t("imageHint")} />
           <Field name="href" label={t("href")} required maxLength={300} defaultValue={offer?.href ?? "/billetterie#demande"} hint={t("hrefHint")} />
         </div>
         <PriceFields name="price" label={t("price")} amount={fromMinorUnits(offer?.priceAmount ?? null, offer?.currency ?? null)} currency={offer?.currency ?? null} />

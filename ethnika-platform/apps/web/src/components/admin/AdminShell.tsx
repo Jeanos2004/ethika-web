@@ -12,7 +12,7 @@ import { NotificationBell } from "@/components/admin/live/NotificationBell";
 import type { ApiNotifications } from "@/lib/admin/types";
 import { logout } from "@/lib/admin/auth-actions";
 
-type Section = "dashboard" | "leads" | "flights" | "payments" | "security" | "settings" | "users" | "audit" | "offers" | "circuits";
+type Section = "dashboard" | "leads" | "flights" | "payments" | "security" | "settings" | "users" | "audit" | "offers" | "circuits" | "blog" | "gallery";
 
 /** Back-office connecté à l'API : compte en cours et compteur des nouvelles demandes (sinon : démo locale). */
 export type LiveAccount = { name: string; role: "admin" | "agent"; newCount: number; notifications?: ApiNotifications };
@@ -23,6 +23,8 @@ const soon = ["circuits", "offers", "blog", "gallery", "users"] as const;
 const adminTools = [
   { key: "circuits", href: "/admin/circuits", icon: "mountain" },
   { key: "offers", href: "/admin/offres", icon: "ticket" },
+  { key: "blog", href: "/admin/blog", icon: "globe" },
+  { key: "gallery", href: "/admin/galerie", icon: "image" },
   { key: "users", href: "/admin/utilisateurs", icon: "users" },
   { key: "audit", href: "/admin/journal", icon: "shieldCheck" },
 ] as const;
@@ -33,7 +35,7 @@ function toolsFor(live?: LiveAccount) {
 
 /**
  * Rubrique « à venir » : démo = tout le futur back-office ; administrateur = ce qui n'existe pas encore
- * (blog, galerie) ; agent = rien (circuits, offres et comptes existent, mais ne le concernent pas).
+ * (plus rien aujourd'hui) ; agent = rien (circuits, offres et comptes existent, mais ne le concernent pas).
  */
 function soonFor(live?: LiveAccount) {
   if (live?.role === "agent") return [];

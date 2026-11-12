@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 
 /**
  * Loader de marque ETHNIKA : le symbole respire au centre d'un anneau aux trois couleurs du logo (rouge, or, vert)
- * qui tourne, sous lequel une fine barre glisse. Apparaît après un court délai (pas de flash sur une page rapide).
+ * qui tourne, sous lequel une fine barre glisse. Le fond couvre l'écran immédiatement ; le logo apparaît en fondu.
  * Mouvement réduit : l'anneau et la barre s'arrêtent, seul un léger fondu reste.
  * `tone` : fond clair (site) ou sombre (back-office) ; `fullscreen` : couvre tout l'écran.
  */
@@ -13,9 +13,10 @@ export function BrandLoader({ label, tone = "light", fullscreen = false }: { lab
       role="status"
       aria-live="polite"
       className={clsx(
-        "flex animate-loader-in flex-col items-center justify-center gap-6",
-        fullscreen ? "fixed inset-0 z-[60]" : "min-h-[60vh] w-full py-24",
-        fullscreen && (dark ? "bg-night" : "bg-sand"),
+        // Fond opaque dès le premier affichage (sinon la page vide, pied de page remonté, transparaît) ; seul le contenu apparaît en fondu.
+        "flex flex-col items-center justify-center gap-6 [&>*]:animate-loader-in",
+        fullscreen ? "fixed inset-0 z-[100]" : "min-h-[60vh] w-full py-24",
+        fullscreen && (dark ? "bg-night" : "bg-cream"),
       )}
     >
       <div className="relative size-[104px]">

@@ -15,7 +15,7 @@ export const legalDocs: Record<LegalKey, { path: string; tab: string; title: str
       { title: "Directeur de la publication", text: "[NOM, FONCTION]." },
       { title: "Contact", text: "contact@ethnikatour.com · +224 [NUMÉRO]." },
       { title: "Hébergement", text: "[HÉBERGEUR], [ADRESSE], [PAYS]." },
-      { title: "Propriété intellectuelle", text: "Le logo, les textes et la charte graphique ETHNIKA sont protégés. Toute reproduction sans autorisation est interdite. Photos d'illustration : Pixabay (licence libre)." },
+      { title: "Propriété intellectuelle", text: "Le logo, les textes et la charte graphique ETHNIKA sont protégés. Toute reproduction sans autorisation est interdite. Photos d'illustration : Unsplash (licence Unsplash, libre de droits)." },
     ],
   },
   cgv: {

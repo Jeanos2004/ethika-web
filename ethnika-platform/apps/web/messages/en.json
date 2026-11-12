@@ -12,7 +12,7 @@
       "description": "Beaches, islands, highlands and living culture: the regions and destinations of Guinea.",
       "kicker": "Discover Guinea",
       "heading": "One country, a thousand horizons",
-      "imageAlt": "Aerial view of a green coastline"
+      "imageAlt": "Aerial view of a palm-lined beach"
     },
     "fouta": {
       "title": "Mali & the Fouta Djallon",
@@ -138,7 +138,7 @@
     "description": "Travel agency in Conakry: flight tickets, tours and stays in Guinea, groups, pilgrimages and business travel.",
     "footerAbout": "Travel agency in Conakry. Flight tickets and tours in Guinea.",
     "licence": "Licence no. {licence} · RCCM {rccm}",
-    "copyright": "© {year} {name} · Illustration photos: Pixabay",
+    "copyright": "© {year} {name} · Illustration photos: Unsplash",
     "hours": "Mon – Sat · [OPENING HOURS]",
     "address": "[District], Conakry"
   },
@@ -529,16 +529,16 @@
     "whyTitle": "A Guinean agency connected to the world",
     "whyText": "We know the departures from Conakry, the connections used by the diaspora and the formalities specific to our country.",
     "learnMore": "About the agency",
-    "whyImageAlt": "Traveller walking under a bright sky",
+    "whyImageAlt": "Smiling traveller outdoors",
     "trustKicker": "They trust us",
     "testimonialsTitle": "What our travellers say",
     "blogKicker": "Guides & tips",
     "blogTitle": "Prepare your trip",
     "instagram": "Instagram",
-    "panoramaAlt": "Traveller looking at a panorama of hills",
-    "fourByFourAlt": "4x4 vehicle on a rocky coast",
-    "planeAlt": "Airliner in a cloudy sky",
-    "coastAlt": "Aerial view of a green coastline and a winding road"
+    "panoramaAlt": "Traveller looking over a valley from a rock",
+    "fourByFourAlt": "4x4 vehicle on a sandy beach",
+    "planeAlt": "Airliner in a blue sky",
+    "coastAlt": "Aerial view of a palm-lined beach"
   },
   "slider": {
     "carousel": "carousel",
@@ -677,7 +677,7 @@
     ],
     "ctaKicker": "Ready to go?",
     "ctaTitle": "Plan your trip to Guinea with our local guides",
-    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+    "ctaImageAlt": "4x4 vehicle on a sandy beach"
   },
   "fouta": {
     "chips": [
@@ -1003,7 +1003,7 @@
       "Bondabon",
       "Mount Dixinn falls"
     ],
-    "dubrekaImageAlt": "River lined with vegetation and a canoe",
+    "dubrekaImageAlt": "Child in a canoe on a river",
     "conakryEyebrow": "07 · CONAKRY · 3,407,327 INHAB.",
     "conakryTitle": "The capital's beaches",
     "conakryText": "For an afternoon without leaving the city, before or after a flight.",
@@ -1140,7 +1140,7 @@
     "ctaText": "Family, diaspora, group or mission: tell us your wishes, your dates and your budget.",
     "ctaButton": "Plan my trip",
     "ctaWhatsapp": "Hello ETHNIKA, I would like a tailor-made trip.",
-    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+    "ctaImageAlt": "4x4 vehicle on a sandy beach"
   },
   "circuit": {
     "duration": "Duration",
@@ -1221,7 +1221,7 @@
     "routesNote": "Indicative fares: [to be entered by the agency]",
     "faqKicker": "Frequently asked questions",
     "faqTitle": "Everything you need to know before booking",
-    "faqImageAlt": "Traveller walking under a bright sky",
+    "faqImageAlt": "Smiling traveller outdoors",
     "ctaKicker": "Any questions?",
     "ctaTitle": "Send your itinerary on WhatsApp and we'll get back to you.",
     "ctaWhatsapp": "Hello ETHNIKA, here is my itinerary: "
@@ -1345,12 +1345,12 @@
   "galerie": {
     "filterLabel": "Filter the gallery",
     "all": "All",
-    "credits": "Illustration photos (Pixabay), to be replaced by the agency's own photos. Travelled with us? Share your photos with #ETHNIKA.",
+    "credits": "Illustration photos (Unsplash), to be replaced by the agency's own photos. Travelled with us? Share your photos with #ETHNIKA.",
     "ctaTitle": "These landscapes are waiting for you",
     "ctaText": "Choose a tour or design your own tailor-made trip."
   },
   "apropos": {
-    "img1Alt": "Aerial view of a green coastline",
+    "img1Alt": "Aerial view of a palm-lined beach",
     "img2Alt": "Fishing boats at sunset",
     "since": "From Conakry",
     "yearPending": "[Year founded to be completed]",

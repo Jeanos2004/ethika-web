@@ -12,7 +12,7 @@
       "description": "Plages, îles, hauts plateaux et culture vivante : les régions et destinations de Guinée.",
       "kicker": "Découvrir la Guinée",
       "heading": "Un pays, mille horizons",
-      "imageAlt": "Vue aérienne d'une côte verdoyante"
+      "imageAlt": "Vue aérienne d'une plage bordée de palmiers"
     },
     "fouta": {
       "title": "Mali & le Fouta Djallon",
@@ -138,7 +138,7 @@
     "description": "Agence de tourisme et de voyage à Conakry : billetterie aérienne, circuits et séjours en Guinée, groupes, pèlerinages et voyages d'affaires.",
     "footerAbout": "Agence de tourisme et de voyage à Conakry. Billetterie aérienne et circuits en Guinée.",
     "licence": "Licence n° {licence} · RCCM {rccm}",
-    "copyright": "© {year} {name} · Photos d'illustration : Pixabay",
+    "copyright": "© {year} {name} · Photos d'illustration : Unsplash",
     "hours": "Lun – Sam · [HORAIRES]",
     "address": "[Quartier], Conakry"
   },
@@ -529,16 +529,16 @@
     "whyTitle": "Une agence guinéenne reliée au monde",
     "whyText": "Nous connaissons les départs de Conakry, les correspondances utilisées par la diaspora et les démarches propres à notre pays.",
     "learnMore": "Découvrir l'agence",
-    "whyImageAlt": "Voyageuse marchant sous un ciel lumineux",
+    "whyImageAlt": "Voyageuse souriante en plein air",
     "trustKicker": "Ils nous font confiance",
     "testimonialsTitle": "Ce que disent nos voyageurs",
     "blogKicker": "Guides & conseils",
     "blogTitle": "Préparez votre voyage",
     "instagram": "Instagram",
-    "panoramaAlt": "Voyageur contemplant un panorama de collines",
-    "fourByFourAlt": "Véhicule 4x4 sur une côte rocheuse",
-    "planeAlt": "Avion de ligne dans un ciel nuageux",
-    "coastAlt": "Vue aérienne d'une côte verdoyante et d'une route sinueuse"
+    "panoramaAlt": "Voyageur contemplant une vallée depuis un rocher",
+    "fourByFourAlt": "Véhicule 4x4 sur une plage de sable",
+    "planeAlt": "Avion de ligne dans un ciel bleu",
+    "coastAlt": "Vue aérienne d'une plage bordée de palmiers"
   },
   "slider": {
     "carousel": "carrousel",
@@ -677,7 +677,7 @@
     ],
     "ctaKicker": "Prêt à partir ?",
     "ctaTitle": "Composez votre voyage en Guinée avec nos guides locaux",
-    "ctaImageAlt": "Véhicule 4x4 sur une côte rocheuse"
+    "ctaImageAlt": "Véhicule 4x4 sur une plage de sable"
   },
   "fouta": {
     "chips": [
@@ -1003,7 +1003,7 @@
       "Bondabon",
       "Chutes du mont Dixinn"
     ],
-    "dubrekaImageAlt": "Rivière bordée de végétation avec pirogue",
+    "dubrekaImageAlt": "Enfant dans une pirogue sur une rivière",
     "conakryEyebrow": "07 · CONAKRY · 3 407 327 HAB.",
     "conakryTitle": "Les plages de la capitale",
     "conakryText": "Pour une après-midi sans quitter la ville, avant ou après un vol.",
@@ -1140,7 +1140,7 @@
     "ctaText": "Famille, diaspora, groupe ou mission : dites-nous vos envies, vos dates et votre budget.",
     "ctaButton": "Composer mon voyage",
     "ctaWhatsapp": "Bonjour ETHNIKA, je souhaite un voyage sur mesure.",
-    "ctaImageAlt": "Véhicule 4x4 sur une côte rocheuse"
+    "ctaImageAlt": "Véhicule 4x4 sur une plage de sable"
   },
   "circuit": {
     "duration": "Durée",
@@ -1221,7 +1221,7 @@
     "routesNote": "Tarifs indicatifs : [à saisir par l'agence]",
     "faqKicker": "Questions fréquentes",
     "faqTitle": "Tout savoir avant de réserver",
-    "faqImageAlt": "Voyageuse marchant sous un ciel lumineux",
+    "faqImageAlt": "Voyageuse souriante en plein air",
     "ctaKicker": "Une question ?",
     "ctaTitle": "Envoyez votre itinéraire sur WhatsApp, on vous répond.",
     "ctaWhatsapp": "Bonjour ETHNIKA, voici mon itinéraire : "
@@ -1345,12 +1345,12 @@
   "galerie": {
     "filterLabel": "Filtrer la galerie",
     "all": "Tout",
-    "credits": "Photos d'illustration (Pixabay), à remplacer par les photos de l'agence. Vous avez voyagé avec nous ? Partagez vos photos avec #ETHNIKA.",
+    "credits": "Photos d'illustration (Unsplash), à remplacer par les photos de l'agence. Vous avez voyagé avec nous ? Partagez vos photos avec #ETHNIKA.",
     "ctaTitle": "Ces paysages vous attendent",
     "ctaText": "Choisissez un circuit ou composez votre voyage sur mesure."
   },
   "apropos": {
-    "img1Alt": "Vue aérienne d'une côte verdoyante",
+    "img1Alt": "Vue aérienne d'une plage bordée de palmiers",
     "img2Alt": "Bateaux de pêche au couchant",
     "since": "Depuis Conakry",
     "yearPending": "[Année de création à compléter]",

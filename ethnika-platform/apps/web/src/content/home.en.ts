@@ -6,7 +6,7 @@ export const homeEn: { [K in keyof typeof Home]?: DeepPartial<(typeof Home)[K]> 
   heroSlides: [
     { alt: "Coconut palms silhouetted at sunset on the coast", kicker: "LOWER COAST · BEACHES & ISLANDS", titleA: "Guinea at heart,", titleB: "the world in sight.", sub: "Plane tickets to every destination and tours from the Fouta Djallon to the Loos Islands, with a team based in Conakry." },
     { alt: "Green hills in the mist", kicker: "FOUTA DJALLON · HIGHLANDS", titleA: "Breathe the air", titleB: "of the highlands.", sub: "Mount Loura, Nguilo Falls, Fula villages: tours with a 4×4 vehicle and a local guide." },
-    { alt: "Airliner in a cloudy sky", kicker: "FLIGHTS · ALL DESTINATIONS", titleA: "From Conakry", titleB: "to the whole world.", sub: "One way, round trip or multi-city: an adviser compares fares and replies on WhatsApp." },
+    { alt: "Airliner in a blue sky", kicker: "FLIGHTS · ALL DESTINATIONS", titleA: "From Conakry", titleB: "to the whole world.", sub: "One way, round trip or multi-city: an adviser compares fares and replies on WhatsApp." },
   ],
   trust: [
     { title: "Team in Conakry", text: "A local contact person", chip: "Team in Conakry" },
@@ -16,13 +16,13 @@ export const homeEn: { [K in keyof typeof Home]?: DeepPartial<(typeof Home)[K]> 
   ],
   mosaicFeature: { alt: "Green hills in the morning mist", badge: "Our favourite", eyebrow: "The roof of Guinea", title: "Mali & Fouta Djallon", sub: "Mount Loura · Nguilo Falls · Fula villages" },
   mosaicGrid: [
-    { alt: "Boat on a calm sea at sunset", eyebrow: "Off Conakry", title: "Loos Islands" },
+    { alt: "Fishing boat on calm water", eyebrow: "Off Conakry", title: "Loos Islands" },
     { alt: "Sandy beach and turquoise water", eyebrow: "7 km of fine sand", title: "Bel-Air, Boffa" },
-    { alt: "Large waterfall and rainbow", eyebrow: "A half-day trip", title: "Nguilo Falls" },
-    { alt: "Seaside city at sunset", eyebrow: "A day trip", title: "Conakry & its beaches" },
+    { alt: "Large waterfall in the forest", eyebrow: "A half-day trip", title: "Nguilo Falls" },
+    { alt: "Town by a turquoise sea", eyebrow: "A day trip", title: "Conakry & its beaches" },
   ],
   mosaicRow: [
-    { alt: "River and canoe in the greenery", eyebrow: "Canoes & mangroves", title: "Dubréka" },
+    { alt: "Child in a canoe on a river", eyebrow: "Canoes & mangroves", title: "Dubréka" },
     { alt: "Sandy beach at sunset", eyebrow: "Nights under the stars", title: "Sobane" },
     { alt: "Fishing boats at sunset", eyebrow: "A fishing town", title: "Boffa & the Rio Pongo" },
   ],

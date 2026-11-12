@@ -60,7 +60,7 @@ export function AgencyForm({ agency }: { agency: ApiAgency }) {
         <Area name="paymentInstructions" label={t("paymentInstructions")} required maxLength={1200} rows={4} defaultValue={agency.paymentInstructions} hint={t("paymentHint")} />
         <Area name="quoteTerms" label={t("quoteTerms")} maxLength={1200} rows={3} defaultValue={agency.quoteTerms} />
       </section>
-      <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white/95 p-4 shadow-sm backdrop-blur lg:bottom-4">
+      <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white/95 p-4 pr-[4.75rem] shadow-sm backdrop-blur lg:bottom-4 lg:pr-[5.5rem]">
         {state.error ? (
           <p role="alert" className="text-sm text-red-700">
             {tErr(state.error)}

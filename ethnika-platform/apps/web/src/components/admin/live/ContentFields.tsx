@@ -88,7 +88,7 @@ export function SaveBar({ pending, error, published }: { pending: boolean; error
   const t = useTranslations("admin.live.content");
   const tErr = useTranslations("admin.live.errors");
   return (
-    <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white/95 p-4 shadow-sm backdrop-blur lg:bottom-4">
+    <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white/95 p-4 pr-[4.75rem] shadow-sm backdrop-blur lg:bottom-4 lg:pr-[5.5rem]">
       <label className="flex items-center gap-2 text-sm font-semibold text-night">
         <input type="checkbox" name="published" defaultChecked={published} className="size-4 accent-[var(--color-night)]" />
         {t("published")}

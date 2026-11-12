@@ -62,7 +62,6 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
             <Image src="/brand/logo-horizontal-inverse.svg" alt="ETHNIKA" width={152} height={48} className="h-11 w-auto self-start" />
             <span className="font-mono text-[11px] tracking-[0.14em] text-on-dark-muted">{t("backOffice")}</span>
           </div>
-          {live?.notifications && <NotificationBell key={live.notifications.unread} data={live.notifications} />}
         </div>
         <nav aria-label={t("navLabel")} className="flex flex-col gap-1 text-[15px] font-semibold">
           <SideLink href="/admin" current={section === "dashboard"} icon="grid">
@@ -101,7 +100,6 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
         <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-night-line bg-night px-4 text-white lg:hidden">
           <Image src="/brand/symbole-or.svg" alt="ETHNIKA" width={28} height={28} className="size-7" />
           <span className="min-w-0 flex-1 truncate text-[15px] font-semibold">{title}</span>
-          {live?.notifications && <NotificationBell key={live.notifications.unread} data={live.notifications} />}
         </header>
 
         {!live && (
@@ -112,6 +110,9 @@ export function AdminShell({ section, title, live, children }: { section: Sectio
         {/* Espace réservé en bas pour la barre d'onglets mobile (+ zone de sécurité des écrans à encoche). */}
         <main className="flex min-w-0 flex-1 flex-col gap-5 p-4 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:p-7 sm:pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-7">{children}</main>
       </div>
+
+      {/* Cloche flottante, en bas à droite au-dessus du contenu (toutes tailles d'écran). */}
+      {live?.notifications && <NotificationBell key={live.notifications.unread} data={live.notifications} />}
 
       {/* Barre d'onglets (< 1024 px) */}
       <nav

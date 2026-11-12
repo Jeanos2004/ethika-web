@@ -106,7 +106,7 @@ export default async function ArticlePage({ params }: Params) {
       </section>
       <div className="container-site">
         <div className="relative h-[clamp(240px,42vw,600px)] overflow-hidden rounded-[32px]">
-          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(min-width: 1320px) 1272px, 100vw" className="object-cover" />
+          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(min-width: 1320px) 1272px, 100vw" quality={90} className="object-cover" />
         </div>
       </div>
 

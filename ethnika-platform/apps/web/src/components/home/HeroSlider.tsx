@@ -79,6 +79,7 @@ export function HeroSlider({ slides }: { slides: readonly Slide[] }) {
             fill
             priority={i === 0}
             sizes="100vw"
+            quality={90}
             className={clsx("object-cover transition-opacity duration-1000", i === index ? "opacity-100" : "opacity-0")}
           />
         ) : null,

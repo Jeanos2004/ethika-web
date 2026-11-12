@@ -3,8 +3,8 @@ import { PrismaService } from "../../prisma/prisma.service";
 import { AuditService } from "../audit/audit.service";
 import { imageInfo } from "./image-info";
 
-/** 5 Mo : une photo de téléphone compressée tient largement ; le site la redimensionne à l'affichage. */
-export const MAX_MEDIA_BYTES = 5 * 1024 * 1024;
+/** 15 Mo : une photo 4K (3840 px) en JPEG de qualité ; le site la redimensionne et la compresse à l'affichage. */
+export const MAX_MEDIA_BYTES = 15 * 1024 * 1024;
 const MEDIA_URL = /^\/media\/([0-9a-f-]{36})(?:\.[a-z]+)?$/;
 
 /** Identifiant d'un média à partir de son adresse sur le site (/media/<id>.jpg), sinon null. */

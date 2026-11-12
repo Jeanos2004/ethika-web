@@ -1977,7 +1977,7 @@
         "amountInvalid": "Invalid amount: it must be positive and not exceed the balance due.",
         "paymentClosed": "This payment is already closed.",
         "uploadType": "Unsupported format: send a JPEG, PNG or WebP photo.",
-        "uploadTooLarge": "Photo too large (5 MB max). Reduce it and try again."
+        "uploadTooLarge": "Photo too large (15 MB max). Reduce it and try again."
       },
       "quotes": {
         "title": "Quotes",
@@ -2555,7 +2555,7 @@
       "media": {
         "upload": "Upload a photo",
         "uploading": "Uploading…",
-        "hint": "JPEG, PNG or WebP, 5 MB max. Or a site path (/images/…)."
+        "hint": "JPEG, PNG or WebP, 15 MB max. Or a site path (/images/…)."
       },
       "blog": {
         "slugHint": "Post address: /blog/my-post",
@@ -2610,7 +2610,7 @@
         "edit": "Edit photo",
         "photo": "Photo",
         "image": "File",
-        "imageHint": "JPEG, PNG or WebP, 5 MB max. Portrait photos are detected automatically.",
+        "imageHint": "JPEG, PNG or WebP, 15 MB max. Portrait photos are detected automatically.",
         "category": "Gallery filter",
         "categories": {
           "fouta": "Fouta Djallon",

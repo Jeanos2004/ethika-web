@@ -61,6 +61,9 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    // 75 par défaut, 90 pour les grandes photos plein écran (accueil, en-têtes, visionneuse). Tailles jusqu'à 3840 px (écrans 4K).
+    qualities: [75, 90],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2560, 3840],
     // Ajouter ici les domaines distants (CMS, CDN) au cas par cas — jamais de joker.
     remotePatterns: [],
   },

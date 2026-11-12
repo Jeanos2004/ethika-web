@@ -3,11 +3,11 @@ import { requireAdmin } from "@/lib/admin/session";
 
 /*
  * Envoi d'une photo depuis le back-office (administrateurs) : le navigateur poste le fichier brut ici, le serveur du
- * site le relaie à l'API, qui reconnaît le type par son contenu, le borne à 5 Mo et l'enregistre.
+ * site le relaie à l'API, qui reconnaît le type par son contenu, le borne à 15 Mo et l'enregistre.
  * Route plutôt que Server Action : pas de limite de 1 Mo sur le corps. Même origine exigée (en plus du cookie SameSite=Strict).
  */
 
-const MAX = 5 * 1024 * 1024;
+const MAX = 15 * 1024 * 1024;
 const TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 
 /** Nom du fichier (encodé par le navigateur), à titre indicatif seulement. */

@@ -5,13 +5,13 @@ import { useTranslations } from "next-intl";
 import { Icon } from "@/components/ui/Icon";
 import { input } from "@/components/admin/live/ContentFields";
 
-const MAX = 5 * 1024 * 1024;
+const MAX = 15 * 1024 * 1024;
 const TYPES = ["image/jpeg", "image/png", "image/webp"];
 /** Adresse prévisualisable : chemin du site ou https (même règle que l'API). */
 const previewable = (v: string) => /^\/[A-Za-z0-9/_.-]+\.(jpe?g|png|webp|avif)$/i.test(v) || /^https:\/\/[^\s"'<>]+$/.test(v);
 
 /**
- * Image d'un contenu : aperçu, envoi d'une photo (JPEG, PNG ou WebP, 5 Mo max, relayée à l'API par /admin/media)
+ * Image d'un contenu : aperçu, envoi d'une photo (JPEG, PNG ou WebP, 15 Mo max, relayée à l'API par /admin/media)
  * ou chemin saisi à la main (/images/… du site, https). Une photo en hauteur coche « tall » si le formulaire en a un.
  */
 export function ImageField({ name = "imageUrl", label, defaultValue = "", hint, required = true }: { name?: string; label: string; defaultValue?: string; hint?: string; required?: boolean }) {

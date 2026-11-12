@@ -75,7 +75,7 @@ export default async function BilletteriePage({ params, searchParams }: Props) {
 
       {/* 4 ÉTAPES */}
       <section className="relative mt-16 overflow-hidden text-white sm:mt-[110px]">
-        <Image src="/images/ville-bord-de-mer.jpg" alt="" fill sizes="100vw" className="object-cover" />
+        <Image src="/images/ville-bord-de-mer.jpg" alt="" fill sizes="100vw" quality={90} className="object-cover" />
         <div aria-hidden="true" className="absolute inset-0 bg-ink/80" />
         <div className="container-site relative flex flex-col gap-12 py-16 sm:py-24">
           <SectionHeading kicker={t("stepsKicker")} title={t("stepsTitle")} tone="dark" />

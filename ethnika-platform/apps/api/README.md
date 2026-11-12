@@ -61,7 +61,7 @@ Règles : argon2id ; 2FA TOTP obligatoire pour les admins (secret chiffré AES-2
 | agent, admin | GET / POST | `/payments`, `/payments/config`, `/payments/:id/renew`, `/payments/:id/cancel` | Suivi, nouveau lien, annulation |
 | clé | POST | `/public/payments/:reference` (+ `/checkout`, `/simulate`) | Page de paiement du site (jeton du lien), redirection chez le prestataire, simulation |
 | admin | GET / POST / PATCH / DELETE | `/admin/offers`, `/admin/circuits`, `/admin/posts`, `/admin/gallery` (+ `/:id`) | Contenus : brouillon / publication, textes FR/EN, audités |
-| admin | POST | `/admin/media` | Envoi d'une image (corps brut JPEG, PNG ou WebP, 5 Mo max, type reconnu par son contenu) |
+| admin | POST | `/admin/media` | Envoi d'une image (corps brut JPEG, PNG ou WebP, 15 Mo max, type reconnu par son contenu) |
 | public | GET | `/health` | Santé (accès base) |
 
 ## Modules

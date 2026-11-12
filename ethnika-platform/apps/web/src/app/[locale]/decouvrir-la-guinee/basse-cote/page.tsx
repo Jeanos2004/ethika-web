@@ -59,7 +59,7 @@ export default async function BasseCotePage({ params }: { params: Promise<{ loca
 
       {/* BEL-AIR */}
       <section id="bel-air" className={`relative mt-16 flex min-h-[560px] items-end overflow-hidden text-white sm:mt-[110px] ${anchor}`}>
-        <Image src="/images/cocotiers-couchant.jpg" alt={t("belAirImageAlt")} fill sizes="100vw" className="object-cover" />
+        <Image src="/images/cocotiers-couchant.jpg" alt={t("belAirImageAlt")} fill sizes="100vw" quality={90} className="object-cover" />
         <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(18_24_21/0.9)_0%,rgb(18_24_21/0.4)_60%,rgb(18_24_21/0.1)_100%)]" />
         <div className="container-site relative flex flex-wrap items-end justify-between gap-8 py-20">
           <div className="flex max-w-[600px] flex-col gap-4">

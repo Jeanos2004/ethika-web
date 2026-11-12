@@ -1977,7 +1977,7 @@
         "amountInvalid": "Montant invalide : il doit être positif et ne pas dépasser le reste à payer.",
         "paymentClosed": "Ce paiement est déjà clos.",
         "uploadType": "Format non accepté : envoyez une photo JPEG, PNG ou WebP.",
-        "uploadTooLarge": "Photo trop lourde (5 Mo maximum). Réduisez-la puis réessayez."
+        "uploadTooLarge": "Photo trop lourde (115 Mo maximum). Réduisez-la puis réessayez."
       },
       "quotes": {
         "title": "Devis",
@@ -2555,7 +2555,7 @@
       "media": {
         "upload": "Envoyer une photo",
         "uploading": "Envoi…",
-        "hint": "JPEG, PNG ou WebP, 5 Mo max. Ou un chemin du site (/images/…)."
+        "hint": "JPEG, PNG ou WebP, 15 Mo max. Ou un chemin du site (/images/…)."
       },
       "blog": {
         "slugHint": "Adresse de l'article : /blog/mon-article",
@@ -2610,7 +2610,7 @@
         "edit": "Modifier la photo",
         "photo": "Photo",
         "image": "Fichier",
-        "imageHint": "JPEG, PNG ou WebP, 5 Mo max. Une photo en hauteur est repérée automatiquement.",
+        "imageHint": "JPEG, PNG ou WebP, 15 Mo max. Une photo en hauteur est repérée automatiquement.",
         "category": "Filtre de la galerie",
         "categories": {
           "fouta": "Fouta Djallon",

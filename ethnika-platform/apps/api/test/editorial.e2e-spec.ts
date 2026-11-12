@@ -61,8 +61,8 @@ describe("Back-office : blog, galerie, médias (e2e)", () => {
       expect(await prisma.media.findUnique({ where: { id: used.body.id } })).not.toBeNull();
     });
 
-    it("refuse une image de plus de 5 Mo", async () => {
-      await upload(admin, Buffer.concat([png, Buffer.alloc(5 * 1024 * 1024)])).expect(413);
+    it("refuse une image de plus de 15 Mo", async () => {
+      await upload(admin, Buffer.concat([png, Buffer.alloc(15 * 1024 * 1024)])).expect(413);
     });
   });
 

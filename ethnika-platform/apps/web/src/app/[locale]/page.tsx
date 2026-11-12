@@ -247,7 +247,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       {/* VIDÉO + CHIFFRES */}
       <section className="relative mt-[120px] hidden min-h-[560px] items-center justify-center overflow-hidden text-white sm:flex">
-        <Image src="/images/cote-verte-aerien.jpg" alt={t("coastAlt")} fill sizes="100vw" className="object-cover" />
+        <Image src="/images/cote-verte-aerien.jpg" alt={t("coastAlt")} fill sizes="100vw" quality={90} className="object-cover" />
         <div aria-hidden="true" className="absolute inset-0 bg-ink/55" />
         <div className="relative flex max-w-[820px] flex-col items-center gap-[22px] px-6 pt-20 pb-[140px] text-center">
           <span className="kicker text-brand-gold">{t("adventureKicker")}</span>

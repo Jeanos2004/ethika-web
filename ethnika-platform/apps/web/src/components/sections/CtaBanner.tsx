@@ -25,7 +25,7 @@ export function CtaBanner({
   return (
     <section className={`container-site py-16 sm:py-[110px] ${className}`}>
       <div className="relative flex min-h-[380px] items-center overflow-hidden rounded-[var(--radius-xl)] text-white">
-        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1320px) 1272px, 100vw" className="object-cover" />
+        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1320px) 1272px, 100vw" quality={90} className="object-cover" />
         <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(18_24_21/0.92)_0%,rgb(18_24_21/0.55)_55%,rgb(18_24_21/0.1)_100%)]" />
         <div className="relative flex max-w-[640px] flex-col gap-[18px] p-[clamp(28px,5vw,64px)]">
           {kicker && <span className="kicker text-brand-gold">{kicker}</span>}

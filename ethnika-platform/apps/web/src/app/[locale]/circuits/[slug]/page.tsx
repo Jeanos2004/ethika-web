@@ -6,7 +6,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getPage, languageAlternates, localizedPath } from "@/content/pages";
-import { circuits, getCircuits, getLocalizedCircuit, type Circuit, type Departure } from "@/content/circuits";
+import { circuits, type Circuit, type Departure } from "@/content/circuits";
+import { siteCircuit, siteCircuits } from "@/lib/content-source";
 import { site } from "@/lib/site";
 import { isDemo } from "@/lib/demo/mode";
 import { PageHero, type Crumb } from "@/components/layout/PageHero";
@@ -22,13 +23,14 @@ export function generateStaticParams() {
   return circuits.map((c) => ({ slug: c.slug }));
 }
 
-export const dynamicParams = false; // slug inconnu → 404, pas de rendu à la demande
+// Circuits publiés depuis le back-office : rendus à la demande (puis mis en cache) ; slug inconnu → 404.
+export const dynamicParams = true;
 
 type Params = { params: Promise<{ locale: Locale; slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
-  const c = getLocalizedCircuit(slug, locale);
+  const c = await siteCircuit(slug, locale);
   if (!c) return {};
   const path = `/circuits/${c.slug}`;
   return {
@@ -49,7 +51,7 @@ function similar(all: Circuit[], c: Circuit) {
 export default async function CircuitPage({ params }: Params) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const c = getLocalizedCircuit(slug, locale);
+  const c = await siteCircuit(slug, locale);
   if (!c) notFound();
   const t = await getTranslations("circuit");
   const tc = await getTranslations("common");
@@ -196,7 +198,7 @@ export default async function CircuitPage({ params }: Params) {
       <section className="container-site flex flex-col gap-7 pt-16 pb-16 sm:pt-[100px] sm:pb-[110px]">
         <h2 className="text-[clamp(30px,3.2vw,42px)] font-bold tracking-[-0.03em] text-night">{t("similar")}</h2>
         <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-5">
-          {similar(getCircuits(locale), c).map((s) => (
+          {similar(await siteCircuits(locale), c).map((s) => (
             <li key={s.slug}>
               <article className={clsx("group relative overflow-hidden rounded-3xl bg-white shadow-md", cardFocus)}>
                 <div className="relative h-[200px] overflow-hidden">

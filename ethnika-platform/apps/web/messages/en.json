@@ -12,7 +12,7 @@
       "description": "Beaches, islands, highlands and living culture: the regions and destinations of Guinea.",
       "kicker": "Discover Guinea",
       "heading": "One country, a thousand horizons",
-      "imageAlt": "Aerial view of a green coastline"
+      "imageAlt": "Aerial view of a palm-lined beach"
     },
     "fouta": {
       "title": "Mali & the Fouta Djallon",
@@ -138,7 +138,7 @@
     "description": "Travel agency in Conakry: flight tickets, tours and stays in Guinea, groups, pilgrimages and business travel.",
     "footerAbout": "Travel agency in Conakry. Flight tickets and tours in Guinea.",
     "licence": "Licence no. {licence} · RCCM {rccm}",
-    "copyright": "© {year} {name} · Illustration photos: Pixabay",
+    "copyright": "© {year} {name} · Illustration photos: Unsplash",
     "hours": "Mon – Sat · [OPENING HOURS]",
     "address": "[District], Conakry"
   },
@@ -441,7 +441,29 @@
     "success": "Subscription saved. You can unsubscribe at any time.",
     "note": "One email alert when new deals are published. Unsubscribe at any time (",
     "privacy": "privacy",
-    "noteEnd": ")."
+    "noteEnd": ").",
+    "token": {
+      "kicker": "Deal alerts",
+      "working": "One moment…",
+      "seeOffers": "See current offers",
+      "confirm": {
+        "title": "Confirm your subscription",
+        "text": "Click the button to receive our offers and low-price departures. You can unsubscribe at any time from each email.",
+        "button": "Confirm my subscription",
+        "done": "Confirmed: you will receive our next deal alerts."
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe",
+        "text": "Click the button to stop receiving our deal alerts.",
+        "button": "Unsubscribe me",
+        "done": "Done: you will no longer receive our deal alerts."
+      },
+      "errors": {
+        "invalid": "This link is no longer valid. It may have been used already; otherwise, subscribe again from the Offers page.",
+        "rateLimited": "Too many attempts. Try again in a few minutes.",
+        "unavailable": "Service temporarily unavailable. Try again later."
+      }
+    }
   },
   "search": {
     "label": "Quick request",
@@ -507,16 +529,16 @@
     "whyTitle": "A Guinean agency connected to the world",
     "whyText": "We know the departures from Conakry, the connections used by the diaspora and the formalities specific to our country.",
     "learnMore": "About the agency",
-    "whyImageAlt": "Traveller walking under a bright sky",
+    "whyImageAlt": "Smiling traveller outdoors",
     "trustKicker": "They trust us",
     "testimonialsTitle": "What our travellers say",
     "blogKicker": "Guides & tips",
     "blogTitle": "Prepare your trip",
     "instagram": "Instagram",
-    "panoramaAlt": "Traveller looking at a panorama of hills",
-    "fourByFourAlt": "4x4 vehicle on a rocky coast",
-    "planeAlt": "Airliner in a cloudy sky",
-    "coastAlt": "Aerial view of a green coastline and a winding road"
+    "panoramaAlt": "Traveller looking over a valley from a rock",
+    "fourByFourAlt": "4x4 vehicle on a sandy beach",
+    "planeAlt": "Airliner in a blue sky",
+    "coastAlt": "Aerial view of a palm-lined beach"
   },
   "slider": {
     "carousel": "carousel",
@@ -655,7 +677,7 @@
     ],
     "ctaKicker": "Ready to go?",
     "ctaTitle": "Plan your trip to Guinea with our local guides",
-    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+    "ctaImageAlt": "4x4 vehicle on a sandy beach"
   },
   "fouta": {
     "chips": [
@@ -758,7 +780,6 @@
     "accessText": "Plan for a 4×4, a local guide and confirmed accommodation. We organise everything for you.",
     "healthTitle": "Health: meningitis & yellow fever",
     "healthText": "Meningitis vaccine advised from November to June in the north and centre. Yellow fever required on entry. See a doctor 4 to 6 weeks before.",
-    "map": "[Interactive map: Conakry → Mali]",
     "asideLabel": "Request a quote",
     "whyBook": "Why book with us",
     "whyItems": [
@@ -785,7 +806,10 @@
         "title": "Dubréka"
       }
     ],
-    "durationLabel": "[X] days"
+    "durationLabel": "[X] days",
+    "discoverSite": "Discover the site",
+    "map": "Google Maps: route from Conakry to Mali",
+    "mapOpen": "Open the route in Google Maps"
   },
   "loos": {
     "intro": "An archipelago off the capital: red-sand beaches, coves, fishermen and history. The perfect weekend getaway.",
@@ -981,7 +1005,7 @@
       "Bondabon",
       "Mount Dixinn falls"
     ],
-    "dubrekaImageAlt": "River lined with vegetation and a canoe",
+    "dubrekaImageAlt": "Child in a canoe on a river",
     "conakryEyebrow": "07 · CONAKRY · 3,407,327 INHAB.",
     "conakryTitle": "The capital's beaches",
     "conakryText": "For an afternoon without leaving the city, before or after a flight.",
@@ -1118,7 +1142,7 @@
     "ctaText": "Family, diaspora, group or mission: tell us your wishes, your dates and your budget.",
     "ctaButton": "Plan my trip",
     "ctaWhatsapp": "Hello ETHNIKA, I would like a tailor-made trip.",
-    "ctaImageAlt": "4x4 vehicle on a rocky coast"
+    "ctaImageAlt": "4x4 vehicle on a sandy beach"
   },
   "circuit": {
     "duration": "Duration",
@@ -1199,7 +1223,7 @@
     "routesNote": "Indicative fares: [to be entered by the agency]",
     "faqKicker": "Frequently asked questions",
     "faqTitle": "Everything you need to know before booking",
-    "faqImageAlt": "Traveller walking under a bright sky",
+    "faqImageAlt": "Smiling traveller outdoors",
     "ctaKicker": "Any questions?",
     "ctaTitle": "Send your itinerary on WhatsApp and we'll get back to you.",
     "ctaWhatsapp": "Hello ETHNIKA, here is my itinerary: "
@@ -1323,12 +1347,12 @@
   "galerie": {
     "filterLabel": "Filter the gallery",
     "all": "All",
-    "credits": "Illustration photos (Pixabay), to be replaced by the agency's own photos. Travelled with us? Share your photos with #ETHNIKA.",
+    "credits": "Illustration photos (Unsplash), to be replaced by the agency's own photos. Travelled with us? Share your photos with #ETHNIKA.",
     "ctaTitle": "These landscapes are waiting for you",
     "ctaText": "Choose a tour or design your own tailor-made trip."
   },
   "apropos": {
-    "img1Alt": "Aerial view of a green coastline",
+    "img1Alt": "Aerial view of a palm-lined beach",
     "img2Alt": "Fishing boats at sunset",
     "since": "From Conakry",
     "yearPending": "[Year founded to be completed]",
@@ -1429,7 +1453,11 @@
       }
     ],
     "followKicker": "Follow us",
-    "followTitle": "Deals, departures and photos of Guinea"
+    "followTitle": "Deals, departures and photos of Guinea",
+    "mapTitle": "Map: location of the ETHNIKA agency in Conakry",
+    "mapApproximate": "Approximate location: exact address to be confirmed.",
+    "mapDirections": "Directions",
+    "mapOpen": "Enlarge"
   },
   "faq": {
     "kicker": "Frequently asked questions",
@@ -1496,7 +1524,7 @@
     "note": "Mock-up structure. The final texts must be drafted and validated by a lawyer, in accordance with applicable Guinean law (travel agencies, data protection). [TO BE VALIDATED BY A LAWYER]",
     "docsLabel": "Legal documents",
     "updated": "LAST UPDATED: [DATE]",
-    "frenchOnly": "The legal documents are written in French, which is the authoritative version.",
+    "frenchOnly": "This English translation is provided for information only. In case of discrepancy, the French version prevails.",
     "tabs": {
       "mentions": "Legal notice",
       "cgv": "Terms of sale",
@@ -1517,7 +1545,12 @@
       "offers": "Deals",
       "blog": "Blog posts",
       "gallery": "Gallery",
-      "users": "Users"
+      "users": "Users",
+      "flights": "Flights",
+      "security": "Security",
+      "audit": "Audit log",
+      "settings": "Settings",
+      "payments": "Payments"
     },
     "soon": "Phase 2",
     "agentName": "[Adviser name]",
@@ -1689,12 +1722,1151 @@
       "leads": "Requests",
       "new": "New",
       "more": "More",
-      "moreTitle": "More options"
+      "moreTitle": "More options",
+      "flights": "Flights"
+    },
+    "live": {
+      "logout": "Sign out",
+      "saving": "Saving…",
+      "hello": "Hello {name}",
+      "roles": {
+        "admin": "Administrator",
+        "agent": "Agent"
+      },
+      "events": {
+        "received": "Request received",
+        "assigned": "Assignment changed",
+        "note": "Internal note",
+        "flight_hold": "Flight hold placed",
+        "other": "Event",
+        "payment_requested": "Payment link sent",
+        "payment_received": "Payment received"
+      },
+      "login": {
+        "title": "Sign in",
+        "hint": "ETHNIKA team only.",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Sign in",
+        "checking": "Checking…",
+        "mfaTitle": "Verification code",
+        "mfaHint": "Open your authenticator app and enter the 6-digit code shown for ETHNIKA.",
+        "code": "Code",
+        "verify": "Verify",
+        "restart": "Start again",
+        "show": "Show",
+        "hide": "Hide",
+        "forgot": "Forgotten password or lost phone: ask an administrator for a reset."
+      },
+      "security": {
+        "title": "Account security",
+        "allSet": "Account {email}: permanent password and two-step verification in place.",
+        "pending": "Finish securing your account before using the back-office.",
+        "passwordTitle": "Password",
+        "passwordRequired": "The password you received is temporary: choose your own (12 characters minimum, never shared).",
+        "passwordHint": "12 characters minimum. Other sessions will be closed.",
+        "fields": {
+          "current": "Current password",
+          "next": "New password",
+          "confirm": "Confirm new password"
+        },
+        "passwordSubmit": "Change password",
+        "saving": "Saving…",
+        "mfaTitle": "Two-step verification",
+        "mfaHint": "At each sign-in, in addition to the password, you will be asked for a 6-digit code shown on your phone.",
+        "mfaStart": "Show the QR code",
+        "mfaKey": "Key to enter in the app",
+        "mfaOpenApp": "Open in the app (on this phone)",
+        "mfaCode": "6-digit code",
+        "mfaEnable": "Enable and open the back-office",
+        "passwordSaved": "Password saved.",
+        "welcome": "Welcome, {name}",
+        "setupTitle": "Secure your account",
+        "setupHint": "Two quick steps before using the back-office. They protect the agency's client data.",
+        "progress": "Security steps",
+        "steps": {
+          "password": "Password",
+          "mfa": "Two-step verification"
+        },
+        "mfaStep1": "Install an authenticator app on your phone.",
+        "mfaApps": "Google Authenticator, Microsoft Authenticator or 2FAS.",
+        "mfaStep2": "Click \"Show the QR code\", then scan it with the app (\"+\" button).",
+        "mfaStep3": "Enter here the 6-digit code the app shows for ETHNIKA.",
+        "mfaQrAlt": "QR code to scan with the authenticator app",
+        "mfaScan": "Scan this QR code with the app.",
+        "mfaKeyHint": "Can't scan? Add an account \"with a key\" and enter this one:",
+        "later": "Sign out and finish later"
+      },
+      "leads": {
+        "subtitle": "{count, plural, =0 {No requests} one {# request} other {# requests}} for these filters",
+        "allTypes": "All types",
+        "assigneeFilter": "Filter by assignee",
+        "everyone": "Whole team",
+        "mine": "My requests",
+        "unassigned": "Unassigned",
+        "apply": "Filter",
+        "pagination": "Result pages",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {page} of {pages}",
+        "receivedOn": "Received on {date}",
+        "pdf": "PDF summary",
+        "assignedTo": "Handled by:",
+        "takeIt": "I'll take it",
+        "release": "Release",
+        "noteLabel": "Add an internal note",
+        "addNote": "Add note",
+        "export": "Export CSV",
+        "exportMenu": "Export",
+        "exportScope": "{count, plural, one {# request} other {# requests}}, with the current filters",
+        "formats": {
+          "xlsx": {
+            "label": "Excel (.xlsx)",
+            "hint": "Formatted: filters, dates, summary by status and type"
+          },
+          "csv": {
+            "label": "CSV",
+            "hint": "Raw, for another tool or an import"
+          }
+        }
+      },
+      "flights": {
+        "title": "Flights",
+        "subtitle": "Search with the provider, hold without payment or ticketing, deadline tracking.",
+        "searchCta": "Search a flight",
+        "searchForLead": "Search a flight",
+        "forLead": "Searching for request",
+        "origin": "From (IATA code)",
+        "destination": "To (IATA code)",
+        "departDate": "Outbound",
+        "returnDate": "Return (optional)",
+        "adults": "Adults",
+        "children": "Children (2-11)",
+        "infants": "Infants (< 2)",
+        "cabin": "Cabin",
+        "cabins": {
+          "eco": "Economy",
+          "business": "Business",
+          "first": "First"
+        },
+        "search": "Search",
+        "searching": "Searching…",
+        "searchHint": "The simulated Amadeus sandbox can take up to a minute to answer.",
+        "results": "{count, plural, =0 {No offers} one {# offer} other {# offers}} in {seconds} s",
+        "choose": "Select",
+        "direct": "Direct",
+        "stops": "{count, plural, one {# stop} other {# stops}}",
+        "holdable": "Hold available",
+        "instantOnly": "Immediate payment required",
+        "payBefore": "Pay before {date}",
+        "refundable": "Refundable:",
+        "changeable": "Changeable:",
+        "yes": "yes",
+        "no": "no",
+        "unknown": "not specified",
+        "offerTitle": "Flight offer",
+        "backToSearch": "Back to search",
+        "notHoldableHint": "This offer requires immediate payment: no hold is possible. Choose another offer.",
+        "passengersTitle": "Passengers",
+        "passengersHint": "Names exactly as on the passport. This data is sent to the airline and not kept by ETHNIKA.",
+        "leadRef": "Linked request (optional)",
+        "passenger": "Passenger {n} · {type}",
+        "paxTypes": {
+          "adult": "adult",
+          "child": "child",
+          "infant": "infant"
+        },
+        "civility": "Title",
+        "titles": {
+          "mr": "Mr",
+          "mrs": "Mrs",
+          "ms": "Ms",
+          "miss": "Miss",
+          "dr": "Dr"
+        },
+        "givenName": "Given name(s)",
+        "familyName": "Family name",
+        "bornOn": "Date of birth",
+        "gender": "Gender",
+        "genders": {
+          "f": "Female",
+          "m": "Male"
+        },
+        "email": "Email",
+        "phone": "Phone (international format)",
+        "hold": "Place hold",
+        "holding": "Placing hold…",
+        "holdHint": "No payment, no ticket: the hold keeps the seats until the airline deadline.",
+        "holdCreated": "Hold placed: PNR {pnr}.",
+        "holdsTitle": "Flight holds",
+        "noHolds": "No holds yet.",
+        "noHoldsForLead": "No flight hold for this request.",
+        "passengers": "{count, plural, one {# passenger} other {# passengers}}",
+        "bookingStatus": {
+          "held": "On hold",
+          "confirmed": "Ticketed",
+          "cancelled": "Cancelled"
+        },
+        "cancel": "Cancel hold",
+        "cancelConfirm": "Cancel this hold with the airline? The seats will be released.",
+        "cancelYes": "Yes, cancel",
+        "kpiHeld": "Active holds",
+        "kpiHeldNote": "Seats held, not paid",
+        "kpiDue": "Due within 24 h",
+        "kpiDueAlert": "Deadline close: follow up with the client",
+        "kpiDueOk": "No imminent deadline",
+        "kpiConfirmed": "Ticketed",
+        "kpiConfirmedNote": "Holds confirmed with the provider",
+        "kpiCancelled": "Cancelled",
+        "kpiCancelledNote": "By the agency or the airline",
+        "searchSummary": "Query the provider, compare offers, place a hold",
+        "noHoldsHint": "Search a flight above, pick an offer and place a hold to find it here.",
+        "payBeforeShort": "pay before {date}",
+        "bookingTitle": "Flight hold",
+        "pnr": "Booking reference (PNR)",
+        "stale": "The provider did not answer: details from the last synchronisation.",
+        "itinerary": "Itinerary",
+        "details": "Details",
+        "airline": "Airline",
+        "passengersLabel": "Passengers",
+        "provider": "Provider",
+        "createdAt": "Placed on",
+        "lead": "Linked request",
+        "noLead": "No linked request",
+        "deadline": "Payment deadline",
+        "deadlineHint": "Set by the airline: without payment before this date, the seats are released.",
+        "remaining": "{time} left",
+        "expired": "Deadline passed: the airline may have cancelled the hold.",
+        "ticketed": "Tickets issued: no more deadline.",
+        "cancelledInfo": "Hold cancelled: the seats were released.",
+        "noDeadline": "No deadline provided by the provider.",
+        "nextSteps": "Next steps",
+        "step1": "Send the quote to the client and get their approval.",
+        "step2": "Collect the payment before the deadline.",
+        "step3": "Issue the tickets with the provider, then mark the request as Confirmed."
+      },
+      "errors": {
+        "rateLimited": "Too many attempts. Try again in a few minutes.",
+        "invalid": "Incorrect credentials or code.",
+        "unavailable": "Service unavailable. Try again later.",
+        "expired": "Time is up: sign in again.",
+        "codeFormat": "The code has 6 digits.",
+        "passwordInvalid": "Current password is incorrect.",
+        "passwordReused": "Choose a password different from the current one.",
+        "passwordForm": "12 characters minimum, and both entries must match.",
+        "passwordWeak": "Password too weak: mix letters, numbers and symbols.",
+        "mfaRefused": "Code rejected: check the phone's clock and try again.",
+        "noteLength": "The note must be 2 to 2,000 characters long.",
+        "notFound": "Not found.",
+        "notHoldable": "This offer requires immediate payment: no hold possible.",
+        "offerExpired": "Offer expired: search again.",
+        "priceRefused": "The provider did not confirm this offer's price. Search again or choose another offer.",
+        "providerRefused": "The provider rejected the request. Check the details or choose another offer.",
+        "timeout": "The provider did not answer in time. Try again.",
+        "searchForm": "Check the search: two different 3-letter IATA codes, future dates, at most one infant per adult.",
+        "holdForm": "Check the passengers: all fields are required, phone as +224…",
+        "quoteForm": "Check the quote: each line needs a label (2 characters min.), a valid quantity and price; validity date in the future.",
+        "cannotDemoteSelf": "You cannot disable your own account or remove your own administrator role.",
+        "emailTaken": "An account already exists with this email.",
+        "userForm": "Check the name (2 characters minimum), email and role.",
+        "slugTaken": "This URL identifier is already used.",
+        "contentForm": "Check the form: required French fields, valid URL identifier, /images/… or https image, internal link starting with /, valid price.",
+        "manualForm": "Incomplete request.",
+        "nameLength": "The name must be 2 to 120 characters long.",
+        "agencyForm": "Check the fields: valid address, phone and email, payment terms of at least 10 characters.",
+        "paymentsDisabled": "No payment provider is configured.",
+        "quotePaid": "This quote is already fully paid.",
+        "amountInvalid": "Invalid amount: it must be positive and not exceed the balance due.",
+        "paymentClosed": "This payment is already closed.",
+        "uploadType": "Unsupported format: send a JPEG, PNG or WebP photo.",
+        "uploadTooLarge": "Photo too large (15 MB max). Reduce it and try again."
+      },
+      "quotes": {
+        "title": "Quotes",
+        "none": "No quote for this request.",
+        "validUntilShort": "Valid until {date}",
+        "currency": "Currency",
+        "validUntil": "Valid until",
+        "lines": "Items",
+        "label": "Item {n}",
+        "labelPlaceholder": "Conakry – Paris return ticket",
+        "quantity": "Quantity, line {n}",
+        "unitPrice": "Unit price, line {n}",
+        "removeLine": "Remove line {n}",
+        "addLine": "Add a line",
+        "notes": "Notes for the client (optional)",
+        "create": "Create quote",
+        "creating": "Creating…",
+        "created": "Quote {number} created."
+      },
+      "users": {
+        "title": "Users",
+        "subtitle": "Team accounts: role, two-step verification, access.",
+        "newTitle": "New account",
+        "name": "Full name",
+        "email": "Email",
+        "role": "Role",
+        "roles": {
+          "admin": "Administrator",
+          "agent": "Agent"
+        },
+        "create": "Create account",
+        "tempTitle": "Temporary password for {email}",
+        "tempHint": "Shown only once. Hand it over in person or by phone; it must be changed at first sign-in.",
+        "you": "you",
+        "mfaOn": "2FA on",
+        "mfaOff": "2FA not set up",
+        "disabled": "Disabled",
+        "tempPassword": "Temporary password",
+        "locked": "Locked",
+        "lastLogin": "Last sign-in {date}",
+        "neverLoggedIn": "Never signed in",
+        "saveRole": "Save role",
+        "disable": "Disable",
+        "enable": "Enable",
+        "disableConfirm": "Disable this account? Its sessions will be closed immediately.",
+        "enableConfirm": "Enable this account?",
+        "resetPassword": "New password",
+        "resetPasswordConfirm": "Generate a temporary password? The current one will stop working.",
+        "resetMfa": "Reset 2FA",
+        "resetMfaConfirm": "Reset 2FA? The person will have to set it up again at next sign-in.",
+        "confirm": "Confirm",
+        "newHint": "A temporary password is generated and shown only once.",
+        "kpiActive": "Active accounts",
+        "kpiActiveNote": "{disabled, plural, =0 {None disabled} one {# disabled} other {# disabled}}",
+        "kpiAdmins": "Administrators",
+        "kpiAgents": "{count, plural, =0 {no agents} one {# agent} other {# agents}}",
+        "kpiMfa": "2FA enabled",
+        "kpiMfaNote": "{count} account(s) out of {total}",
+        "kpiAttention": "To watch",
+        "kpiAttentionNote": "Locked, temporary password or admin without 2FA",
+        "searchPlaceholder": "Name or email…",
+        "states": {
+          "active": "Active",
+          "disabled": "Disabled",
+          "nomfa": "No 2FA",
+          "attention": "To watch"
+        },
+        "manage": "Manage",
+        "selfHint": "Your own role and access are managed by another administrator."
+      },
+      "audit": {
+        "title": "Audit log",
+        "subtitle": "Sign-ins, accounts, requests, quotes, content and flights. No client data is stored here.",
+        "empty": "No entries.",
+        "system": "System",
+        "unknownActor": "Deleted account",
+        "pagination": "Log pages",
+        "newer": "Newer",
+        "older": "Older",
+        "actions": {
+          "auth_login": "Sign-in",
+          "auth_login_failed": "Failed sign-in",
+          "auth_locked": "Account locked",
+          "auth_logout": "Sign-out",
+          "auth_mfa_enabled": "2FA enabled",
+          "auth_mfa_reset": "2FA reset",
+          "auth_password_changed": "Password changed",
+          "user_created": "Account created",
+          "user_updated": "Account updated",
+          "user_disabled": "Account disabled",
+          "lead_status_changed": "Request status changed",
+          "lead_assigned": "Request assigned",
+          "lead_exported": "CSV export",
+          "lead_pdf": "PDF summary",
+          "quote_created": "Quote created",
+          "content_created": "Content created",
+          "content_updated": "Content updated",
+          "content_deleted": "Content deleted",
+          "flight_hold": "Flight hold placed",
+          "flight_cancelled": "Flight hold cancelled",
+          "maintenance_purge": "Automatic purge",
+          "lead_created": "Request entered by the team"
+        },
+        "kpiLogins": "Sign-ins",
+        "kpiFailed": "Failed sign-ins",
+        "kpiLocked": "Locked accounts",
+        "kpiTotal": "Logged actions",
+        "kpiTotalNote": "Over the last 7 days",
+        "last24h": "Last 24 hours",
+        "last7d": "Over the last 7 days",
+        "categories": {
+          "auth": "Sign-ins",
+          "user": "Accounts",
+          "lead": "Requests",
+          "quote": "Quotes",
+          "content": "Content",
+          "flight": "Flights",
+          "maintenance": "Maintenance"
+        },
+        "actorFilter": "Person",
+        "everyone": "Whole team",
+        "countHint": "Chip counters: last 7 days"
+      },
+      "content": {
+        "offersTitle": "Offers",
+        "offersSubtitle": "Cards on the website's Offers page. Only published offers are visible.",
+        "offersNew": "New offer",
+        "circuitsTitle": "Tours",
+        "circuitsSubtitle": "Website tours: page, itinerary, departures. Only published tours are visible.",
+        "circuitsNew": "New tour",
+        "empty": "No content yet.",
+        "savedNotice": "Saved.",
+        "isPublished": "Published",
+        "isDraft": "Draft",
+        "publish": "Publish",
+        "unpublish": "Unpublish",
+        "delete": "Delete",
+        "deleteConfirm": "Permanently delete this content? It will disappear from the website.",
+        "deleteYes": "Yes, delete",
+        "positionShort": "order {n}",
+        "general": "General",
+        "slug": "URL identifier",
+        "slugHint": "Lowercase, digits and hyphens: fouta-djallon-4-days",
+        "offerType": "Type",
+        "offerTypes": {
+          "vol": "Flight",
+          "pack": "Package",
+          "last": "Last minute"
+        },
+        "position": "Display order",
+        "positionHint": "0 first",
+        "validUntil": "Valid until (optional)",
+        "imageUrl": "Image",
+        "imageHint": "Site path (/images/…) or https address",
+        "href": "Card link",
+        "hrefHint": "Website page: /billetterie?vers=CDG#demande",
+        "price": "Price (optional)",
+        "priceFrom": "From (optional)",
+        "priceHint": "Empty = \"on request\"",
+        "currency": "Currency",
+        "textsFr": "French texts",
+        "textsEn": "English texts",
+        "textsEnHint": "Optional: otherwise the English site shows the French text.",
+        "kicker": "Kicker",
+        "title": "Title",
+        "description": "Description",
+        "imageAlt": "Image description",
+        "imageAltHint": "For screen readers and search engines.",
+        "theme": "Theme",
+        "themes": {
+          "nature": "Nature",
+          "plage": "Beach",
+          "culture": "Culture",
+          "diaspora": "Diaspora"
+        },
+        "region": "Region",
+        "regions": {
+          "moyenne-guinee": "Middle Guinea",
+          "basse-cote": "Lower Coast",
+          "conakry": "Conakry",
+          "guinee": "All of Guinea"
+        },
+        "durationDays": "Duration (days)",
+        "cardTitle": "Short title (cards)",
+        "headline": "Page title",
+        "place": "Place",
+        "durationLabel": "Displayed duration",
+        "summary": "Summary",
+        "intro": "Introduction (optional)",
+        "program": "Itinerary",
+        "programHint": "One block per day. Title and text are required for each filled-in day.",
+        "day": "Day {n}",
+        "dayTitle": "Day {n} title",
+        "dayTitlePh": "Conakry → Mali",
+        "dayMeta": "Day {n} info",
+        "dayMetaPh": "Road · about 6 h",
+        "dayText": "Day {n} details",
+        "dayNight": "Day {n} night",
+        "dayNightPh": "Night: camp",
+        "dayMeals": "Day {n} meals",
+        "dayMealsPh": "Meals: lunch, dinner",
+        "addDay": "Add a day",
+        "remove": "Remove",
+        "included": "Included",
+        "excluded": "Not included",
+        "onePerLine": "One item per line.",
+        "departures": "Departures",
+        "departuresHint": "Dates as free text; rows without dates are ignored.",
+        "depDates": "Departure {n} dates",
+        "depStatus": "Departure {n} availability",
+        "depPrice": "Departure {n} price",
+        "depStatuses": {
+          "available": "Available",
+          "last": "Last seats",
+          "request": "On request"
+        },
+        "addDeparture": "Add a departure",
+        "removeDeparture": "Remove departure {n}",
+        "published": "Published on the website",
+        "save": "Save",
+        "saving": "Saving…",
+        "importHint": "{count, plural, one {# item from the current website is} other {# items from the current website are}} not in the back-office yet. As soon as content is published here, the website only shows published content: import the existing items first.",
+        "import": "Import {count, plural, one {the item} other {the # items}}",
+        "importing": "Importing…",
+        "importDone": "Import finished: {created} created, {skipped} already present, {failed} failed.",
+        "kpiTotal": "In total",
+        "kpiTotalNote": "Drafts included",
+        "kpiPublished": "Published",
+        "kpiPublishedNote": "Visible on the website",
+        "kpiDraft": "Drafts",
+        "kpiDraftNote": "Hidden until published",
+        "kpiExpired": "Expired",
+        "kpiExpiredNote": "Validity date passed: hidden from the website",
+        "kpiNoDeparture": "No departure",
+        "kpiNoDepartureNote": "No date offered on the page",
+        "searchPlaceholder": "Title, identifier, place…",
+        "expired": "Expired",
+        "noDeparture": "No departure",
+        "updated": "updated {date}",
+        "editLabel": "Edit {title}",
+        "postsTitle": "Blog posts",
+        "postsSubtitle": "Website posts and news. Only published posts are visible.",
+        "postsNew": "New post",
+        "kpiTodo": "To write",
+        "kpiTodoNote": "Text still marked “to write”",
+        "featured": "Featured",
+        "todo": "To write"
+      },
+      "manual": {
+        "title": "New request",
+        "subtitle": "Request received by phone, WhatsApp or at the agency. It is assigned to you automatically.",
+        "back": "Requests",
+        "client": "Client",
+        "type": "Request type",
+        "kinds": {
+          "billet": "Flight ticket",
+          "circuit": "Tour",
+          "pro": "Group, pilgrimage, business",
+          "contact": "Other"
+        },
+        "fullName": "Full name",
+        "phone": "Phone / WhatsApp",
+        "email": "Email",
+        "emailOptional": "Email (optional)",
+        "flight": "Flight",
+        "trip": "Trip",
+        "trips": {
+          "rt": "Round trip",
+          "ow": "One way"
+        },
+        "from": "From (IATA)",
+        "to": "To (IATA)",
+        "cabin": "Cabin",
+        "cabins": {
+          "eco": "Economy",
+          "business": "Business",
+          "first": "First"
+        },
+        "departDate": "Outbound",
+        "returnDate": "Return",
+        "adults": "Adults",
+        "children": "Children",
+        "infants": "Infants",
+        "circuit": "Tour",
+        "circuitName": "Chosen tour",
+        "travellers": "Travellers",
+        "travelDate": "Preferred date",
+        "pro": "Business request",
+        "request": "Kind",
+        "requests": {
+          "groupe": "Group",
+          "pelerinage": "Pilgrimage",
+          "entreprise": "Company",
+          "ong": "NGO / institution"
+        },
+        "organisation": "Organisation",
+        "period": "Period",
+        "details": "Details",
+        "subject": "Subject",
+        "message": "Details (optional)",
+        "messageRequired": "Details (10 characters minimum)",
+        "consent": "The client agrees to their data being used to handle the request (consent collected by the agent).",
+        "hint": "An acknowledgement is sent if the client gave an email.",
+        "save": "Save request",
+        "saving": "Saving…",
+        "fieldsToCheck": "Fields to check: {fields}.",
+        "fields": {
+          "fullName": "name",
+          "phone": "phone",
+          "email": "email",
+          "consent": "consent",
+          "from": "from",
+          "to": "to",
+          "departDate": "outbound",
+          "returnDate": "return",
+          "adults": "adults",
+          "children": "children",
+          "infants": "infants",
+          "travellers": "travellers",
+          "travelDate": "date",
+          "message": "details",
+          "circuit": "tour",
+          "request": "kind",
+          "type": "type"
+        }
+      },
+      "auth": {
+        "kicker": "ETHNIKA back-office",
+        "tagline": "Requests, quotes and flights, in one place.",
+        "taglineText": "The team's workspace: follow every traveller from the first request to ticketing.",
+        "secure": "Encrypted sign-in · two-step verification",
+        "backToSite": "Back to the website"
+      },
+      "dash": {
+        "chartTitle": "Requests received",
+        "chartTotal": "{count, plural, =0 {No requests} one {# request} other {# requests}} over {days} days",
+        "period": "Period",
+        "days": "{n} d",
+        "myRequests": "My requests",
+        "dueSoonBanner": "{count, plural, one {# flight hold is} other {# flight holds are}} due within 24 h.",
+        "kpiMine": "My open requests",
+        "kpiMineNote": "New or in progress, assigned to you",
+        "kpiHandling": "Handling time",
+        "kpiHandlingNote": "Median over 30 days",
+        "kpiHolds": "Flight holds",
+        "kpiHoldsDue": "{count} to pay within 24 h",
+        "kpiHoldsOk": "No deadline soon",
+        "statusTitle": "By status",
+        "statusHint": "{count, plural, one {# request} other {# requests}} in total",
+        "sourceSite": "Received via the website",
+        "sourceManual": "Entered by the team",
+        "quotesTitle": "Quotes · last 30 days",
+        "quotesCount": "{count, plural, one {quote issued} other {quotes issued}}",
+        "quotesTotal": "Total in {currency}",
+        "quotesNone": "No quote over the period.",
+        "fullLog": "Full log",
+        "trend": "7-day trend: {delta}"
+      },
+      "drawer": {
+        "phone": "Phone",
+        "email": "Email",
+        "received": "Received on",
+        "source": "Origin",
+        "sourceSite": "Website form",
+        "sourceManual": "Entered by the team",
+        "open": "Full record"
+      },
+      "settings": {
+        "title": "Settings",
+        "subtitle": "Your account, its security and the platform status.",
+        "navLabel": "Settings sections",
+        "tabs": {
+          "profile": "Profile",
+          "security": "Security",
+          "sessions": "Active sessions",
+          "system": "System",
+          "agency": "Agency"
+        },
+        "profileTitle": "Profile",
+        "profileHint": "Your name appears in assignments, request history and on quotes.",
+        "name": "Display name",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Profile updated.",
+        "accountTitle": "Account",
+        "email": "Login (email)",
+        "emailHint": "The login email cannot be changed here: ask an administrator to create a new account if needed.",
+        "role": "Role",
+        "roles": {
+          "admin": "Administrator",
+          "agent": "Agent"
+        },
+        "roleHint": {
+          "admin": "the whole back-office, including content and accounts",
+          "agent": "requests, quotes and flights"
+        },
+        "mfa": "Two-step verification",
+        "mfaOn": "On",
+        "mfaOff": "Off",
+        "memberSince": "Account created on",
+        "lastLogin": "Last sign-in",
+        "mfaActiveHint": "A code from your authenticator app is required at each sign-in.",
+        "mfaAgentHint": "Optional for an agent, but strongly recommended: it protects your account even if your password leaks.",
+        "mfaLost": "Lost or changed phone: ask an administrator to reset your 2FA in Users, then set it up again at your next sign-in.",
+        "tipsTitle": "Good practice",
+        "tip1": "A password used only for ETHNIKA, never reused elsewhere, at least 12 characters long.",
+        "tip2": "Never share your codes or password, even with a colleague: everyone has their own account.",
+        "tip3": "Sign out on a shared computer; idle sessions close on their own after 30 minutes.",
+        "tip4": "A message or call asking for a code is a fraud attempt: the technical team never asks for it.",
+        "sessionsTitle": "Active sessions",
+        "sessionsHint": "Devices currently signed in to your account. Sign out the ones you do not recognise.",
+        "revokeOthers": "Sign out {count, plural, one {the other device} other {the # other devices}}",
+        "revoke": "Sign out",
+        "thisDevice": "This device",
+        "unknownDevice": "Unknown device",
+        "lastSeen": "active {date}",
+        "since": "since {date}",
+        "sessionsRules": "A session expires after 12 hours, or 30 minutes without activity. Changing your password closes all other sessions.",
+        "counts": {
+          "users": "Active accounts",
+          "leads": "Requests stored",
+          "subscribers": "Newsletter subscribers",
+          "holds": "Active flight holds"
+        },
+        "apiTitle": "API",
+        "online": "Online",
+        "version": "Version",
+        "environment": "Environment",
+        "uptime": "Running for",
+        "siteUrl": "Website address",
+        "servicesTitle": "Services",
+        "servicesHint": "Server configuration (api.env file). A change requires an API restart.",
+        "configured": "Configured",
+        "notConfigured": "Not configured",
+        "smtp": "Email sending",
+        "agencyNotify": "Agency alerts",
+        "pdf": "PDF generation",
+        "flightProvider": "Flight provider",
+        "providers": {
+          "mock": "mock (development)",
+          "duffel": "Duffel",
+          "amadeus": "Amadeus"
+        },
+        "mailTitle": "Emails",
+        "mailSent": "Sent in 24 h",
+        "mailPending": "Queued",
+        "mailFailed": "Permanently failed",
+        "policyTitle": "Security and retention rules",
+        "sessionIdle": "Sign-out after inactivity",
+        "sessionMax": "Maximum session length",
+        "retention": "Retention of closed requests",
+        "minutes": "{n} minutes",
+        "hours": "{n} hours",
+        "daysLong": "{n} days",
+        "payments": "Online payments",
+        "mailProviders": {
+          "resend": "Resend",
+          "smtp": "SMTP"
+        },
+        "paymentProviders": {
+          "mock": "Simulation (test)"
+        }
+      },
+      "list": {
+        "search": "Search",
+        "apply": "Filter",
+        "all": "All",
+        "pagination": "Pagination",
+        "range": "{from}–{to} of {total}",
+        "page": "Page {page} of {pages}",
+        "previous": "Previous page",
+        "next": "Next page",
+        "noMatch": "No results",
+        "noMatchHint": "Nothing matches these filters.",
+        "reset": "Clear filters"
+      },
+      "failure": {
+        "title": "Service temporarily unavailable",
+        "text": "The back-office cannot reach the server. Your data is not lost: try again in a few seconds.",
+        "retry": "Try again",
+        "home": "Dashboard",
+        "hint": "If the problem lasts more than a few minutes, let the technical administrator know."
+      },
+      "agency": {
+        "contact": "Contact details",
+        "legal": "Legal information",
+        "documents": "Documents",
+        "documentsHint": "Texts printed on PDF quotes.",
+        "address": "Address",
+        "openingHours": "Opening hours",
+        "phone": "Phone",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "licence": "Travel agency licence",
+        "rccm": "Trade register (RCCM)",
+        "paymentInstructions": "Payment terms",
+        "paymentHint": "Deposit, balance, accepted payment methods (Orange Money number, bank details, payment at the agency).",
+        "quoteTerms": "Terms recalled on quotes",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Details saved: the next PDFs will use them.",
+        "placeholderHint": "Text in square brackets [ ] is a placeholder to complete.",
+        "missingTitle": "{count, plural, one {# item to complete.} other {# items to complete.}}",
+        "missingList": "Still in brackets or empty: {fields}. These appear as-is on the PDFs.",
+        "complete": "All details are filled in.",
+        "hoursTitle": "Opening hours",
+        "hoursHint": "Shown on the Contact page; the Opening hours line above appears in the website top bar.",
+        "hoursWeekdays": "Monday – Friday",
+        "hoursSaturday": "Saturday",
+        "hoursSunday": "Sunday",
+        "mapTitle": "Map position",
+        "mapHint": "On Google Maps, right-click the agency: the two numbers shown are the latitude then the longitude.",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "fictitiousTitle": "Fictitious details.",
+        "fictitiousText": "These values are for demonstration (website, PDF documents, map). Replace them with the real ones and save: the approximate-location note will disappear from the map."
+      },
+      "payments": {
+        "title": "Payments",
+        "pageTitle": "Payments",
+        "pageSubtitle": "Quote payment links, collections and follow-ups.",
+        "disabledBanner": "No payment provider is configured yet: payment links are disabled. They will be enabled once the provider chosen by the agency is connected.",
+        "disabledHint": "Payment links available once the payment provider is configured.",
+        "createLink": "Payment link",
+        "amountLabel": "Amount ({currency}): empty = balance due",
+        "amountPlaceholder": "Deposit (optional)",
+        "generate": "Generate",
+        "linkReady": "Link ready: send it to the client.",
+        "linkHint": "Shown only once. If lost, generate a new link from the payments list.",
+        "copy": "Copy",
+        "copied": "Copied",
+        "sendWhatsapp": "Send via WhatsApp",
+        "whatsappText": "Hello {name}, here is your secure ETHNIKA payment link: {link}",
+        "renew": "New link",
+        "cancel": "Cancel",
+        "cancelConfirm": "Cancel this payment? The link sent to the client will stop working.",
+        "cancelYes": "Yes, cancel",
+        "paidOn": "paid on {date}",
+        "createdOn": "created on {date}",
+        "status": {
+          "pending": "Pending",
+          "paid": "Paid",
+          "failed": "Failed",
+          "cancelled": "Cancelled",
+          "expired": "Expired"
+        },
+        "kpiPaid": "Collected · 30 d",
+        "kpiPending": "Pending",
+        "kpiFailed": "Failed and expired",
+        "kpiFailedNote": "Follow up with a new link",
+        "kpiTotal": "Payments",
+        "kpiTotalNote": "All links created",
+        "searchPlaceholder": "Reference, client, request…",
+        "empty": "No payments yet",
+        "emptyHint": "Create a link from a quote, on a request page.",
+        "receipt": "PDF receipt"
+      },
+      "notifications": {
+        "label": "Notifications",
+        "labelUnread": "Notifications: {count, plural, one {# unread} other {# unread}}",
+        "title": "Notifications",
+        "subtitle": "What needs your attention · last 7 days",
+        "close": "Close",
+        "empty": "All caught up",
+        "emptyHint": "No new request, payment or deadline to watch.",
+        "kinds": {
+          "lead_new": "New request to handle",
+          "lead_assigned": "Request assigned to you",
+          "payment_received": "Payment received: {amount}",
+          "payment_failed": "Payment failed: send a new link",
+          "hold_due": "Hold {reference} due within 24 h"
+        }
+      },
+      "soon": "Coming soon",
+      "media": {
+        "upload": "Upload a photo",
+        "uploading": "Uploading…",
+        "hint": "JPEG, PNG or WebP, 15 MB max. Or a site path (/images/…)."
+      },
+      "blog": {
+        "slugHint": "Post address: /blog/my-post",
+        "category": "Category",
+        "categories": {
+          "destinations": "Destinations",
+          "conseils": "Tips",
+          "culture": "Culture",
+          "billetterie": "Flights",
+          "actualites": "News"
+        },
+        "publishedAt": "Publication date",
+        "publishedAtHint": "Empty: today's date when published",
+        "cover": "Cover image",
+        "featured": "Featured",
+        "featuredHint": "shown on the home page (“Plan your trip”, 3 posts max) and at the top of the blog",
+        "lead": "Standfirst",
+        "leadHint": "One or two sentences under the post title.",
+        "excerpt": "Card summary",
+        "excerptHint": "Empty: start of the standfirst",
+        "tag": "Label",
+        "tagHint": "Short, shown on the home page",
+        "tags": "Keywords",
+        "tagsHint": "Comma-separated (8 max)",
+        "body": "Post text",
+        "bodyHint": "Simple formatting (see the help below). Reading time is computed automatically.",
+        "bodyEnHint": "Optional: without a translation, the English version shows the French text with a note.",
+        "textsEnHint": "Optional: each empty field falls back to French.",
+        "bodyMode": "Editing mode",
+        "write": "Write",
+        "preview": "Preview",
+        "previewEmpty": "Nothing to show yet.",
+        "syntax": {
+          "title": "Formatting help",
+          "h2": "Heading (shown in the table of contents)",
+          "h3": "Subheading",
+          "emphasis": "Bold and italic",
+          "link": "Link to a site page or an external site",
+          "list": "Bulleted list (1. for a numbered list)",
+          "quote": "Highlighted quote",
+          "image": "Photo with caption: upload it first with “Upload a photo”, then copy its address",
+          "table": "Table",
+          "cta": "Call-to-action box (link, title, text, button)"
+        },
+        "minutes": "{n} min read",
+        "viewOnSite": "View on the website"
+      },
+      "gallery": {
+        "title": "Gallery",
+        "subtitle": "Photos of the website Gallery page. Only visible photos appear there.",
+        "new": "Add a photo",
+        "edit": "Edit photo",
+        "photo": "Photo",
+        "image": "File",
+        "imageHint": "JPEG, PNG or WebP, 15 MB max. Portrait photos are detected automatically.",
+        "category": "Gallery filter",
+        "categories": {
+          "fouta": "Fouta Djallon",
+          "cote": "Lower Coast",
+          "loos": "Loos Islands",
+          "vie": "Local life"
+        },
+        "tall": "Portrait format",
+        "tallHint": "spans two rows of the mosaic",
+        "tallShort": "Portrait",
+        "alt": "Description",
+        "altHint": "What the photo shows (screen readers, viewer)",
+        "place": "Place",
+        "placeHint": "Shown on the thumbnail",
+        "kpiTotal": "Photos",
+        "kpiTotalNote": "Hidden ones included",
+        "kpiPublishedNote": "Visible in the gallery",
+        "kpiHidden": "Hidden",
+        "kpiHiddenNote": "Kept without being shown",
+        "kpiUploaded": "Uploaded",
+        "kpiUploadedNote": "Agency photos (not illustrations)",
+        "searchPlaceholder": "Search a description or place",
+        "visible": "Visible",
+        "hidden": "Hidden",
+        "empty": "No photos yet",
+        "emptyHint": "Add a photo or import the current website's ones.",
+        "show": "Show",
+        "hide": "Hide",
+        "editLabel": "Edit photo “{alt}”",
+        "deleteConfirm": "Delete this photo? The uploaded file is deleted too."
+      }
     }
   },
   "demo": {
     "banner": "Demo site: requests are not sent to the agency.",
     "backOffice": "See the back office",
     "seeRequest": "See my request in the back office (demo)"
+  },
+  "payment": {
+    "title": "Secure payment",
+    "kicker": "Secure payment",
+    "hello": "Hello {name}, here is your payment",
+    "forRequest": "Request {ref} · payment {payment}",
+    "step1": "Check the amount and purpose above.",
+    "step2": "You are redirected to our secure payment provider.",
+    "step3": "You come back here: the confirmation appears as soon as the payment is received.",
+    "pay": "Pay {amount}",
+    "expires": "Link valid until {date}.",
+    "mockNotice": "Test environment: the payment is simulated, nothing is actually charged.",
+    "secureNote": "No bank details are entered on or stored by ETHNIKA.",
+    "contact": "Contact an adviser",
+    "whatsappMessage": "Hello ETHNIKA, I am contacting you about the payment of my request {ref}.",
+    "invalid": {
+      "title": "This payment link is not valid",
+      "text": "It may have been replaced by a newer link. Ask your adviser for a new one."
+    },
+    "paid": {
+      "title": "Thank you {name}!",
+      "subtitle": "Payment received",
+      "text": "We received your payment on {date}. Your adviser will contact you about the next steps of your trip."
+    },
+    "failed": {
+      "title": "The payment did not go through",
+      "text": "Nothing was charged. Contact your adviser to receive a new link."
+    },
+    "expired": {
+      "title": "This link has expired",
+      "text": "For your security, payment links are valid for 7 days. Ask your adviser for a new one."
+    },
+    "cancelled": {
+      "title": "This payment was cancelled",
+      "text": "Your adviser will send you a new link if needed."
+    },
+    "errors": {
+      "checkout": "The payment provider did not answer. Try again in a moment.",
+      "rate": "Too many attempts. Try again in a few minutes."
+    },
+    "simulation": {
+      "badge": "Simulation",
+      "title": "Payment provider (simulation)",
+      "text": "This page stands in for the provider's until the agency chooses one. Pick the outcome to simulate.",
+      "paid": "Payment succeeds",
+      "failed": "Payment fails",
+      "closed": "This payment is already closed."
+    },
+    "receipt": "Download the receipt (PDF)"
+  },
+  "foutaSites": {
+    "sections": {
+      "apercu": "Overview",
+      "voir": "Highlights",
+      "pratique": "Practical info"
+    },
+    "factsLabel": "At a glance",
+    "overviewKicker": "The site",
+    "highlightsKicker": "On site",
+    "highlightsTitle": "What to see and do",
+    "practicalKicker": "Before you go",
+    "practicalTitle": "Practical info",
+    "accessTitle": "Getting there",
+    "bringTitle": "What to bring",
+    "note": "Indicative information: times, access and conditions are confirmed with your quote.",
+    "circuitKicker": "Part of the tour",
+    "circuitText": "This site is part of our Fouta Djallon tour: 4×4 transport, local guide and accommodation included.",
+    "circuitCta": "See the programme",
+    "backToFouta": "The whole Mali & Fouta Djallon destination",
+    "otherKicker": "Nearby",
+    "otherTitle": "Other sites in the Fouta",
+    "discover": "Discover",
+    "sites": {
+      "mont-loura": {
+        "title": "Mount Loura, the “Lady of Mali”",
+        "description": "Highest point of the Fouta Djallon at 1,515 m: the Lady of Mali cliff, Fula villages and views over the highlands.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Mount Loura, the “Lady of Mali”",
+        "imageAlt": "Rocky peaks of the Fouta Djallon",
+        "photoAlt": "Fouta plateau at sunset",
+        "intro": "A few kilometres from the town of Mali, Mount Loura towers over the Fouta Djallon at 1,515 metres. Its nickname, the “Lady of Mali”, comes from a cliff whose profile looks like a woman's face turned towards the horizon.",
+        "text": "You climb on foot, through Fula hamlets and fields, before reaching the plateau, where the view stretches far across the valleys. It is the region's signature excursion, best done with a local guide.",
+        "facts": [
+          {
+            "label": "Altitude",
+            "value": "1,515 m"
+          },
+          {
+            "label": "Duration",
+            "value": "½ to 1 day"
+          },
+          {
+            "label": "Level",
+            "value": "Moderate walk"
+          },
+          {
+            "label": "Season",
+            "value": "Dry season"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "The Lady's cliff",
+            "text": "The stone profile that gave the mountain its nickname, seen from the viewpoint."
+          },
+          {
+            "title": "The summit panorama",
+            "text": "Views over the plateaus, valleys and villages of the Fouta."
+          },
+          {
+            "title": "Fula villages",
+            "text": "Meetings and shared tea with the locals, with your guide as interpreter."
+          },
+          {
+            "title": "Evening light",
+            "text": "Low light across the relief: the best time for photos."
+          }
+        ],
+        "access": "From the town of Mali by 4×4, then on foot with a local guide. We arrange transport, guide and accommodation.",
+        "bring": "Walking shoes, water, a hat and a light sweater: mornings are cool at altitude."
+      },
+      "chutes-de-nguilo": {
+        "title": "Nguilo Falls",
+        "description": "About 5 km of steep trail to reach the foot of Nguilo Falls: a half-day hike with a local guide.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Nguilo Falls",
+        "imageAlt": "Nguilo waterfall",
+        "photoAlt": "Road in a green valley",
+        "intro": "Nguilo Falls have to be earned: about 5 km of steep trail through dense vegetation lead to the foot of the waterfall.",
+        "text": "Allow half a day with a local guide. The falls are at their most powerful at the end of the rainy season; in the dry season, the trail is easier to walk.",
+        "facts": [
+          {
+            "label": "Trail",
+            "value": "~5 km"
+          },
+          {
+            "label": "Duration",
+            "value": "½ day"
+          },
+          {
+            "label": "Level",
+            "value": "Challenging"
+          },
+          {
+            "label": "Season",
+            "value": "Dry season"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "The waterfall",
+            "text": "Water tumbling down the cliff, the reward at the end of the walk."
+          },
+          {
+            "title": "The forest trail",
+            "text": "A steep descent through the vegetation, in the shade of tall trees."
+          },
+          {
+            "title": "A break by the water",
+            "text": "Time to catch your breath and enjoy the cool air before the climb back."
+          },
+          {
+            "title": "Your guide's knowledge",
+            "text": "Plants, stories and Fouta life shared along the way."
+          }
+        ],
+        "access": "From Mali by 4×4, then on foot. A local guide is essential on this trail.",
+        "bring": "Closed shoes with good grip, water, snacks and a change of clothes."
+      },
+      "roches-de-koumba": {
+        "title": "Koumba rocks and Balaki hill",
+        "description": "A short hike in the urban commune of Mali to discover the rocky landscape of the Fouta Djallon.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Koumba rocks and Balaki hill",
+        "imageAlt": "Rocky relief of Koumba",
+        "photoAlt": "Green hills in the mist",
+        "intro": "Without leaving the urban commune of Mali, the Koumba rocks and Balaki hill offer a first taste of the Fouta's rocky landscape.",
+        "text": "A short hike, ideal on the day you arrive or in the late afternoon, to stretch your legs and enjoy the golden light on the rocks.",
+        "facts": [
+          {
+            "label": "Hike",
+            "value": "Short"
+          },
+          {
+            "label": "Duration",
+            "value": "A few hours"
+          },
+          {
+            "label": "Level",
+            "value": "Easy"
+          },
+          {
+            "label": "Season",
+            "value": "All year round"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "Rock formations",
+            "text": "Boulders and cliffs shaped by time, typical of the Fouta."
+          },
+          {
+            "title": "Balaki hill",
+            "text": "An easy viewpoint over Mali and its surroundings."
+          },
+          {
+            "title": "Sunset",
+            "text": "The best time for the walk and for photos."
+          },
+          {
+            "title": "For families",
+            "text": "An accessible outing with no technical difficulty."
+          }
+        ],
+        "access": "From the centre of Mali, on foot or by vehicle, with a local guide.",
+        "bring": "Comfortable shoes, water and a camera."
+      }
+    }
   }
 }

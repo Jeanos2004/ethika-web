@@ -4,7 +4,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
-import { getOffers, offerFilters } from "@/content/offers";
+import { offerFilters } from "@/content/offers";
+import { siteOffers } from "@/lib/content-source";
 import { offerTypes, OfferCard, type OfferType } from "@/components/cards/OfferCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
@@ -27,7 +28,7 @@ export default async function OffresPage({ params, searchParams }: Props) {
   const tc = await getTranslations("common");
   const page = await getPage("offres", locale);
   const type = parseType((await searchParams).type);
-  const offers = getOffers(locale);
+  const offers = await siteOffers(locale);
   const shown = offers.filter((o) => !type || o.type === type);
 
   return (
@@ -60,8 +61,8 @@ export default async function OffresPage({ params, searchParams }: Props) {
           <p className="text-sm text-subtle">{t("disclaimer")}</p>
         </div>
         <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[22px]">
-          {shown.map((o) => (
-            <li key={o.href}>
+          {shown.map((o, i) => (
+            <li key={`${o.href}-${i}`}>
               <OfferCard offer={o} className="h-full" />
             </li>
           ))}

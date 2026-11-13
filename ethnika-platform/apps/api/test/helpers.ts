@@ -12,10 +12,11 @@ export const KEY = "e2e-".padEnd(40, "k");
 export const TEST_PREFIX = "e2e-";
 
 /** Application complète sur la base de DATABASE_URL (migrations appliquées). */
-export async function createApp() {
+export async function createApp(overrides: Record<string, string> = {}) {
   // Jest isole process.env : dotenv y charge le .env local (sans écraser les variables déjà fournies, ex. CI).
   loadDotenv({ quiet: true });
-  const env = loadEnv({ ...process.env, NODE_ENV: "test", INTERNAL_API_KEY: KEY, DATA_ENCRYPTION_KEY: process.env.DATA_ENCRYPTION_KEY ?? "0".repeat(64) });
+  // Tests reproductibles : toujours le fournisseur de vols fictif (Duffel live : test/duffel.live.e2e-spec.ts, opt-in).
+  const env = loadEnv({ ...process.env, NODE_ENV: "test", FLIGHT_PROVIDER: "mock", INTERNAL_API_KEY: KEY, DATA_ENCRYPTION_KEY: process.env.DATA_ENCRYPTION_KEY ?? "0".repeat(64), ...overrides });
   const moduleRef = await Test.createTestingModule({ imports: [AppModule.register(env)] }).compile();
   const app = moduleRef.createNestApplication();
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -34,12 +35,17 @@ export async function agentSession(app: INestApplication, users: UsersService, r
 }
 
 export async function cleanup(prisma: PrismaService) {
+  await prisma.payment.deleteMany({ where: { lead: { fullName: { startsWith: "E2E " } } } });
   await prisma.lead.deleteMany({ where: { fullName: { startsWith: "E2E " } } });
   await prisma.subscriber.deleteMany({ where: { email: { endsWith: "@e2e.example.com" } } });
   await prisma.user.deleteMany({ where: { email: { startsWith: TEST_PREFIX } } });
   await prisma.emailOutbox.deleteMany({ where: { to: { endsWith: "example.com" } } });
   await prisma.offer.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
   await prisma.circuit.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+  await prisma.blogPost.deleteMany({ where: { slug: { startsWith: "e2e-" } } });
+  await prisma.galleryPhoto.deleteMany({ where: { i18n: { path: ["fr", "place"], equals: "E2E" } } });
+  await prisma.media.deleteMany({ where: { name: { startsWith: "e2e-" } } });
+  await prisma.flightBooking.deleteMany({ where: { provider: "mock" } });
 }
 
 /** Session administrateur complète : mot de passe définitif puis 2FA activée (codes TOTP générés localement). */

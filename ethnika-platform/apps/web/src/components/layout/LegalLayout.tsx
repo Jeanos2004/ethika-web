@@ -1,15 +1,15 @@
 import { clsx } from "clsx";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { legalDocs, legalOrder, type LegalKey } from "@/content/legal";
+import { legalDoc, legalDocs, legalOrder, type LegalKey } from "@/content/legal";
 import { ManageCookies } from "@/components/sections/ManageCookies";
 
 /** Document légal (Legal.dc.html) : navigation entre les 4 documents, sections numérotées. */
-/** Textes juridiques en français uniquement (version qui fait foi) ; signalé en anglais. */
+/** En anglais : traduction informative, la version française fait foi (signalé au lecteur). */
 export async function LegalLayout({ doc }: { doc: LegalKey }) {
   const t = await getTranslations("legal");
   const locale = await getLocale();
-  const d = legalDocs[doc];
+  const d = legalDoc(doc, locale);
   return (
     <>
       <section className="mx-auto flex max-w-[1100px] flex-col gap-3.5 px-4 pt-16 sm:px-6">
@@ -40,7 +40,7 @@ export async function LegalLayout({ doc }: { doc: LegalKey }) {
             );
           })}
         </nav>
-        <article lang="fr" className="flex min-w-0 flex-[1_1_560px] flex-col gap-[26px] rounded-[var(--radius-lg)] bg-white p-[clamp(24px,4vw,48px)] shadow-[0_14px_40px_rgb(22_33_28/0.07)]">
+        <article lang={locale} className="flex min-w-0 flex-[1_1_560px] flex-col gap-[26px] rounded-[var(--radius-lg)] bg-white p-[clamp(24px,4vw,48px)] shadow-[0_14px_40px_rgb(22_33_28/0.07)]">
           {locale !== "fr" && (
             <div lang={locale} role="note" className="rounded-2xl bg-gold-50 px-[18px] py-3 text-sm text-gold-700">
               {t("frenchOnly")}

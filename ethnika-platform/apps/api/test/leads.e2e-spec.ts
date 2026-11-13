@@ -98,6 +98,16 @@ describe("API demandes, devis et e-mails (e2e)", () => {
     await bo(api().post(`/v1/leads/${ref}/quotes`)).send({ currency: "GNF", validUntil: "2000-01-01", lines: [] }).expect(400);
   });
 
+  it("un agent saisit une demande reçue par téléphone : source manuelle, attribuée, auditée", async () => {
+    await api().post("/v1/leads/manual").set("x-internal-key", KEY).send(billet).expect(401);
+    const res = await bo(api().post("/v1/leads/manual")).send({ ...billet, fullName: "E2E Saisie Agent" }).expect(201);
+    const lead = await bo(api().get(`/v1/leads/${res.body.reference}`)).expect(200);
+    expect(lead.body).toMatchObject({ source: "manual", fullName: "E2E Saisie Agent" });
+    expect(lead.body.assignedTo).not.toBeNull();
+    expect(await prisma.auditLog.count({ where: { action: "lead.created", target: res.body.reference } })).toBe(1);
+    await bo(api().post("/v1/leads/manual")).send({ ...billet, from: "XX" }).expect(400);
+  });
+
   it("répond 404 pour une référence inconnue ou mal formée", async () => {
     await bo(api().get("/v1/leads/ETH-ZZZZZZ")).expect(404);
     await bo(api().get("/v1/leads/abc")).expect(404);

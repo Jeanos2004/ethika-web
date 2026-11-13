@@ -23,7 +23,7 @@ export function PageHero({ page, crumbs, children, eyebrow, bottomClassName = "p
   if (!page.image) return <PlainHero page={page} crumbs={crumbs} eyebrow={eyebrow}>{children}</PlainHero>;
   return (
     <section className="relative flex min-h-[560px] flex-col overflow-hidden text-white lg:min-h-[640px]">
-      <Image src={page.image} alt={page.imageAlt ?? ""} fill priority sizes="100vw" className="object-cover" />
+      <Image src={page.image} alt={page.imageAlt ?? ""} fill priority sizes="100vw" quality={90} className="object-cover" />
       <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(18_24_21/0.8)_0%,rgb(18_24_21/0.32)_40%,rgb(18_24_21/0.88)_100%)]" />
       <div className={`container-site relative flex flex-1 flex-col justify-end gap-4 pt-44 ${bottomClassName} ${align === "center" ? "items-center text-center" : ""}`}>
         <Breadcrumbs crumbs={crumbs} tone="dark" />

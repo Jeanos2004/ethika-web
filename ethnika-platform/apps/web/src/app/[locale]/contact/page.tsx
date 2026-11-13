@@ -6,6 +6,8 @@ import { getPage, metadataFor } from "@/content/pages";
 import { phoneLink, site, whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { AgencyMap } from "@/components/sections/AgencyMap";
+import { getAgency } from "@/lib/content-source";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
 export const generateMetadata = metadataFor("contact");
@@ -42,10 +44,13 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
+  const agency = await getAgency();
   const tc = await getTranslations("common");
   const page = await getPage("contact", locale);
-  const hours = t.raw("hours") as { days: string; hours: string }[];
-  const tel = phoneLink();
+  // Libellés des jours traduits ; horaires de Paramètres > Agence.
+  const hourValues = [agency.hours.weekdays, agency.hours.saturday, agency.hours.sunday];
+  const hours = (t.raw("hours") as { days: string; hours: string }[]).map((h, i) => ({ ...h, hours: hourValues[i] || h.hours }));
+  const tel = phoneLink(agency.phone);
   return (
     <>
       <PageHero page={page} crumbs={[{ href: "/", label: tc("home") }, { label: page.title }]} bottomClassName="pb-[150px]" align="center" />
@@ -54,7 +59,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       <section aria-label={t("reachLabel")} className="container-site relative z-10 -mt-[100px]">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-[18px]">
           <ContactCard icon="phone" title={t("phone")} href={tel.startsWith("tel:") ? tel : undefined} iconTint="bg-brand-red text-white">
-            <span className="font-mono text-muted">{site.contact.phone}</span>
+            <span className="font-mono text-muted">{agency.phone}</span>
           </ContactCard>
           <ContactCard icon="whatsapp" title="WhatsApp" href={whatsappLink(t("whatsappMessage"))} external tone="green" iconTint="bg-white text-brand-green">
             <span className="text-[15px] text-green-50">{t("whatsappText")}</span>
@@ -72,7 +77,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           </ContactCard>
           <ContactCard icon="pin" title={t("agency")} iconTint="bg-brand-gold text-ink">
             <address className="text-[15px] leading-relaxed text-muted not-italic">
-              {site.contact.address}
+              {agency.address}
               <br />
               {t("country")}
             </address>
@@ -88,11 +93,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           <LeadForm />
         </div>
         <div className="flex min-w-0 flex-[1_1_400px] flex-col gap-[18px]">
-          <div className="flex min-h-[340px] flex-1 flex-col items-center justify-center gap-2.5 rounded-[30px] border-[1.5px] border-dashed border-line-strong bg-sand text-subtle">
-            <Icon name="pin" size={30} />
-            <strong>{t("map")}</strong>
-            <span className="text-sm">{site.contact.address}</span>
-          </div>
+          <AgencyMap agency={agency} />
           <div className="flex flex-col gap-3 rounded-[var(--radius-card)] bg-night p-[26px] text-white">
             <h2 className="text-[19px] font-bold">{t("hoursTitle")}</h2>
             <dl>

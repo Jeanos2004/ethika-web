@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { circuits, getLocalizedCircuit } from "@/content/circuits";
+import { circuits } from "@/content/circuits";
+import { siteCircuit } from "@/lib/content-source";
 import { renderOg } from "@/lib/og";
 
 export const size = { width: 1200, height: 630 };
@@ -12,7 +13,7 @@ export function generateStaticParams() {
 
 export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
-  const c = getLocalizedCircuit(slug, locale);
+  const c = await siteCircuit(slug, locale);
   if (!c) notFound();
   return renderOg({
     title: c.headline,

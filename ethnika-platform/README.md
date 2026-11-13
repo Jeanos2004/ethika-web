@@ -18,7 +18,7 @@ pnpm check                      # lint + typecheck + build
   - Toutes les routes avec leur SEO.
   - Accueil (début), Contact (formulaire sécurisé complet) et 404 intégrés.
   - En-têtes de sécurité et CSP.
-- `apps/web/public` : logos (SVG), icônes et favicons, 25 photos d'illustration (Pixabay).
+- `apps/web/public` : logos (SVG), icônes et favicons, 25 photos d'illustration en 3840 px (Unsplash, licence libre).
 - `design/maquettes` : les 25 maquettes validées (référence d'intégration).
 - `design/brand/ETHNIKA_Logo_Pack_HD.zip` : pack logo complet (SVG, PDF, PNG 4000 px, déclinaisons).
 - `docs/` :

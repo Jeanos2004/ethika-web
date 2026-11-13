@@ -33,30 +33,35 @@ enum LeadEventKind {
   note
   exported
   assigned
+  flight_hold
+  payment_requested
+  payment_received
 }
 
 /// Demande reçue du site (ou saisie par un agent).
 model Lead {
-  id           String      @id @default(uuid()) @db.Uuid
+  id             String          @id @default(uuid()) @db.Uuid
   /// Référence publique ETH-XXXXXX, communiquée au client.
-  reference    String      @unique @db.VarChar(16)
-  type         LeadType
-  status       LeadStatus  @default(new)
-  source       String      @default("site") @db.VarChar(16)
-  fullName     String      @db.VarChar(120)
-  phone        String      @db.VarChar(20)
-  email        String?     @db.VarChar(200)
-  locale       String      @default("fr") @db.VarChar(5)
+  reference      String          @unique @db.VarChar(16)
+  type           LeadType
+  status         LeadStatus      @default(new)
+  source         String          @default("site") @db.VarChar(16)
+  fullName       String          @db.VarChar(120)
+  phone          String          @db.VarChar(20)
+  email          String?         @db.VarChar(200)
+  locale         String          @default("fr") @db.VarChar(5)
   /// Détails propres au type (trajet, circuit, effectif…), validés par Zod avant écriture.
-  details      Json
-  message      String?     @db.Text
+  details        Json
+  message        String?         @db.Text
   /// Agent en charge (null = non attribuée).
-  assignedToId String?     @db.Uuid
-  assignedTo   User?       @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  events       LeadEvent[]
-  quotes       Quote[]
+  assignedToId   String?         @db.Uuid
+  assignedTo     User?           @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  events         LeadEvent[]
+  quotes         Quote[]
+  flightBookings FlightBooking[]
+  payments       Payment[]
 
   @@index([status, createdAt])
   @@index([type, createdAt])
@@ -104,27 +109,29 @@ enum Role {
 
 /// Compte du back-office. Aucun compte par défaut : le premier admin est créé en ligne de commande.
 model User {
-  id                 String    @id @default(uuid()) @db.Uuid
-  email              String    @unique @db.VarChar(200)
-  name               String    @db.VarChar(120)
-  role               Role      @default(agent)
+  id                  String    @id @default(uuid()) @db.Uuid
+  email               String    @unique @db.VarChar(200)
+  name                String    @db.VarChar(120)
+  role                Role      @default(agent)
   /// Empreinte argon2id (jamais le mot de passe).
-  passwordHash       String    @db.VarChar(255)
+  passwordHash        String    @db.VarChar(255)
   /// Secret TOTP chiffré (AES-256-GCM, clé DATA_ENCRYPTION_KEY) ; null tant que la 2FA n'est pas configurée.
-  totpSecret         String?   @db.VarChar(255)
-  totpEnabled        Boolean   @default(false)
+  totpSecret          String?   @db.VarChar(255)
+  totpEnabled         Boolean   @default(false)
   /// Dernier pas TOTP accepté : un même code ne peut pas servir deux fois (rejeu).
-  totpLastStep       Int?
-  failedAttempts     Int       @default(0)
-  lockCount          Int       @default(0)
-  lockedUntil        DateTime?
-  disabled           Boolean   @default(false)
-  mustChangePassword Boolean   @default(true)
-  lastLoginAt        DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  sessions           Session[]
-  assignedLeads      Lead[]    @relation("LeadAssignee")
+  totpLastStep        Int?
+  failedAttempts      Int       @default(0)
+  lockCount           Int       @default(0)
+  lockedUntil         DateTime?
+  disabled            Boolean   @default(false)
+  mustChangePassword  Boolean   @default(true)
+  lastLoginAt         DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  sessions            Session[]
+  assignedLeads       Lead[]    @relation("LeadAssignee")
+  /// Dernière ouverture de la cloche du back-office (compteur de notifications non lues).
+  notificationsSeenAt DateTime?
 }
 
 /// Session du back-office. Seule l'empreinte SHA-256 du jeton est stockée.
@@ -269,4 +276,164 @@ model Circuit {
   updatedAt    DateTime @updatedAt
 
   @@index([published, position])
+}
+
+/// Article du blog. Corps en Markdown (sous-ensemble sûr rendu par le site) et textes FR/EN dans `i18n`.
+model BlogPost {
+  id          String    @id @default(uuid()) @db.Uuid
+  slug        String    @unique @db.VarChar(80)
+  /// destinations | conseils | culture | billetterie | actualites
+  category    String    @db.VarChar(20)
+  imageUrl    String    @db.VarChar(300)
+  /// { fr: { title, lead, excerpt, tag, imageAlt, body, tags: [] }, en: { … } }
+  i18n        Json
+  /// Mis en avant sur l'accueil (bloc « Préparez votre voyage »).
+  featured    Boolean   @default(false)
+  published   Boolean   @default(false)
+  /// Date affichée : fixée à la première publication, modifiable.
+  publishedAt DateTime? @db.Date
+  position    Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published, position])
+}
+
+/// Photo de la page Galerie. Légendes FR/EN dans `i18n` : { fr: { alt, place }, en: { … } }.
+model GalleryPhoto {
+  id        String   @id @default(uuid()) @db.Uuid
+  imageUrl  String   @db.VarChar(300)
+  /// fouta | cote | loos | vie
+  category  String   @db.VarChar(20)
+  /// Photo en hauteur (occupe deux lignes de la mosaïque).
+  tall      Boolean  @default(false)
+  i18n      Json
+  published Boolean  @default(true)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, position])
+}
+
+/// Image envoyée depuis le back-office, stockée en base (pas de service de fichiers à gérer). Servie par le site sous /media/<id>.
+model Media {
+  id          String   @id @default(uuid()) @db.Uuid
+  mimeType    String   @db.VarChar(40)
+  bytes       Bytes
+  size        Int
+  width       Int?
+  height      Int?
+  name        String?  @db.VarChar(160)
+  createdById String?  @db.Uuid
+  createdAt   DateTime @default(now())
+}
+
+/**
+ * ---------------------------- Vols : options posées chez le fournisseur ----------------------------
+ */
+
+enum FlightBookingStatus {
+  held
+  confirmed
+  cancelled
+}
+
+/// Option (PNR) posée chez le fournisseur par un agent. Les données des passagers restent chez le fournisseur.
+model FlightBooking {
+  id                 String              @id @default(uuid()) @db.Uuid
+  provider           String              @db.VarChar(20)
+  providerOrderId    String              @unique @db.VarChar(80)
+  bookingReference   String?             @db.VarChar(20)
+  status             FlightBookingStatus
+  /// Montant décimal tel que renvoyé par le fournisseur (chaîne, jamais un flottant).
+  totalAmount        String              @db.VarChar(20)
+  currency           String              @db.VarChar(3)
+  payBefore          DateTime?
+  /// Trajet résumé (origine, destination, dates, compagnie) pour l'affichage, sans donnée personnelle.
+  itinerary          Json
+  passengerCount     Int
+  leadId             String?             @db.Uuid
+  lead               Lead?               @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  createdBy          String              @db.Uuid
+  /// Alerte d'échéance envoyée à l'agence (une seule fois).
+  deadlineNotifiedAt DateTime?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@index([status, payBefore])
+  @@index([leadId])
+}
+
+/**
+ * ---------------------------- Agence ----------------------------
+ */
+
+/// Coordonnées et mentions de l'agence (ligne unique, id = 1), modifiables par un administrateur.
+/// Utilisées sur le site public et les PDF. Valeurs fictives par défaut (verified = false) jusqu'à la saisie des vraies.
+model AgencySettings {
+  id                  Int      @id @default(1)
+  address             String   @default("Immeuble Kakimbo, Avenue de la République, Kaloum, Conakry") @db.VarChar(200)
+  phone               String   @default("+224 622 00 00 00") @db.VarChar(40)
+  whatsapp            String   @default("+224 622 00 00 00") @db.VarChar(40)
+  email               String   @default("contact@ethnikatour.com") @db.VarChar(200)
+  licence             String   @default("AGV-GN-2026-0000") @db.VarChar(80)
+  rccm                String   @default("GN.TCC.2026.B.00000") @db.VarChar(80)
+  openingHours        String   @default("Lun – Sam · 8 h 30 – 18 h") @db.VarChar(200)
+  hoursWeekdays       String   @default("8 h 30 – 18 h 00") @db.VarChar(60)
+  hoursSaturday       String   @default("9 h 00 – 13 h 00") @db.VarChar(60)
+  hoursSunday         String   @default("Fermé · WhatsApp") @db.VarChar(60)
+  /// Position sur la carte de la page Contact (degrés décimaux).
+  latitude            Float    @default(9.5092)
+  longitude           Float    @default(-13.7122)
+  /// Modalités de règlement imprimées sur les devis (comptes, Orange Money, espèces en agence…).
+  paymentInstructions String   @default("Acompte de 30 % à la confirmation, solde avant l'émission des billets. Orange Money : 622 00 00 00 · virement : Ecobank Guinée, compte 0000 0000 0000 · espèces ou carte en agence.") @db.Text
+  /// Conditions rappelées sur les devis (renvoi aux CGV).
+  quoteTerms          String   @default("Conditions générales de vente sur ethnikatour.com/cgv.") @db.Text
+  /// Faux tant qu'un administrateur n'a pas enregistré les vraies coordonnées (les valeurs par défaut sont fictives).
+  verified            Boolean  @default(false)
+  updatedBy           String?  @db.Uuid
+  updatedAt           DateTime @updatedAt
+}
+
+/**
+ * ---------------------------- Paiements ----------------------------
+ */
+
+enum PaymentStatus {
+  pending
+  paid
+  failed
+  cancelled
+  expired
+}
+
+/// Paiement d'un devis, encaissé chez un prestataire (redirection : aucune donnée de carte ne transite par l'API).
+/// Le client reçoit un lien /paiement/<reference>?t=<jeton> ; seul le hachage du jeton est stocké.
+model Payment {
+  id          String        @id @default(uuid()) @db.Uuid
+  /// Référence lisible : PAY-XXXXXX.
+  reference   String        @unique @db.VarChar(16)
+  leadId      String        @db.Uuid
+  lead        Lead          @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  quoteId     String?       @db.Uuid
+  /// Unités entières de la devise (GNF, centimes d'euro).
+  amount      BigInt
+  currency    String        @db.VarChar(3)
+  label       String        @db.VarChar(160)
+  status      PaymentStatus @default(pending)
+  provider    String        @db.VarChar(20)
+  /// Identifiant de la transaction chez le prestataire (rapprochement, remboursement).
+  providerRef String?       @db.VarChar(120)
+  /// Moyen utilisé, tel que renvoyé par le prestataire (orange_money, card…).
+  method      String?       @db.VarChar(40)
+  tokenHash   String        @unique @db.VarChar(64)
+  expiresAt   DateTime
+  paidAt      DateTime?
+  createdBy   String        @db.Uuid
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([leadId])
 }

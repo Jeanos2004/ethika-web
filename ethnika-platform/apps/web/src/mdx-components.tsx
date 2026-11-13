@@ -30,7 +30,7 @@ function A({ href = "", children }: ComponentProps<"a">) {
 
 /** Image d'article avec légende. Sources limitées aux images du site. */
 function Figure({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
-  if (!src.startsWith("/images/")) return null;
+  if (!/^\/(images|media)\//.test(src)) return null;
   return (
     <figure className="my-2">
       <div className="relative h-[260px] overflow-hidden rounded-3xl sm:h-[380px]">
@@ -62,7 +62,7 @@ function Todo({ children }: { children: ReactNode }) {
   return <p className="rounded-[var(--radius-md)] border-[1.5px] border-dashed border-line-strong p-6 text-base text-muted">{children}</p>;
 }
 
-const components: MDXComponents = {
+export const components: MDXComponents = {
   h2: ({ children }) => (
     <h2 id={slugify(textOf(children))} className="mt-4 scroll-mt-[calc(var(--header-h)+24px)] text-[clamp(26px,3vw,32px)] leading-[1.15] font-bold tracking-[-0.025em] text-night">
       {children}

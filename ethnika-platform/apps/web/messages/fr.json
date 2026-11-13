@@ -12,7 +12,7 @@
       "description": "Plages, îles, hauts plateaux et culture vivante : les régions et destinations de Guinée.",
       "kicker": "Découvrir la Guinée",
       "heading": "Un pays, mille horizons",
-      "imageAlt": "Vue aérienne d'une côte verdoyante"
+      "imageAlt": "Vue aérienne d'une plage bordée de palmiers"
     },
     "fouta": {
       "title": "Mali & le Fouta Djallon",
@@ -138,7 +138,7 @@
     "description": "Agence de tourisme et de voyage à Conakry : billetterie aérienne, circuits et séjours en Guinée, groupes, pèlerinages et voyages d'affaires.",
     "footerAbout": "Agence de tourisme et de voyage à Conakry. Billetterie aérienne et circuits en Guinée.",
     "licence": "Licence n° {licence} · RCCM {rccm}",
-    "copyright": "© {year} {name} · Photos d'illustration : Pixabay",
+    "copyright": "© {year} {name} · Photos d'illustration : Unsplash",
     "hours": "Lun – Sam · [HORAIRES]",
     "address": "[Quartier], Conakry"
   },
@@ -441,7 +441,29 @@
     "success": "Inscription enregistrée. Désinscription possible à tout moment.",
     "note": "Une alerte par e-mail lors des nouvelles offres. Désinscription à tout moment (",
     "privacy": "confidentialité",
-    "noteEnd": ")."
+    "noteEnd": ").",
+    "token": {
+      "kicker": "Alertes promo",
+      "working": "Un instant…",
+      "seeOffers": "Voir les offres du moment",
+      "confirm": {
+        "title": "Confirmer votre inscription",
+        "text": "Cliquez sur le bouton pour recevoir nos offres et départs à prix doux. Vous pourrez vous désinscrire à tout moment depuis chaque e-mail.",
+        "button": "Confirmer mon inscription",
+        "done": "C'est confirmé : vous recevrez nos prochaines alertes promo."
+      },
+      "unsubscribe": {
+        "title": "Se désinscrire",
+        "text": "Cliquez sur le bouton pour ne plus recevoir nos alertes promo.",
+        "button": "Me désinscrire",
+        "done": "C'est fait : vous ne recevrez plus nos alertes promo."
+      },
+      "errors": {
+        "invalid": "Ce lien n'est plus valable. Il a peut-être déjà été utilisé ; sinon, inscrivez-vous de nouveau depuis la page Offres.",
+        "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+        "unavailable": "Service momentanément indisponible. Réessayez plus tard."
+      }
+    }
   },
   "search": {
     "label": "Demande rapide",
@@ -507,16 +529,16 @@
     "whyTitle": "Une agence guinéenne reliée au monde",
     "whyText": "Nous connaissons les départs de Conakry, les correspondances utilisées par la diaspora et les démarches propres à notre pays.",
     "learnMore": "Découvrir l'agence",
-    "whyImageAlt": "Voyageuse marchant sous un ciel lumineux",
+    "whyImageAlt": "Voyageuse souriante en plein air",
     "trustKicker": "Ils nous font confiance",
     "testimonialsTitle": "Ce que disent nos voyageurs",
     "blogKicker": "Guides & conseils",
     "blogTitle": "Préparez votre voyage",
     "instagram": "Instagram",
-    "panoramaAlt": "Voyageur contemplant un panorama de collines",
-    "fourByFourAlt": "Véhicule 4x4 sur une côte rocheuse",
-    "planeAlt": "Avion de ligne dans un ciel nuageux",
-    "coastAlt": "Vue aérienne d'une côte verdoyante et d'une route sinueuse"
+    "panoramaAlt": "Voyageur contemplant une vallée depuis un rocher",
+    "fourByFourAlt": "Véhicule 4x4 sur une plage de sable",
+    "planeAlt": "Avion de ligne dans un ciel bleu",
+    "coastAlt": "Vue aérienne d'une plage bordée de palmiers"
   },
   "slider": {
     "carousel": "carrousel",
@@ -655,7 +677,7 @@
     ],
     "ctaKicker": "Prêt à partir ?",
     "ctaTitle": "Composez votre voyage en Guinée avec nos guides locaux",
-    "ctaImageAlt": "Véhicule 4x4 sur une côte rocheuse"
+    "ctaImageAlt": "Véhicule 4x4 sur une plage de sable"
   },
   "fouta": {
     "chips": [
@@ -758,7 +780,6 @@
     "accessText": "Prévoir un 4×4, un guide local et un hébergement confirmé. Nous organisons tout pour vous.",
     "healthTitle": "Santé : méningite & fièvre jaune",
     "healthText": "Vaccin contre la méningite conseillé de novembre à juin dans le nord et le centre. Fièvre jaune exigée à l'entrée. Voir un médecin 4 à 6 semaines avant.",
-    "map": "[Carte interactive : Conakry → Mali]",
     "asideLabel": "Demander un devis",
     "whyBook": "Pourquoi réserver avec nous",
     "whyItems": [
@@ -785,7 +806,10 @@
         "title": "Dubréka"
       }
     ],
-    "durationLabel": "[X] jours"
+    "durationLabel": "[X] jours",
+    "discoverSite": "Découvrir le site",
+    "map": "Carte Google Maps : itinéraire de Conakry à Mali",
+    "mapOpen": "Ouvrir l'itinéraire dans Google Maps"
   },
   "loos": {
     "intro": "Un archipel au large de la capitale : plages de sable rouge, criques, pêcheurs et histoire. L'escapade idéale le temps d'un week-end.",
@@ -981,7 +1005,7 @@
       "Bondabon",
       "Chutes du mont Dixinn"
     ],
-    "dubrekaImageAlt": "Rivière bordée de végétation avec pirogue",
+    "dubrekaImageAlt": "Enfant dans une pirogue sur une rivière",
     "conakryEyebrow": "07 · CONAKRY · 3 407 327 HAB.",
     "conakryTitle": "Les plages de la capitale",
     "conakryText": "Pour une après-midi sans quitter la ville, avant ou après un vol.",
@@ -1118,7 +1142,7 @@
     "ctaText": "Famille, diaspora, groupe ou mission : dites-nous vos envies, vos dates et votre budget.",
     "ctaButton": "Composer mon voyage",
     "ctaWhatsapp": "Bonjour ETHNIKA, je souhaite un voyage sur mesure.",
-    "ctaImageAlt": "Véhicule 4x4 sur une côte rocheuse"
+    "ctaImageAlt": "Véhicule 4x4 sur une plage de sable"
   },
   "circuit": {
     "duration": "Durée",
@@ -1199,7 +1223,7 @@
     "routesNote": "Tarifs indicatifs : [à saisir par l'agence]",
     "faqKicker": "Questions fréquentes",
     "faqTitle": "Tout savoir avant de réserver",
-    "faqImageAlt": "Voyageuse marchant sous un ciel lumineux",
+    "faqImageAlt": "Voyageuse souriante en plein air",
     "ctaKicker": "Une question ?",
     "ctaTitle": "Envoyez votre itinéraire sur WhatsApp, on vous répond.",
     "ctaWhatsapp": "Bonjour ETHNIKA, voici mon itinéraire : "
@@ -1323,12 +1347,12 @@
   "galerie": {
     "filterLabel": "Filtrer la galerie",
     "all": "Tout",
-    "credits": "Photos d'illustration (Pixabay), à remplacer par les photos de l'agence. Vous avez voyagé avec nous ? Partagez vos photos avec #ETHNIKA.",
+    "credits": "Photos d'illustration (Unsplash), à remplacer par les photos de l'agence. Vous avez voyagé avec nous ? Partagez vos photos avec #ETHNIKA.",
     "ctaTitle": "Ces paysages vous attendent",
     "ctaText": "Choisissez un circuit ou composez votre voyage sur mesure."
   },
   "apropos": {
-    "img1Alt": "Vue aérienne d'une côte verdoyante",
+    "img1Alt": "Vue aérienne d'une plage bordée de palmiers",
     "img2Alt": "Bateaux de pêche au couchant",
     "since": "Depuis Conakry",
     "yearPending": "[Année de création à compléter]",
@@ -1429,7 +1453,11 @@
       }
     ],
     "followKicker": "Suivez-nous",
-    "followTitle": "Offres, départs et photos de Guinée"
+    "followTitle": "Offres, départs et photos de Guinée",
+    "mapTitle": "Carte : emplacement de l'agence ETHNIKA à Conakry",
+    "mapApproximate": "Position indicative : adresse exacte à confirmer.",
+    "mapDirections": "Itinéraire",
+    "mapOpen": "Agrandir"
   },
   "faq": {
     "kicker": "Questions fréquentes",
@@ -1517,7 +1545,12 @@
       "offers": "Offres",
       "blog": "Articles du blog",
       "gallery": "Galerie",
-      "users": "Utilisateurs"
+      "users": "Utilisateurs",
+      "flights": "Vols",
+      "security": "Sécurité",
+      "audit": "Journal d'audit",
+      "settings": "Paramètres",
+      "payments": "Paiements"
     },
     "soon": "Phase 2",
     "agentName": "[Nom du conseiller]",
@@ -1689,12 +1722,1151 @@
       "leads": "Demandes",
       "new": "Nouvelle",
       "more": "Plus",
-      "moreTitle": "Plus d'options"
+      "moreTitle": "Plus d'options",
+      "flights": "Vols"
+    },
+    "live": {
+      "logout": "Se déconnecter",
+      "saving": "Enregistrement…",
+      "hello": "Bonjour {name}",
+      "roles": {
+        "admin": "Administrateur",
+        "agent": "Agent"
+      },
+      "events": {
+        "received": "Demande reçue",
+        "assigned": "Attribution modifiée",
+        "note": "Note interne",
+        "flight_hold": "Option de vol posée",
+        "other": "Événement",
+        "payment_requested": "Lien de paiement envoyé",
+        "payment_received": "Paiement reçu"
+      },
+      "login": {
+        "title": "Connexion",
+        "hint": "Accès réservé à l'équipe ETHNIKA.",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "submit": "Se connecter",
+        "checking": "Vérification…",
+        "mfaTitle": "Code de vérification",
+        "mfaHint": "Ouvrez votre application d'authentification et saisissez le code à 6 chiffres affiché pour ETHNIKA.",
+        "code": "Code",
+        "verify": "Valider",
+        "restart": "Recommencer la connexion",
+        "show": "Afficher",
+        "hide": "Masquer",
+        "forgot": "Mot de passe oublié ou téléphone perdu : demandez une réinitialisation à un administrateur."
+      },
+      "security": {
+        "title": "Sécurité du compte",
+        "allSet": "Compte {email} : mot de passe définitif et vérification en deux étapes en place.",
+        "pending": "Avant d'accéder au back-office, terminez la sécurisation de votre compte.",
+        "passwordTitle": "Mot de passe",
+        "passwordRequired": "Le mot de passe reçu est temporaire : choisissez le vôtre (12 caractères minimum, sans le partager).",
+        "passwordHint": "12 caractères minimum. Les autres sessions seront fermées.",
+        "fields": {
+          "current": "Mot de passe actuel",
+          "next": "Nouveau mot de passe",
+          "confirm": "Confirmer le nouveau mot de passe"
+        },
+        "passwordSubmit": "Changer le mot de passe",
+        "saving": "Enregistrement…",
+        "mfaTitle": "Vérification en deux étapes",
+        "mfaHint": "À chaque connexion, en plus du mot de passe, un code à 6 chiffres affiché par votre téléphone vous sera demandé.",
+        "mfaStart": "Afficher le QR code",
+        "mfaKey": "Clé à saisir dans l'application",
+        "mfaOpenApp": "Ouvrir dans l'application (sur ce téléphone)",
+        "mfaCode": "Code à 6 chiffres",
+        "mfaEnable": "Activer et accéder au back-office",
+        "passwordSaved": "Mot de passe enregistré.",
+        "welcome": "Bienvenue, {name}",
+        "setupTitle": "Sécurisez votre compte",
+        "setupHint": "Deux étapes rapides avant d'accéder au back-office. Elles protègent les données des clients de l'agence.",
+        "progress": "Étapes de sécurisation",
+        "steps": {
+          "password": "Mot de passe",
+          "mfa": "Vérification en deux étapes"
+        },
+        "mfaStep1": "Installez une application d'authentification sur votre téléphone.",
+        "mfaApps": "Google Authenticator, Microsoft Authenticator ou 2FAS.",
+        "mfaStep2": "Cliquez sur « Afficher le QR code », puis scannez-le avec l'application (bouton « + »).",
+        "mfaStep3": "Saisissez ici le code à 6 chiffres que l'application affiche pour ETHNIKA.",
+        "mfaQrAlt": "QR code à scanner avec l'application d'authentification",
+        "mfaScan": "Scannez ce QR code avec l'application.",
+        "mfaKeyHint": "Impossible de scanner ? Ajoutez un compte « avec une clé » et saisissez celle-ci :",
+        "later": "Se déconnecter et terminer plus tard"
+      },
+      "leads": {
+        "subtitle": "{count, plural, =0 {Aucune demande} one {# demande} other {# demandes}} pour ces filtres",
+        "allTypes": "Tous les types",
+        "assigneeFilter": "Filtrer par attribution",
+        "everyone": "Toute l'équipe",
+        "mine": "Mes demandes",
+        "unassigned": "Non attribuée",
+        "apply": "Filtrer",
+        "pagination": "Pages de résultats",
+        "previous": "Précédente",
+        "next": "Suivante",
+        "page": "Page {page} sur {pages}",
+        "receivedOn": "Reçue le {date}",
+        "pdf": "Récapitulatif PDF",
+        "assignedTo": "En charge :",
+        "takeIt": "Je m'en occupe",
+        "release": "Libérer",
+        "noteLabel": "Ajouter une note interne",
+        "addNote": "Ajouter la note",
+        "export": "Exporter CSV",
+        "exportMenu": "Exporter",
+        "exportScope": "{count, plural, one {# demande} other {# demandes}}, avec les filtres en cours",
+        "formats": {
+          "xlsx": {
+            "label": "Excel (.xlsx)",
+            "hint": "Mis en forme : filtres, dates, synthèse par statut et par type"
+          },
+          "csv": {
+            "label": "CSV",
+            "hint": "Brut, pour un autre logiciel ou un import"
+          }
+        }
+      },
+      "flights": {
+        "title": "Vols",
+        "subtitle": "Recherche chez le fournisseur, option sans paiement ni émission, suivi des échéances.",
+        "searchCta": "Rechercher un vol",
+        "searchForLead": "Rechercher un vol",
+        "forLead": "Recherche pour la demande",
+        "origin": "Départ (code IATA)",
+        "destination": "Arrivée (code IATA)",
+        "departDate": "Aller",
+        "returnDate": "Retour (facultatif)",
+        "adults": "Adultes",
+        "children": "Enfants (2-11 ans)",
+        "infants": "Bébés (< 2 ans)",
+        "cabin": "Cabine",
+        "cabins": {
+          "eco": "Économique",
+          "business": "Affaires",
+          "first": "Première"
+        },
+        "search": "Rechercher",
+        "searching": "Recherche en cours…",
+        "searchHint": "Le bac à sable Amadeus simulé peut mettre jusqu'à une minute à répondre.",
+        "results": "{count, plural, =0 {Aucune offre} one {# offre} other {# offres}} en {seconds} s",
+        "choose": "Choisir",
+        "direct": "Direct",
+        "stops": "{count, plural, one {# escale} other {# escales}}",
+        "holdable": "Option possible",
+        "instantOnly": "Paiement immédiat exigé",
+        "payBefore": "À payer avant le {date}",
+        "refundable": "Remboursable :",
+        "changeable": "Modifiable :",
+        "yes": "oui",
+        "no": "non",
+        "unknown": "non précisé",
+        "offerTitle": "Offre de vol",
+        "backToSearch": "Retour à la recherche",
+        "notHoldableHint": "Cette offre exige un paiement immédiat : aucune option n'est possible. Choisissez une autre offre.",
+        "passengersTitle": "Passagers",
+        "passengersHint": "Noms exactement comme sur le passeport. Ces données sont transmises à la compagnie et ne sont pas conservées par ETHNIKA.",
+        "leadRef": "Demande liée (facultatif)",
+        "passenger": "Passager {n} · {type}",
+        "paxTypes": {
+          "adult": "adulte",
+          "child": "enfant",
+          "infant": "bébé"
+        },
+        "civility": "Civilité",
+        "titles": {
+          "mr": "M.",
+          "mrs": "Mme",
+          "ms": "Mme (Ms)",
+          "miss": "Mlle",
+          "dr": "Dr"
+        },
+        "givenName": "Prénom(s)",
+        "familyName": "Nom",
+        "bornOn": "Date de naissance",
+        "gender": "Sexe",
+        "genders": {
+          "f": "Femme",
+          "m": "Homme"
+        },
+        "email": "E-mail",
+        "phone": "Téléphone (format international)",
+        "hold": "Poser l'option",
+        "holding": "Option en cours…",
+        "holdHint": "Aucun paiement ni billet : l'option réserve les places jusqu'à l'échéance de la compagnie.",
+        "holdCreated": "Option posée : PNR {pnr}.",
+        "holdsTitle": "Options de vol",
+        "noHolds": "Aucune option posée pour l'instant.",
+        "noHoldsForLead": "Aucune option de vol pour cette demande.",
+        "passengers": "{count, plural, one {# passager} other {# passagers}}",
+        "bookingStatus": {
+          "held": "En option",
+          "confirmed": "Émise",
+          "cancelled": "Annulée"
+        },
+        "cancel": "Annuler l'option",
+        "cancelConfirm": "Annuler cette option chez la compagnie ? Les places seront libérées.",
+        "cancelYes": "Oui, annuler",
+        "kpiHeld": "Options en cours",
+        "kpiHeldNote": "Places réservées, non payées",
+        "kpiDue": "À payer sous 24 h",
+        "kpiDueAlert": "Échéance proche : relancer le client",
+        "kpiDueOk": "Aucune échéance imminente",
+        "kpiConfirmed": "Billets émis",
+        "kpiConfirmedNote": "Options confirmées chez le fournisseur",
+        "kpiCancelled": "Annulées",
+        "kpiCancelledNote": "Par l'agence ou la compagnie",
+        "searchSummary": "Interroger le fournisseur, comparer les offres, poser une option",
+        "noHoldsHint": "Recherchez un vol ci-dessus, choisissez une offre puis posez une option pour la retrouver ici.",
+        "payBeforeShort": "à payer avant {date}",
+        "bookingTitle": "Option de vol",
+        "pnr": "Référence de réservation (PNR)",
+        "stale": "Le fournisseur n'a pas répondu : informations de la dernière synchronisation.",
+        "itinerary": "Trajet",
+        "details": "Détails",
+        "airline": "Compagnie",
+        "passengersLabel": "Passagers",
+        "provider": "Fournisseur",
+        "createdAt": "Posée le",
+        "lead": "Demande liée",
+        "noLead": "Aucune demande rattachée",
+        "deadline": "Échéance de paiement",
+        "deadlineHint": "Fixée par la compagnie : sans paiement avant cette date, les places sont libérées.",
+        "remaining": "Encore {time}",
+        "expired": "Échéance dépassée : l'option a pu être annulée par la compagnie.",
+        "ticketed": "Billets émis : plus d'échéance.",
+        "cancelledInfo": "Option annulée : les places ont été libérées.",
+        "noDeadline": "Aucune échéance communiquée par le fournisseur.",
+        "nextSteps": "Suite du dossier",
+        "step1": "Envoyer le devis au client et obtenir son accord.",
+        "step2": "Encaisser le paiement avant l'échéance.",
+        "step3": "Émettre les billets chez le fournisseur, puis passer la demande en « Confirmée »."
+      },
+      "errors": {
+        "rateLimited": "Trop de tentatives. Réessayez dans quelques minutes.",
+        "invalid": "Identifiants ou code incorrects.",
+        "unavailable": "Service indisponible. Réessayez plus tard.",
+        "expired": "Délai dépassé : recommencez la connexion.",
+        "codeFormat": "Le code comporte 6 chiffres.",
+        "passwordInvalid": "Mot de passe actuel incorrect.",
+        "passwordReused": "Choisissez un mot de passe différent de l'actuel.",
+        "passwordForm": "12 caractères minimum, et les deux saisies doivent être identiques.",
+        "passwordWeak": "Mot de passe trop faible : mélangez lettres, chiffres et symboles.",
+        "mfaRefused": "Code refusé : vérifiez l'heure du téléphone et réessayez.",
+        "noteLength": "La note doit compter entre 2 et 2 000 caractères.",
+        "notFound": "Introuvable.",
+        "notHoldable": "Cette offre exige un paiement immédiat : option impossible.",
+        "offerExpired": "Offre expirée : relancez la recherche.",
+        "priceRefused": "Le fournisseur n'a pas confirmé le prix de cette offre. Relancez la recherche ou choisissez une autre offre.",
+        "providerRefused": "Le fournisseur a refusé la demande. Vérifiez les informations ou choisissez une autre offre.",
+        "timeout": "Le fournisseur n'a pas répondu à temps. Réessayez.",
+        "searchForm": "Vérifiez la recherche : codes IATA à 3 lettres différents, dates à venir, au plus un bébé par adulte.",
+        "holdForm": "Vérifiez les passagers : tous les champs sont obligatoires, téléphone au format +224…",
+        "quoteForm": "Vérifiez le devis : chaque ligne a un libellé (2 caractères min.), une quantité et un prix valides ; date de validité à venir.",
+        "cannotDemoteSelf": "Vous ne pouvez ni désactiver votre propre compte ni retirer votre rôle d'administrateur.",
+        "emailTaken": "Un compte existe déjà avec cet e-mail.",
+        "userForm": "Vérifiez le nom (2 caractères minimum), l'e-mail et le rôle.",
+        "slugTaken": "Cet identifiant d'URL est déjà utilisé.",
+        "contentForm": "Vérifiez le formulaire : champs obligatoires en français, identifiant d'URL valide, image /images/… ou https, lien interne commençant par /, prix valide.",
+        "manualForm": "Demande incomplète.",
+        "nameLength": "Le nom doit compter entre 2 et 120 caractères.",
+        "agencyForm": "Vérifiez les champs : adresse, téléphone et e-mail valides, modalités de règlement d'au moins 10 caractères.",
+        "paymentsDisabled": "Aucun prestataire de paiement n'est configuré.",
+        "quotePaid": "Ce devis est déjà entièrement payé.",
+        "amountInvalid": "Montant invalide : il doit être positif et ne pas dépasser le reste à payer.",
+        "paymentClosed": "Ce paiement est déjà clos.",
+        "uploadType": "Format non accepté : envoyez une photo JPEG, PNG ou WebP.",
+        "uploadTooLarge": "Photo trop lourde (115 Mo maximum). Réduisez-la puis réessayez."
+      },
+      "quotes": {
+        "title": "Devis",
+        "none": "Aucun devis pour cette demande.",
+        "validUntilShort": "Valable jusqu'au {date}",
+        "currency": "Devise",
+        "validUntil": "Valable jusqu'au",
+        "lines": "Prestations",
+        "label": "Prestation {n}",
+        "labelPlaceholder": "Billet Conakry – Paris A/R",
+        "quantity": "Quantité, ligne {n}",
+        "unitPrice": "Prix unitaire, ligne {n}",
+        "removeLine": "Retirer la ligne {n}",
+        "addLine": "Ajouter une ligne",
+        "notes": "Notes pour le client (facultatif)",
+        "create": "Créer le devis",
+        "creating": "Création…",
+        "created": "Devis {number} créé."
+      },
+      "users": {
+        "title": "Utilisateurs",
+        "subtitle": "Comptes de l'équipe : rôle, vérification en deux étapes, accès.",
+        "newTitle": "Nouveau compte",
+        "name": "Nom complet",
+        "email": "E-mail",
+        "role": "Rôle",
+        "roles": {
+          "admin": "Administrateur",
+          "agent": "Agent"
+        },
+        "create": "Créer le compte",
+        "tempTitle": "Mot de passe temporaire pour {email}",
+        "tempHint": "Affiché une seule fois. Transmettez-le en main propre ou par téléphone ; il devra être changé à la première connexion.",
+        "you": "vous",
+        "mfaOn": "2FA active",
+        "mfaOff": "2FA non configurée",
+        "disabled": "Désactivé",
+        "tempPassword": "Mot de passe temporaire",
+        "locked": "Verrouillé",
+        "lastLogin": "Dernière connexion {date}",
+        "neverLoggedIn": "Jamais connecté",
+        "saveRole": "Enregistrer le rôle",
+        "disable": "Désactiver",
+        "enable": "Réactiver",
+        "disableConfirm": "Désactiver ce compte ? Ses sessions seront fermées immédiatement.",
+        "enableConfirm": "Réactiver ce compte ?",
+        "resetPassword": "Nouveau mot de passe",
+        "resetPasswordConfirm": "Générer un mot de passe temporaire ? L'actuel ne fonctionnera plus.",
+        "resetMfa": "Réinitialiser la 2FA",
+        "resetMfaConfirm": "Réinitialiser la 2FA ? La personne devra la reconfigurer à sa prochaine connexion.",
+        "confirm": "Confirmer",
+        "newHint": "Un mot de passe temporaire est généré et affiché une seule fois.",
+        "kpiActive": "Comptes actifs",
+        "kpiActiveNote": "{disabled, plural, =0 {Aucun désactivé} one {# désactivé} other {# désactivés}}",
+        "kpiAdmins": "Administrateurs",
+        "kpiAgents": "{count, plural, =0 {aucun agent} one {# agent} other {# agents}}",
+        "kpiMfa": "2FA activée",
+        "kpiMfaNote": "{count} compte(s) sur {total}",
+        "kpiAttention": "À surveiller",
+        "kpiAttentionNote": "Verrouillé, mot de passe temporaire ou admin sans 2FA",
+        "searchPlaceholder": "Nom ou e-mail…",
+        "states": {
+          "active": "Actifs",
+          "disabled": "Désactivés",
+          "nomfa": "Sans 2FA",
+          "attention": "À surveiller"
+        },
+        "manage": "Gérer",
+        "selfHint": "Votre propre rôle et votre accès se gèrent par un autre administrateur."
+      },
+      "audit": {
+        "title": "Journal d'audit",
+        "subtitle": "Connexions, comptes, demandes, devis, contenus et vols. Aucune donnée client n'y figure.",
+        "empty": "Aucune entrée.",
+        "system": "Système",
+        "unknownActor": "Compte supprimé",
+        "pagination": "Pages du journal",
+        "newer": "Plus récent",
+        "older": "Plus ancien",
+        "actions": {
+          "auth_login": "Connexion",
+          "auth_login_failed": "Échec de connexion",
+          "auth_locked": "Compte verrouillé",
+          "auth_logout": "Déconnexion",
+          "auth_mfa_enabled": "2FA activée",
+          "auth_mfa_reset": "2FA réinitialisée",
+          "auth_password_changed": "Mot de passe changé",
+          "user_created": "Compte créé",
+          "user_updated": "Compte modifié",
+          "user_disabled": "Compte désactivé",
+          "lead_status_changed": "Statut de demande changé",
+          "lead_assigned": "Demande attribuée",
+          "lead_exported": "Export CSV",
+          "lead_pdf": "Récapitulatif PDF",
+          "quote_created": "Devis créé",
+          "content_created": "Contenu créé",
+          "content_updated": "Contenu modifié",
+          "content_deleted": "Contenu supprimé",
+          "flight_hold": "Option de vol posée",
+          "flight_cancelled": "Option de vol annulée",
+          "maintenance_purge": "Purge automatique",
+          "lead_created": "Demande saisie par l'équipe"
+        },
+        "kpiLogins": "Connexions",
+        "kpiFailed": "Échecs de connexion",
+        "kpiLocked": "Comptes verrouillés",
+        "kpiTotal": "Actions tracées",
+        "kpiTotalNote": "Sur les 7 derniers jours",
+        "last24h": "Dernières 24 heures",
+        "last7d": "Sur les 7 derniers jours",
+        "categories": {
+          "auth": "Connexions",
+          "user": "Comptes",
+          "lead": "Demandes",
+          "quote": "Devis",
+          "content": "Contenus",
+          "flight": "Vols",
+          "maintenance": "Maintenance"
+        },
+        "actorFilter": "Personne",
+        "everyone": "Toute l'équipe",
+        "countHint": "Compteurs des puces : 7 derniers jours"
+      },
+      "content": {
+        "offersTitle": "Offres",
+        "offersSubtitle": "Cartes de la page Offres du site. Seules les offres publiées sont visibles.",
+        "offersNew": "Nouvelle offre",
+        "circuitsTitle": "Circuits",
+        "circuitsSubtitle": "Circuits du site : fiche, programme, départs. Seuls les circuits publiés sont visibles.",
+        "circuitsNew": "Nouveau circuit",
+        "empty": "Aucun contenu pour l'instant.",
+        "savedNotice": "Enregistré.",
+        "isPublished": "Publié",
+        "isDraft": "Brouillon",
+        "publish": "Publier",
+        "unpublish": "Dépublier",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer définitivement ce contenu ? Il disparaîtra du site.",
+        "deleteYes": "Oui, supprimer",
+        "positionShort": "ordre {n}",
+        "general": "Général",
+        "slug": "Identifiant d'URL",
+        "slugHint": "Minuscules, chiffres et tirets : fouta-djallon-4-jours",
+        "offerType": "Type",
+        "offerTypes": {
+          "vol": "Vol",
+          "pack": "Séjour",
+          "last": "Dernière minute"
+        },
+        "position": "Ordre d'affichage",
+        "positionHint": "0 en premier",
+        "validUntil": "Valable jusqu'au (facultatif)",
+        "imageUrl": "Image",
+        "imageHint": "Chemin du site (/images/…) ou adresse https",
+        "href": "Lien de la carte",
+        "hrefHint": "Page du site : /billetterie?vers=CDG#demande",
+        "price": "Prix (facultatif)",
+        "priceFrom": "À partir de (facultatif)",
+        "priceHint": "Vide = « sur devis »",
+        "currency": "Devise",
+        "textsFr": "Textes en français",
+        "textsEn": "Textes en anglais",
+        "textsEnHint": "Facultatif : à défaut, le site anglais affiche le texte français.",
+        "kicker": "Accroche",
+        "title": "Titre",
+        "description": "Description",
+        "imageAlt": "Description de l'image",
+        "imageAltHint": "Pour les lecteurs d'écran et le référencement.",
+        "theme": "Thème",
+        "themes": {
+          "nature": "Nature",
+          "plage": "Plage",
+          "culture": "Culture",
+          "diaspora": "Diaspora"
+        },
+        "region": "Région",
+        "regions": {
+          "moyenne-guinee": "Moyenne Guinée",
+          "basse-cote": "Basse Côte",
+          "conakry": "Conakry",
+          "guinee": "Toute la Guinée"
+        },
+        "durationDays": "Durée (jours)",
+        "cardTitle": "Titre court (cartes)",
+        "headline": "Titre de la fiche",
+        "place": "Lieu",
+        "durationLabel": "Durée affichée",
+        "summary": "Résumé",
+        "intro": "Présentation (facultatif)",
+        "program": "Programme",
+        "programHint": "Un bloc par jour. Le titre et le texte sont obligatoires pour chaque jour renseigné.",
+        "day": "Jour {n}",
+        "dayTitle": "Titre du jour {n}",
+        "dayTitlePh": "Conakry → Mali",
+        "dayMeta": "Infos du jour {n}",
+        "dayMetaPh": "Route · environ 6 h",
+        "dayText": "Déroulé du jour {n}",
+        "dayNight": "Nuit du jour {n}",
+        "dayNightPh": "Nuit : campement",
+        "dayMeals": "Repas du jour {n}",
+        "dayMealsPh": "Repas : déjeuner, dîner",
+        "addDay": "Ajouter un jour",
+        "remove": "Retirer",
+        "included": "Inclus",
+        "excluded": "Non inclus",
+        "onePerLine": "Un élément par ligne.",
+        "departures": "Départs",
+        "departuresHint": "Dates en texte libre ; lignes sans date ignorées.",
+        "depDates": "Dates du départ {n}",
+        "depStatus": "Disponibilité du départ {n}",
+        "depPrice": "Prix du départ {n}",
+        "depStatuses": {
+          "available": "Disponible",
+          "last": "Dernières places",
+          "request": "Sur demande"
+        },
+        "addDeparture": "Ajouter un départ",
+        "removeDeparture": "Retirer le départ {n}",
+        "published": "Publié sur le site",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "importHint": "{count, plural, one {# élément du site actuel n'est} other {# éléments du site actuel ne sont}} pas encore dans le back-office. Dès qu'un contenu est publié ici, le site n'affiche plus que les contenus publiés : importez d'abord l'existant.",
+        "import": "Importer {count, plural, one {l'élément} other {les # éléments}}",
+        "importing": "Import…",
+        "importDone": "Import terminé : {created} créé(s), {skipped} déjà présent(s), {failed} en échec.",
+        "kpiTotal": "Au total",
+        "kpiTotalNote": "Brouillons compris",
+        "kpiPublished": "Publiés",
+        "kpiPublishedNote": "Visibles sur le site",
+        "kpiDraft": "Brouillons",
+        "kpiDraftNote": "Invisibles tant que non publiés",
+        "kpiExpired": "Expirées",
+        "kpiExpiredNote": "Date de validité dépassée : masquées du site",
+        "kpiNoDeparture": "Sans départ",
+        "kpiNoDepartureNote": "Aucune date proposée sur la fiche",
+        "searchPlaceholder": "Titre, identifiant, lieu…",
+        "expired": "Expirée",
+        "noDeparture": "Aucun départ",
+        "updated": "modifié le {date}",
+        "editLabel": "Modifier {title}",
+        "postsTitle": "Articles du blog",
+        "postsSubtitle": "Articles et actualités du site. Seuls les articles publiés sont visibles.",
+        "postsNew": "Nouvel article",
+        "kpiTodo": "À rédiger",
+        "kpiTodoNote": "Texte encore marqué « à rédiger »",
+        "featured": "À la une",
+        "todo": "À rédiger"
+      },
+      "manual": {
+        "title": "Nouvelle demande",
+        "subtitle": "Demande reçue par téléphone, WhatsApp ou en agence. Elle vous est attribuée automatiquement.",
+        "back": "Demandes",
+        "client": "Client",
+        "type": "Type de demande",
+        "kinds": {
+          "billet": "Billet d'avion",
+          "circuit": "Circuit",
+          "pro": "Groupe, pèlerinage, pro",
+          "contact": "Autre"
+        },
+        "fullName": "Nom complet",
+        "phone": "Téléphone / WhatsApp",
+        "email": "E-mail",
+        "emailOptional": "E-mail (facultatif)",
+        "flight": "Vol",
+        "trip": "Trajet",
+        "trips": {
+          "rt": "Aller-retour",
+          "ow": "Aller simple"
+        },
+        "from": "Départ (IATA)",
+        "to": "Arrivée (IATA)",
+        "cabin": "Cabine",
+        "cabins": {
+          "eco": "Économique",
+          "business": "Affaires",
+          "first": "Première"
+        },
+        "departDate": "Aller",
+        "returnDate": "Retour",
+        "adults": "Adultes",
+        "children": "Enfants",
+        "infants": "Bébés",
+        "circuit": "Circuit",
+        "circuitName": "Circuit choisi",
+        "travellers": "Voyageurs",
+        "travelDate": "Date souhaitée",
+        "pro": "Demande professionnelle",
+        "request": "Nature",
+        "requests": {
+          "groupe": "Groupe",
+          "pelerinage": "Pèlerinage",
+          "entreprise": "Entreprise",
+          "ong": "ONG / institution"
+        },
+        "organisation": "Organisation",
+        "period": "Période",
+        "details": "Détails",
+        "subject": "Objet",
+        "message": "Précisions (facultatif)",
+        "messageRequired": "Précisions (10 caractères minimum)",
+        "consent": "Le client accepte que ses données soient utilisées pour traiter sa demande (consentement recueilli par l'agent).",
+        "hint": "Un accusé de réception est envoyé si le client a donné un e-mail.",
+        "save": "Enregistrer la demande",
+        "saving": "Enregistrement…",
+        "fieldsToCheck": "Champs à vérifier : {fields}.",
+        "fields": {
+          "fullName": "nom",
+          "phone": "téléphone",
+          "email": "e-mail",
+          "consent": "consentement",
+          "from": "départ",
+          "to": "arrivée",
+          "departDate": "aller",
+          "returnDate": "retour",
+          "adults": "adultes",
+          "children": "enfants",
+          "infants": "bébés",
+          "travellers": "voyageurs",
+          "travelDate": "date",
+          "message": "précisions",
+          "circuit": "circuit",
+          "request": "nature",
+          "type": "type"
+        }
+      },
+      "auth": {
+        "kicker": "Back-office ETHNIKA",
+        "tagline": "Demandes, devis et vols, au même endroit.",
+        "taglineText": "L'espace de travail de l'équipe : suivez chaque voyageur, de la première demande à l'émission du billet.",
+        "secure": "Connexion chiffrée · vérification en deux étapes",
+        "backToSite": "Retour au site"
+      },
+      "dash": {
+        "chartTitle": "Demandes reçues",
+        "chartTotal": "{count, plural, =0 {Aucune demande} one {# demande} other {# demandes}} sur {days} jours",
+        "period": "Période",
+        "days": "{n} j",
+        "myRequests": "Mes demandes",
+        "dueSoonBanner": "{count, plural, one {# option de vol arrive} other {# options de vol arrivent}} à échéance sous 24 h.",
+        "kpiMine": "Mes demandes ouvertes",
+        "kpiMineNote": "Nouvelles ou en cours, attribuées à vous",
+        "kpiHandling": "Prise en charge",
+        "kpiHandlingNote": "Délai médian sur 30 jours",
+        "kpiHolds": "Options de vol",
+        "kpiHoldsDue": "{count} à payer sous 24 h",
+        "kpiHoldsOk": "Aucune échéance proche",
+        "statusTitle": "Répartition par statut",
+        "statusHint": "{count, plural, one {# demande} other {# demandes}} au total",
+        "sourceSite": "Reçues par le site",
+        "sourceManual": "Saisies par l'équipe",
+        "quotesTitle": "Devis · 30 derniers jours",
+        "quotesCount": "{count, plural, =0 {devis émis} one {devis émis} other {devis émis}}",
+        "quotesTotal": "Total en {currency}",
+        "quotesNone": "Aucun devis sur la période.",
+        "fullLog": "Journal complet",
+        "trend": "Tendance sur 7 jours : {delta}"
+      },
+      "drawer": {
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "received": "Reçue le",
+        "source": "Origine",
+        "sourceSite": "Formulaire du site",
+        "sourceManual": "Saisie par l'équipe",
+        "open": "Fiche complète"
+      },
+      "settings": {
+        "title": "Paramètres",
+        "subtitle": "Votre compte, sa sécurité et l'état de la plateforme.",
+        "navLabel": "Rubriques des paramètres",
+        "tabs": {
+          "profile": "Profil",
+          "security": "Sécurité",
+          "sessions": "Sessions actives",
+          "system": "Système",
+          "agency": "Agence"
+        },
+        "profileTitle": "Profil",
+        "profileHint": "Votre nom apparaît dans les attributions, l'historique des demandes et sur les devis.",
+        "name": "Nom affiché",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Profil mis à jour.",
+        "accountTitle": "Compte",
+        "email": "Identifiant (e-mail)",
+        "emailHint": "L'e-mail de connexion ne se modifie pas ici : demandez à un administrateur de créer un nouveau compte si besoin.",
+        "role": "Rôle",
+        "roles": {
+          "admin": "Administrateur",
+          "agent": "Agent"
+        },
+        "roleHint": {
+          "admin": "tout le back-office, contenus et comptes compris",
+          "agent": "demandes, devis et vols"
+        },
+        "mfa": "Vérification en deux étapes",
+        "mfaOn": "Activée",
+        "mfaOff": "Non activée",
+        "memberSince": "Compte créé le",
+        "lastLogin": "Dernière connexion",
+        "mfaActiveHint": "Un code de votre application d'authentification est demandé à chaque connexion.",
+        "mfaAgentHint": "Facultative pour un agent, mais fortement conseillée : elle protège votre compte même si votre mot de passe fuite.",
+        "mfaLost": "Téléphone perdu ou changé : demandez à un administrateur de réinitialiser votre 2FA depuis Utilisateurs, puis reconfigurez-la à la connexion suivante.",
+        "tipsTitle": "Bonnes pratiques",
+        "tip1": "Un mot de passe propre à ETHNIKA, jamais réutilisé ailleurs, d'au moins 12 caractères.",
+        "tip2": "Ne partagez jamais vos codes ni votre mot de passe, même avec un collègue : chaque personne a son compte.",
+        "tip3": "Déconnectez-vous sur un ordinateur partagé ; les sessions inactives se ferment seules au bout de 30 minutes.",
+        "tip4": "Un message ou un appel qui vous demande un code est une tentative de fraude : l'équipe technique ne le demande jamais.",
+        "sessionsTitle": "Sessions actives",
+        "sessionsHint": "Les appareils actuellement connectés à votre compte. Déconnectez ceux que vous ne reconnaissez pas.",
+        "revokeOthers": "Déconnecter {count, plural, one {l'autre appareil} other {les # autres appareils}}",
+        "revoke": "Déconnecter",
+        "thisDevice": "Cet appareil",
+        "unknownDevice": "Appareil inconnu",
+        "lastSeen": "active {date}",
+        "since": "depuis {date}",
+        "sessionsRules": "Une session expire après 12 heures, ou 30 minutes sans activité. Changer de mot de passe ferme toutes les autres sessions.",
+        "counts": {
+          "users": "Comptes actifs",
+          "leads": "Demandes en base",
+          "subscribers": "Abonnés newsletter",
+          "holds": "Options de vol en cours"
+        },
+        "apiTitle": "API",
+        "online": "En ligne",
+        "version": "Version",
+        "environment": "Environnement",
+        "uptime": "En service depuis",
+        "siteUrl": "Adresse du site",
+        "servicesTitle": "Services",
+        "servicesHint": "Configuration du serveur (fichier api.env). Une modification demande un redémarrage de l'API.",
+        "configured": "Configuré",
+        "notConfigured": "Non configuré",
+        "smtp": "Envoi des e-mails",
+        "agencyNotify": "Alertes à l'agence",
+        "pdf": "Génération des PDF",
+        "flightProvider": "Fournisseur de vols",
+        "providers": {
+          "mock": "fictif (développement)",
+          "duffel": "Duffel",
+          "amadeus": "Amadeus"
+        },
+        "mailTitle": "E-mails",
+        "mailSent": "Envoyés sur 24 h",
+        "mailPending": "En file d'attente",
+        "mailFailed": "En échec définitif",
+        "policyTitle": "Règles de sécurité et de conservation",
+        "sessionIdle": "Déconnexion après inactivité",
+        "sessionMax": "Durée maximale d'une session",
+        "retention": "Conservation des demandes clôturées",
+        "minutes": "{n} minutes",
+        "hours": "{n} heures",
+        "daysLong": "{n} jours",
+        "payments": "Paiements en ligne",
+        "mailProviders": {
+          "resend": "Resend",
+          "smtp": "SMTP"
+        },
+        "paymentProviders": {
+          "mock": "Simulation (test)"
+        }
+      },
+      "list": {
+        "search": "Rechercher",
+        "apply": "Filtrer",
+        "all": "Tous",
+        "pagination": "Pagination",
+        "range": "{from}–{to} sur {total}",
+        "page": "Page {page} sur {pages}",
+        "previous": "Page précédente",
+        "next": "Page suivante",
+        "noMatch": "Aucun résultat",
+        "noMatchHint": "Aucun élément ne correspond à ces filtres.",
+        "reset": "Effacer les filtres"
+      },
+      "failure": {
+        "title": "Service momentanément indisponible",
+        "text": "Le back-office n'arrive pas à joindre le serveur. Vos données ne sont pas perdues : réessayez dans quelques secondes.",
+        "retry": "Réessayer",
+        "home": "Tableau de bord",
+        "hint": "Si le problème persiste plus de quelques minutes, prévenez l'administrateur technique."
+      },
+      "agency": {
+        "contact": "Coordonnées",
+        "legal": "Mentions légales",
+        "documents": "Documents",
+        "documentsHint": "Textes imprimés sur les devis PDF.",
+        "address": "Adresse",
+        "openingHours": "Horaires",
+        "phone": "Téléphone",
+        "whatsapp": "WhatsApp",
+        "email": "E-mail",
+        "licence": "Licence d'agence de voyages",
+        "rccm": "RCCM",
+        "paymentInstructions": "Modalités de règlement",
+        "paymentHint": "Acompte, solde, moyens de paiement acceptés (numéro Orange Money, coordonnées bancaires, paiement en agence).",
+        "quoteTerms": "Conditions rappelées sur les devis",
+        "save": "Enregistrer",
+        "saving": "Enregistrement…",
+        "saved": "Coordonnées enregistrées : les prochains PDF les utiliseront.",
+        "placeholderHint": "Les mentions entre crochets [ ] sont des emplacements à compléter.",
+        "missingTitle": "{count, plural, one {# information à compléter.} other {# informations à compléter.}}",
+        "missingList": "Encore entre crochets ou vide : {fields}. Ces mentions apparaissent telles quelles sur les PDF.",
+        "complete": "Toutes les coordonnées sont renseignées.",
+        "hoursTitle": "Horaires d'ouverture",
+        "hoursHint": "Affichés sur la page Contact ; la ligne « Horaires » ci-dessus apparaît dans le bandeau du site.",
+        "hoursWeekdays": "Lundi – vendredi",
+        "hoursSaturday": "Samedi",
+        "hoursSunday": "Dimanche",
+        "mapTitle": "Position sur la carte",
+        "mapHint": "Sur Google Maps, clic droit sur l'agence : les deux nombres affichés sont la latitude puis la longitude.",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "fictitiousTitle": "Coordonnées fictives.",
+        "fictitiousText": "Ces valeurs servent de démonstration (site, documents PDF, carte). Remplacez-les par les vraies puis enregistrez : la mention « position indicative » disparaîtra de la carte."
+      },
+      "payments": {
+        "title": "Paiements",
+        "pageTitle": "Paiements",
+        "pageSubtitle": "Liens de paiement des devis, encaissements et relances.",
+        "disabledBanner": "Aucun prestataire de paiement n'est encore configuré : les liens de paiement sont désactivés. Ils s'activeront dès que le prestataire choisi par l'agence sera branché.",
+        "disabledHint": "Liens de paiement disponibles une fois le prestataire de paiement configuré.",
+        "createLink": "Lien de paiement",
+        "amountLabel": "Montant ({currency}) : vide = reste à payer",
+        "amountPlaceholder": "Acompte (facultatif)",
+        "generate": "Générer",
+        "linkReady": "Lien prêt : envoyez-le au client.",
+        "linkHint": "Affiché une seule fois. En cas de perte, générez un nouveau lien depuis la liste des paiements.",
+        "copy": "Copier",
+        "copied": "Copié",
+        "sendWhatsapp": "Envoyer par WhatsApp",
+        "whatsappText": "Bonjour {name}, voici votre lien de paiement sécurisé ETHNIKA : {link}",
+        "renew": "Nouveau lien",
+        "cancel": "Annuler",
+        "cancelConfirm": "Annuler ce paiement ? Le lien envoyé au client ne fonctionnera plus.",
+        "cancelYes": "Oui, annuler",
+        "paidOn": "payé le {date}",
+        "createdOn": "créé le {date}",
+        "status": {
+          "pending": "En attente",
+          "paid": "Payé",
+          "failed": "Échoué",
+          "cancelled": "Annulé",
+          "expired": "Expiré"
+        },
+        "kpiPaid": "Encaissés · 30 j",
+        "kpiPending": "En attente",
+        "kpiFailed": "Échecs et expirés",
+        "kpiFailedNote": "À relancer avec un nouveau lien",
+        "kpiTotal": "Paiements",
+        "kpiTotalNote": "Tous les liens créés",
+        "searchPlaceholder": "Référence, client, demande…",
+        "empty": "Aucun paiement pour l'instant",
+        "emptyHint": "Créez un lien depuis un devis, sur la fiche d'une demande.",
+        "receipt": "Reçu PDF"
+      },
+      "notifications": {
+        "label": "Notifications",
+        "labelUnread": "Notifications : {count, plural, one {# non lue} other {# non lues}}",
+        "title": "Notifications",
+        "subtitle": "Ce qui demande votre attention · 7 derniers jours",
+        "close": "Fermer",
+        "empty": "Tout est à jour",
+        "emptyHint": "Aucune nouvelle demande, aucun paiement ni échéance à surveiller.",
+        "kinds": {
+          "lead_new": "Nouvelle demande à traiter",
+          "lead_assigned": "Demande qui vous est attribuée",
+          "payment_received": "Paiement reçu : {amount}",
+          "payment_failed": "Paiement échoué : nouveau lien à envoyer",
+          "hold_due": "Option {reference} à payer sous 24 h"
+        }
+      },
+      "soon": "Bientôt",
+      "media": {
+        "upload": "Envoyer une photo",
+        "uploading": "Envoi…",
+        "hint": "JPEG, PNG ou WebP, 15 Mo max. Ou un chemin du site (/images/…)."
+      },
+      "blog": {
+        "slugHint": "Adresse de l'article : /blog/mon-article",
+        "category": "Catégorie",
+        "categories": {
+          "destinations": "Destinations",
+          "conseils": "Conseils",
+          "culture": "Culture",
+          "billetterie": "Billetterie",
+          "actualites": "Actualités"
+        },
+        "publishedAt": "Date de publication",
+        "publishedAtHint": "Vide : la date du jour à la publication",
+        "cover": "Image de couverture",
+        "featured": "À la une",
+        "featuredHint": "affiché sur l'accueil (bloc « Préparez votre voyage », 3 articles au plus) et en tête du blog",
+        "lead": "Chapô",
+        "leadHint": "Une ou deux phrases sous le titre de l'article.",
+        "excerpt": "Résumé des cartes",
+        "excerptHint": "Vide : début du chapô",
+        "tag": "Étiquette",
+        "tagHint": "Courte, affichée sur l'accueil",
+        "tags": "Mots-clés",
+        "tagsHint": "Séparés par des virgules (8 au plus)",
+        "body": "Texte de l'article",
+        "bodyHint": "Mise en forme simple (voir l'aide ci-dessous). Le temps de lecture est calculé automatiquement.",
+        "bodyEnHint": "Facultatif : sans traduction, la version anglaise affiche le texte français avec une mention.",
+        "textsEnHint": "Facultatif : chaque champ vide reprend le français.",
+        "bodyMode": "Mode d'édition",
+        "write": "Écrire",
+        "preview": "Aperçu",
+        "previewEmpty": "Rien à afficher pour l'instant.",
+        "syntax": {
+          "title": "Aide à la mise en forme",
+          "h2": "Intertitre (apparaît dans le sommaire)",
+          "h3": "Sous-titre",
+          "emphasis": "Gras et italique",
+          "link": "Lien vers une page du site ou un site externe",
+          "list": "Liste à puces (1. pour une liste numérotée)",
+          "quote": "Citation mise en valeur",
+          "image": "Photo avec légende : envoyez-la d'abord avec « Envoyer une photo », puis copiez son adresse",
+          "table": "Tableau",
+          "cta": "Encart d'appel à l'action (lien, titre, texte, bouton)"
+        },
+        "minutes": "{n} min de lecture",
+        "viewOnSite": "Voir sur le site"
+      },
+      "gallery": {
+        "title": "Galerie",
+        "subtitle": "Photos de la page Galerie du site. Seules les photos visibles y apparaissent.",
+        "new": "Ajouter une photo",
+        "edit": "Modifier la photo",
+        "photo": "Photo",
+        "image": "Fichier",
+        "imageHint": "JPEG, PNG ou WebP, 15 Mo max. Une photo en hauteur est repérée automatiquement.",
+        "category": "Filtre de la galerie",
+        "categories": {
+          "fouta": "Fouta Djallon",
+          "cote": "Basse Côte",
+          "loos": "Îles de Loos",
+          "vie": "Vie locale"
+        },
+        "tall": "Format portrait",
+        "tallHint": "occupe deux rangées de la mosaïque",
+        "tallShort": "Portrait",
+        "alt": "Description",
+        "altHint": "Ce que montre la photo (lecteurs d'écran, visionneuse)",
+        "place": "Lieu",
+        "placeHint": "Affiché sur la vignette",
+        "kpiTotal": "Photos",
+        "kpiTotalNote": "Masquées comprises",
+        "kpiPublishedNote": "Visibles dans la galerie",
+        "kpiHidden": "Masquées",
+        "kpiHiddenNote": "Gardées sans être affichées",
+        "kpiUploaded": "Envoyées",
+        "kpiUploadedNote": "Photos de l'agence (hors illustrations)",
+        "searchPlaceholder": "Rechercher une description ou un lieu",
+        "visible": "Visible",
+        "hidden": "Masquée",
+        "empty": "Aucune photo pour l'instant",
+        "emptyHint": "Ajoutez une photo ou importez celles du site actuel.",
+        "show": "Afficher",
+        "hide": "Masquer",
+        "editLabel": "Modifier la photo « {alt} »",
+        "deleteConfirm": "Supprimer cette photo ? Le fichier envoyé est supprimé aussi."
+      }
     }
   },
   "demo": {
     "banner": "Site de démonstration : les demandes ne sont pas transmises à l'agence.",
     "backOffice": "Voir le back-office",
     "seeRequest": "Voir ma demande dans le back-office (démo)"
+  },
+  "payment": {
+    "title": "Paiement sécurisé",
+    "kicker": "Paiement sécurisé",
+    "hello": "Bonjour {name}, voici votre paiement",
+    "forRequest": "Demande {ref} · paiement {payment}",
+    "step1": "Vérifiez le montant et l'objet ci-dessus.",
+    "step2": "Vous êtes redirigé vers notre prestataire de paiement sécurisé.",
+    "step3": "Vous revenez ici : la confirmation s'affiche dès que le paiement est reçu.",
+    "pay": "Payer {amount}",
+    "expires": "Lien valable jusqu'au {date}.",
+    "mockNotice": "Environnement de test : le paiement est simulé, aucun débit réel n'est effectué.",
+    "secureNote": "Aucune donnée bancaire n'est saisie ni conservée par ETHNIKA.",
+    "contact": "Contacter un conseiller",
+    "whatsappMessage": "Bonjour ETHNIKA, je vous contacte au sujet du paiement de ma demande {ref}.",
+    "invalid": {
+      "title": "Ce lien de paiement n'est pas valable",
+      "text": "Il a peut-être été remplacé par un lien plus récent. Demandez un nouveau lien à votre conseiller."
+    },
+    "paid": {
+      "title": "Merci {name} !",
+      "subtitle": "Paiement reçu",
+      "text": "Nous avons bien reçu votre paiement le {date}. Votre conseiller vous contacte pour la suite de votre voyage."
+    },
+    "failed": {
+      "title": "Le paiement n'a pas abouti",
+      "text": "Aucun montant n'a été débité. Contactez votre conseiller pour recevoir un nouveau lien."
+    },
+    "expired": {
+      "title": "Ce lien a expiré",
+      "text": "Pour votre sécurité, les liens de paiement sont valables 7 jours. Demandez un nouveau lien à votre conseiller."
+    },
+    "cancelled": {
+      "title": "Ce paiement a été annulé",
+      "text": "Votre conseiller vous enverra un nouveau lien si nécessaire."
+    },
+    "errors": {
+      "checkout": "Le prestataire de paiement n'a pas répondu. Réessayez dans un instant.",
+      "rate": "Trop de tentatives. Réessayez dans quelques minutes."
+    },
+    "simulation": {
+      "badge": "Simulation",
+      "title": "Prestataire de paiement (simulation)",
+      "text": "Cette page remplace celle du prestataire tant que l'agence n'a pas choisi le sien. Choisissez le résultat à simuler.",
+      "paid": "Paiement réussi",
+      "failed": "Échec du paiement",
+      "closed": "Ce paiement est déjà clos."
+    },
+    "receipt": "Télécharger le reçu (PDF)"
+  },
+  "foutaSites": {
+    "sections": {
+      "apercu": "Aperçu",
+      "voir": "À voir",
+      "pratique": "Infos pratiques"
+    },
+    "factsLabel": "En bref",
+    "overviewKicker": "Le site",
+    "highlightsKicker": "Sur place",
+    "highlightsTitle": "À voir et à faire",
+    "practicalKicker": "Avant de partir",
+    "practicalTitle": "Infos pratiques",
+    "accessTitle": "Accès",
+    "bringTitle": "À emporter",
+    "note": "Informations indicatives : durées, accès et conditions sont confirmés avec votre devis.",
+    "circuitKicker": "Dans le circuit",
+    "circuitText": "Ce site fait partie de notre circuit au Fouta Djallon : transport en 4×4, guide local et hébergement compris.",
+    "circuitCta": "Voir le programme",
+    "backToFouta": "Toute la destination Mali & le Fouta Djallon",
+    "otherKicker": "Dans les environs",
+    "otherTitle": "Les autres sites du Fouta",
+    "discover": "Découvrir",
+    "sites": {
+      "mont-loura": {
+        "title": "Mont Loura, la « Dame de Mali »",
+        "description": "Point culminant du Fouta Djallon à 1 515 m : la falaise de la Dame de Mali, les villages peuls et des panoramas sur les hauts plateaux.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Mont Loura, la « Dame de Mali »",
+        "imageAlt": "Sommets rocheux du Fouta Djallon",
+        "photoAlt": "Plateau du Fouta au coucher du soleil",
+        "intro": "À quelques kilomètres de la ville de Mali, le mont Loura domine le Fouta Djallon du haut de ses 1 515 mètres. Son surnom, la « Dame de Mali », vient d'une falaise dont le profil évoque un visage de femme tourné vers l'horizon.",
+        "text": "On y monte à pied, à travers les hameaux peuls et les champs, avant de déboucher sur le plateau d'où la vue porte loin sur les vallées. C'est l'excursion emblématique de la région, à faire avec un guide local.",
+        "facts": [
+          {
+            "label": "Altitude",
+            "value": "1 515 m"
+          },
+          {
+            "label": "Durée",
+            "value": "½ à 1 journée"
+          },
+          {
+            "label": "Niveau",
+            "value": "Marche modérée"
+          },
+          {
+            "label": "Saison",
+            "value": "Saison sèche"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "La falaise de la Dame",
+            "text": "Le profil de pierre qui a donné son surnom au mont, à observer depuis le belvédère."
+          },
+          {
+            "title": "Le panorama du sommet",
+            "text": "Vue sur les plateaux, les vallées et les villages du Fouta."
+          },
+          {
+            "title": "Les villages peuls",
+            "text": "Rencontres et thé partagé avec les habitants, avec votre guide comme interprète."
+          },
+          {
+            "title": "La lumière du soir",
+            "text": "Lumière rasante sur les reliefs : le meilleur moment pour la photo."
+          }
+        ],
+        "access": "Depuis la ville de Mali en 4×4, puis à pied avec un guide local. Nous organisons le transport, le guide et l'hébergement.",
+        "bring": "Chaussures de marche, eau, chapeau et une petite laine : les matinées sont fraîches en altitude."
+      },
+      "chutes-de-nguilo": {
+        "title": "Les chutes de Nguilo",
+        "description": "Environ 5 km de sentier escarpé pour atteindre le pied des chutes de Nguilo : une demi-journée de randonnée avec un guide local.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Les chutes de Nguilo",
+        "imageAlt": "Cascade de Nguilo",
+        "photoAlt": "Route dans une vallée verdoyante",
+        "intro": "Les chutes de Nguilo se méritent : environ 5 km de sentier escarpé, dans une végétation dense, mènent au pied de la cascade.",
+        "text": "Comptez une demi-journée avec un guide local. La cascade est la plus puissante en fin de saison des pluies ; en saison sèche, le sentier est plus facile à parcourir.",
+        "facts": [
+          {
+            "label": "Sentier",
+            "value": "~5 km"
+          },
+          {
+            "label": "Durée",
+            "value": "½ journée"
+          },
+          {
+            "label": "Niveau",
+            "value": "Sportif"
+          },
+          {
+            "label": "Saison",
+            "value": "Saison sèche"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "La cascade",
+            "text": "Le spectacle de l'eau qui dévale la falaise, au bout de la marche."
+          },
+          {
+            "title": "Le sentier en forêt",
+            "text": "Une descente escarpée dans la végétation, à l'ombre des grands arbres."
+          },
+          {
+            "title": "La pause au bord de l'eau",
+            "text": "Le temps de souffler et de profiter de la fraîcheur avant la remontée."
+          },
+          {
+            "title": "Le savoir du guide",
+            "text": "Plantes, histoires et vie du Fouta racontées en chemin."
+          }
+        ],
+        "access": "Depuis Mali en 4×4, puis à pied. Le guide local est indispensable sur ce sentier.",
+        "bring": "Chaussures fermées qui accrochent bien, eau, encas et un vêtement de rechange."
+      },
+      "roches-de-koumba": {
+        "title": "Roches de Koumba et colline de Balaki",
+        "description": "Une courte randonnée dans la commune urbaine de Mali pour découvrir le paysage rocheux du Fouta Djallon.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Roches de Koumba et colline de Balaki",
+        "imageAlt": "Relief rocheux de Koumba",
+        "photoAlt": "Collines verdoyantes dans la brume",
+        "intro": "Sans quitter la commune urbaine de Mali, les roches de Koumba et la colline de Balaki offrent une première approche du paysage rocheux du Fouta.",
+        "text": "Une courte randonnée, idéale le jour de l'arrivée ou en fin d'après-midi, pour se mettre en jambes et profiter de la lumière dorée sur les rochers.",
+        "facts": [
+          {
+            "label": "Randonnée",
+            "value": "Courte"
+          },
+          {
+            "label": "Durée",
+            "value": "Quelques heures"
+          },
+          {
+            "label": "Niveau",
+            "value": "Facile"
+          },
+          {
+            "label": "Saison",
+            "value": "Toute l'année"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "Les formations rocheuses",
+            "text": "Blocs et falaises sculptés par le temps, typiques du Fouta."
+          },
+          {
+            "title": "La colline de Balaki",
+            "text": "Un point de vue facile d'accès sur Mali et ses environs."
+          },
+          {
+            "title": "Le coucher de soleil",
+            "text": "La meilleure heure pour la balade et pour les photos."
+          },
+          {
+            "title": "En famille",
+            "text": "Une sortie accessible, sans difficulté technique."
+          }
+        ],
+        "access": "Depuis le centre de Mali, à pied ou en véhicule, avec un guide local.",
+        "bring": "Chaussures confortables, eau et appareil photo."
+      }
+    }
   }
 }

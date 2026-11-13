@@ -4,10 +4,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
 import { parseProPrefill } from "@/lib/schemas/search";
-import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { getAgency } from "@/lib/content-source";
 import { ProRequestForm } from "@/components/forms/ProRequestForm";
 
 export const generateMetadata = metadataFor("services");
@@ -36,6 +36,7 @@ export default async function ServicesPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("services");
+  const agency = await getAgency();
   const tc = await getTranslations("common");
   const page = await getPage("services", locale);
   const prefill = parseProPrefill(await searchParams);
@@ -115,7 +116,7 @@ export default async function ServicesPage({ params, searchParams }: Props) {
             <p className="leading-[1.65] text-on-dark">{t("proText")}</p>
             <div className="mt-2.5 flex flex-col gap-2 text-[15px]">
               <span className="flex items-center gap-2">
-                <Icon name="phone" size={16} className="text-brand-gold" /> {site.contact.phone}
+                <Icon name="phone" size={16} className="text-brand-gold" /> {agency.phone}
               </span>
               <span className="flex items-center gap-2">
                 <Icon name="mail" size={16} className="text-brand-gold" /> {t("groupsEmail")}

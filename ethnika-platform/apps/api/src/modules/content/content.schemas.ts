@@ -71,3 +71,57 @@ export const localeQuery = z.strictObject({ locale: z.enum(["fr", "en"]).default
 export function durationBucket(days: number): "1" | "2-4" | "5+" {
   return days <= 1 ? "1" : days <= 4 ? "2-4" : "5+";
 }
+
+/* ---------- Blog ---------- */
+
+export const blogCategories = ["destinations", "conseils", "culture", "billetterie", "actualites"] as const;
+
+const postTexts = z.strictObject({
+  title: text(140),
+  /** Chapô sous le titre de l'article. */
+  lead: text(300),
+  /** Résumé des cartes (liste, accueil). */
+  excerpt: text(200),
+  /** Étiquette courte de l'accueil (ex. « Îles · Guide »). */
+  tag: text(40),
+  imageAlt: text(160),
+  /** Corps en Markdown (sous-ensemble rendu par le site, jamais de HTML brut). */
+  body: text(40_000),
+  tags: z.array(text(30)).max(8).default([]),
+});
+
+export const postInput = z.strictObject({
+  slug,
+  category: z.enum(blogCategories),
+  imageUrl,
+  i18n: z.strictObject({ fr: postTexts, en: postTexts.partial().optional() }),
+  featured: z.boolean().default(false),
+  published: z.boolean().default(false),
+  publishedAt: z.iso.date().nullable().optional(),
+  position: z.number().int().min(0).max(10_000).default(0),
+});
+export const postUpdate = postInput.partial();
+export type PostInput = z.infer<typeof postInput>;
+
+/* ---------- Galerie ---------- */
+
+export const galleryCategories = ["fouta", "cote", "loos", "vie"] as const;
+
+const photoTexts = z.strictObject({ alt: text(160), place: text(80) });
+
+export const photoInput = z.strictObject({
+  imageUrl,
+  category: z.enum(galleryCategories),
+  tall: z.boolean().default(false),
+  i18n: z.strictObject({ fr: photoTexts, en: photoTexts.partial().optional() }),
+  published: z.boolean().default(true),
+  position: z.number().int().min(0).max(10_000).default(0),
+});
+export const photoUpdate = photoInput.partial();
+export type PhotoInput = z.infer<typeof photoInput>;
+
+/** Temps de lecture estimé (≈ 200 mots par minute), au moins une minute. */
+export function readingMinutes(body: string): number {
+  const words = body.replace(/[#>*_|`[\]()!-]/g, " ").split(/\s+/).filter(Boolean).length;
+  return Math.min(60, Math.max(1, Math.round(words / 200)));
+}

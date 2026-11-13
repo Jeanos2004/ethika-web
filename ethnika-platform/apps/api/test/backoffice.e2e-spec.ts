@@ -96,7 +96,11 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
     it("calcule les indicateurs du tableau de bord", async () => {
       const stats = await as(agent, api().get("/v1/stats")).expect(200);
       expect(stats.body.kpis.toTreat).toBeGreaterThanOrEqual(1);
-      expect(stats.body.daily).toHaveLength(14);
+      expect(stats.body.daily).toHaveLength(30);
+      expect(stats.body.kpis).toHaveProperty("mineOpen");
+      expect(stats.body.byStatus.new).toBeGreaterThanOrEqual(1);
+      expect(stats.body.flights).toMatchObject({ held: expect.any(Number), dueSoon: expect.any(Number) });
+      expect(Array.isArray(stats.body.quotes30)).toBe(true);
       expect(stats.body.daily.at(-1).count).toBeGreaterThanOrEqual(1);
       expect(stats.body.byType.contact).toBeGreaterThanOrEqual(1);
       expect(Array.isArray(stats.body.priorityQueue)).toBe(true);
@@ -167,6 +171,56 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
       const list = await api().get("/v1/public/circuits").set("x-internal-key", KEY).expect(200);
       expect(list.body.find((c: { slug: string }) => c.slug === circuit.slug).days).toBeUndefined();
       await api().get("/v1/public/circuits/e2e-inexistant").set("x-internal-key", KEY).expect(404);
+    });
+  });
+
+  describe("coordonnées de l'agence", () => {
+    it("lecture par l'équipe, modification par un administrateur, reprise sur le devis PDF", async () => {
+      const current = await as(agent, api().get("/v1/agency")).expect(200);
+      expect(current.body).toMatchObject({ id: 1, email: expect.any(String) });
+      const body = {
+        address: "Kaloum, Conakry",
+        phone: "+224 620 00 00 00",
+        whatsapp: "+224 620 00 00 00",
+        email: "contact@ethnikatour.com",
+        licence: "LIC-E2E",
+        rccm: "RCCM-E2E",
+        openingHours: "Lun – Sam · 9 h – 18 h",
+        hoursWeekdays: "9 h – 18 h",
+        hoursSaturday: "9 h – 13 h",
+        hoursSunday: "Fermé",
+        latitude: 9.51,
+        longitude: -13.71,
+        paymentInstructions: "Orange Money au 620 00 00 00, ou espèces en agence.",
+        quoteTerms: "CGV sur ethnikatour.com/cgv.",
+      };
+      await as(agent, api().patch("/v1/agency")).send(body).expect(403);
+      await as(admin, api().patch("/v1/agency")).send({ ...body, email: "pas-un-email" }).expect(400);
+      const saved = await as(admin, api().patch("/v1/agency")).send(body).expect(200);
+      expect(saved.body).toMatchObject({ licence: "LIC-E2E", paymentInstructions: body.paymentInstructions, verified: true });
+      const pub = await api().get("/v1/public/agency").set("x-internal-key", KEY).expect(200);
+      expect(pub.body).toMatchObject({ licence: "LIC-E2E", geo: { lat: 9.51, lng: -13.71 }, hours: { saturday: "9 h – 13 h" } });
+      expect(pub.body).not.toHaveProperty("paymentInstructions");
+      expect(pub.body).not.toHaveProperty("updatedBy");
+      // Remise des valeurs d'origine (la base de développement est partagée).
+      await as(admin, api().patch("/v1/agency")).send({ ...body, ...Object.fromEntries(Object.keys(body).map((k) => [k, current.body[k]])) });
+      // La remise en l'état d'origine passe par une modification : on rétablit aussi le marqueur « fictif ».
+      await prisma.agencySettings.update({ where: { id: 1 }, data: { verified: current.body.verified } });
+    });
+  });
+
+  describe("notifications", () => {
+    it("nouvelle demande et attribution visibles, compteur remis à zéro après lecture", async () => {
+      const created = await api().post("/v1/leads").set("x-internal-key", KEY).send({ type: "contact", fullName: "E2E Notif Client", phone: "+224 620 00 00 00", email: "notif@e2e.example.com", consent: true, message: "Bonjour, une question sur un circuit." }).expect(201);
+      const me = await as(agent, api().get("/v1/auth/me")).expect(200);
+      await as(admin, api().patch(`/v1/leads/${created.body.reference}/assign`)).send({ userId: me.body.userId }).expect(200);
+      const list = await as(agent, api().get("/v1/notifications")).expect(200);
+      const kinds = list.body.items.filter((i: { reference: string }) => i.reference === created.body.reference).map((i: { kind: string }) => i.kind);
+      expect(kinds).toEqual(expect.arrayContaining(["lead_new", "lead_assigned"]));
+      expect(list.body.unread).toBeGreaterThanOrEqual(2);
+      await as(agent, api().post("/v1/notifications/seen")).expect(200);
+      const after = await as(agent, api().get("/v1/notifications")).expect(200);
+      expect(after.body.unread).toBe(after.body.items.filter((i: { kind: string }) => i.kind === "hold_due").length);
     });
   });
 });

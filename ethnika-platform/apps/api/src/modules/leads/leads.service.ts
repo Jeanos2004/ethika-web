@@ -1,15 +1,13 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { Prisma } from "../../generated/prisma/client";
 import { PrismaService } from "../../prisma/prisma.service";
-import { toCsv } from "../../common/csv";
+import { leadsCsv, leadsWorkbook, statusLabels, typeLabels } from "./export";
 import { newReference } from "./reference";
 import { leadSummary } from "./summary";
 import { ENV, type Env } from "../../config/env";
 import { MailService, type OutboxItem } from "../mail/mail.service";
 import { splitLead, type LeadInput, type LeadQuery } from "./lead.schemas";
 
-const statusLabels = { new: "Nouvelle", in_progress: "En cours", confirmed: "Confirmée", cancelled: "Annulée" } as const;
-const typeLabels = { contact: "Contact", billet: "Billetterie", circuit: "Circuit", groupe: "Groupe", pelerinage: "Pèlerinage", pro: "Entreprise / ONG" } as const;
 
 @Injectable()
 export class LeadsService {
@@ -146,13 +144,20 @@ export class LeadsService {
   }
 
   /** Export CSV des demandes filtrées (5 000 lignes maximum) ; l'appelant journalise l'export (audit). */
+  private exportItems(q: Omit<LeadQuery, "page" | "pageSize">, meId?: string) {
+    return this.prisma.lead.findMany({ where: this.where(q, meId), orderBy: { createdAt: "desc" }, take: 5000, include: { assignedTo: { select: { name: true } } } });
+  }
+
   async exportCsv(q: Omit<LeadQuery, "page" | "pageSize">, meId?: string) {
-    const items = await this.prisma.lead.findMany({ where: this.where(q, meId), orderBy: { createdAt: "desc" }, take: 5000 });
-    const csv = toCsv(
-      ["Référence", "Reçue le", "Statut", "Type", "Client", "Téléphone", "E-mail", "Détails", "Message", "Source"],
-      items.map((l) => [l.reference, l.createdAt.toISOString(), statusLabels[l.status], typeLabels[l.type], l.fullName, l.phone, l.email ?? "", JSON.stringify(l.details), l.message ?? "", l.source]),
-    );
-    return { csv, count: items.length };
+    const items = await this.exportItems(q, meId);
+    return { csv: leadsCsv(items), count: items.length };
+  }
+
+  /** Classeur Excel mis en forme (feuilles Demandes et Synthèse). */
+  async exportXlsx(q: Omit<LeadQuery, "page" | "pageSize">, meId?: string) {
+    const items = await this.exportItems(q, meId);
+    const filters = [q.status && `statut ${statusLabels[q.status]}`, q.type && `type ${typeLabels[q.type]}`, q.assignee === "me" ? "mes demandes" : q.assignee === "none" ? "non attribuées" : undefined, q.q && "recherche"].filter(Boolean).join(", ") || "aucun";
+    return { file: await leadsWorkbook(items, { generatedAt: new Date(), filters }), count: items.length };
   }
 
 

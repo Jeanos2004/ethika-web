@@ -6,8 +6,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { localizedPath } from "@/content/pages";
-import { getLocalizedPost, getPosts, posts } from "@/content/blog";
+import { posts, staticBodyLocale } from "@/content/blog";
 import { getToc } from "@/lib/blog";
+import { sitePost, sitePosts } from "@/lib/content-source";
+import { Markdown, markdownToc } from "@/lib/markdown";
 import { site } from "@/lib/site";
 import { isDemo } from "@/lib/demo/mode";
 import { Breadcrumbs } from "@/components/layout/PageHero";
@@ -18,11 +20,13 @@ import { cardFocus, stretchedLink } from "@/components/cards/shared";
 
 /*
  * Article — référence : design/maquettes/Article.dc.html
- * Corps en MDX (src/content/blog/<slug>.mdx, en français) rendu par les composants contrôlés de src/mdx-components.tsx.
- * En anglais : titres et chapô traduits, corps en français signalé au lecteur, page non indexée.
+ * Article publié depuis le back-office : corps Markdown rendu par src/lib/markdown.tsx. Sinon, article statique :
+ * corps en MDX (src/content/blog/<slug>.mdx, traduction <slug>.en.mdx), composants contrôlés de src/mdx-components.tsx.
+ * Corps non traduit : mention au lecteur et page non indexée dans cette langue.
+ * dynamicParams : les articles créés dans le back-office n'existent pas au build (slug inconnu → 404).
  */
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -32,7 +36,7 @@ type Params = { params: Promise<{ locale: Locale; slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = getLocalizedPost(slug, locale);
+  const post = await sitePost(slug, locale);
   if (!post) return {};
   const path = `/blog/${post.slug}`;
   return {
@@ -41,22 +45,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     alternates: { canonical: localizedPath(path, locale), languages: { fr: localizedPath(path, "fr"), "x-default": localizedPath(path, "fr") } },
     openGraph: { type: "article", title: post.title, description: post.lead, url: localizedPath(path, locale) },
     // Article à rédiger, ou version anglaise d'un texte français : pas d'indexation.
-    robots: isDemo ? { index: false, follow: false } : post.draft || locale !== "fr" ? { index: false, follow: true } : undefined,
+    robots: isDemo ? { index: false, follow: false } : post.draft || (post.bodyLocale ?? staticBodyLocale(post.slug, locale)) !== locale ? { index: false, follow: true } : undefined,
   };
 }
 
 export default async function ArticlePage({ params }: Params) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const post = getLocalizedPost(slug, locale);
+  const post = await sitePost(slug, locale);
   if (!post) notFound();
   const t = await getTranslations("article");
   const tb = await getTranslations("blog");
   const tc = await getTranslations("common");
   const tNav = await getTranslations("nav");
-  const { default: Body } = await import(`@/content/blog/${post.slug}.mdx`);
-  const toc = await getToc(post.slug);
-  const all = getPosts(locale);
+  const bodyLocale = post.bodyLocale ?? staticBodyLocale(post.slug, locale);
+  const fromApi = post.body !== undefined;
+  // Article statique : le fichier MDX n'existe que pour les slugs connus (liste blanche avant l'import).
+  if (!fromApi && !posts.some((p) => p.slug === post.slug)) notFound();
+  const Body = fromApi ? null : (await import(`@/content/blog/${post.slug}${bodyLocale === "en" ? ".en" : ""}.mdx`)).default;
+  const toc = fromApi ? markdownToc(post.body ?? "") : await getToc(post.slug, locale);
+  const all = await sitePosts(locale);
   const related = [...all.filter((p) => p.slug !== post.slug && p.category === post.category), ...all.filter((p) => p.slug !== post.slug && p.category !== post.category)].slice(0, 3);
   const path = localizedPath(`/blog/${post.slug}`, locale);
   const url = `${site.url}${path}`;
@@ -71,12 +79,14 @@ export default async function ArticlePage({ params }: Params) {
           "@type": "Article",
           headline: post.title,
           description: post.lead,
-          image: `${site.url}${post.image}`,
+          image: post.image.startsWith("https://") ? post.image : `${site.url}${post.image}`,
           url,
-          inLanguage: "fr",
+          inLanguage: bodyLocale,
           author: { "@type": "Organization", name: t("team", { name: site.name }) },
           publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: `${site.url}/brand/logo-vertical-couleur.svg` } },
-          ...(/^\d{4}-\d{2}-\d{2}/.test(post.published) && { datePublished: post.published, dateModified: post.updated }),
+          ...(post.publishedIso
+            ? { datePublished: post.publishedIso, dateModified: post.updatedIso ?? post.publishedIso }
+            : /^\d{4}-\d{2}-\d{2}/.test(post.published) && { datePublished: post.published, dateModified: post.updated }),
         }}
       />
       <JsonLd data={breadcrumbJsonLd(site.url, crumbs, path)} />
@@ -96,7 +106,7 @@ export default async function ArticlePage({ params }: Params) {
       </section>
       <div className="container-site">
         <div className="relative h-[clamp(240px,42vw,600px)] overflow-hidden rounded-[32px]">
-          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(min-width: 1320px) 1272px, 100vw" className="object-cover" />
+          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(min-width: 1320px) 1272px, 100vw" quality={90} className="object-cover" />
         </div>
       </div>
 
@@ -111,19 +121,19 @@ export default async function ArticlePage({ params }: Params) {
           <ShareLinks url={url} title={post.title} />
         </aside>
         <article
-          lang="fr"
+          lang={bodyLocale}
           className={clsx(
             "flex min-w-0 flex-[1_1_620px] flex-col gap-6 text-lg leading-[1.8] text-ink",
             // Lettrine sur le premier paragraphe (maquette Article.dc.html)
             "[&>p:first-child]:first-letter:float-left [&>p:first-child]:first-letter:mt-2 [&>p:first-child]:first-letter:mr-3 [&>p:first-child]:first-letter:font-serif [&>p:first-child]:first-letter:text-[84px] [&>p:first-child]:first-letter:leading-[0.8] [&>p:first-child]:first-letter:text-brand-red",
           )}
         >
-          {locale !== "fr" && (
+          {locale !== bodyLocale && (
             <div lang={locale} role="note" className="rounded-2xl bg-gold-50 px-5 py-3 text-[15px] text-gold-700">
               {t("frenchOnly")}
             </div>
           )}
-          <Body />
+          {Body ? <Body /> : <Markdown source={post.body ?? ""} />}
           {post.tags.length > 0 && (
             <ul className="mt-2 flex flex-wrap gap-2" aria-label={t("keywords")}>
               {post.tags.map((tag) => (

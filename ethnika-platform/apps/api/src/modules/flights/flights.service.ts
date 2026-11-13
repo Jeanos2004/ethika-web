@@ -53,7 +53,7 @@ export class FlightsService {
       if (e instanceof HttpException) throw e;
       if (e instanceof ProviderError) {
         if (e.status === 404) throw new NotFoundException({ error: "offer_or_order_not_found" });
-        if (e.status === 422) throw new UnprocessableEntityException({ error: "provider_rejected" });
+        if (e.status === 422) throw new UnprocessableEntityException({ error: e.code ?? "provider_rejected" });
       }
       throw new BadGatewayException({ error: "provider_unavailable" });
     }

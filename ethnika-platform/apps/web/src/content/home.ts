@@ -24,7 +24,7 @@ export const heroSlides: Slide[] = [
   },
   {
     image: "/images/avion-ciel.jpg",
-    alt: "Avion de ligne dans un ciel nuageux",
+    alt: "Avion de ligne dans un ciel bleu",
     kicker: "BILLETTERIE · TOUTES DESTINATIONS",
     titleA: "De Conakry",
     titleB: "vers le monde entier.",
@@ -52,14 +52,14 @@ export const mosaicFeature = {
 };
 
 export const mosaicGrid: MosaicItem[] = [
-  { href: "/decouvrir-la-guinee/iles-de-loos", image: "/images/barque-calme.jpg", alt: "Barque sur une mer calme au couchant", eyebrow: "Au large de Conakry", title: "Îles de Loos" },
+  { href: "/decouvrir-la-guinee/iles-de-loos", image: "/images/barque-calme.jpg", alt: "Barque de pêche sur une eau calme", eyebrow: "Au large de Conakry", title: "Îles de Loos" },
   { href: "/decouvrir-la-guinee/basse-cote#bel-air", image: "/images/plage-turquoise.jpg", alt: "Plage de sable et eau turquoise", eyebrow: "7 km de sable fin", title: "Bel-Air, Boffa" },
-  { href: "/decouvrir-la-guinee/mali-fouta-djallon#nguilo", image: "/images/chutes-nguilo.jpg", alt: "Grande cascade et arc-en-ciel", eyebrow: "Une demi-journée", title: "Chutes de Nguilo" },
-  { href: "/decouvrir-la-guinee/basse-cote#conakry", image: "/images/ville-bord-de-mer.jpg", alt: "Ville en bord de mer au coucher du soleil", eyebrow: "Escapade d'un jour", title: "Conakry & ses plages" },
+  { href: "/decouvrir-la-guinee/mali-fouta-djallon#nguilo", image: "/images/chutes-nguilo.jpg", alt: "Grande cascade dans la forêt", eyebrow: "Une demi-journée", title: "Chutes de Nguilo" },
+  { href: "/decouvrir-la-guinee/basse-cote#conakry", image: "/images/ville-bord-de-mer.jpg", alt: "Ville au bord d'une mer turquoise", eyebrow: "Escapade d'un jour", title: "Conakry & ses plages" },
 ];
 
 export const mosaicRow: MosaicItem[] = [
-  { href: "/decouvrir-la-guinee/basse-cote#dubreka", image: "/images/dubreka-riviere-pirogue.jpg", alt: "Rivière et pirogue dans la verdure", eyebrow: "Pirogues & mangrove", title: "Dubréka" },
+  { href: "/decouvrir-la-guinee/basse-cote#dubreka", image: "/images/dubreka-riviere-pirogue.jpg", alt: "Enfant dans une pirogue sur une rivière", eyebrow: "Pirogues & mangrove", title: "Dubréka" },
   { href: "/decouvrir-la-guinee/basse-cote#sobane", image: "/images/plage-sable-couchant.jpg", alt: "Plage de sable au coucher du soleil", eyebrow: "Nuits à la belle étoile", title: "Sobane" },
   { href: "/decouvrir-la-guinee/basse-cote#boffa", image: "/images/pecheurs-couchant.jpg", alt: "Bateaux de pêche au soleil couchant", eyebrow: "Ville de pêcheurs", title: "Boffa & le Rio Pongo" },
 ];

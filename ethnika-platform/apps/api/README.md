@@ -12,7 +12,7 @@ on reste volontairement sur NestJS 11 et `puppeteer-core` 24 (CommonJS) tant que
 ## Démarrer en local
 ```bash
 cp apps/api/.env.example apps/api/.env   # INTERNAL_API_KEY et DATA_ENCRYPTION_KEY : openssl rand -hex 32
-cd apps/api && docker compose up -d       # PostgreSQL local sur 127.0.0.1:54329
+cd apps/api && docker compose up -d       # PostgreSQL local sur 127.0.0.1:15432
 pnpm --filter @ethnika/api prisma:generate
 pnpm --filter @ethnika/api prisma:migrate
 pnpm --filter @ethnika/api user:create-admin admin@ethnikatour.com "Prénom Nom"   # affiche un mot de passe temporaire

@@ -18,7 +18,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws:" : ""}`,
+  `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws: wss:" : ""}`,
   "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com https://www.openstreetmap.org",
   "frame-ancestors 'none'",
   "form-action 'self'",
@@ -43,6 +43,8 @@ const standalone = process.env.NEXT_OUTPUT === "standalone";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Développement uniquement : test sur téléphone via un tunnel ngrok (sans effet sur le build de production).
+  allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok-free.dev", "*.ngrok.app"],
   ...(standalone && {
     output: "standalone" as const,
     // Monorepo pnpm : tracer les dépendances depuis la racine du dépôt.

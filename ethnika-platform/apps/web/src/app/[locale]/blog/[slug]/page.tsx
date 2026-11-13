@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { localizedPath } from "@/content/pages";
-import { posts } from "@/content/blog";
+import { posts, staticBodyLocale } from "@/content/blog";
 import { getToc } from "@/lib/blog";
 import { sitePost, sitePosts } from "@/lib/content-source";
 import { Markdown, markdownToc } from "@/lib/markdown";
@@ -21,7 +21,7 @@ import { cardFocus, stretchedLink } from "@/components/cards/shared";
 /*
  * Article — référence : design/maquettes/Article.dc.html
  * Article publié depuis le back-office : corps Markdown rendu par src/lib/markdown.tsx. Sinon, article statique :
- * corps en MDX (src/content/blog/<slug>.mdx, en français), composants contrôlés de src/mdx-components.tsx.
+ * corps en MDX (src/content/blog/<slug>.mdx, traduction <slug>.en.mdx), composants contrôlés de src/mdx-components.tsx.
  * Corps non traduit : mention au lecteur et page non indexée dans cette langue.
  * dynamicParams : les articles créés dans le back-office n'existent pas au build (slug inconnu → 404).
  */
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     alternates: { canonical: localizedPath(path, locale), languages: { fr: localizedPath(path, "fr"), "x-default": localizedPath(path, "fr") } },
     openGraph: { type: "article", title: post.title, description: post.lead, url: localizedPath(path, locale) },
     // Article à rédiger, ou version anglaise d'un texte français : pas d'indexation.
-    robots: isDemo ? { index: false, follow: false } : post.draft || (post.bodyLocale ?? "fr") !== locale ? { index: false, follow: true } : undefined,
+    robots: isDemo ? { index: false, follow: false } : post.draft || (post.bodyLocale ?? staticBodyLocale(post.slug, locale)) !== locale ? { index: false, follow: true } : undefined,
   };
 }
 
@@ -58,12 +58,12 @@ export default async function ArticlePage({ params }: Params) {
   const tb = await getTranslations("blog");
   const tc = await getTranslations("common");
   const tNav = await getTranslations("nav");
-  const bodyLocale = post.bodyLocale ?? "fr";
+  const bodyLocale = post.bodyLocale ?? staticBodyLocale(post.slug, locale);
   const fromApi = post.body !== undefined;
   // Article statique : le fichier MDX n'existe que pour les slugs connus (liste blanche avant l'import).
   if (!fromApi && !posts.some((p) => p.slug === post.slug)) notFound();
-  const Body = fromApi ? null : (await import(`@/content/blog/${post.slug}.mdx`)).default;
-  const toc = fromApi ? markdownToc(post.body ?? "") : await getToc(post.slug);
+  const Body = fromApi ? null : (await import(`@/content/blog/${post.slug}${bodyLocale === "en" ? ".en" : ""}.mdx`)).default;
+  const toc = fromApi ? markdownToc(post.body ?? "") : await getToc(post.slug, locale);
   const all = await sitePosts(locale);
   const related = [...all.filter((p) => p.slug !== post.slug && p.category === post.category), ...all.filter((p) => p.slug !== post.slug && p.category !== post.category)].slice(0, 3);
   const path = localizedPath(`/blog/${post.slug}`, locale);

@@ -2,8 +2,21 @@ import type { Post } from "@/content/blog";
 
 /**
  * Traduction anglaise des métadonnées du blog (titres, chapôs, extraits).
- * Le corps des articles (MDX) n'existe qu'en français : la version anglaise l'indique au lecteur.
+ * Corps anglais : src/content/blog/<slug>.en.mdx, pour chaque slug de `bodiesEn`. Sans lui, la version anglaise
+ * affiche le texte français et l'indique au lecteur.
  */
+export const bodiesEn = new Set([
+  "iles-de-loos-quelle-ile-choisir",
+  "quand-partir-en-guinee",
+  "fievre-jaune-paludisme-precautions",
+  "cascades-du-fouta-djallon",
+  "preparer-premier-voyage-guinee",
+  "bagages-conditions-tarifaires",
+  "journee-pecheurs-basse-cote",
+  "bel-air-guide-week-end",
+  "ethnika-ouvre-ses-portes",
+]);
+
 export const postsEn: Record<string, Partial<Pick<Post, "title" | "lead" | "excerpt" | "tag" | "imageAlt" | "tags">>> = {
   "iles-de-loos-quelle-ile-choisir": { title: "Kassa, Tamara or Roume: which Loos island should you choose?", lead: "Party, wild nature or total calm: our guide to choosing the island that suits you, 30 minutes from Conakry.", excerpt: "Party, wild nature or total calm: choose the island that suits you.", tag: "Islands · Guide", imageAlt: "Sea horizon seen from an island" },
   "quand-partir-en-guinee": { title: "When to go to Guinea? Coast and Fouta, season by season", lead: "Dry season, rainy season, harmattan: the right time depending on your destination.", excerpt: "Dry season, rainy season: the right time depending on your destination.", tag: "Tips · Seasons", imageAlt: "Winding road in a green valley" },

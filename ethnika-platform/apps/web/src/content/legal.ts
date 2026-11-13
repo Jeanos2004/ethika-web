@@ -1,11 +1,15 @@
 /**
  * Documents légaux (maquette Legal.dc.html : onglets → 4 routes).
  * Structure de maquette : textes définitifs à rédiger et valider par un juriste. [À VALIDER PAR UN JURISTE]
+ * Version anglaise (legalDocsEn) : traduction à titre informatif, la version française fait foi.
+ * Toute modification d'un texte français se reporte dans sa traduction.
  */
+
+type LegalDoc = { path: string; tab: string; title: string; sections: { title: string; text: string }[] };
 
 export type LegalKey = "mentions" | "cgv" | "confidentialite" | "cookies";
 
-export const legalDocs: Record<LegalKey, { path: string; tab: string; title: string; sections: { title: string; text: string }[] }> = {
+export const legalDocs: Record<LegalKey, LegalDoc> = {
   mentions: {
     path: "/mentions-legales",
     tab: "Mentions légales",
@@ -57,5 +61,63 @@ export const legalDocs: Record<LegalKey, { path: string; tab: string; title: str
     ],
   },
 };
+
+export const legalDocsEn: Record<LegalKey, LegalDoc> = {
+  mentions: {
+    path: "/mentions-legales",
+    tab: "Legal notice",
+    title: "Legal notice",
+    sections: [
+      { title: "Website publisher", text: "ETHNIKA, [legal form] with a share capital of [AMOUNT] GNF, registered office: [ADDRESS], Conakry. RCCM: [No.]. NIF: [No.]. Travel agency licence No. [No.] issued by [AUTHORITY]." },
+      { title: "Publication director", text: "[NAME, POSITION]." },
+      { title: "Contact", text: "contact@ethnikatour.com · +224 [NUMBER]." },
+      { title: "Hosting", text: "[HOSTING PROVIDER], [ADDRESS], [COUNTRY]." },
+      { title: "Intellectual property", text: "The ETHNIKA logo, texts and visual identity are protected. Any reproduction without permission is prohibited. Illustrative photos: Unsplash (Unsplash licence, royalty-free)." },
+    ],
+  },
+  cgv: {
+    path: "/cgv",
+    tab: "Terms of sale",
+    title: "General terms and conditions of sale",
+    sections: [
+      { title: "Purpose", text: "These terms govern the sale of plane tickets, tours and travel services by ETHNIKA." },
+      { title: "Quote and booking", text: "Every request leads to a quote. The booking is confirmed once the quote is accepted and a deposit of [X]% is paid." },
+      { title: "Prices and payment", text: "Prices in Guinean francs (GNF), unless stated otherwise. The balance is due [X] days before departure. Payment methods: [TO BE SPECIFIED]." },
+      { title: "Air ticketing", text: "Tickets are subject to the airlines' fare conditions (changes, cancellation, baggage). The agency's service fees are shown on the quote." },
+      { title: "Cancellation by the customer", text: "Cancellation scale: [TO BE DEFINED according to the time before departure]." },
+      { title: "Liability and insurance", text: "ETHNIKA holds professional liability insurance with [INSURER]. Travel insurance is recommended." },
+      { title: "Disputes", text: "Guinean law applies. Complaints should be sent to contact@ethnikatour.com. [TO BE VALIDATED]" },
+    ],
+  },
+  confidentialite: {
+    path: "/confidentialite",
+    tab: "Privacy",
+    title: "Privacy policy",
+    sections: [
+      { title: "Data collected", text: "Name, contact details, travel details and, for ticketing, the passport information needed to issue tickets." },
+      { title: "Purposes", text: "Handling your requests, issuing bookings and, if you have agreed, informing you of our offers." },
+      { title: "Recipients", text: "Agency staff, airlines, the travel providers concerned and booking systems (GDS)." },
+      { title: "Retention period", text: "[PERIOD] after the last business contact, unless the law requires otherwise." },
+      { title: "Your rights", text: "Access, rectification, deletion, objection: write to contact@ethnikatour.com." },
+      { title: "Security", text: "Encrypted connection (HTTPS), restricted access to the back office, regular backups." },
+    ],
+  },
+  cookies: {
+    path: "/cookies",
+    tab: "Cookies",
+    title: "Cookie policy",
+    sections: [
+      { title: "What is a cookie?", text: "A small file placed on your device to make the website work or measure its audience." },
+      { title: "Necessary cookies", text: "Language, form security and remembering your cookie choice. They cannot be disabled." },
+      { title: "Audience measurement", text: "[TOOL, e.g. privacy-friendly analytics], set only with your consent." },
+      { title: "Social networks", text: "Share buttons and embedded videos may set third-party cookies, with your consent." },
+    ],
+  },
+};
+
+/** Document dans la langue de la page (traduction anglaise, sinon français). */
+export function legalDoc(key: LegalKey, locale: string): LegalDoc {
+  return locale === "en" ? legalDocsEn[key] : legalDocs[key];
+}
 
 export const legalOrder: LegalKey[] = ["mentions", "cgv", "confidentialite", "cookies"];

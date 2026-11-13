@@ -8,7 +8,7 @@ import { api } from "@/lib/api/server";
 import { requireAdmin } from "@/lib/admin/session";
 import { getCircuits, type Circuit } from "@/content/circuits";
 import { getOffers } from "@/content/offers";
-import { categorySlugs, getPosts, homePosts } from "@/content/blog";
+import { bodyFile, categorySlugs, getPosts, homePosts, staticBodyLocale } from "@/content/blog";
 import { gallery, getGallery } from "@/content/gallery";
 import { mdxToMarkdown } from "@/lib/markdown";
 import { slugify } from "@/lib/slug";
@@ -67,14 +67,16 @@ export async function importSiteContent(_prev: ImportState, formData: FormData):
         continue;
       }
       // Slug en liste blanche (articles du site) avant toute lecture disque.
-      const body = mdxToMarkdown(await readFile(join(process.cwd(), "src", "content", "blog", `${p.slug}.mdx`), "utf8"));
+      const read = async (locale: string) => mdxToMarkdown(await readFile(join(process.cwd(), "src", "content", "blog", bodyFile(p.slug, locale)), "utf8"));
+      const body = await read("fr");
+      const bodyEn = staticBodyLocale(p.slug, "en") === "en" ? await read("en") : undefined;
       const e = en.find((x) => x.slug === p.slug);
       const texts = (x: typeof p) => ({ title: x.title, lead: x.lead, excerpt: x.excerpt, tag: x.tag, imageAlt: x.imageAlt, tags: x.tags });
       await post("/v1/admin/posts", {
         slug: p.slug,
         category: categorySlugs[p.category],
         imageUrl: p.image,
-        i18n: { fr: { ...texts(p), body }, ...(e && { en: texts(e) }) },
+        i18n: { fr: { ...texts(p), body }, ...(e && { en: { ...texts(e), ...(bodyEn && { body: bodyEn }) } }) },
         featured: featured.has(p.slug),
         published: true,
         ...(/^\d{4}-\d{2}-\d{2}$/.test(p.published) && { publishedAt: p.published }),

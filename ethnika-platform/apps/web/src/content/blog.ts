@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { postsEn } from "@/content/blog.en";
+import { bodiesEn, postsEn } from "@/content/blog.en";
 
 /**
  * Index du blog (maquettes Blog.dc.html, Article.dc.html et bloc « Préparez votre voyage » de l'accueil).
- * Le corps de chaque article est un fichier MDX : src/content/blog/<slug>.mdx.
+ * Le corps de chaque article est un fichier MDX : src/content/blog/<slug>.mdx (traduction : <slug>.en.mdx).
  * Les métadonnées sont validées par Zod au chargement : une entrée invalide fait échouer le build.
  */
 
@@ -184,6 +184,16 @@ export const homePosts = ["iles-de-loos-quelle-ile-choisir", "quand-partir-en-gu
 /** Articles dans une langue (métadonnées traduites ; le corps MDX reste en français). */
 export function getPosts(locale: string): Post[] {
   return locale === "en" ? posts.map((p) => ({ ...p, ...postsEn[p.slug] })) : posts;
+}
+
+/** Langue du corps MDX d'un article statique : anglais quand sa traduction existe, sinon français. */
+export function staticBodyLocale(slug: string, locale: string): "fr" | "en" {
+  return locale === "en" && bodiesEn.has(slug) ? "en" : "fr";
+}
+
+/** Fichier MDX du corps (slug en liste blanche à vérifier avant). */
+export function bodyFile(slug: string, locale: string): string {
+  return staticBodyLocale(slug, locale) === "en" ? `${slug}.en.mdx` : `${slug}.mdx`;
 }
 
 export function getLocalizedPost(slug: string, locale: string): Post | undefined {

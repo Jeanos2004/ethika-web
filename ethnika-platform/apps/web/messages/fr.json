@@ -780,7 +780,6 @@
     "accessText": "Prévoir un 4×4, un guide local et un hébergement confirmé. Nous organisons tout pour vous.",
     "healthTitle": "Santé : méningite & fièvre jaune",
     "healthText": "Vaccin contre la méningite conseillé de novembre à juin dans le nord et le centre. Fièvre jaune exigée à l'entrée. Voir un médecin 4 à 6 semaines avant.",
-    "map": "[Carte interactive : Conakry → Mali]",
     "asideLabel": "Demander un devis",
     "whyBook": "Pourquoi réserver avec nous",
     "whyItems": [
@@ -807,7 +806,10 @@
         "title": "Dubréka"
       }
     ],
-    "durationLabel": "[X] jours"
+    "durationLabel": "[X] jours",
+    "discoverSite": "Découvrir le site",
+    "map": "Carte Google Maps : itinéraire de Conakry à Mali",
+    "mapOpen": "Ouvrir l'itinéraire dans Google Maps"
   },
   "loos": {
     "intro": "Un archipel au large de la capitale : plages de sable rouge, criques, pêcheurs et histoire. L'escapade idéale le temps d'un week-end.",
@@ -2697,5 +2699,174 @@
       "closed": "Ce paiement est déjà clos."
     },
     "receipt": "Télécharger le reçu (PDF)"
+  },
+  "foutaSites": {
+    "sections": {
+      "apercu": "Aperçu",
+      "voir": "À voir",
+      "pratique": "Infos pratiques"
+    },
+    "factsLabel": "En bref",
+    "overviewKicker": "Le site",
+    "highlightsKicker": "Sur place",
+    "highlightsTitle": "À voir et à faire",
+    "practicalKicker": "Avant de partir",
+    "practicalTitle": "Infos pratiques",
+    "accessTitle": "Accès",
+    "bringTitle": "À emporter",
+    "note": "Informations indicatives : durées, accès et conditions sont confirmés avec votre devis.",
+    "circuitKicker": "Dans le circuit",
+    "circuitText": "Ce site fait partie de notre circuit au Fouta Djallon : transport en 4×4, guide local et hébergement compris.",
+    "circuitCta": "Voir le programme",
+    "backToFouta": "Toute la destination Mali & le Fouta Djallon",
+    "otherKicker": "Dans les environs",
+    "otherTitle": "Les autres sites du Fouta",
+    "discover": "Découvrir",
+    "sites": {
+      "mont-loura": {
+        "title": "Mont Loura, la « Dame de Mali »",
+        "description": "Point culminant du Fouta Djallon à 1 515 m : la falaise de la Dame de Mali, les villages peuls et des panoramas sur les hauts plateaux.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Mont Loura, la « Dame de Mali »",
+        "imageAlt": "Sommets rocheux du Fouta Djallon",
+        "photoAlt": "Plateau du Fouta au coucher du soleil",
+        "intro": "À quelques kilomètres de la ville de Mali, le mont Loura domine le Fouta Djallon du haut de ses 1 515 mètres. Son surnom, la « Dame de Mali », vient d'une falaise dont le profil évoque un visage de femme tourné vers l'horizon.",
+        "text": "On y monte à pied, à travers les hameaux peuls et les champs, avant de déboucher sur le plateau d'où la vue porte loin sur les vallées. C'est l'excursion emblématique de la région, à faire avec un guide local.",
+        "facts": [
+          {
+            "label": "Altitude",
+            "value": "1 515 m"
+          },
+          {
+            "label": "Durée",
+            "value": "½ à 1 journée"
+          },
+          {
+            "label": "Niveau",
+            "value": "Marche modérée"
+          },
+          {
+            "label": "Saison",
+            "value": "Saison sèche"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "La falaise de la Dame",
+            "text": "Le profil de pierre qui a donné son surnom au mont, à observer depuis le belvédère."
+          },
+          {
+            "title": "Le panorama du sommet",
+            "text": "Vue sur les plateaux, les vallées et les villages du Fouta."
+          },
+          {
+            "title": "Les villages peuls",
+            "text": "Rencontres et thé partagé avec les habitants, avec votre guide comme interprète."
+          },
+          {
+            "title": "La lumière du soir",
+            "text": "Lumière rasante sur les reliefs : le meilleur moment pour la photo."
+          }
+        ],
+        "access": "Depuis la ville de Mali en 4×4, puis à pied avec un guide local. Nous organisons le transport, le guide et l'hébergement.",
+        "bring": "Chaussures de marche, eau, chapeau et une petite laine : les matinées sont fraîches en altitude."
+      },
+      "chutes-de-nguilo": {
+        "title": "Les chutes de Nguilo",
+        "description": "Environ 5 km de sentier escarpé pour atteindre le pied des chutes de Nguilo : une demi-journée de randonnée avec un guide local.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Les chutes de Nguilo",
+        "imageAlt": "Cascade de Nguilo",
+        "photoAlt": "Route dans une vallée verdoyante",
+        "intro": "Les chutes de Nguilo se méritent : environ 5 km de sentier escarpé, dans une végétation dense, mènent au pied de la cascade.",
+        "text": "Comptez une demi-journée avec un guide local. La cascade est la plus puissante en fin de saison des pluies ; en saison sèche, le sentier est plus facile à parcourir.",
+        "facts": [
+          {
+            "label": "Sentier",
+            "value": "~5 km"
+          },
+          {
+            "label": "Durée",
+            "value": "½ journée"
+          },
+          {
+            "label": "Niveau",
+            "value": "Sportif"
+          },
+          {
+            "label": "Saison",
+            "value": "Saison sèche"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "La cascade",
+            "text": "Le spectacle de l'eau qui dévale la falaise, au bout de la marche."
+          },
+          {
+            "title": "Le sentier en forêt",
+            "text": "Une descente escarpée dans la végétation, à l'ombre des grands arbres."
+          },
+          {
+            "title": "La pause au bord de l'eau",
+            "text": "Le temps de souffler et de profiter de la fraîcheur avant la remontée."
+          },
+          {
+            "title": "Le savoir du guide",
+            "text": "Plantes, histoires et vie du Fouta racontées en chemin."
+          }
+        ],
+        "access": "Depuis Mali en 4×4, puis à pied. Le guide local est indispensable sur ce sentier.",
+        "bring": "Chaussures fermées qui accrochent bien, eau, encas et un vêtement de rechange."
+      },
+      "roches-de-koumba": {
+        "title": "Roches de Koumba et colline de Balaki",
+        "description": "Une courte randonnée dans la commune urbaine de Mali pour découvrir le paysage rocheux du Fouta Djallon.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Roches de Koumba et colline de Balaki",
+        "imageAlt": "Relief rocheux de Koumba",
+        "photoAlt": "Collines verdoyantes dans la brume",
+        "intro": "Sans quitter la commune urbaine de Mali, les roches de Koumba et la colline de Balaki offrent une première approche du paysage rocheux du Fouta.",
+        "text": "Une courte randonnée, idéale le jour de l'arrivée ou en fin d'après-midi, pour se mettre en jambes et profiter de la lumière dorée sur les rochers.",
+        "facts": [
+          {
+            "label": "Randonnée",
+            "value": "Courte"
+          },
+          {
+            "label": "Durée",
+            "value": "Quelques heures"
+          },
+          {
+            "label": "Niveau",
+            "value": "Facile"
+          },
+          {
+            "label": "Saison",
+            "value": "Toute l'année"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "Les formations rocheuses",
+            "text": "Blocs et falaises sculptés par le temps, typiques du Fouta."
+          },
+          {
+            "title": "La colline de Balaki",
+            "text": "Un point de vue facile d'accès sur Mali et ses environs."
+          },
+          {
+            "title": "Le coucher de soleil",
+            "text": "La meilleure heure pour la balade et pour les photos."
+          },
+          {
+            "title": "En famille",
+            "text": "Une sortie accessible, sans difficulté technique."
+          }
+        ],
+        "access": "Depuis le centre de Mali, à pied ou en véhicule, avec un guide local.",
+        "bring": "Chaussures confortables, eau et appareil photo."
+      }
+    }
   }
 }

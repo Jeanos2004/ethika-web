@@ -780,7 +780,6 @@
     "accessText": "Plan for a 4×4, a local guide and confirmed accommodation. We organise everything for you.",
     "healthTitle": "Health: meningitis & yellow fever",
     "healthText": "Meningitis vaccine advised from November to June in the north and centre. Yellow fever required on entry. See a doctor 4 to 6 weeks before.",
-    "map": "[Interactive map: Conakry → Mali]",
     "asideLabel": "Request a quote",
     "whyBook": "Why book with us",
     "whyItems": [
@@ -807,7 +806,10 @@
         "title": "Dubréka"
       }
     ],
-    "durationLabel": "[X] days"
+    "durationLabel": "[X] days",
+    "discoverSite": "Discover the site",
+    "map": "Google Maps: route from Conakry to Mali",
+    "mapOpen": "Open the route in Google Maps"
   },
   "loos": {
     "intro": "An archipelago off the capital: red-sand beaches, coves, fishermen and history. The perfect weekend getaway.",
@@ -1522,7 +1524,7 @@
     "note": "Mock-up structure. The final texts must be drafted and validated by a lawyer, in accordance with applicable Guinean law (travel agencies, data protection). [TO BE VALIDATED BY A LAWYER]",
     "docsLabel": "Legal documents",
     "updated": "LAST UPDATED: [DATE]",
-    "frenchOnly": "The legal documents are written in French, which is the authoritative version.",
+    "frenchOnly": "This English translation is provided for information only. In case of discrepancy, the French version prevails.",
     "tabs": {
       "mentions": "Legal notice",
       "cgv": "Terms of sale",
@@ -2697,5 +2699,174 @@
       "closed": "This payment is already closed."
     },
     "receipt": "Download the receipt (PDF)"
+  },
+  "foutaSites": {
+    "sections": {
+      "apercu": "Overview",
+      "voir": "Highlights",
+      "pratique": "Practical info"
+    },
+    "factsLabel": "At a glance",
+    "overviewKicker": "The site",
+    "highlightsKicker": "On site",
+    "highlightsTitle": "What to see and do",
+    "practicalKicker": "Before you go",
+    "practicalTitle": "Practical info",
+    "accessTitle": "Getting there",
+    "bringTitle": "What to bring",
+    "note": "Indicative information: times, access and conditions are confirmed with your quote.",
+    "circuitKicker": "Part of the tour",
+    "circuitText": "This site is part of our Fouta Djallon tour: 4×4 transport, local guide and accommodation included.",
+    "circuitCta": "See the programme",
+    "backToFouta": "The whole Mali & Fouta Djallon destination",
+    "otherKicker": "Nearby",
+    "otherTitle": "Other sites in the Fouta",
+    "discover": "Discover",
+    "sites": {
+      "mont-loura": {
+        "title": "Mount Loura, the “Lady of Mali”",
+        "description": "Highest point of the Fouta Djallon at 1,515 m: the Lady of Mali cliff, Fula villages and views over the highlands.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Mount Loura, the “Lady of Mali”",
+        "imageAlt": "Rocky peaks of the Fouta Djallon",
+        "photoAlt": "Fouta plateau at sunset",
+        "intro": "A few kilometres from the town of Mali, Mount Loura towers over the Fouta Djallon at 1,515 metres. Its nickname, the “Lady of Mali”, comes from a cliff whose profile looks like a woman's face turned towards the horizon.",
+        "text": "You climb on foot, through Fula hamlets and fields, before reaching the plateau, where the view stretches far across the valleys. It is the region's signature excursion, best done with a local guide.",
+        "facts": [
+          {
+            "label": "Altitude",
+            "value": "1,515 m"
+          },
+          {
+            "label": "Duration",
+            "value": "½ to 1 day"
+          },
+          {
+            "label": "Level",
+            "value": "Moderate walk"
+          },
+          {
+            "label": "Season",
+            "value": "Dry season"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "The Lady's cliff",
+            "text": "The stone profile that gave the mountain its nickname, seen from the viewpoint."
+          },
+          {
+            "title": "The summit panorama",
+            "text": "Views over the plateaus, valleys and villages of the Fouta."
+          },
+          {
+            "title": "Fula villages",
+            "text": "Meetings and shared tea with the locals, with your guide as interpreter."
+          },
+          {
+            "title": "Evening light",
+            "text": "Low light across the relief: the best time for photos."
+          }
+        ],
+        "access": "From the town of Mali by 4×4, then on foot with a local guide. We arrange transport, guide and accommodation.",
+        "bring": "Walking shoes, water, a hat and a light sweater: mornings are cool at altitude."
+      },
+      "chutes-de-nguilo": {
+        "title": "Nguilo Falls",
+        "description": "About 5 km of steep trail to reach the foot of Nguilo Falls: a half-day hike with a local guide.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Nguilo Falls",
+        "imageAlt": "Nguilo waterfall",
+        "photoAlt": "Road in a green valley",
+        "intro": "Nguilo Falls have to be earned: about 5 km of steep trail through dense vegetation lead to the foot of the waterfall.",
+        "text": "Allow half a day with a local guide. The falls are at their most powerful at the end of the rainy season; in the dry season, the trail is easier to walk.",
+        "facts": [
+          {
+            "label": "Trail",
+            "value": "~5 km"
+          },
+          {
+            "label": "Duration",
+            "value": "½ day"
+          },
+          {
+            "label": "Level",
+            "value": "Challenging"
+          },
+          {
+            "label": "Season",
+            "value": "Dry season"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "The waterfall",
+            "text": "Water tumbling down the cliff, the reward at the end of the walk."
+          },
+          {
+            "title": "The forest trail",
+            "text": "A steep descent through the vegetation, in the shade of tall trees."
+          },
+          {
+            "title": "A break by the water",
+            "text": "Time to catch your breath and enjoy the cool air before the climb back."
+          },
+          {
+            "title": "Your guide's knowledge",
+            "text": "Plants, stories and Fouta life shared along the way."
+          }
+        ],
+        "access": "From Mali by 4×4, then on foot. A local guide is essential on this trail.",
+        "bring": "Closed shoes with good grip, water, snacks and a change of clothes."
+      },
+      "roches-de-koumba": {
+        "title": "Koumba rocks and Balaki hill",
+        "description": "A short hike in the urban commune of Mali to discover the rocky landscape of the Fouta Djallon.",
+        "kicker": "Mali · Fouta Djallon",
+        "heading": "Koumba rocks and Balaki hill",
+        "imageAlt": "Rocky relief of Koumba",
+        "photoAlt": "Green hills in the mist",
+        "intro": "Without leaving the urban commune of Mali, the Koumba rocks and Balaki hill offer a first taste of the Fouta's rocky landscape.",
+        "text": "A short hike, ideal on the day you arrive or in the late afternoon, to stretch your legs and enjoy the golden light on the rocks.",
+        "facts": [
+          {
+            "label": "Hike",
+            "value": "Short"
+          },
+          {
+            "label": "Duration",
+            "value": "A few hours"
+          },
+          {
+            "label": "Level",
+            "value": "Easy"
+          },
+          {
+            "label": "Season",
+            "value": "All year round"
+          }
+        ],
+        "highlights": [
+          {
+            "title": "Rock formations",
+            "text": "Boulders and cliffs shaped by time, typical of the Fouta."
+          },
+          {
+            "title": "Balaki hill",
+            "text": "An easy viewpoint over Mali and its surroundings."
+          },
+          {
+            "title": "Sunset",
+            "text": "The best time for the walk and for photos."
+          },
+          {
+            "title": "For families",
+            "text": "An accessible outing with no technical difficulty."
+          }
+        ],
+        "access": "From the centre of Mali, on foot or by vehicle, with a local guide.",
+        "bring": "Comfortable shoes, water and a camera."
+      }
+    }
   }
 }

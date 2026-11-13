@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { clsx } from "clsx";
 import { mainNav, site, utilityNav } from "@/lib/site";
 import { pages } from "@/content/pages";
+import { foutaBasePath } from "@/content/fouta-sites";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
@@ -18,6 +19,7 @@ const transparentPrefixes = Object.values(pages)
 
 function isTransparent(pathname: string) {
   if (pathname.startsWith("/circuits/")) return true; // fiches circuit : bannière photo
+  if (pathname.startsWith(`${foutaBasePath}/`)) return true; // sites du Fouta : bannière photo
   return transparentPrefixes.includes(pathname);
 }
 

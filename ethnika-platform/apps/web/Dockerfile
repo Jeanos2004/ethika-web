@@ -1,7 +1,7 @@
 # Image de production du site (option « Docker + VPS derrière Cloudflare », docs/DEPLOIEMENT.md).
 # Construire depuis la RACINE du dépôt :
 #   docker build -f apps/web/Dockerfile \
-#     --build-arg NEXT_PUBLIC_SITE_URL=https://ethnikatour.com \
+#     --build-arg NEXT_PUBLIC_SITE_URL=https://ethnika.africa \
 #     --build-arg NEXT_PUBLIC_WHATSAPP_NUMBER=224XXXXXXXXX \
 #     -t ethnika-web .
 # Les variables NEXT_PUBLIC_* sont figées au build ; les secrets serveur se passent au démarrage (--env-file).

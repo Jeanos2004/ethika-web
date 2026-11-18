@@ -9,10 +9,10 @@ describe("ResendTransport", () => {
       calls.push({ url, init });
       return new Response(JSON.stringify({ id: "re_123" }), { status: 200 });
     }) as unknown as typeof fetch;
-    await new ResendTransport("re_test_key", "ETHNIKA <contact@ethnikatour.com>", fetchImpl).send("aminata@example.com", email);
+    await new ResendTransport("re_test_key", "ETHNIKA <contact@ethnika.africa>", fetchImpl).send("aminata@example.com", email);
     expect(calls[0]!.url).toBe("https://api.resend.com/emails");
     expect((calls[0]!.init.headers as Record<string, string>).authorization).toBe("Bearer re_test_key");
-    expect(JSON.parse(String(calls[0]!.init.body))).toEqual({ from: "ETHNIKA <contact@ethnikatour.com>", to: ["aminata@example.com"], subject: email.subject, html: email.html, text: email.text });
+    expect(JSON.parse(String(calls[0]!.init.body))).toEqual({ from: "ETHNIKA <contact@ethnika.africa>", to: ["aminata@example.com"], subject: email.subject, html: email.html, text: email.text });
     expect(calls[0]!.init.redirect).toBe("error");
   });
 

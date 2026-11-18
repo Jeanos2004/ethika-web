@@ -6,7 +6,7 @@ import { UsersService } from "../modules/auth/users.service";
 
 /**
  * Création du premier administrateur (aucun compte par défaut) :
- *   pnpm --filter @ethnika/api user:create-admin admin@ethnikatour.com "Prénom Nom"
+ *   pnpm --filter @ethnika/api user:create-admin admin@ethnika.africa "Prénom Nom"
  * Affiche une seule fois le mot de passe temporaire. À la première connexion : nouveau mot de passe, puis 2FA.
  */
 async function main() {

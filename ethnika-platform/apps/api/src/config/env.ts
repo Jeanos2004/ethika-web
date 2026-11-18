@@ -24,7 +24,7 @@ const schema = z.object({
   SMTP_URL: z.string().optional(),
   /** Resend (prioritaire sur SMTP) : clé re_…, domaine de MAIL_FROM vérifié dans Resend. */
   RESEND_API_KEY: z.string().regex(/^re_[A-Za-z0-9_]{8,}$/, "clé Resend attendue (re_…)").optional(),
-  MAIL_FROM: z.string().default("ETHNIKA <contact@ethnikatour.com>"),
+  MAIL_FROM: z.string().default("ETHNIKA <contact@ethnika.africa>"),
   /** Adresse interne de l'agence qui reçoit la notification de chaque nouvelle demande. */
   AGENCY_NOTIFY_EMAIL: z.email().optional(),
   /** Vols : « mock » (développement), « duffel » (jeton duffel_test_…) ou « amadeus » (Self-Service / Enterprise). */

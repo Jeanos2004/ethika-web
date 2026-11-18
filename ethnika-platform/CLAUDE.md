@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Projet : site et plateforme de l'agence **ETHNIKA** (ethnikatour.com, Conakry).
+Projet : site et plateforme de l'agence **ETHNIKA** (ethnika.africa, Conakry).
 Le prompt complet et la feuille de route par lots sont dans `docs/PROMPT_CLAUDE_CODE.md`.
 
 > La racine du dépôt est `ethnika-platform/ethnika-platform/` (dossier imbriqué). Toutes les commandes s'y lancent.

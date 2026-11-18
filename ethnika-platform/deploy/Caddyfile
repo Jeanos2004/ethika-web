@@ -1,6 +1,6 @@
 # Reverse proxy TLS de l'API (certificats Let's Encrypt automatiques).
-# Remplacer api.ethnikatour.com par le sous-domaine réel, pointé (DNS A/AAAA) vers le VPS.
-api.ethnikatour.com {
+# Remplacer api.ethnika.africa par le sous-domaine réel, pointé (DNS A/AAAA) vers le VPS.
+api.ethnika.africa {
 	encode zstd gzip
 
 	# Caddy transmet l'adresse réelle de l'appelant (X-Forwarded-For). X-Client-IP / X-Client-UA, posés par le serveur

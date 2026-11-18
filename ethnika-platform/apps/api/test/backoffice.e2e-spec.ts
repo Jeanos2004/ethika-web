@@ -182,7 +182,7 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
         address: "Kaloum, Conakry",
         phone: "+224 620 00 00 00",
         whatsapp: "+224 620 00 00 00",
-        email: "contact@ethnikatour.com",
+        email: "contact@ethnika.africa",
         licence: "LIC-E2E",
         rccm: "RCCM-E2E",
         openingHours: "Lun – Sam · 9 h – 18 h",
@@ -192,7 +192,7 @@ describe("Back-office : newsletter, attribution, indicateurs, contenus (e2e)", (
         latitude: 9.51,
         longitude: -13.71,
         paymentInstructions: "Orange Money au 620 00 00 00, ou espèces en agence.",
-        quoteTerms: "CGV sur ethnikatour.com/cgv.",
+        quoteTerms: "CGV sur ethnika.africa/cgv.",
       };
       await as(agent, api().patch("/v1/agency")).send(body).expect(403);
       await as(admin, api().patch("/v1/agency")).send({ ...body, email: "pas-un-email" }).expect(400);

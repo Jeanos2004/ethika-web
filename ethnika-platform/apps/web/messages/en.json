@@ -104,7 +104,7 @@
     },
     "mentions": {
       "title": "Legal notice",
-      "description": "Legal notice of ethnikatour.com.",
+      "description": "Legal notice of ethnika.africa.",
       "kicker": "Transparency",
       "heading": "Legal notice"
     },
@@ -122,7 +122,7 @@
     },
     "cookies": {
       "title": "Cookie policy",
-      "description": "Use of cookies on ethnikatour.com.",
+      "description": "Use of cookies on ethnika.africa.",
       "kicker": "Transparency",
       "heading": "Cookie policy"
     },
@@ -1297,7 +1297,7 @@
     "proKicker": "Professional request",
     "proTitle": "Quote for a group, company or pilgrimage",
     "proText": "Describe your project and we will come back to you within 48 working hours with a proposal.",
-    "groupsEmail": "groupes@ethnikatour.com [TO BE CONFIRMED]"
+    "groupsEmail": "groupes@ethnika.africa [TO BE CONFIRMED]"
   },
   "offres": {
     "filterLabel": "Offer type",
@@ -1697,7 +1697,7 @@
     },
     "email": {
       "eyebrow": "PREVIEW",
-      "from": "From: ETHNIKA <contact@ethnikatour.com>",
+      "from": "From: ETHNIKA <contact@ethnika.africa>",
       "subject": "Subject: We have received your request {ref}",
       "hello": "Hello {name},",
       "title": "Your request has been received",
@@ -1711,8 +1711,8 @@
       ],
       "whatsapp": "Message us on WhatsApp",
       "circuits": "See our tours",
-      "footerLegal": "Licence no. {licence} · ethnikatour.com",
-      "footerNote": "You are receiving this email following your request on ethnikatour.com.",
+      "footerLegal": "Licence no. {licence} · ethnika.africa",
+      "footerNote": "You are receiving this email following your request on ethnika.africa.",
       "privacy": "Privacy",
       "devNote": "In production (phase 2), this email is sent by the API (React Email) as soon as the request is received."
     },

@@ -17,7 +17,7 @@ export const legalDocs: Record<LegalKey, LegalDoc> = {
     sections: [
       { title: "Éditeur du site", text: "ETHNIKA, [forme juridique] au capital de [MONTANT] GNF, siège : [ADRESSE], Conakry. RCCM : [N°]. NIF : [N°]. Licence d'agence de voyage n° [N°] délivrée par [AUTORITÉ]." },
       { title: "Directeur de la publication", text: "[NOM, FONCTION]." },
-      { title: "Contact", text: "contact@ethnikatour.com · +224 [NUMÉRO]." },
+      { title: "Contact", text: "contact@ethnika.africa · +224 [NUMÉRO]." },
       { title: "Hébergement", text: "[HÉBERGEUR], [ADRESSE], [PAYS]." },
       { title: "Propriété intellectuelle", text: "Le logo, les textes et la charte graphique ETHNIKA sont protégés. Toute reproduction sans autorisation est interdite. Photos d'illustration : Unsplash (licence Unsplash, libre de droits)." },
     ],
@@ -33,7 +33,7 @@ export const legalDocs: Record<LegalKey, LegalDoc> = {
       { title: "Billetterie aérienne", text: "Les billets sont soumis aux conditions tarifaires des compagnies (modification, annulation, bagages). Les frais de service de l'agence sont indiqués sur le devis." },
       { title: "Annulation par le client", text: "Barème d'annulation : [À DÉFINIR selon le délai avant départ]." },
       { title: "Responsabilité et assurance", text: "ETHNIKA est assurée en responsabilité civile professionnelle auprès de [ASSUREUR]. Une assurance voyage est recommandée." },
-      { title: "Litiges", text: "Droit guinéen applicable. Réclamations à adresser à contact@ethnikatour.com. [À VALIDER]" },
+      { title: "Litiges", text: "Droit guinéen applicable. Réclamations à adresser à contact@ethnika.africa. [À VALIDER]" },
     ],
   },
   confidentialite: {
@@ -45,7 +45,7 @@ export const legalDocs: Record<LegalKey, LegalDoc> = {
       { title: "Finalités", text: "Traiter vos demandes, émettre les réservations, vous informer de nos offres si vous l'avez accepté." },
       { title: "Destinataires", text: "Personnel de l'agence, compagnies aériennes, prestataires de voyage concernés, systèmes de réservation (GDS)." },
       { title: "Durée de conservation", text: "[DURÉE] après la dernière relation commerciale, sauf obligation légale." },
-      { title: "Vos droits", text: "Accès, rectification, suppression, opposition : écrivez à contact@ethnikatour.com." },
+      { title: "Vos droits", text: "Accès, rectification, suppression, opposition : écrivez à contact@ethnika.africa." },
       { title: "Sécurité", text: "Connexion chiffrée (HTTPS), accès restreint au back-office, sauvegardes régulières." },
     ],
   },
@@ -70,7 +70,7 @@ export const legalDocsEn: Record<LegalKey, LegalDoc> = {
     sections: [
       { title: "Website publisher", text: "ETHNIKA, [legal form] with a share capital of [AMOUNT] GNF, registered office: [ADDRESS], Conakry. RCCM: [No.]. NIF: [No.]. Travel agency licence No. [No.] issued by [AUTHORITY]." },
       { title: "Publication director", text: "[NAME, POSITION]." },
-      { title: "Contact", text: "contact@ethnikatour.com · +224 [NUMBER]." },
+      { title: "Contact", text: "contact@ethnika.africa · +224 [NUMBER]." },
       { title: "Hosting", text: "[HOSTING PROVIDER], [ADDRESS], [COUNTRY]." },
       { title: "Intellectual property", text: "The ETHNIKA logo, texts and visual identity are protected. Any reproduction without permission is prohibited. Illustrative photos: Unsplash (Unsplash licence, royalty-free)." },
     ],
@@ -86,7 +86,7 @@ export const legalDocsEn: Record<LegalKey, LegalDoc> = {
       { title: "Air ticketing", text: "Tickets are subject to the airlines' fare conditions (changes, cancellation, baggage). The agency's service fees are shown on the quote." },
       { title: "Cancellation by the customer", text: "Cancellation scale: [TO BE DEFINED according to the time before departure]." },
       { title: "Liability and insurance", text: "ETHNIKA holds professional liability insurance with [INSURER]. Travel insurance is recommended." },
-      { title: "Disputes", text: "Guinean law applies. Complaints should be sent to contact@ethnikatour.com. [TO BE VALIDATED]" },
+      { title: "Disputes", text: "Guinean law applies. Complaints should be sent to contact@ethnika.africa. [TO BE VALIDATED]" },
     ],
   },
   confidentialite: {
@@ -98,7 +98,7 @@ export const legalDocsEn: Record<LegalKey, LegalDoc> = {
       { title: "Purposes", text: "Handling your requests, issuing bookings and, if you have agreed, informing you of our offers." },
       { title: "Recipients", text: "Agency staff, airlines, the travel providers concerned and booking systems (GDS)." },
       { title: "Retention period", text: "[PERIOD] after the last business contact, unless the law requires otherwise." },
-      { title: "Your rights", text: "Access, rectification, deletion, objection: write to contact@ethnikatour.com." },
+      { title: "Your rights", text: "Access, rectification, deletion, objection: write to contact@ethnika.africa." },
       { title: "Security", text: "Encrypted connection (HTTPS), restricted access to the back office, regular backups." },
     ],
   },

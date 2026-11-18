@@ -13,9 +13,9 @@ export const site = {
     /* Coordonnées de repli (fictives tant que l'agence n'a pas fourni les vraies) : le site affiche celles de
        Paramètres > Agence dès que l'API est branchée (src/lib/content-source.ts, getAgency). */
     phone: "+224 622 00 00 00",
-    email: "contact@ethnikatour.com",
+    email: "contact@ethnika.africa",
     /** Adresses par service (maquette Contact.dc.html). */
-    emails: ["contact@ethnikatour.com", "billetterie@ethnikatour.com", "reservation@ethnikatour.com"],
+    emails: ["contact@ethnika.africa", "billetterie@ethnika.africa", "reservation@ethnika.africa"],
     /** Horaires détaillés (à fournir par le client). */
     openingHours: [
       { days: "Lundi – Vendredi", hours: "8 h 30 – 18 h 00" },

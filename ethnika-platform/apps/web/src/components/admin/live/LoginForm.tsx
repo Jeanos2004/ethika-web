@@ -66,7 +66,7 @@ export function LoginForm() {
             <label htmlFor="email" className="text-[13px] font-semibold text-ink">
               {t("email")}
             </label>
-            <input id="email" name="email" type="email" required autoComplete="username" maxLength={200} placeholder="prenom@ethnikatour.com" className={input} />
+            <input id="email" name="email" type="email" required autoComplete="username" maxLength={200} placeholder="prenom@ethnika.africa" className={input} />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="text-[13px] font-semibold text-ink">

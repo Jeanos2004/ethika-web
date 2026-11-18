@@ -376,7 +376,7 @@ model AgencySettings {
   address             String   @default("Immeuble Kakimbo, Avenue de la République, Kaloum, Conakry") @db.VarChar(200)
   phone               String   @default("+224 622 00 00 00") @db.VarChar(40)
   whatsapp            String   @default("+224 622 00 00 00") @db.VarChar(40)
-  email               String   @default("contact@ethnikatour.com") @db.VarChar(200)
+  email               String   @default("contact@ethnika.africa") @db.VarChar(200)
   licence             String   @default("AGV-GN-2026-0000") @db.VarChar(80)
   rccm                String   @default("GN.TCC.2026.B.00000") @db.VarChar(80)
   openingHours        String   @default("Lun – Sam · 8 h 30 – 18 h") @db.VarChar(200)
@@ -389,7 +389,7 @@ model AgencySettings {
   /// Modalités de règlement imprimées sur les devis (comptes, Orange Money, espèces en agence…).
   paymentInstructions String   @default("Acompte de 30 % à la confirmation, solde avant l'émission des billets. Orange Money : 622 00 00 00 · virement : Ecobank Guinée, compte 0000 0000 0000 · espèces ou carte en agence.") @db.Text
   /// Conditions rappelées sur les devis (renvoi aux CGV).
-  quoteTerms          String   @default("Conditions générales de vente sur ethnikatour.com/cgv.") @db.Text
+  quoteTerms          String   @default("Conditions générales de vente sur ethnika.africa/cgv.") @db.Text
   /// Faux tant qu'un administrateur n'a pas enregistré les vraies coordonnées (les valeurs par défaut sont fictives).
   verified            Boolean  @default(false)
   updatedBy           String?  @db.Uuid

@@ -1,6 +1,6 @@
 # ETHNIKA — plateforme web
 
-Site et plateforme de l'agence de tourisme et de voyage **ETHNIKA** (ethnikatour.com, Conakry).
+Site et plateforme de l'agence de tourisme et de voyage **ETHNIKA** (ethnika.africa, Conakry).
 
 ## Démarrer
 ```bash

@@ -15,7 +15,7 @@ cp apps/api/.env.example apps/api/.env   # INTERNAL_API_KEY et DATA_ENCRYPTION_K
 cd apps/api && docker compose up -d       # PostgreSQL local sur 127.0.0.1:15432
 pnpm --filter @ethnika/api prisma:generate
 pnpm --filter @ethnika/api prisma:migrate
-pnpm --filter @ethnika/api user:create-admin admin@ethnikatour.com "Prénom Nom"   # affiche un mot de passe temporaire
+pnpm --filter @ethnika/api user:create-admin admin@ethnika.africa "Prénom Nom"   # affiche un mot de passe temporaire
 pnpm --filter @ethnika/api dev            # http://localhost:4000
 ```
 

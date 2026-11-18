@@ -3,9 +3,8 @@
 import { getLocale } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 import { z } from "zod";
-import { leadFormFields, leadSchema, proLeadType } from "@/lib/schemas/lead";
-import { proRequestTypes } from "@/lib/schemas/search";
-import { extractIata } from "@/content/airports";
+import { leadSchema } from "@/lib/schemas/lead";
+import { readLeadForm } from "@/lib/lead-form";
 import { rateLimit } from "@/lib/security/rate-limit";
 import { getClientIp } from "@/lib/security/client-ip";
 import { submitLead } from "@/lib/leads";
@@ -15,35 +14,6 @@ export type LeadFormState =
   /** `message` et `fieldErrors` sont des clés de traduction (messages, espace « errors »). */
   | { status: "error"; message: "rateLimited" | "fixFields" | "sendFailed"; fieldErrors?: Record<string, string[] | undefined> }
   | { status: "success"; reference: string };
-
-/** Vols supplémentaires d'un multi-destinations : champs répétés legFrom / legTo / legDate (4 au plus lus). */
-function readLegs(formData: FormData) {
-  const text = (k: string) => formData.getAll(k).slice(0, 5).map((v) => (typeof v === "string" ? v.trim() : ""));
-  const [froms, tos, dates] = [text("legFrom"), text("legTo"), text("legDate")];
-  return froms
-    .map((from, i) => ({ from: extractIata(from) ?? from, to: extractIata(tos[i] ?? "") ?? tos[i] ?? "", date: dates[i] ?? "" }))
-    .filter((leg) => leg.from || leg.to || leg.date);
-}
-
-/** Lit uniquement les champs connus ; une chaîne vide vaut « non renseigné ». */
-function readForm(formData: FormData) {
-  const raw: Record<string, unknown> = {};
-  for (const key of leadFormFields) {
-    const value = formData.get(key);
-    if (typeof value === "string" && value.trim() !== "") raw[key] = value;
-  }
-  raw.consent = formData.get("consent") === "on";
-  // Billet : « Paris (CDG) » → « CDG » (la validation stricte reste celle du schéma).
-  for (const key of ["from", "to"] as const) {
-    if (typeof raw[key] === "string") raw[key] = extractIata(raw[key]) ?? raw[key];
-  }
-  if (raw.trip === "multi") raw.legs = readLegs(formData);
-  // Demande professionnelle : le type enregistré découle de la catégorie choisie, pas d'un champ caché.
-  if (typeof raw.request === "string" && Object.hasOwn(proRequestTypes, raw.request)) {
-    raw.type = proLeadType(raw.request as keyof typeof proRequestTypes);
-  }
-  return raw;
-}
 
 /**
  * Server Action de référence pour TOUS les formulaires du site.
@@ -57,7 +27,7 @@ export async function sendLead(_prev: LeadFormState, formData: FormData): Promis
     return { status: "error", message: "rateLimited" };
   }
 
-  const raw = readForm(formData);
+  const raw = readLeadForm(formData);
 
   // Robot (pot de miel rempli) : on répond comme un succès pour ne pas l'aider.
   if (typeof raw.website === "string" && raw.website.length > 0) {

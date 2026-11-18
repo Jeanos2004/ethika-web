@@ -14,6 +14,12 @@ const paths = {
   check: <path d="m5 12 5 5 9-10" />,
   alert: <path d="M12 6v8M12 18h.01" />,
   infoMark: <path d="M12 11v7M12 6h.01" />,
+  bell: (
+    <>
+      <path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z" />
+      <path d="M10 20a2 2 0 0 0 4 0" />
+    </>
+  ),
   search: (
     <>
       <circle cx="11" cy="11" r="7" />

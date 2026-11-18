@@ -1,13 +1,15 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Param, ParseUUIDPipe, Post, Query, Req, UseGuards } from "@nestjs/common";
 import type { Request } from "express";
 import { z } from "zod";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { RateLimiter } from "../../common/security/rate-limit";
 import { ZodPipe } from "../../common/zod.pipe";
-import { Roles } from "../auth/auth.decorators";
+import { CurrentUser, Roles } from "../auth/auth.decorators";
+import type { AuthContext } from "../auth/auth.types";
 import { clientInfo } from "../auth/client-info";
 import { SessionGuard } from "../auth/session.guard";
 import { FlightsService } from "./flights.service";
+import { FlightBookingsService } from "./flight-bookings.service";
 
 const iata = z.string().regex(/^[A-Z]{3}$/);
 const isoDate = z.iso.date();
@@ -33,18 +35,27 @@ const passenger = z.strictObject({
   email: z.email().max(200),
   phone: z.string().regex(/^\+[1-9][0-9]{7,14}$/, "phoneE164"),
 });
-export const holdInput = z.strictObject({ offerId: providerId, passengers: z.array(passenger).min(1).max(9) });
+export const holdInput = z.strictObject({
+  offerId: providerId,
+  passengers: z.array(passenger).min(1).max(9),
+  /** Demande du client à laquelle rattacher l'option (ETH-XXXXXX). */
+  leadRef: z.string().regex(/^ETH-[A-HJ-NP-Z2-9]{6}$/).optional(),
+});
+const bookingQuery = z.strictObject({ status: z.enum(["held", "confirmed", "cancelled"]).optional(), leadRef: z.string().regex(/^ETH-[A-HJ-NP-Z2-9]{6}$/).optional() });
 
 /**
  * Vols. Recherche et prix : appelés par le serveur du site (clé interne, limite par IP du client final).
- * Option, consultation et annulation de commande : réservées aux agents connectés (aucune émission automatique).
+ * Options (PNR) : posées, suivies et annulées par les agents connectés, tracées dans notre base (aucune émission automatique).
  */
 @Controller("v1/flights")
 @UseGuards(InternalKeyGuard)
 export class FlightsController {
   private readonly searchLimiter = new RateLimiter(30, 10 * 60_000);
 
-  constructor(private readonly flights: FlightsService) {}
+  constructor(
+    private readonly flights: FlightsService,
+    private readonly bookings: FlightBookingsService,
+  ) {}
 
   @Post("search")
   @HttpCode(200)
@@ -58,26 +69,34 @@ export class FlightsController {
     return this.flights.price(id);
   }
 
+  /** Pose une option (PNR) chez le fournisseur et l'enregistre, rattachée à la demande du client si `leadRef` est fourni. */
   @Post("orders")
   @HttpCode(201)
   @UseGuards(SessionGuard)
   @Roles("agent", "admin")
-  hold(@Body(new ZodPipe(holdInput)) body: z.infer<typeof holdInput>) {
-    return this.flights.hold(body.offerId, body.passengers);
+  hold(@Body(new ZodPipe(holdInput)) body: z.infer<typeof holdInput>, @CurrentUser() me: AuthContext) {
+    return this.bookings.hold(body.offerId, body.passengers, { userId: me.userId, leadRef: body.leadRef });
   }
 
-  @Get("orders/:id")
+  @Get("bookings")
   @UseGuards(SessionGuard)
   @Roles("agent", "admin")
-  order(@Param("id", new ZodPipe(providerId)) id: string) {
-    return this.flights.getOrder(id);
+  bookingsList(@Query(new ZodPipe(bookingQuery)) q: z.infer<typeof bookingQuery>) {
+    return this.bookings.list(q);
   }
 
-  @Post("orders/:id/cancel")
+  @Get("bookings/:id")
+  @UseGuards(SessionGuard)
+  @Roles("agent", "admin")
+  booking(@Param("id", ParseUUIDPipe) id: string) {
+    return this.bookings.get(id);
+  }
+
+  @Post("bookings/:id/cancel")
   @HttpCode(200)
   @UseGuards(SessionGuard)
   @Roles("agent", "admin")
-  cancel(@Param("id", new ZodPipe(providerId)) id: string) {
-    return this.flights.cancel(id);
+  cancel(@Param("id", ParseUUIDPipe) id: string, @CurrentUser() me: AuthContext) {
+    return this.bookings.cancel(id, me.userId);
   }
 }

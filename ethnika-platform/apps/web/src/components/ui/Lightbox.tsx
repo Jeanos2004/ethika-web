@@ -64,7 +64,7 @@ export function Lightbox({ images, index, onIndexChange, onClose }: { images: re
           </div>
           <figure className="relative flex min-h-0 flex-1 flex-col items-center justify-center gap-3 px-4 pb-6 sm:px-20">
             <div className="relative h-full w-full">
-              <Image key={current.src} src={current.src} alt={current.alt} fill sizes="100vw" className="object-contain" />
+              <Image key={current.src} src={current.src} alt={current.alt} fill sizes="100vw" quality={90} className="object-contain" />
             </div>
             {current.caption && <figcaption className="text-center text-[15px] text-on-dark-2">{current.caption}</figcaption>}
           </figure>

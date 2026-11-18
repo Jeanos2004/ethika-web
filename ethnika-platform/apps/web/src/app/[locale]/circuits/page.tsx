@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localePrefix, type Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
-import { circuitLabels, getCircuits, type Circuit, type CircuitTheme } from "@/content/circuits";
+import { circuitLabels, type Circuit, type CircuitTheme } from "@/content/circuits";
+import { siteCircuits } from "@/lib/content-source";
 import { circuitSorts, circuitsHref, parseCircuitFilters, type CircuitFilters } from "@/lib/schemas/search";
 import { whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
@@ -51,7 +52,7 @@ export default async function CircuitsPage({ params, searchParams }: Props) {
   const labels = circuitLabels(locale);
   const prefix = localePrefix(locale);
   const filters = parseCircuitFilters(await searchParams);
-  const results = applyFilters(getCircuits(locale), filters);
+  const results = applyFilters(await siteCircuits(locale), filters);
   const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
   const page = Math.min(filters.page, totalPages);
   const shown = results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);

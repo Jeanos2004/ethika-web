@@ -16,7 +16,8 @@ export type AckPayload = {
   whatsappUrl?: string;
 };
 
-export type AgencyPayload = { reference: string; type: string; summary: string; backOfficeUrl: string };
+/** `heading` : nature de l'alerte (« Paiement reçu », « Option à payer sous 24 h ») ; « Nouvelle demande » par défaut. */
+export type AgencyPayload = { reference: string; type: string; summary: string; backOfficeUrl: string; heading?: string };
 
 export type RenderedEmail = { subject: string; html: string; text: string };
 
@@ -91,10 +92,11 @@ export function ackEmail(p: AckPayload): RenderedEmail {
 
 /** Notification interne à l'agence : aucune coordonnée client dans l'e-mail, uniquement le lien vers le back-office. */
 export function agencyEmail(p: AgencyPayload): RenderedEmail {
-  const subject = `Nouvelle demande ${p.reference} · ${p.type}`;
+  const heading = p.heading ?? "Nouvelle demande";
+  const subject = `${heading} · ${p.reference}${p.heading ? "" : ` · ${p.type}`}`;
   const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>${esc(subject)}</title></head><body style="margin:0;padding:24px;background:#f5eee3;${font}">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:14px;border:1px solid #efe6d2">
-<tr><td style="padding:22px 26px"><div style="${mono};font-size:12px;color:#6b6259">NOUVELLE DEMANDE</div>
+<tr><td style="padding:22px 26px"><div style="${mono};font-size:12px;color:#6b6259">${esc(heading.toUpperCase())}</div>
 <div style="${mono};font-size:24px;color:#16211c;margin:6px 0">${esc(p.reference)}</div>
 <div style="font-size:15px;color:#4e463f">${esc(p.type)} · ${esc(p.summary)}</div>
 <a href="${esc(p.backOfficeUrl)}" style="display:inline-block;margin-top:16px;padding:12px 20px;border-radius:999px;background:#16211c;color:#ffffff;font-weight:600;font-size:14px;text-decoration:none">Ouvrir dans le back-office</a>
@@ -127,5 +129,54 @@ export function newsletterConfirmEmail(p: NewsletterConfirmPayload): RenderedEma
   return { subject, html, text: [title, "", text, "", `${button} : ${p.confirmUrl}`, "", `${unsubscribe} : ${p.unsubscribeUrl}`].join("\n") };
 }
 
-export const templates = { ack: ackEmail, agency: agencyEmail, newsletter_confirm: newsletterConfirmEmail } as const;
+export type ReceiptPayload = {
+  locale: "fr" | "en";
+  firstName: string;
+  paymentReference: string;
+  leadReference: string;
+  /** Montant déjà formaté (« 300,00 € », « 1 500 000 GNF »). */
+  amount: string;
+  label: string;
+  paidAt: string;
+  agency: { phone: string; email: string; address: string };
+  siteUrl: string;
+};
+
+/** Reçu de paiement envoyé au client dès la confirmation du prestataire. */
+export function receiptEmail(p: ReceiptPayload): RenderedEmail {
+  const en = p.locale === "en";
+  const date = new Intl.DateTimeFormat(en ? "en-GB" : "fr-FR", { dateStyle: "long", timeStyle: "short", timeZone: "Africa/Conakry" }).format(new Date(p.paidAt));
+  const c = en
+    ? { subject: `Payment receipt ${p.paymentReference}`, hello: `Hello ${p.firstName},`, title: "Payment received, thank you", intro: "We confirm receipt of your payment. Keep this email as your receipt; your adviser will contact you about the next steps of your trip.", amount: "AMOUNT PAID", rows: [["Receipt no.", p.paymentReference], ["Request", p.leadReference], ["For", p.label], ["Date", date]], help: "A question? Reply to this email or contact us:" }
+    : { subject: `Reçu de paiement ${p.paymentReference}`, hello: `Bonjour ${p.firstName},`, title: "Paiement reçu, merci", intro: "Nous confirmons la bonne réception de votre paiement. Conservez cet e-mail comme reçu ; votre conseiller vous contacte pour la suite de votre voyage.", amount: "MONTANT PAYÉ", rows: [["N° de reçu", p.paymentReference], ["Demande", p.leadReference], ["Objet", p.label], ["Date", date]], help: "Une question ? Répondez à cet e-mail ou contactez-nous :" };
+  const html = `<!doctype html><html lang="${p.locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(c.subject)}</title></head>
+<body style="margin:0;padding:0;background:#efe6d2">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efe6d2"><tr><td align="center" style="padding:28px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fffbf5;border-radius:18px;overflow:hidden;${font};color:#121815">
+  <tr><td style="background:#16211c;padding:24px 32px;font-size:24px;letter-spacing:4px;color:#ffffff;font-weight:700">ETHNIKA</td></tr>
+  <tr><td style="height:6px;line-height:6px;font-size:0;background:#0e5232">&nbsp;</td></tr>
+  <tr><td style="padding:34px 32px 6px">
+    <div style="font-family:Georgia,serif;font-style:italic;font-size:24px;color:#0e5232">${esc(c.hello)}</div>
+    <h1 style="margin:8px 0 12px;font-size:28px;line-height:1.15;color:#16211c">${esc(c.title)}</h1>
+    <p style="margin:0;font-size:16px;line-height:1.65;color:#4e463f">${esc(c.intro)}</p>
+  </td></tr>
+  <tr><td style="padding:22px 32px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#16211c;border-radius:14px">
+      <tr><td style="padding:18px 22px 4px;${mono};font-size:11px;letter-spacing:2px;color:#a2aaa4">${esc(c.amount)}</td></tr>
+      <tr><td style="padding:0 22px 18px;font-size:34px;font-weight:700;color:#e3a935">${esc(p.amount)}</td></tr>
+    </table>
+  </td></tr>
+  <tr><td style="padding:0 32px 22px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px">
+      ${c.rows.map(([k, v]) => `<tr><td style="padding:9px 0;border-bottom:1px solid #efe6d2;color:#6b6259;width:38%">${esc(k!)}</td><td style="padding:9px 0;border-bottom:1px solid #efe6d2;color:#16211c;font-weight:600">${esc(v!)}</td></tr>`).join("")}
+    </table>
+  </td></tr>
+  <tr><td style="padding:0 32px 30px;font-size:14px;line-height:1.7;color:#4e463f">${esc(c.help)}<br><strong style="color:#16211c">${esc(p.agency.phone)}</strong> · ${esc(p.agency.email)}</td></tr>
+  <tr><td style="padding:20px 32px;background:#f5eee3;font-size:12px;line-height:1.7;color:#6b6259"><strong style="color:#16211c">ETHNIKA · Tourisme &amp; Voyages</strong><br>${esc(p.agency.address)} · ${esc(new URL(p.siteUrl).host)}</td></tr>
+</table></td></tr></table></body></html>`;
+  const text = [c.hello, "", c.title, c.intro, "", `${c.amount} : ${p.amount}`, ...c.rows.map(([k, v]) => `${k} : ${v}`), "", c.help, `${p.agency.phone} · ${p.agency.email}`, "", "ETHNIKA · Tourisme & Voyages"].join("\n");
+  return { subject: c.subject, html, text };
+}
+
+export const templates = { ack: ackEmail, agency: agencyEmail, newsletter_confirm: newsletterConfirmEmail, receipt: receiptEmail } as const;
 export type TemplateName = keyof typeof templates;

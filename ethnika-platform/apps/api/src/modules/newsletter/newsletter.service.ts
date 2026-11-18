@@ -13,7 +13,7 @@ const RESEND_MS = 10 * 60_000;
  * - inscription → e-mail avec lien de confirmation (jetons stockés hachés) ;
  * - réponse identique que l'adresse soit nouvelle, en attente ou déjà inscrite (pas d'énumération) ;
  * - lien de désinscription valable à tout moment.
- * Pages du site (/newsletter/confirmer, /newsletter/desinscription) à créer lors du branchement au VPS.
+ * Pages du site : /newsletter/confirmer et /newsletter/desinscription (action sur clic explicite).
  */
 @Injectable()
 export class NewsletterService {

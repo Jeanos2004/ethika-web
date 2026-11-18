@@ -7,8 +7,9 @@ services:
       POSTGRES_USER: ethnika
       POSTGRES_PASSWORD: ethnika
       POSTGRES_DB: ethnika
+    # Port hors des plages que Windows (Hyper-V, WSL) réserve dynamiquement vers 49152-65535.
     ports:
-      - "127.0.0.1:54329:5432"
+      - "127.0.0.1:15432:5432"
     volumes:
       - ethnika-pg:/var/lib/postgresql/data
     healthcheck:

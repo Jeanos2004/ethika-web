@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getPage, metadataFor } from "@/content/pages";
 import { getLocalizedCircuit } from "@/content/circuits";
+import { foutaSiteIds, foutaSitePath } from "@/content/fouta-sites";
 import { PageHero } from "@/components/layout/PageHero";
 import { Icon } from "@/components/ui/Icon";
 import { SectionNav } from "@/components/sections/SectionNav";
@@ -96,14 +97,31 @@ export default async function FoutaPage({ params }: { params: Promise<{ locale: 
             <H2 kicker={t("sitesKicker")}>{t("sitesTitle")}</H2>
             <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-5">
               {sites.map((s, i) => (
-                <li key={s.title} id={siteStyles[i]?.id} className="flex scroll-mt-[calc(var(--header-h)+80px)] flex-col overflow-hidden rounded-3xl bg-white shadow-md">
-                  <div className="relative h-[220px]">
-                    <Image src={siteStyles[i]?.image ?? ""} alt={s.alt} fill sizes="(min-width: 1100px) 260px, 100vw" className="object-cover" />
+                <li
+                  key={s.title}
+                  id={siteStyles[i]?.id}
+                  className={clsx("group relative flex scroll-mt-[calc(var(--header-h)+80px)] flex-col overflow-hidden rounded-3xl bg-white shadow-md transition-shadow hover:shadow-lg", cardFocus)}
+                >
+                  <div className="relative h-[220px] overflow-hidden">
+                    <Image src={siteStyles[i]?.image ?? ""} alt={s.alt} fill sizes="(min-width: 1100px) 260px, 100vw" className="object-cover transition-transform duration-700 motion-safe:group-hover:scale-105" />
                     <span className="absolute top-3.5 left-3.5 rounded-full bg-white px-3 py-1.5 font-mono text-xs text-night">{s.badge}</span>
                   </div>
                   <div className="flex flex-col gap-2 p-5">
-                    <h3 className="text-[21px] leading-tight font-bold text-night">{s.title}</h3>
+                    <h3 className="text-[21px] leading-tight font-bold text-night">
+                      {foutaSiteIds[i] ? (
+                        <Link href={foutaSitePath(foutaSiteIds[i])} className={stretchedLink}>
+                          {s.title}
+                        </Link>
+                      ) : (
+                        s.title
+                      )}
+                    </h3>
                     <p className="text-sm leading-relaxed text-muted">{s.text}</p>
+                    {foutaSiteIds[i] && (
+                      <span aria-hidden="true" className="mt-1 text-sm font-semibold text-brand-red">
+                        {t("discoverSite")} →
+                      </span>
+                    )}
                   </div>
                 </li>
               ))}
@@ -138,9 +156,26 @@ export default async function FoutaPage({ params }: { params: Promise<{ locale: 
                 <p className="text-[15px] leading-relaxed text-green-50">{t("healthText")}</p>
               </div>
             </div>
-            <div className="flex h-[300px] flex-col items-center justify-center gap-2 rounded-3xl border-[1.5px] border-dashed border-line-strong bg-sand text-subtle">
-              <Icon name="globe" size={28} />
-              <span className="font-semibold">{t("map")}</span>
+            <div className="flex flex-col gap-2.5">
+              <div className="h-[clamp(300px,40vw,420px)] overflow-hidden rounded-3xl border border-line bg-sand">
+                <iframe
+                  title={t("map")}
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent("Mali, Guinée")}&t=p&z=9&hl=${locale}&output=embed`}
+                  className="size-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+              <a
+                href={`https://www.google.com/maps/dir/Conakry/${encodeURIComponent("Mali, Guinée")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-brand-red underline-offset-4 hover:underline"
+              >
+                <Icon name="pin" size={16} />
+                {t("mapOpen")}
+              </a>
             </div>
           </section>
         </div>

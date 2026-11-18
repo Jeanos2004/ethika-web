@@ -11,6 +11,8 @@ export type QuoteForPdf = {
   notes: string | null;
   createdAt: Date;
   lead: { reference: string; fullName: string; phone: string; email: string | null };
+  /** Objet du voyage résumé à partir de la demande (trajet, dates, voyageurs). */
+  subject?: string;
   agentName: string;
 };
 
@@ -43,6 +45,10 @@ export function quoteHtml(q: QuoteForPdf, agency: AgencyInfo): string {
   .card h3 { margin: 0 0 1.5mm; font-size: 12px; color: var(--night); }
   .sign { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin: 10mm 18mm 0; }
   .sign div { border-top: 0.3mm solid var(--line); padding-top: 2mm; height: 22mm; color: var(--subtle); font-size: 10.5px; }
+  .subject { margin: 6mm 18mm 0; padding: 3.5mm 5mm; border-left: 1mm solid var(--gold); background: var(--cream); color: var(--ink); font-size: 12px; }
+  .subject span { display: block; font-family: "DM Mono", monospace; font-size: 9.5px; letter-spacing: .14em; color: var(--subtle); text-transform: uppercase; margin-bottom: 1mm; }
+  .notes { margin: 5mm 18mm 0; color: var(--muted); font-size: 11.5px; }
+  .notes strong { color: var(--night); }
   .agency { margin: 8mm 18mm 0; padding-top: 4mm; border-top: 0.3mm solid var(--line); font-size: 10px; color: var(--subtle); }
   </style></head><body>
   <div class="stripe"><span style="background:var(--red)"></span><span style="background:var(--gold)"></span><span style="background:var(--green)"></span></div>
@@ -54,6 +60,7 @@ export function quoteHtml(q: QuoteForPdf, agency: AgencyInfo): string {
     <div><h2>Client</h2><strong>${esc(q.lead.fullName)}</strong><p>${esc(q.lead.phone)}${q.lead.email ? ` · ${esc(q.lead.email)}` : ""}</p></div>
     <div><h2>Votre conseiller</h2><strong>${esc(q.agentName)}</strong><p>ETHNIKA · ${esc(agency.phone)} · ${esc(agency.email)}</p></div>
   </section>
+  ${q.subject ? `<section class="subject"><span>Objet</span>${esc(q.subject)}</section>` : ""}
   <table class="lines">
     <thead><tr><th>Désignation</th><th class="num">Qté</th><th class="num">Prix unitaire</th><th class="num">Montant</th></tr></thead>
     <tbody>${q.lines
@@ -63,8 +70,9 @@ export function quoteHtml(q: QuoteForPdf, agency: AgencyInfo): string {
   <div class="total"><div><span>Total TTC</span><b>${esc(formatMoney(q.totalAmount, q.currency))}</b></div></div>
   <section class="info">
     <div class="card"><h3>Validité</h3>Ce devis est valable jusqu'au <strong>${esc(dateFr(q.validUntil))}</strong>, sous réserve de disponibilité au moment de la confirmation. Les tarifs aériens peuvent évoluer jusqu'à l'émission des billets.</div>
-    <div class="card"><h3>Conditions</h3>${q.notes ? esc(q.notes) : "Acompte à la confirmation, solde avant le départ. Conditions générales de vente : [À COMPLÉTER]."}</div>
+    <div class="card"><h3>Règlement</h3>${esc(agency.paymentInstructions ?? "Acompte à la confirmation, solde avant l'émission des billets.")}${agency.quoteTerms ? ` ${esc(agency.quoteTerms)}` : ""}</div>
   </section>
+  ${q.notes ? `<p class="notes"><strong>Notes de votre conseiller :</strong> ${esc(q.notes)}</p>` : ""}
   <section class="sign"><div>Bon pour accord — date et signature du client</div><div>Pour ETHNIKA</div></section>
   <div class="agency"><strong>ETHNIKA · Tourisme &amp; Voyages</strong> · ${esc(agency.address)} · Licence n° ${esc(agency.licence)} · ${esc(agency.site)}</div>
   </body></html>`;

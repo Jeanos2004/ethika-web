@@ -1,12 +1,11 @@
-import { Body, Controller, Get, HttpCode, Inject, NotFoundException, Param, Post, Res, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, NotFoundException, Param, Post, Res, UseGuards } from "@nestjs/common";
 import type { Response } from "express";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { ZodPipe } from "../../common/zod.pipe";
-import { ENV, type Env } from "../../config/env";
 import { CurrentUser, Roles } from "../auth/auth.decorators";
 import type { AuthContext } from "../auth/auth.types";
 import { SessionGuard } from "../auth/session.guard";
-import { agencyInfo } from "../leads/leads.controller";
+import { AgencyService } from "../agency/agency.service";
 import { REFERENCE_PATTERN } from "../leads/reference";
 import { PdfService } from "../pdf/pdf.service";
 import { footerTemplate } from "../pdf/templates/html";
@@ -22,7 +21,7 @@ export class QuotesController {
   constructor(
     private readonly quotes: QuotesService,
     private readonly pdf: PdfService,
-    @Inject(ENV) private readonly env: Env,
+    private readonly agency: AgencyService,
   ) {}
 
   @Post("leads/:ref/quotes")
@@ -42,7 +41,7 @@ export class QuotesController {
   async pdfFile(@Param("number") number: string, @Res() res: Response) {
     if (!QUOTE_NUMBER.test(number)) throw new NotFoundException();
     const q = await this.quotes.forPdf(number);
-    const file = await this.pdf.render(quoteHtml(q, agencyInfo(this.env)), { footer: footerTemplate(`ETHNIKA · ${q.number}`) });
+    const file = await this.pdf.render(quoteHtml(q, await this.agency.pdfInfo()), { footer: footerTemplate(`ETHNIKA · ${q.number}`) });
     res.setHeader("content-type", "application/pdf");
     res.setHeader("content-disposition", `inline; filename="${q.number}.pdf"`);
     res.setHeader("cache-control", "no-store");

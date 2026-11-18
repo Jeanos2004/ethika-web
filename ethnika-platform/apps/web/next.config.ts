@@ -18,8 +18,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws:" : ""}`,
-  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com",
+  `connect-src 'self' https://challenges.cloudflare.com${isDev ? " ws: wss:" : ""}`,
+  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com https://www.openstreetmap.org https://www.google.com https://maps.google.com",
   "frame-ancestors 'none'",
   "form-action 'self'",
   "base-uri 'self'",
@@ -43,12 +43,18 @@ const standalone = process.env.NEXT_OUTPUT === "standalone";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Développement uniquement : test sur téléphone via un tunnel ngrok (sans effet sur le build de production).
+  allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok-free.dev", "*.ngrok.app"],
   ...(standalone && {
     output: "standalone" as const,
     // Monorepo pnpm : tracer les dépendances depuis la racine du dépôt.
     outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
     // Fichiers lus à l'exécution par les images OG (src/lib/og.tsx).
-    outputFileTracingIncludes: { "/**/opengraph-image": ["./public/brand/**", "./node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff"] },
+    outputFileTracingIncludes: {
+      "/**/opengraph-image": ["./public/brand/**", "./node_modules/@fontsource/dm-mono/files/dm-mono-latin-ext-500-normal.woff"],
+      // Reprise des articles MDX dans le back-office (lecture des fichiers à l'exécution).
+      "/admin/blog": ["./src/content/blog/**"],
+    },
   }),
   poweredByHeader: false,
   experimental: {
@@ -57,6 +63,9 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    // 75 par défaut, 90 pour les grandes photos plein écran (accueil, en-têtes, visionneuse). Tailles jusqu'à 3840 px (écrans 4K).
+    qualities: [75, 90],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2560, 3840],
     // Ajouter ici les domaines distants (CMS, CDN) au cas par cas — jamais de joker.
     remotePatterns: [],
   },

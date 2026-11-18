@@ -10,4 +10,11 @@ export function newReference(): string {
   return out;
 }
 
+/** Référence d'un paiement : PAY- + 6 caractères du même alphabet. */
+export function newPaymentReference(): string {
+  return newReference().replace("ETH-", "PAY-");
+}
+
+export const PAYMENT_REFERENCE = /^PAY-[A-HJ-NP-Z2-9]{6}$/;
+
 export const REFERENCE_PATTERN = /^ETH-[A-HJ-NP-Z2-9]{6}$/;

@@ -23,6 +23,8 @@ export function RequestsChart({ days }: { days: Day[] }) {
   const t = useTranslations("admin.dashboard");
   const max = niceMax(Math.max(...days.map((d) => d.count)));
   const ticks = [max, max / 2, 0];
+  // Une date tous les 7 jours sur 30 j, tous les 4 sur 14 j, chaque jour sur 7 j (comptés depuis aujourd'hui).
+  const labelStep = days.length > 14 ? 7 : days.length > 7 ? 4 : 1;
 
   return (
     <figure className="flex flex-col gap-3">
@@ -58,11 +60,11 @@ export function RequestsChart({ days }: { days: Day[] }) {
               );
             })}
           </div>
-          {/* Axe horizontal : une date tous les 4 jours + « Auj. », centrée sous sa barre et jamais tronquée */}
+          {/* Axe horizontal : dates espacées selon la période + « Auj. », centrées sous leur barre et jamais tronquées */}
           <div className="flex h-6 items-end gap-[2px] text-[10px] text-muted sm:text-[11px]">
             {days.map((d, i) => (
               <span key={d.key} className="relative h-full flex-1">
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap">{i === days.length - 1 ? t("todayShort") : i % 4 === 1 ? dayShort.format(d.date) : ""}</span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap">{i === days.length - 1 ? t("todayShort") : (days.length - 1 - i) % labelStep === 0 && i > 0 ? dayShort.format(d.date) : ""}</span>
               </span>
             ))}
           </div>

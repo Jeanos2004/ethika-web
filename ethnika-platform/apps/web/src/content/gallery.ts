@@ -1,4 +1,4 @@
-/** Photos de la galerie (Galerie.dc.html). Photos d'illustration Pixabay, à remplacer par celles de l'agence. */
+/** Photos de la galerie (Galerie.dc.html). Photos d'illustration Unsplash (3840 px), à remplacer par celles de l'agence. */
 
 export const galleryFilters = {
   fouta: "Fouta Djallon",
@@ -20,8 +20,8 @@ export const gallery: GalleryPhoto[] = [
   { src: "/images/loos-horizon.jpg", alt: "Horizon marin", place: "Îles de Loos", category: "loos", tall: true },
   { src: "/images/roches-koumba.jpg", alt: "Roches sculptées", place: "Fouta Djallon", category: "fouta" },
   { src: "/images/port-barques.jpg", alt: "Port et barques", place: "Conakry", category: "vie" },
-  { src: "/images/dubreka-riviere-pirogue.jpg", alt: "Rivière en pirogue", place: "Dubréka", category: "cote" },
-  { src: "/images/conakry-plage-ilot.jpg", alt: "Plage et îlot", place: "Îles de Loos", category: "loos" },
+  { src: "/images/dubreka-riviere-pirogue.jpg", alt: "Enfant en pirogue sur la rivière", place: "Dubréka", category: "cote" },
+  { src: "/images/conakry-plage-ilot.jpg", alt: "Île vue du ciel", place: "Îles de Loos", category: "loos" },
   { src: "/images/promeneurs-reflet.jpg", alt: "Promeneurs au soleil couchant", place: "Conakry", category: "vie" },
   { src: "/images/fouta-plateau-couchant.jpg", alt: "Plateau au couchant", place: "Fouta Djallon", category: "fouta" },
   { src: "/images/collines-brume.jpg", alt: "Collines dans la brume", place: "Fouta Djallon", category: "fouta" },
@@ -38,8 +38,8 @@ const galleryEn: Pick<GalleryPhoto, "alt" | "place">[] = [
   { alt: "Sea horizon", place: "Loos Islands" },
   { alt: "Sculpted rocks", place: "Fouta Djallon" },
   { alt: "Harbour and boats", place: "Conakry" },
-  { alt: "River by canoe", place: "Dubréka" },
-  { alt: "Beach and islet", place: "Loos Islands" },
+  { alt: "Child in a canoe on the river", place: "Dubréka" },
+  { alt: "Island seen from above", place: "Loos Islands" },
   { alt: "People walking at sunset", place: "Conakry" },
   { alt: "Plateau at sunset", place: "Fouta Djallon" },
   { alt: "Hills in the mist", place: "Fouta Djallon" },

@@ -19,7 +19,7 @@ async function bootstrap() {
   app.use(helmet());
   app.enableCors({ origin: env.CORS_ORIGINS, methods: ["GET", "POST", "PATCH"], credentials: true });
   app.useGlobalFilters(new HttpExceptionFilter());
-  app.useBodyParser("json", { limit: "100kb" });
+  app.useBodyParser("json", { limit: "300kb" });
   app.enableShutdownHooks();
   // Derrière un reverse proxy (Caddy / Nginx) : adresse client réelle pour les journaux et limites.
   app.set("trust proxy", 1);

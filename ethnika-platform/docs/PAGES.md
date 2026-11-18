@@ -25,8 +25,10 @@ Toutes les routes existent en français (sans préfixe) et en anglais (`/en/…`
 | `/merci` | `Merci.dc.html` | **Fait** | Référence `?ref=` et type validés, `noindex` |
 | 404 | `Page404.dc.html` | **Fait** | — |
 | Images OG | — | **Fait** | `opengraph-image.tsx` par route et par langue (`src/lib/og.tsx`), ≈ 60 Ko |
-| `/admin/demandes` (phase 2) | `AdminDemandes.dc.html` | Phase 2 | Filtres, détail, statut, export CSV |
-| E-mail accusé | `EmailAccuse.dc.html` | Phase 2 (React Email) | — |
+| `/admin/*` (back-office connecté) | `AdminDemandes.dc.html` | **Fait** (tableau de bord, demandes, devis, vols, paiements, contenus, utilisateurs, journal, paramètres) | Filtres, détail, statut, export CSV |
+| E-mail accusé | `EmailAccuse.dc.html` | **Fait** (gabarit HTML de l'API, `apps/api/src/modules/mail/templates.ts`) |
+| `/paiement/[reference]` | — | **Fait** (lien de paiement d'un devis, simulation tant que le prestataire n'est pas choisi) |
+| `/newsletter/confirmer`, `/newsletter/desinscription` | — | **Fait** | — |
 | Kit UI (`/kit`, dev uniquement) | `Composants.dc.html` | **Fait** | Onglets, accordéon, modale, compteur, en-tête fixe au scroll |
 | Charte | `Main.dc.html` | Référence marque | — |
 

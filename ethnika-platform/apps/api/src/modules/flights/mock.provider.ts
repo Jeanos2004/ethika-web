@@ -44,6 +44,8 @@ export class MockFlightProvider implements FlightProvider {
           };
         }),
         expiresAt: new Date(Date.now() + 30 * 60_000).toISOString(),
+        holdable: i !== 2,
+        payBefore: i !== 2 ? new Date(Date.now() + 24 * 3600_000).toISOString() : null,
       };
       this.offers.set(offer.id, offer);
       return offer;
@@ -60,6 +62,7 @@ export class MockFlightProvider implements FlightProvider {
     const offer = this.offers.get(offerId);
     if (!offer) throw new ProviderError("offre expirée ou inconnue", 404, false);
     if (!passengers.length) throw new ProviderError("passagers manquants", 422, false);
+    if (!offer.holdable) throw new ProviderError("offre sans option possible (paiement immédiat exigé)", 422, false, "offer_not_holdable");
     const id = `mock_ord_${this.orders.size + 1}`;
     const booking: Booking = { id, status: "held", bookingReference: `MK${String(this.orders.size + 1).padStart(4, "0")}`, offerId, totalAmount: offer.totalAmount, currency: offer.currency, payBefore: new Date(Date.now() + 24 * 3600_000).toISOString() };
     this.orders.set(id, booking);

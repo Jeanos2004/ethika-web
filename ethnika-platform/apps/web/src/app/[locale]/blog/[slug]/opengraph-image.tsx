@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { getLocalizedPost, posts } from "@/content/blog";
+import { posts } from "@/content/blog";
+import { sitePost } from "@/lib/content-source";
 import { renderOg } from "@/lib/og";
 
 export const size = { width: 1200, height: 630 };
@@ -13,7 +14,7 @@ export function generateStaticParams() {
 
 export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
-  const post = getLocalizedPost(slug, locale);
+  const post = await sitePost(slug, locale);
   if (!post) notFound();
   const t = await getTranslations({ locale, namespace: "blog" });
   return renderOg({

@@ -26,7 +26,7 @@ describe("montants des devis", () => {
         lead: { reference: "ETH-ABCDEF", fullName: "Aminata", phone: "+224", email: null },
         agentName: "Conseiller",
       },
-      { address: "Conakry", phone: "+224", email: "contact@ethnikatour.com", licence: "[X]", site: "ethnikatour.com" },
+      { address: "Conakry", phone: "+224", email: "contact@ethnika.africa", licence: "[X]", site: "ethnika.africa" },
     );
     expect(html).toContain("&lt;b&gt;Vol&lt;/b&gt;");
     expect(html).toContain("DEV-2026-0001");

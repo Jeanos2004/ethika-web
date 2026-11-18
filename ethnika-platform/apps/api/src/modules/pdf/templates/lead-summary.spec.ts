@@ -1,6 +1,6 @@
 import { leadSummaryHtml } from "./lead-summary";
 
-const agency = { address: "[Quartier], Conakry", phone: "+224", email: "contact@ethnikatour.com", licence: "[X]", site: "ethnikatour.com" };
+const agency = { address: "[Quartier], Conakry", phone: "+224", email: "contact@ethnika.africa", licence: "[X]", site: "ethnika.africa" };
 
 describe("leadSummaryHtml", () => {
   it("échappe les données du client", () => {

@@ -2,12 +2,13 @@ import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from "@nest
 import { Prisma } from "../../generated/prisma/client";
 import { ENV, type Env } from "../../config/env";
 import { PrismaService } from "../../prisma/prisma.service";
-import { templates, type AckPayload, type AgencyPayload, type NewsletterConfirmPayload, type RenderedEmail, type TemplateName } from "./templates";
+import { ResendTransport } from "./resend.transport";
+import { templates, type AckPayload, type AgencyPayload, type NewsletterConfirmPayload, type ReceiptPayload, type RenderedEmail, type TemplateName } from "./templates";
 
-type Payloads = { ack: AckPayload; agency: AgencyPayload; newsletter_confirm: NewsletterConfirmPayload };
+type Payloads = { ack: AckPayload; agency: AgencyPayload; newsletter_confirm: NewsletterConfirmPayload; receipt: ReceiptPayload };
 export type OutboxItem = { [K in TemplateName]: { to: string; template: K; payload: Payloads[K] } }[TemplateName];
 
-/** Envoi effectif : SMTP en production, journal (sans contenu) en développement. */
+/** Envoi effectif : Resend ou SMTP en production, journal (sans contenu) en développement. */
 export interface MailTransport {
   send(to: string, email: RenderedEmail): Promise<void>;
 }
@@ -37,7 +38,8 @@ export class MailService implements OnModuleInit, OnModuleDestroy {
 
   onModuleInit() {
     if (this.env.NODE_ENV === "test") return;
-    this.timer = setInterval(() => void this.processBatch(), POLL_MS);
+    // Une erreur du worker (base momentanément indisponible…) est journalisée ; elle ne doit jamais arrêter l'API.
+    this.timer = setInterval(() => void this.processBatch().catch((e) => this.logger.error(`file d'e-mails : ${errorText(e)}`)), POLL_MS);
     this.timer.unref();
   }
 
@@ -61,12 +63,13 @@ export class MailService implements OnModuleInit, OnModuleDestroy {
           const render = templates[item.template as TemplateName] as (p: unknown) => RenderedEmail;
           if (!render) throw new Error(`gabarit inconnu : ${item.template}`);
           await transport.send(item.to, render(item.payload));
-          await this.prisma.emailOutbox.update({ where: { id: item.id }, data: { status: "sent", sentAt: new Date(), lastError: null } });
+          // updateMany : sans erreur si l'entrée a été purgée entre-temps (maintenance, nettoyage).
+          await this.prisma.emailOutbox.updateMany({ where: { id: item.id }, data: { status: "sent", sentAt: new Date(), lastError: null } });
           sent++;
         } catch (e) {
           const attempt = item.attempts + 1;
           const delay = BACKOFF_MS[attempt - 1];
-          await this.prisma.emailOutbox.update({
+          await this.prisma.emailOutbox.updateMany({
             where: { id: item.id },
             data: delay ? { nextAttemptAt: new Date(Date.now() + delay), lastError: errorText(e) } : { status: "failed", lastError: errorText(e) },
           });
@@ -85,6 +88,10 @@ export class MailService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async createTransport(): Promise<MailTransport> {
+    if (this.env.RESEND_API_KEY) {
+      this.logger.log("envoi des e-mails par Resend");
+      return new ResendTransport(this.env.RESEND_API_KEY, this.env.MAIL_FROM);
+    }
     if (!this.env.SMTP_URL) {
       const logger = this.logger;
       return {

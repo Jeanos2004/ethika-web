@@ -5,6 +5,14 @@ import { ZodPipe } from "../../common/zod.pipe";
 import { AuditService } from "../audit/audit.service";
 import { CurrentUser, Roles } from "./auth.decorators";
 import { pageInput, userCreate, userUpdate } from "./auth.schemas";
+import { auditCategories } from "../audit/audit.service";
+
+const auditQuery = z.strictObject({
+  page: z.coerce.number().int().min(1).max(10_000).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(50),
+  category: z.enum(auditCategories).optional(),
+  actorId: z.uuid().optional(),
+});
 import type { AuthContext } from "./auth.types";
 import { SessionGuard } from "./session.guard";
 import { UsersService } from "./users.service";
@@ -45,6 +53,16 @@ export class UsersController {
   @HttpCode(200)
   resetPassword(@Param("id", ParseUUIDPipe) id: string, @CurrentUser() me: AuthContext) {
     return this.users.resetPassword(id, me.userId);
+  }
+
+  @Get("audit/search")
+  auditSearch(@Query(new ZodPipe(auditQuery)) q: z.infer<typeof auditQuery>) {
+    return this.audit.search(q);
+  }
+
+  @Get("audit/summary")
+  auditSummary() {
+    return this.audit.summary();
   }
 
   @Get("audit")

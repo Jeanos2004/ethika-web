@@ -6,7 +6,7 @@ import { getPage, metadataFor } from "@/content/pages";
 import { faqJsonLd, getFlightFaq } from "@/content/faq";
 import { cityOf } from "@/content/airports";
 import { parseFlightPrefill } from "@/lib/schemas/search";
-import { site, phoneLink, whatsappLink } from "@/lib/site";
+import { phoneLink, whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -14,6 +14,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RouteTicket } from "@/components/cards/RouteTicket";
 import { FlightRequest } from "@/components/forms/FlightRequest";
+import { getAgency } from "@/lib/content-source";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const generateMetadata = metadataFor("billetterie");
@@ -36,6 +37,7 @@ export default async function BilletteriePage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("billetterie");
+  const agency = await getAgency();
   const tc = await getTranslations("common");
   const page = await getPage("billetterie", locale);
   const prefill = parseFlightPrefill(await searchParams);
@@ -73,7 +75,7 @@ export default async function BilletteriePage({ params, searchParams }: Props) {
 
       {/* 4 ÉTAPES */}
       <section className="relative mt-16 overflow-hidden text-white sm:mt-[110px]">
-        <Image src="/images/ville-bord-de-mer.jpg" alt="" fill sizes="100vw" className="object-cover" />
+        <Image src="/images/ville-bord-de-mer.jpg" alt="" fill sizes="100vw" quality={90} className="object-cover" />
         <div aria-hidden="true" className="absolute inset-0 bg-ink/80" />
         <div className="container-site relative flex flex-col gap-12 py-16 sm:py-24">
           <SectionHeading kicker={t("stepsKicker")} title={t("stepsTitle")} tone="dark" />
@@ -133,8 +135,8 @@ export default async function BilletteriePage({ params, searchParams }: Props) {
             <ButtonLink href={whatsappLink(t("ctaWhatsapp"))} variant="light" className="h-[58px] px-7">
               <Icon name="whatsapp" size={20} /> {tc("whatsapp")}
             </ButtonLink>
-            <ButtonLink href={phoneLink()} variant="outline-light" className="h-[58px] px-[26px]">
-              {site.contact.phone}
+            <ButtonLink href={phoneLink(agency.phone)} variant="outline-light" className="h-[58px] px-[26px]">
+              {agency.phone}
             </ButtonLink>
           </div>
         </div>

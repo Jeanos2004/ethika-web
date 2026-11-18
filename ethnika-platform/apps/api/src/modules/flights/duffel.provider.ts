@@ -59,6 +59,7 @@ export class DuffelFlightProvider implements FlightProvider {
   async book(offerId: string, passengers: Passenger[]): Promise<Booking> {
     // Les identifiants de passagers viennent de l'offre : on les associe dans l'ordre.
     const offer = await this.request<{ data: Json }>("GET", `/air/offers/${encodeURIComponent(offerId)}`);
+    if (!mapOffer(offer.data).holdable) throw new ProviderError("offre sans option possible (paiement immédiat exigé)", 422, false, "offer_not_holdable");
     const offerPax = (offer.data.passengers as { id: string }[] | undefined) ?? [];
     if (offerPax.length !== passengers.length) throw new ProviderError("nombre de passagers différent de l'offre", 422, false);
     const res = await this.request<{ data: Json }>("POST", "/air/orders", {
@@ -125,7 +126,10 @@ function minutes(iso: unknown): number {
 
 export function mapOffer(o: Json): FlightOffer {
   const owner = (o.owner ?? {}) as { iata_code?: string; name?: string };
+  const payment = (o.payment_requirements ?? {}) as { requires_instant_payment?: boolean; payment_required_by?: string | null };
   return {
+    holdable: payment.requires_instant_payment === false,
+    payBefore: payment.requires_instant_payment === false ? (payment.payment_required_by ?? null) : null,
     id: String(o.id),
     totalAmount: String(o.total_amount),
     currency: String(o.total_currency),

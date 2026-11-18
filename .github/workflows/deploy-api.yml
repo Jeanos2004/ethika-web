@@ -1,0 +1,77 @@
+name: Déploiement API
+
+# Déploie l'API (apps/api) sur le VPS après une CI verte sur main, ou à la main (onglet Actions).
+# Le site, lui, est déployé par l'intégration Git de Vercel à chaque push sur main.
+# Secrets du dépôt : VPS_HOST, VPS_SSH_KEY (clé dédiée à ce workflow), VPS_KNOWN_HOSTS (empreinte du serveur).
+# Les secrets de l'API restent sur le serveur (deploy/api.env, deploy/postgres.env) : jamais dans le dépôt ni dans les logs.
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Un seul déploiement à la fois, sans annuler celui en cours (migrations Prisma).
+concurrency:
+  group: deploy-api
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: production
+    env:
+      SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SHA }}
+          persist-credentials: false
+
+      - name: Préparer l'accès SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          printf '%s\n' "${{ secrets.VPS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Envoyer le code
+        run: |
+          git archive --format=tar.gz -o release.tar.gz "$SHA:ethnika-platform"
+          scp -i ~/.ssh/deploy -o StrictHostKeyChecking=yes release.tar.gz "root@${{ secrets.VPS_HOST }}:/tmp/ethnika-release.tar.gz"
+
+      - name: Construire et redémarrer
+        run: |
+          ssh -i ~/.ssh/deploy -o StrictHostKeyChecking=yes "root@${{ secrets.VPS_HOST }}" SHA="$SHA" 'bash -s' <<'EOF'
+          set -euo pipefail
+          rm -rf /opt/ethnika-release && mkdir -p /opt/ethnika-release
+          tar -xzf /tmp/ethnika-release.tar.gz -C /opt/ethnika-release
+          # Secrets, sauvegardes et état du serveur ne sont pas dans le dépôt : on les garde.
+          rsync -a --delete \
+            --exclude 'deploy/*.env' --exclude 'deploy/backups/' --exclude 'DEPLOYED' \
+            /opt/ethnika-release/ /opt/ethnika/
+          cd /opt/ethnika
+          docker compose -f deploy/docker-compose.prod.yml up -d --build --remove-orphans
+          echo "$(date -u +%FT%TZ) $SHA" > DEPLOYED
+          docker image prune -f > /dev/null
+          rm -rf /opt/ethnika-release /tmp/ethnika-release.tar.gz
+          EOF
+
+      - name: Vérifier l'API
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fsS https://api.ethnika.africa/health; then echo; exit 0; fi
+            sleep 5
+          done
+          echo "L'API ne répond pas après le déploiement." >&2
+          exit 1
+
+      - name: Nettoyer
+        if: always()
+        run: rm -f ~/.ssh/deploy

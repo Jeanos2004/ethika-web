@@ -3,6 +3,7 @@ import type { Request, Response } from "express";
 import { z } from "zod";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { ZodPipe } from "../../common/zod.pipe";
+import { RateLimiter } from "../../common/security/rate-limit";
 import { AuditService } from "../audit/audit.service";
 import { CurrentUser, Roles } from "../auth/auth.decorators";
 import type { AuthContext } from "../auth/auth.types";
@@ -23,15 +24,21 @@ function checkRef(ref: string) {
   return ref;
 }
 
-/** Entrée des demandes depuis le site : clé interne uniquement (le serveur du site est le seul appelant). */
+/**
+ * Entrée des demandes depuis le site : clé interne uniquement (le serveur du site est le seul appelant).
+ * Limite par internaute (X-Client-IP transmis par le site) : celle du site est par instance sur Vercel, celle-ci est exacte.
+ */
 @Controller("v1")
 @UseGuards(InternalKeyGuard)
 export class LeadsIntakeController {
+  private readonly limiter = new RateLimiter(10, 10 * 60_000);
+
   constructor(private readonly leads: LeadsService) {}
 
   @Post("leads")
   @HttpCode(201)
-  create(@Body(new ZodPipe(leadInput)) body: LeadInput) {
+  create(@Body(new ZodPipe(leadInput)) body: LeadInput, @Req() req: Request) {
+    this.limiter.consume(`ip:${clientInfo(req).ip ?? "?"}`);
     return this.leads.create(body);
   }
 }

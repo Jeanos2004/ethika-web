@@ -1,0 +1,35 @@
+name: Surveillance
+
+# Vérifie toutes les 15 minutes que le site et l'API répondent. En cas d'échec, le workflow échoue et GitHub prévient
+# par e-mail la personne qui a modifié ce fichier en dernier (réglage : Settings > Notifications > Actions).
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Site et API
+        run: |
+          fail=0
+          check() {
+            # Trois essais espacés : une coupure de quelques secondes n'alerte pas.
+            for i in 1 2 3; do
+              code=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "$1") || code=000
+              [ "$code" = "200" ] && { echo "OK   $1"; return 0; }
+              sleep 20
+            done
+            echo "::error::$1 répond $code"
+            fail=1
+          }
+          check https://ethnika.africa/
+          check https://ethnika.africa/en
+          check https://api.ethnika.africa/health
+          exit $fail

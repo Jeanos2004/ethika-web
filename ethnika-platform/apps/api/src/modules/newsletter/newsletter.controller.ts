@@ -1,7 +1,10 @@
-import { Body, Controller, HttpCode, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post, Req, UseGuards } from "@nestjs/common";
+import type { Request } from "express";
 import { z } from "zod";
 import { InternalKeyGuard } from "../../common/internal-key.guard";
 import { ZodPipe } from "../../common/zod.pipe";
+import { RateLimiter } from "../../common/security/rate-limit";
+import { clientInfo } from "../auth/client-info";
 import { NewsletterService } from "./newsletter.service";
 
 const subscribeInput = z.strictObject({ email: z.email().max(200), locale: z.enum(["fr", "en"]).optional() });
@@ -11,11 +14,15 @@ const tokenInput = z.strictObject({ token: z.string().regex(/^[A-Za-z0-9_-]{30,1
 @Controller("v1/newsletter")
 @UseGuards(InternalKeyGuard)
 export class NewsletterController {
+  /** Inscriptions par internaute (X-Client-IP transmis par le site). */
+  private readonly limiter = new RateLimiter(5, 10 * 60_000);
+
   constructor(private readonly newsletter: NewsletterService) {}
 
   @Post()
   @HttpCode(201)
-  subscribe(@Body(new ZodPipe(subscribeInput)) body: z.infer<typeof subscribeInput>) {
+  subscribe(@Body(new ZodPipe(subscribeInput)) body: z.infer<typeof subscribeInput>, @Req() req: Request) {
+    this.limiter.consume(`ip:${clientInfo(req).ip ?? "?"}`);
     return this.newsletter.subscribe(body.email, body.locale);
   }
 

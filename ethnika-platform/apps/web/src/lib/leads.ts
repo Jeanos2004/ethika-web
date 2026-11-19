@@ -1,5 +1,6 @@
 import "server-only";
 import { env } from "@/lib/env";
+import { getClientIp } from "@/lib/security/client-ip";
 import type { LeadInput } from "@/lib/schemas/lead";
 
 /**
@@ -22,7 +23,8 @@ async function postToApi(path: string, body: unknown): Promise<{ reference: stri
   if (!env.API_BASE_URL) throw new Error("API_BASE_URL absent");
   const res = await fetch(new URL(path, env.API_BASE_URL), {
     method: "POST",
-    headers: { "content-type": "application/json", "x-internal-key": env.API_INTERNAL_KEY ?? "" },
+    // X-Client-IP : l'API limite le nombre de demandes par internaute (limite exacte, contrairement à celle du site sur Vercel).
+    headers: { "content-type": "application/json", "x-internal-key": env.API_INTERNAL_KEY ?? "", "x-client-ip": await getClientIp() },
     body: JSON.stringify(body),
     redirect: "error",
     cache: "no-store",

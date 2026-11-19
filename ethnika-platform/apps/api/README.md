@@ -16,6 +16,7 @@ cd apps/api && docker compose up -d       # PostgreSQL local sur 127.0.0.1:15432
 pnpm --filter @ethnika/api prisma:generate
 pnpm --filter @ethnika/api prisma:migrate
 pnpm --filter @ethnika/api user:create-admin admin@ethnika.africa "Prénom Nom"   # affiche un mot de passe temporaire
+pnpm --filter @ethnika/api mail:test destinataire@exemple.com                 # vérifie la configuration des e-mails
 pnpm --filter @ethnika/api dev            # http://localhost:4000
 ```
 

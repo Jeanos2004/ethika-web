@@ -94,7 +94,23 @@ Première connexion :
 2. Dans **Circuits** puis **Offres**, cliquer sur « Importer » pour reprendre les contenus actuels du site avant toute publication : dès qu'un élément est publié, le site n'affiche plus que les contenus publiés.
 3. Créer les comptes des agents dans **Utilisateurs** (mot de passe temporaire affiché une fois, à transmettre de vive voix).
 4. Renseigner **Paramètres > Agence** (adresse, téléphone, horaires, position sur la carte, licence, modalités de règlement) : elles remplacent les coordonnées fictives sur le site public et sur les PDF.
-5. E-mails : créer un compte Resend, vérifier le domaine de `MAIL_FROM` (SPF/DKIM), puis renseigner `RESEND_API_KEY` dans `deploy/api.env` et redémarrer l'API. Paramètres > Système affiche le service d'envoi actif.
-5. Paiements : `PAYMENT_PROVIDER=none` tant que le prestataire n'est pas choisi (liens désactivés, `mock` est refusé en production). Le brancher = un adaptateur dans `apps/api/src/modules/payments` (voir README de l'API).
+5. E-mails (production : Namecheap Private Email, MX/SPF/DKIM posés par Namecheap) : créer la boîte d'envoi (ex. `contact@ethnika.africa`), puis sur le VPS `ssh -t root@VPS /opt/ethnika/deploy/configure-mail.sh`. Le script demande l'adresse, le mot de passe (saisie masquée) et l'adresse qui reçoit les nouvelles demandes, écrit `SMTP_URL`, `MAIL_FROM` et `AGENCY_NOTIFY_EMAIL` dans `deploy/api.env`, redémarre l'API et envoie un e-mail de test. Test seul : `docker compose -f deploy/docker-compose.prod.yml exec -T api node dist/cli/mail-test.js adresse@exemple.com`. Alternative : Resend (`RESEND_API_KEY`, prioritaire sur SMTP). Paramètres > Système affiche le service d'envoi actif.
+6. Paiements : `PAYMENT_PROVIDER=none` tant que le prestataire n'est pas choisi (liens désactivés, `mock` est refusé en production). Le brancher = un adaptateur dans `apps/api/src/modules/payments` (voir README de l'API).
 
 Limite connue : sur Vercel (serverless), la limitation de débit du site est par instance ; celle de l'API (VPS, instance unique) reste exacte.
+
+## Production actuelle (ethnika.africa)
+
+| Élément | Où |
+|---|---|
+| Site | Vercel, projet `ethnika`, intégration Git : chaque push sur `main` est déployé. Domaine `ethnika.africa` (principal), `www` redirigé. Variables Production : `NEXT_PUBLIC_SITE_URL`, `API_BASE_URL`, `API_INTERNAL_KEY`, `NEXT_PUBLIC_WHATSAPP_NUMBER`. |
+| API | VPS Hostinger, `/opt/ethnika`, `docker compose -f deploy/docker-compose.prod.yml` (API, PostgreSQL, Caddy → `api.ethnika.africa`). Pare-feu : 22, 80, 443. |
+| Secrets de l'API | `deploy/api.env` et `deploy/postgres.env` sur le serveur uniquement. `DATA_ENCRYPTION_KEY` et la phrase des sauvegardes (`/etc/ethnika/backup.pass`) sont aussi rangées hors du serveur. |
+| Sauvegardes | cron 3 h (UTC) → `deploy/backups/` (14 conservées, chiffrées). |
+| DNS | Namecheap : A `@` et CNAME `www` (Vercel), A `api` → IP du VPS, MX/SPF/DKIM Private Email. |
+
+### Déploiement continu de l'API (GitHub Actions)
+
+`.github/workflows/deploy-api.yml` (à la racine du dépôt) se lance après une CI verte sur `main`, ou à la main (Actions → « Déploiement API » → Run workflow). Il envoie le code au VPS par SSH (clé dédiée, empreinte du serveur vérifiée), synchronise `/opt/ethnika` sans toucher aux secrets ni aux sauvegardes, reconstruit la pile, applique les migrations au démarrage de l'API et vérifie `https://api.ethnika.africa/health`.
+
+Secrets du dépôt : `VPS_HOST`, `VPS_SSH_KEY`, `VPS_KNOWN_HOSTS`. Changer de serveur : mettre à jour ces trois secrets et copier `deploy/*.env` et `/etc/ethnika/backup.pass`.

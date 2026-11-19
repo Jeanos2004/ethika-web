@@ -15,7 +15,7 @@ export const site = {
     phone: "+224 622 00 00 00",
     email: "contact@ethnika.africa",
     /** Adresses par service (maquette Contact.dc.html). */
-    emails: ["contact@ethnika.africa", "billetterie@ethnika.africa", "reservation@ethnika.africa"],
+    emails: ["contact@ethnika.africa", "billetterie@ethnika.africa"],
     /** Horaires détaillés (à fournir par le client). */
     openingHours: [
       { days: "Lundi – Vendredi", hours: "8 h 30 – 18 h 00" },

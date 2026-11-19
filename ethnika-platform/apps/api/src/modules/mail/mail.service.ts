@@ -82,6 +82,14 @@ export class MailService implements OnModuleInit, OnModuleDestroy {
     return sent;
   }
 
+  /** Envoi immédiat, hors file d'attente : vérification de la configuration (commande mail:test). Renvoie le service utilisé. */
+  async sendTest(to: string): Promise<"resend" | "smtp" | "none"> {
+    const provider = this.env.RESEND_API_KEY ? "resend" : this.env.SMTP_URL ? "smtp" : "none";
+    const text = `Cet e-mail confirme que l'envoi depuis ${this.env.SITE_URL} fonctionne (service : ${provider}).`;
+    await (await this.getTransport()).send(to, { subject: "ETHNIKA : e-mail de test", text, html: `<p style="font-family:Arial,sans-serif">${text}</p>` });
+    return provider;
+  }
+
   private getTransport(): Promise<MailTransport> {
     this.transport ??= this.createTransport();
     return this.transport;

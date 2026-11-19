@@ -51,7 +51,9 @@ describe("Authentification du back-office (e2e)", () => {
 
     const setup = await api().post("/v1/auth/mfa/setup").set("x-internal-key", KEY).set("x-session-token", admin.session).expect(200);
     expect(setup.body.otpauthUri).toMatch(/^otpauth:\/\/totp\//);
-    const enabled = await api().post("/v1/auth/mfa/enable").set("x-internal-key", KEY).set("x-session-token", admin.session).send({ code: totpAt(setup.body.secret, currentStep()) }).expect(200);
+    // Code gardé pour le test de rejeu : le recalculer plus tard changerait de valeur si la fenêtre de 30 s passe entre-temps.
+    const usedCode = totpAt(setup.body.secret, currentStep());
+    const enabled = await api().post("/v1/auth/mfa/enable").set("x-internal-key", KEY).set("x-session-token", admin.session).send({ code: usedCode }).expect(200);
     await api().get("/v1/users").set("x-internal-key", KEY).set("x-session-token", enabled.body.session).expect(200);
     // L'ancienne session a été remplacée (rotation).
     await api().get("/v1/auth/me").set("x-internal-key", KEY).set("x-session-token", admin.session).expect(401);
@@ -59,7 +61,7 @@ describe("Authentification du back-office (e2e)", () => {
     // Nouvelle connexion : mot de passe puis code. Le code déjà utilisé à l'activation est refusé (rejeu).
     const step1 = await api().post("/v1/auth/login").set("x-internal-key", KEY).send({ email: admin.email, password: admin.password }).expect(200);
     expect(step1.body.status).toBe("mfa_required");
-    await api().post("/v1/auth/mfa").set("x-internal-key", KEY).send({ challenge: step1.body.challenge, code: totpAt(setup.body.secret, currentStep()) }).expect(401);
+    await api().post("/v1/auth/mfa").set("x-internal-key", KEY).send({ challenge: step1.body.challenge, code: usedCode }).expect(401);
     const user = await prisma.user.findUniqueOrThrow({ where: { email: admin.email } });
     await prisma.user.update({ where: { id: user.id }, data: { totpLastStep: currentStep() - 2 } });
     const step2 = await api().post("/v1/auth/mfa").set("x-internal-key", KEY).send({ challenge: step1.body.challenge, code: totpAt(setup.body.secret, currentStep()) }).expect(200);

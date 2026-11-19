@@ -59,6 +59,15 @@ describe("API demandes, devis et e-mails (e2e)", () => {
     expect(JSON.stringify(res.body)).not.toContain("<script>");
   });
 
+  it("limite les demandes par internaute (X-Client-IP transmis par le site)", async () => {
+    const send = (ip: string) => api().post("/v1/leads").set("x-internal-key", KEY).set("x-client-ip", ip).send(billet);
+    for (let i = 0; i < 10; i++) await send("198.51.100.77").expect(201);
+    const limited = await send("198.51.100.77").expect(429);
+    expect(limited.body.error).toBe("rate_limited");
+    // Un autre internaute n'est pas concerné.
+    await send("198.51.100.78").expect(201);
+  });
+
   it("crée une demande et met l'accusé de réception en file dans la même transaction", async () => {
     const created = await api().post("/v1/leads").set("x-internal-key", KEY).send(billet).expect(201);
     const ref: string = created.body.reference;

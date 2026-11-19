@@ -8,9 +8,17 @@
 
 name: ethnika
 
+# Journaux des conteneurs bornés (3 fichiers de 10 Mo par service) : sans limite, ils finiraient par remplir le disque.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   postgres:
     image: postgres:16-alpine
+    logging: *logging
     restart: unless-stopped
     env_file: postgres.env
     volumes:
@@ -23,6 +31,7 @@ services:
       retries: 10
 
   api:
+    logging: *logging
     build:
       context: ..
       dockerfile: apps/api/Dockerfile
@@ -46,6 +55,7 @@ services:
 
   caddy:
     image: caddy:2-alpine
+    logging: *logging
     restart: unless-stopped
     ports:
       - "80:80"

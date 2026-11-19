@@ -26,3 +26,12 @@ echo "$(date -u +%FT%TZ) sauvegarde : $(basename "$FILE") ($(wc -c < "$FILE") oc
 
 # Rotation : on garde les $KEEP plus récentes.
 ls -1t "$OUT"/ethnika-*.dump.gpg | tail -n +"$((KEEP + 1))" | xargs -r rm -f
+
+# Copie hors du VPS (Google Drive, configuré par setup-gdrive.sh) : 30 jours conservés. Un échec n'annule pas la sauvegarde locale.
+if command -v rclone > /dev/null && rclone listremotes 2> /dev/null | grep -qx "gdrive:"; then
+  if rclone copy "$FILE" gdrive:ETHNIKA-sauvegardes/ && rclone delete gdrive:ETHNIKA-sauvegardes/ --min-age 30d; then
+    echo "$(date -u +%FT%TZ) copie Google Drive : OK"
+  else
+    echo "$(date -u +%FT%TZ) copie Google Drive : ÉCHEC (sauvegarde locale conservée)" >&2
+  fi
+fi

@@ -106,7 +106,8 @@ Limite connue : sur Vercel (serverless), la limitation de débit du site est par
 | Site | Vercel, projet `ethnika`, intégration Git : chaque push sur `main` est déployé. Domaine `ethnika.africa` (principal), `www` redirigé. Variables Production : `NEXT_PUBLIC_SITE_URL`, `API_BASE_URL`, `API_INTERNAL_KEY`, `NEXT_PUBLIC_WHATSAPP_NUMBER`. |
 | API | VPS Hostinger, `/opt/ethnika`, `docker compose -f deploy/docker-compose.prod.yml` (API, PostgreSQL, Caddy → `api.ethnika.africa`). Pare-feu : 22, 80, 443. |
 | Secrets de l'API | `deploy/api.env` et `deploy/postgres.env` sur le serveur uniquement. `DATA_ENCRYPTION_KEY` et la phrase des sauvegardes (`/etc/ethnika/backup.pass`) sont aussi rangées hors du serveur. |
-| Sauvegardes | cron 3 h (UTC) → `deploy/backups/` (14 conservées, chiffrées). |
+| Sauvegardes | cron 3 h (UTC) → `deploy/backups/` (14 conservées, chiffrées) et copie Google Drive « ETHNIKA-sauvegardes » (30 jours) une fois `deploy/setup-gdrive.sh` lancé. |
+| Accès au serveur | SSH par clé uniquement (mot de passe désactivé), fail2ban sur SSH. Secours : console de hPanel. |
 | DNS | Namecheap : A `@` et CNAME `www` (Vercel), A `api` → IP du VPS, MX/SPF/DKIM Private Email. |
 
 ### Déploiement continu de l'API (GitHub Actions)
